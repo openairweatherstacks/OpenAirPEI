@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-sun: #f5a623;
+  --color-sun-deep: #e8960f;
+  --color-sun-light: #fdf0d5;
+  --color-forest: #3a8c2f;
+  --color-forest-deep: #2d6e24;
+  --color-forest-light: #e8f5e4;
+  --color-leaf: #7dc832;
+  --color-leaf-light: #f2f8ee;
+  --color-charcoal: #4a4a4a;
+  --color-arrow: #1a1a1a;
+  --color-danger: #c0392b;
+  --color-bg: #fafaf7;
+  --color-bg-card: #ffffff;
+  --color-border: #e8ede4;
+  --color-text-primary: #2a2a2a;
+  --color-text-secondary: #6b7366;
+  --color-text-muted: #9ba696;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(245, 166, 35, 0.16), transparent 34%),
+    radial-gradient(circle at top right, rgba(125, 200, 50, 0.14), transparent 32%),
+    linear-gradient(180deg, #fffdf6 0%, #fafaf7 28%, #f7faf4 100%);
+  color: var(--color-text-primary);
+}
+
+::selection {
+  background: rgba(245, 166, 35, 0.28);
+}
+
+.leaflet-container {
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+}
+
+.leaflet-control-attribution {
+  font-size: 10px;
+}
+
+.panel {
+  @apply rounded-[2rem] border border-white/70 bg-white/85 shadow-[0_24px_80px_rgba(42,42,42,0.07)] backdrop-blur;
+}
+
+.eyebrow {
+  @apply text-xs font-semibold uppercase tracking-[0.26em] text-forest;
+}
+
+.page-shell {
+  @apply mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8;
+}
+
+.section-title {
+  @apply font-serif text-3xl leading-tight text-text-primary sm:text-4xl;
+}
+
+.section-copy {
+  @apply max-w-3xl text-sm leading-7 text-text-secondary sm:text-base;
+}

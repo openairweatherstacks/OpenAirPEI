@@ -1,0 +1,227 @@
+import Link from "next/link";
+import { ArrowRight, Bike, CloudSun, ShieldCheck, Wind } from "lucide-react";
+
+import { MeteorologistInsight } from "@/components/ai/MeteorologistInsight";
+import { BridgeStatus } from "@/components/ui/BridgeStatus";
+import { LocationGrid } from "@/components/ui/LocationGrid";
+import { MetricCard } from "@/components/ui/MetricCard";
+import { PEIMap } from "@/components/map/PEIMap";
+import { average } from "@/lib/utils";
+import { getAllLocationConditions } from "@/lib/environment";
+
+export default async function HomePage() {
+  const locations = await getAllLocationConditions();
+  const outdoorLocations = locations.filter((entry) => entry.location.type !== "airport");
+  const ranked = [...outdoorLocations].sort((left, right) => right.rawScore - left.rawScore);
+  const bestNow = ranked.slice(0, 3);
+  const bridge = locations.find((entry) => entry.location.id === "confederation-bridge");
+  const bridgeStatus = bridge?.conditions.bridgeStatus ?? null;
+  const nextShiftEntry = locations
+    .filter((entry) => entry.weather.precipMinutes !== null)
+    .sort((a, b) => (a.weather.precipMinutes ?? 0) - (b.weather.precipMinutes ?? 0))[0] ?? null;
+  const nextShift = nextShiftEntry?.weather.precipMinutes ?? null;
+  const islandAqhi = average(locations.map((entry) => entry.weather.aqhi));
+
+  return (
+    <div className="page-shell space-y-10">
+      <section className="panel overflow-hidden p-5 sm:p-6">
+        <div className="grid gap-5 lg:grid-cols-[1.35fr_0.65fr] lg:items-start">
+          <div>
+            <p className="eyebrow mb-2">Real-time nature insights for PEI</p>
+            <h1 className="section-title max-w-4xl text-4xl sm:text-5xl lg:text-6xl">
+              Should you go outside right now?
+            </h1>
+            <p className="section-copy mt-3 max-w-3xl">
+              OpenAir PEI reads the island like a local meteorologist: beach wind, AQHI, bridge
+              crosswinds, and the next weather shift turned into one clear answer.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <Link
+                href="/activity"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-forest px-5 py-3 text-sm font-semibold text-white shadow-glow transition hover:bg-forest-deep"
+              >
+                Find the best thing to do <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/bridge"
+                className="inline-flex min-h-11 items-center rounded-full border border-border bg-white px-5 py-3 text-sm font-semibold text-text-primary transition hover:border-forest hover:text-forest"
+              >
+                Check the bridge
+              </Link>
+            </div>
+          </div>
+
+          <div className="grid gap-2 sm:grid-cols-3 lg:grid-cols-1">
+            <div className="rounded-[1.5rem] bg-forest p-4 text-white shadow-glow">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/75">Best now</p>
+              <p className="mt-1.5 font-serif text-xl">{bestNow[0]?.location.name ?? "Scanning"}</p>
+              <p className="mt-1 text-sm leading-5 text-white/85">
+                {bestNow[0]?.conditions.headline ?? "Looking across the island."}
+              </p>
+            </div>
+            <div className="rounded-[1.5rem] bg-sun-light p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sun-deep">
+                Next shift
+              </p>
+              <p className="mt-1.5 font-serif text-xl text-text-primary">
+                {nextShift ? `${nextShift} min` : "Holding steady"}
+              </p>
+              <p className="mt-1 text-sm leading-5 text-text-secondary">
+                {nextShiftEntry
+                  ? `Rain arriving at ${nextShiftEntry.location.name} — heads up if that's your stop.`
+                  : "No major changes expected across the island right now."}
+              </p>
+            </div>
+            <div className="rounded-[1.5rem] bg-white p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-text-muted">
+                Island air
+              </p>
+              <p className="mt-1.5 font-serif text-xl text-text-primary">AQHI {islandAqhi.toFixed(1)}</p>
+              <p className="mt-1 text-sm leading-5 text-text-secondary">
+                {islandAqhi <= 3
+                  ? "Air is clean across the island. Fine for everyone including kids and asthma."
+                  : islandAqhi <= 6
+                    ? "Acceptable air quality. Sensitive groups should ease off hard effort outside."
+                    : "Air quality is poor. Limit outdoor time, especially for kids and anyone with asthma."}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+        <div>
+          <div className="mb-4 flex items-end justify-between gap-4">
+            <div>
+              <p className="eyebrow mb-2">Live island map</p>
+              <h2 className="section-title text-3xl">Eight key PEI locations at a glance</h2>
+            </div>
+          </div>
+          <PEIMap locations={locations} />
+        </div>
+
+        <div className="space-y-5">
+          <MeteorologistInsight text={bestNow[0]?.conditions.insightOfTheDay ?? "Island insight is loading."} />
+
+          {bridge && bridgeStatus ? (
+            <BridgeStatus status={bridgeStatus} windSpeed={bridge.weather.windSpeed} />
+          ) : null}
+
+          <MetricCard
+            icon={CloudSun}
+            insight="The north shore stays comfortable longest today. Cavendish and the Confederation Trail both have the cleanest mix of sun, air, and manageable wind."
+            rawLabel={`Top window · ${bestNow.map((entry) => entry.location.name).join(" · ")}`}
+            accentClassName="text-sun-deep"
+          />
+        </div>
+      </section>
+
+      <section className="grid gap-5 lg:grid-cols-3">
+        <MetricCard
+          icon={Bike}
+          insight="Cycling is strongest through the island interior this afternoon, where westbound routes stay more sheltered than the exposed coasts."
+          rawLabel="Activity match · Trail and waterfront rides"
+          accentClassName="text-forest"
+        />
+        <MetricCard
+          icon={Wind}
+          insight="Bridge wind is the island's sharpest decision point today. The shoreline can feel reasonable while the deck still runs gusty."
+          rawLabel={`Bridge wind · ${bridge?.weather.windSpeed ?? "--"} km/h`}
+          accentClassName="text-sun-deep"
+        />
+        <MetricCard
+          icon={ShieldCheck}
+          insight="AQHI is calm enough for kids, visitors, and most asthma-sensitive users to spend time outside without special precautions."
+          rawLabel={`Island AQHI · ${islandAqhi.toFixed(1)}`}
+          accentClassName="text-forest"
+        />
+      </section>
+
+      <section className="space-y-4">
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <p className="eyebrow mb-2">Location cards</p>
+            <h2 className="section-title text-3xl">Where to go, and how long you have</h2>
+          </div>
+        </div>
+        <LocationGrid locations={ranked} />
+      </section>
+
+      <section className="panel p-6 sm:p-8">
+        <p className="eyebrow mb-3">Why OpenAir Atlantic</p>
+        <h2 className="section-title text-3xl">Every other option leaves you guessing</h2>
+        <p className="section-copy mt-3">
+          Other tools show you numbers. OpenAir tells you what to do.
+        </p>
+
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            {
+              name: "Weather Network / Dark Sky",
+              features: ["Icons and numbers", "No live spatial view", "No activity intelligence"],
+              isUs: false,
+            },
+            {
+              name: "Google Weather",
+              features: ["Forecast only", "No PEI-specific locations", "No radar"],
+              isUs: false,
+            },
+            {
+              name: "Environment Canada",
+              features: ["Has radar", "Terrible UX", "No AI interpretation"],
+              isUs: false,
+            },
+            {
+              name: "OpenAir Atlantic",
+              features: [
+                "Live radar + location dots",
+                "AI interpretation in plain English",
+                "Activity matching — all in one mobile-first view",
+              ],
+              isUs: true,
+            },
+          ].map(({ name, features, isUs }) => (
+            <div
+              key={name}
+              className={
+                isUs
+                  ? "rounded-[1.75rem] bg-forest p-5 text-white shadow-glow"
+                  : "rounded-[1.75rem] border border-border bg-bg p-5"
+              }
+            >
+              <p
+                className={`mb-4 text-xs font-semibold uppercase tracking-[0.22em] ${
+                  isUs ? "text-white/70" : "text-text-muted"
+                }`}
+              >
+                {isUs ? "✦ This app" : "Competitor"}
+              </p>
+              <p
+                className={`mb-4 font-serif text-lg leading-snug ${
+                  isUs ? "text-white" : "text-text-primary"
+                }`}
+              >
+                {name}
+              </p>
+              <ul className="space-y-2">
+                {features.map((f) => (
+                  <li
+                    key={f}
+                    className={`flex items-start gap-2 text-sm leading-5 ${
+                      isUs ? "text-white/85" : "text-text-secondary"
+                    }`}
+                  >
+                    <span className={`mt-0.5 text-xs ${isUs ? "text-white/50" : "text-danger"}`}>
+                      {isUs ? "→" : "✕"}
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
