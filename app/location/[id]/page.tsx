@@ -16,6 +16,8 @@ import { UVTimer } from "@/components/ui/UVTimer";
 import { PEI_LOCATIONS } from "@/lib/data/locations";
 import { getAllLocationConditions, getLocationConditions } from "@/lib/environment";
 import { waterTempLabel } from "@/lib/water";
+import { ReviewForm } from "@/components/reviews/ReviewForm";
+import { ReviewList } from "@/components/reviews/ReviewList";
 
 export async function generateStaticParams() {
   return PEI_LOCATIONS.map((location) => ({ id: location.id }));
@@ -170,6 +172,20 @@ export default async function LocationPage({
             rawLabel={`Source · ${entry.source === "hybrid" ? "live data blended with local defaults" : "sample seed data"}`}
             accentClassName="text-sun-deep"
           />
+        </div>
+      </section>
+
+      {/* ── REVIEWS ───────────────────────────────────────────────── */}
+      <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+        <div>
+          <p className="eyebrow mb-3">Visitor reviews</p>
+          <h2 className="section-title text-3xl mb-6">What people are saying</h2>
+          <ReviewList locationId={entry.location.id} />
+        </div>
+        <div>
+          <p className="eyebrow mb-3">Share your experience</p>
+          <h2 className="section-title text-3xl mb-6">Leave a review</h2>
+          <ReviewForm locationId={entry.location.id} />
         </div>
       </section>
     </div>
