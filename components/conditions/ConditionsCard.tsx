@@ -57,6 +57,7 @@ export function ConditionsCard({
               {entry.location.type}
             </p>
             <h3 className="font-serif text-2xl text-text-primary">{entry.location.name}</h3>
+            <p className="mt-1 text-xs leading-5 text-text-muted">{entry.location.tagline}</p>
           </div>
           {!image && <ScoreBadge score={entry.conditions.score} />}
         </div>

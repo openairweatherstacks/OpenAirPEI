@@ -63,6 +63,14 @@ export default async function LocationPage({
         <span>Location outlook</span>
       </div>
 
+      <section className="panel p-5 sm:p-6">
+        <p className="eyebrow mb-2">{entry.location.type}</p>
+        <h1 className="section-title text-4xl">{entry.location.name}</h1>
+        <p className="mt-2 max-w-2xl text-base leading-7 text-text-secondary">
+          {entry.location.tagline}
+        </p>
+      </section>
+
       <section className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
         <ConditionsCard entry={entry} compact />
         <div className="space-y-5">

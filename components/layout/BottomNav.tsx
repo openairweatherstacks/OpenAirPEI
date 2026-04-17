@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import {
   Activity,
   Compass,
-  Flag,
+  Map,
   Route,
   Wind,
 } from "lucide-react";
@@ -14,10 +14,10 @@ import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
   { href: "/", label: "Home", icon: Compass },
+  { href: "/explore", label: "Explore", icon: Map },
   { href: "/activity", label: "Activity", icon: Activity },
   { href: "/air", label: "Air", icon: Wind },
   { href: "/bridge", label: "Bridge", icon: Route },
-  { href: "/report", label: "Report", icon: Flag },
 ];
 
 export function BottomNav() {

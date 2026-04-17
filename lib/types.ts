@@ -20,6 +20,7 @@ export interface Location {
   id: string;
   name: string;
   nameFr: string;
+  tagline: string;
   lat: number;
   lng: number;
   type: LocationType;
