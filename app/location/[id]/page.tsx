@@ -13,15 +13,12 @@ import { BridgeStatus } from "@/components/ui/BridgeStatus";
 import { MetricCard } from "@/components/ui/MetricCard";
 import { TideCard } from "@/components/ui/TideCard";
 import { UVTimer } from "@/components/ui/UVTimer";
-import { PEI_LOCATIONS } from "@/lib/data/locations";
 import { getAllLocationConditions, getLocationConditions } from "@/lib/environment";
 import { waterTempLabel } from "@/lib/water";
 import { ReviewForm } from "@/components/reviews/ReviewForm";
 import { ReviewList } from "@/components/reviews/ReviewList";
 
-export async function generateStaticParams() {
-  return PEI_LOCATIONS.map((location) => ({ id: location.id }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,

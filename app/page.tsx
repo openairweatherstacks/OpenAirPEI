@@ -10,6 +10,8 @@ import { PEIMap } from "@/components/map/PEIMap";
 import { average } from "@/lib/utils";
 import { getAllLocationConditions } from "@/lib/environment";
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
   const locations = await getAllLocationConditions();
   const outdoorLocations = locations.filter((entry) => entry.location.type !== "airport");

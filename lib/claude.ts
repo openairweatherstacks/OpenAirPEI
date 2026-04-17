@@ -75,21 +75,26 @@ async function callClaude(
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) return null;
 
-  const client = new Anthropic({ apiKey });
+  try {
+    const client = new Anthropic({ apiKey });
 
-  const message = await client.messages.create({
-    model: process.env.ANTHROPIC_MODEL ?? "claude-sonnet-4-6",
-    max_tokens: 1024,
-    system: SYSTEM_PROMPT,
-    messages: [{ role: "user", content: buildPrompt(location, weather, alerts) }],
-  });
+    const message = await client.messages.create({
+      model: process.env.ANTHROPIC_MODEL ?? "claude-sonnet-4-6",
+      max_tokens: 1024,
+      system: SYSTEM_PROMPT,
+      messages: [{ role: "user", content: buildPrompt(location, weather, alerts) }],
+    });
 
-  const text = message.content[0]?.type === "text" ? message.content[0].text.trim() : null;
-  if (!text) return null;
+    const text = message.content[0]?.type === "text" ? message.content[0].text.trim() : null;
+    if (!text) return null;
 
-  // Strip any accidental markdown fences
-  const cleaned = text.replace(/^```json\s*/i, "").replace(/\s*```$/i, "");
-  return JSON.parse(cleaned) as ConditionsResponse;
+    // Strip any accidental markdown fences
+    const cleaned = text.replace(/^```json\s*/i, "").replace(/\s*```$/i, "");
+    return JSON.parse(cleaned) as ConditionsResponse;
+  } catch {
+    // Rate limit, network error, or bad JSON — fall back to template data
+    return null;
+  }
 }
 
 // Fingerprint weather so near-identical conditions reuse the cached Claude response
