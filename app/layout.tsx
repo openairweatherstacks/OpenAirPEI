@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Bebas_Neue, Roboto } from "next/font/google";
+import { Barlow_Condensed, Roboto } from "next/font/google";
 import type { ReactNode } from "react";
 import "leaflet/dist/leaflet.css";
 
@@ -16,10 +16,10 @@ const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
 });
 
-const bebasNeue = Bebas_Neue({
+const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
-  variable: "--font-bebas",
-  weight: ["400"],
+  variable: "--font-barlow",
+  weight: ["400", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -49,7 +49,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.variable} ${bebasNeue.variable} font-sans antialiased`}>
+      <body className={`${roboto.variable} ${barlowCondensed.variable} font-sans antialiased`}>
         <div className="min-h-screen">
           <Header />
           <main className="pb-28 md:pb-12">{children}</main>

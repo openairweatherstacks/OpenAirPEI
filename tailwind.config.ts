@@ -41,7 +41,7 @@ const config: Config = {
         danger: "#C0392B",
       },
       fontFamily: {
-        serif: ["var(--font-bebas)", "Impact", "sans-serif"],
+        serif: ["var(--font-barlow)", "Impact", "sans-serif"],
         sans: ["var(--font-roboto)", "system-ui", "sans-serif"],
       },
       boxShadow: {

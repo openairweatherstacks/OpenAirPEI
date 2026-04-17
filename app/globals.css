@@ -60,7 +60,7 @@ body {
 }
 
 .section-title {
-  @apply font-serif text-3xl leading-tight tracking-wide text-text-primary sm:text-4xl;
+  @apply font-serif text-3xl font-extrabold leading-tight tracking-wide text-text-primary sm:text-4xl;
 }
 
 .section-copy {
