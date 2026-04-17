@@ -59,7 +59,7 @@ export function ReviewForm({ locationId }: { locationId: string }) {
       <div className="rounded-[1.75rem] border border-forest/20 bg-forest-light p-6 text-center">
         <p className="font-serif text-2xl text-forest">Thanks for your review!</p>
         <p className="mt-2 text-sm text-text-secondary">
-          It will show up once we've given it a quick check — usually within 24 hours.
+          It will show up once we&apos;ve given it a quick check — usually within 24 hours.
         </p>
       </div>
     );

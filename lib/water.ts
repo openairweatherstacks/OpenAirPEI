@@ -25,10 +25,6 @@ function getSeasonalFallback(): number {
 // CIOOS Atlantic ERDDAP — DFO/MEDS buoy sea surface temperature
 async function fetchBuoyTemp(buoyId: string): Promise<number | null> {
   try {
-    const query = new URLSearchParams({
-      ".jsonlKVP": "",
-    });
-
     // ERDDAP tabledap query: get latest SSTP reading from the buoy
     const url =
       `https://cioosatlantic.ca/erddap/tabledap/meds_buoys.json` +
