@@ -53,10 +53,10 @@ export default async function HomePage() {
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
-                href="/activity"
+                href="/explore"
                 className="inline-flex min-h-11 items-center gap-2 rounded-full bg-sun px-6 py-3 text-sm font-semibold text-white shadow-sun transition hover:bg-sun-deep"
               >
-                Find the best thing to do <ArrowRight className="h-4 w-4" />
+                Explore best things to do <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/bridge"
