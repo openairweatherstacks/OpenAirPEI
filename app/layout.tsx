@@ -4,6 +4,8 @@ import type { ReactNode } from "react";
 import "leaflet/dist/leaflet.css";
 
 import { BottomNav } from "@/components/layout/BottomNav";
+import { CookieBanner } from "@/components/layout/CookieBanner";
+import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 
 import "./globals.css";
@@ -51,7 +53,9 @@ export default function RootLayout({
         <div className="min-h-screen">
           <Header />
           <main className="pb-28 md:pb-12">{children}</main>
+          <Footer />
           <BottomNav />
+          <CookieBanner />
         </div>
       </body>
     </html>

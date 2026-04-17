@@ -83,5 +83,6 @@ export interface LocationConditions {
   tide: TideEvent[];
   alerts: AlertItem[];
   conditions: ConditionsResponse;
+  waterTemp: number | null;
   source: "sample" | "hybrid";
 }

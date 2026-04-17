@@ -8,6 +8,7 @@ import { ArrowRight, Wind } from "lucide-react";
 import { ScoreBadge } from "@/components/conditions/ScoreBadge";
 import type { LocationConditions } from "@/lib/types";
 import { formatObservationTime } from "@/lib/utils";
+import { waterTempLabel } from "@/lib/water";
 
 const LOCATION_IMAGES: Record<string, string> = {
   cavendish: "/get-images/cavendish.jpg",
@@ -80,6 +81,20 @@ export function ConditionsCard({
             </p>
           </div>
         </div>
+
+        {entry.waterTemp !== null && (
+          <div className="mt-3 flex items-center justify-between rounded-3xl border border-[#cce8f4] bg-[#eef7fc] px-4 py-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#1a7aad]">
+                Water temp
+              </p>
+              <p className="mt-0.5 font-serif text-lg text-text-primary">
+                {entry.waterTemp}°C — {waterTempLabel(entry.waterTemp)}
+              </p>
+            </div>
+            <span className="text-2xl">🌊</span>
+          </div>
+        )}
 
         {!compact && (
           <div className="mt-5 flex items-center justify-between gap-3 rounded-3xl border border-border bg-bg px-4 py-3">

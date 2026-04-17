@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Droplets, Gauge, Mountain, Navigation, Wind } from "lucide-react";
+import { ArrowLeft, Droplets, Gauge, Mountain, Navigation, Waves, Wind } from "lucide-react";
 import { notFound } from "next/navigation";
 
 import { MeteorologistInsight } from "@/components/ai/MeteorologistInsight";
@@ -15,6 +15,7 @@ import { TideCard } from "@/components/ui/TideCard";
 import { UVTimer } from "@/components/ui/UVTimer";
 import { PEI_LOCATIONS } from "@/lib/data/locations";
 import { getAllLocationConditions, getLocationConditions } from "@/lib/environment";
+import { waterTempLabel } from "@/lib/water";
 
 export async function generateStaticParams() {
   return PEI_LOCATIONS.map((location) => ({ id: location.id }));
@@ -145,6 +146,16 @@ export default async function LocationPage({
             <ActivityGrid activities={entry.conditions.activities} />
           </div>
           <TideCard tides={entry.tide} />
+          {entry.waterTemp !== null && (
+            <div className="rounded-[1.75rem] border border-[#cce8f4] bg-[#eef7fc] p-5">
+              <div className="mb-2 flex items-center gap-2 text-[#1a7aad]">
+                <Waves className="h-4 w-4" />
+                <p className="text-xs font-semibold uppercase tracking-[0.2em]">Water temperature</p>
+              </div>
+              <p className="font-serif text-3xl text-text-primary">{entry.waterTemp}°C</p>
+              <p className="mt-1 text-sm text-text-secondary">{waterTempLabel(entry.waterTemp)}</p>
+            </div>
+          )}
           <MetricCard
             icon={Mountain}
             insight="OpenAir always shows the call and the proof together: the action-oriented read first, then the raw number under it so locals and visitors can trust the same screen."

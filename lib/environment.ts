@@ -1,6 +1,7 @@
-import { CACHE_DURATIONS, PEI_AQHI, PEI_LOCATIONS } from "@/lib/data/locations";
+import { BEACH_BUOYS, CACHE_DURATIONS, PEI_AQHI, PEI_LOCATIONS } from "@/lib/data/locations";
 import { SAMPLE_ALERTS, SAMPLE_TIDES, SAMPLE_WEATHER } from "@/lib/data/sample";
 import { getClaudeConditions } from "@/lib/claude";
+import { getWaterTemp } from "@/lib/water";
 import { calculateRawScore, getBridgeStatus, getUvBurnMinutes, scoreToLabel } from "@/lib/score";
 import type {
   ActivityAssessment,
@@ -287,6 +288,9 @@ export async function getLocationConditions(locationId: string): Promise<Locatio
   const alerts = SAMPLE_ALERTS[locationId] ?? [];
   const conditions = await buildConditions(location, weather, alerts);
 
+  const buoyId = BEACH_BUOYS[locationId];
+  const waterTemp = buoyId ? await getWaterTemp(buoyId) : null;
+
   return {
     location,
     weather,
@@ -294,6 +298,7 @@ export async function getLocationConditions(locationId: string): Promise<Locatio
     tide,
     alerts,
     conditions,
+    waterTemp,
     source: liveWeather || liveAqhi ? "hybrid" : "sample",
   };
 }

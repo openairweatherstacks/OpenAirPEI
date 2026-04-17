@@ -139,6 +139,15 @@ export const RADAR_WMS = {
   opacity: 0.45,
 };
 
+// DFO/MEDS ocean buoys — free, no API key
+// C44137 = Northumberland Strait (south shore), C44150 = Gulf of St. Lawrence (north shore)
+export const BEACH_BUOYS: Record<string, string> = {
+  cavendish: "C44150",
+  "basin-head": "C44150",
+  charlottetown: "C44137",
+  "victoria-park": "C44137",
+};
+
 export const CACHE_DURATIONS = {
   currentConditions: 10 * 60,
   aiSummary: 15 * 60,
