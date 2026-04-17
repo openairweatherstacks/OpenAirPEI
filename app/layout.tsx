@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, DM_Serif_Display } from "next/font/google";
+import { Bebas_Neue, Roboto } from "next/font/google";
 import type { ReactNode } from "react";
 import "leaflet/dist/leaflet.css";
 
@@ -10,15 +10,15 @@ import { Header } from "@/components/layout/Header";
 
 import "./globals.css";
 
-const dmSans = DM_Sans({
+const roboto = Roboto({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
-  weight: ["400", "500", "700"],
+  variable: "--font-roboto",
+  weight: ["300", "400", "500", "700"],
 });
 
-const dmSerif = DM_Serif_Display({
+const bebasNeue = Bebas_Neue({
   subsets: ["latin"],
-  variable: "--font-dm-serif",
+  variable: "--font-bebas",
   weight: ["400"],
 });
 
@@ -49,7 +49,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${dmSans.variable} ${dmSerif.variable} font-sans antialiased`}>
+      <body className={`${roboto.variable} ${bebasNeue.variable} font-sans antialiased`}>
         <div className="min-h-screen">
           <Header />
           <main className="pb-28 md:pb-12">{children}</main>
