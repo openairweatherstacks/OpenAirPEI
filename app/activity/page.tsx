@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { Bike, Camera, Footprints, Waves } from "lucide-react";
 
 import { ScoreBadge } from "@/components/conditions/ScoreBadge";

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { Wind } from "lucide-react";
 
 import { AirQualityBar } from "@/components/ui/AirQualityBar";

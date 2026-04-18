@@ -15,6 +15,9 @@ const LOCATION_IMAGES: Record<string, string> = {
   charlottetown: "/get-images/charlottetown-waterfront.jpg",
   "confederation-trail": "/get-images/confederation-trail.jpg",
   "victoria-park": "/get-images/victoria-park.jpg",
+  "brackley-beach": "/brackley.webp",
+  "fox-meadow-golf": "/fooxmeadow.jpg",
+  "belvedere-golf": "/Belvedere.webp",
 };
 
 export function ConditionsCard({

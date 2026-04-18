@@ -14,7 +14,13 @@ export type LocationType =
   | "trail"
   | "bridge"
   | "landmark"
-  | "airport";
+  | "airport"
+  | "golf";
+
+export interface LocationFAQ {
+  q: string;
+  a: string;
+}
 
 export interface Location {
   id: string;
@@ -27,6 +33,7 @@ export interface Location {
   nearestStation: string;
   activities: string[];
   icon: string;
+  faqs?: LocationFAQ[];
 }
 
 export interface WeatherSnapshot {

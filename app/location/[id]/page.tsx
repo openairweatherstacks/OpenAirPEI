@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Droplets, Gauge, Mountain, Navigation, Waves, Wind } from "lucide-react";
+import { ArrowLeft, ChevronDown, Droplets, Gauge, Mountain, Navigation, Waves, Wind } from "lucide-react";
 import { notFound } from "next/navigation";
 
 import { MeteorologistInsight } from "@/components/ai/MeteorologistInsight";
@@ -171,6 +171,27 @@ export default async function LocationPage({
           />
         </div>
       </section>
+
+      {/* ── FAQ ───────────────────────────────────────────────────── */}
+      {entry.location.faqs && entry.location.faqs.length > 0 && (
+        <section className="space-y-4">
+          <div>
+            <p className="eyebrow mb-2">Frequently asked questions</p>
+            <h2 className="section-title text-3xl">What visitors want to know</h2>
+          </div>
+          <div className="space-y-3">
+            {entry.location.faqs.map(({ q, a }) => (
+              <details key={q} className="group rounded-[1.75rem] border border-border bg-white">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 font-semibold text-text-primary">
+                  {q}
+                  <ChevronDown className="h-4 w-4 shrink-0 text-text-muted transition-transform group-open:rotate-180" />
+                </summary>
+                <p className="px-5 pb-5 text-sm leading-7 text-text-secondary">{a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* ── REVIEWS ───────────────────────────────────────────────── */}
       <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">

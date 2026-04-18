@@ -118,6 +118,108 @@ export const PEI_LOCATIONS: Location[] = [
     icon: "🐋",
   },
   {
+    id: "brackley-beach",
+    name: "Brackley Beach",
+    nameFr: "Plage Brackley",
+    tagline: "A quieter stretch of PEI National Park — warm red sand, dunes, and calmer surf than Cavendish.",
+    lat: 46.4394,
+    lng: -63.2036,
+    type: "beach",
+    nearestStation: PEI_STATIONS.northRustico,
+    activities: ["swimming", "hiking", "kayaking"],
+    icon: "🏝️",
+    faqs: [
+      {
+        q: "How does Brackley Beach compare to Cavendish?",
+        a: "Brackley is quieter and less commercialized than Cavendish — no boardwalk strip, just dunes, sand, and the Gulf. The beach itself is just as beautiful, and you'll often find far fewer people, especially on weekdays. It's the locals' pick when Cavendish feels overcrowded.",
+      },
+      {
+        q: "Is the water warm enough to swim?",
+        a: "Yes — the Gulf of St. Lawrence is one of the warmest saltwater swimming destinations in Canada north of the Carolinas. Water temperatures typically reach 20–22°C in July and August. The OpenAir water temperature card on this page shows today's reading from the nearest ocean buoy.",
+      },
+      {
+        q: "Is Brackley Beach good for families with young children?",
+        a: "It's one of the best on the island for young kids. The water is shallow and calm near shore, the sand is soft and fine, and the dune boardwalks are an easy walk. There are washrooms and change facilities at the main entrance. Lifeguards are on duty during peak season.",
+      },
+      {
+        q: "Is there parking, and does it cost money?",
+        a: "Brackley Beach is part of PEI National Park, so you need a Parks Canada day pass to enter. Passes can be purchased at the gate or online in advance. The parking area is large and rarely fills up the way Cavendish does in summer.",
+      },
+      {
+        q: "When is the best time of day to visit?",
+        a: "Morning visits (before 10am) give you the best light for photos, the calmest surf, and the most space on the beach. Evenings after 5pm are equally peaceful and the light turns golden on the red sand cliffs. Midday in July and August can get busy — check the UV index on this page and bring SPF.",
+      },
+    ],
+  },
+  {
+    id: "fox-meadow-golf",
+    name: "Fox Meadow Golf & Country Club",
+    nameFr: "Club de golf Fox Meadow",
+    tagline: "Stratford's premier 18-hole course — tree-lined fairways and some of the best-kept greens on the island.",
+    lat: 46.2092,
+    lng: -63.0609,
+    type: "golf",
+    nearestStation: PEI_STATIONS.charlottetown,
+    activities: ["golf", "walking", "dining"],
+    icon: "⛳",
+    faqs: [
+      {
+        q: "What weather conditions are ideal for golf at Fox Meadow?",
+        a: "The sweet spot is temperatures between 15–25°C with wind under 20 km/h — you'll get a fair, predictable ball flight and comfortable walking conditions. Morning tee times in summer (before 9am) often offer the calmest air and cooler temps. Check the wind and UV readings at the top of this page before you head out.",
+      },
+      {
+        q: "How much does wind affect the course?",
+        a: "Fox Meadow is sheltered by mature tree lines on most holes, which softens crosswinds compared to PEI's coastal courses. That said, holes 7, 12, and 16 open up and will expose your ball to any northwest wind. When the OpenAir wind reading is above 30 km/h, club up by at least one on exposed holes.",
+      },
+      {
+        q: "Is the course open year-round?",
+        a: "Fox Meadow typically operates from late April through October, weather permitting. The shoulder season — May and September — often has cooler but beautiful playing conditions with the added bonus of lower rates and shorter wait times. The course closes when frost or snow make conditions unsafe.",
+      },
+      {
+        q: "Do I need to book a tee time in advance?",
+        a: "In July and August, booking 3–5 days ahead is strongly recommended — the course is popular with both locals and tourists. Spring and fall are more walk-on friendly. Contact Fox Meadow directly or check their website for availability and current green fees.",
+      },
+      {
+        q: "Are there dining and facilities on site?",
+        a: "Yes — Fox Meadow has a full clubhouse with a licensed patio, pro shop, club rentals, and a practice range. The patio is a great spot for a post-round meal, especially on evenings when the sun stays out late in summer.",
+      },
+    ],
+  },
+  {
+    id: "belvedere-golf",
+    name: "Belvedere Golf Club",
+    nameFr: "Club de golf Belvedere",
+    tagline: "Charlottetown's historic 18-hole club — elegant fairways minutes from downtown, on the banks of the West River.",
+    lat: 46.2614,
+    lng: -63.1367,
+    type: "golf",
+    nearestStation: PEI_STATIONS.charlottetown,
+    activities: ["golf", "walking", "dining"],
+    icon: "⛳",
+    faqs: [
+      {
+        q: "What makes Belvedere different from other PEI golf courses?",
+        a: "Belvedere is one of the oldest golf clubs in Atlantic Canada with a classic, mature layout along the West River. It's set right in Charlottetown, so you get the convenience of being minutes from hotels and restaurants without sacrificing course quality. The riverfront holes are particularly scenic.",
+      },
+      {
+        q: "How does wind affect play at Belvedere?",
+        a: "The river corridor creates natural wind channels on holes 4, 8, and 14 — you'll feel southwest winds more than expected on those stretches. The inland holes are well-sheltered by established trees. When the OpenAir wind reading is above 25 km/h from the southwest, play conservatively on the riverside holes.",
+      },
+      {
+        q: "Is Belvedere walkable, or do most people use carts?",
+        a: "The course is very walkable — relatively flat with gentle elevation changes, and the layout flows logically between holes. Walking is a great option on cooler mornings. Cart rentals are available if you prefer. Morning tee times in summer are especially pleasant for walkers before the heat builds.",
+      },
+      {
+        q: "What's the dress code and booking policy?",
+        a: "Belvedere maintains a traditional golf club dress code — collared shirts, no denim, proper golf footwear. Booking in advance is recommended during peak season (July–August), especially for weekend tee times. Contact the pro shop for current green fees and availability.",
+      },
+      {
+        q: "Is there a good time to visit for the best conditions and value?",
+        a: "Late May, early June, and September are the hidden gems — green fees are often lower, the course is in excellent shape, and PEI's fall colours in September make the rounds particularly memorable. Shoulder season also means you'll rarely wait on the tee box.",
+      },
+    ],
+  },
+  {
     id: "charlottetown-airport",
     name: "Charlottetown Airport",
     nameFr: "Aéroport de Charlottetown",
@@ -153,6 +255,7 @@ export const RADAR_WMS = {
 export const BEACH_BUOYS: Record<string, string> = {
   cavendish: "C44150",
   "basin-head": "C44150",
+  "brackley-beach": "C44150",
   charlottetown: "C44137",
   "victoria-park": "C44137",
 };

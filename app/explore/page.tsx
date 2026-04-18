@@ -53,6 +53,15 @@ const CATEGORIES: Category[] = [
     textAccent: "text-white/70",
   },
   {
+    id: "golf",
+    label: "Golf",
+    description: "PEI's best courses — wind readings, UV index, and playing conditions before you tee off.",
+    types: ["golf"],
+    image: "/fooxmeadow.jpg",
+    accent: "from-forest/80 to-leaf/50",
+    textAccent: "text-green-100",
+  },
+  {
     id: "travel",
     label: "Travel & Transport",
     description: "Bridge conditions, airport wind, and everything you need before you leave.",
