@@ -57,7 +57,7 @@ const CATEGORIES: Category[] = [
     label: "Golf",
     description: "PEI's best courses — wind readings, UV index, and playing conditions before you tee off.",
     types: ["golf"],
-    image: "/fooxmeadow.jpg",
+    image: "/get-images/fooxmeadow.jpg",
     accent: "from-forest/80 to-leaf/50",
     textAccent: "text-green-100",
   },
