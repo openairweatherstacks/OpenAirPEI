@@ -15,7 +15,8 @@ export type LocationType =
   | "bridge"
   | "landmark"
   | "airport"
-  | "golf";
+  | "golf"
+  | "campground";
 
 export interface LocationFAQ {
   q: string;

@@ -53,6 +53,15 @@ const CATEGORIES: Category[] = [
     textAccent: "text-white/70",
   },
   {
+    id: "campgrounds",
+    label: "Campgrounds",
+    description: "PEI's best camping — wind, rain, and overnight conditions before you pitch a tent.",
+    types: ["campground"],
+    image: "/get-images/cavendish.jpg",
+    accent: "from-charcoal/70 to-forest/40",
+    textAccent: "text-green-100",
+  },
+  {
     id: "golf",
     label: "Golf",
     description: "PEI's best courses — wind readings, UV index, and playing conditions before you tee off.",
