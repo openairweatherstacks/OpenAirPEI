@@ -38,7 +38,7 @@ const CATEGORIES: Category[] = [
     id: "parks-trails",
     label: "Parks & Trails",
     description: "Dunes, forest paths, and 450 km of flat cycling across the whole island.",
-    types: ["park", "trail", "landmark"],
+    types: ["park", "trail", "landmark", "campground"],
     image: "/get-images/confederation-trail.jpg",
     accent: "from-forest/80 to-leaf/40",
     textAccent: "text-green-200",
