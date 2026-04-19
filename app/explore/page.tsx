@@ -187,6 +187,7 @@ function ExploreCard({ entry }: { entry: LocationConditions }) {
     charlottetown: "/get-images/charlottetown-waterfront.jpg",
     "confederation-trail": "/get-images/confederation-trail.jpg",
     "victoria-park": "/get-images/victoria-park.jpg",
+    greenwich: "/get-images/dunes.jpg",
   };
 
   const image = LOCATION_IMAGES[entry.location.id];

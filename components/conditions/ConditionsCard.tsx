@@ -14,6 +14,7 @@ const LOCATION_IMAGES: Record<string, string> = {
   cavendish: "/get-images/cavendish.jpg",
   charlottetown: "/get-images/charlottetown-waterfront.jpg",
   "confederation-trail": "/get-images/confederation-trail.jpg",
+  greenwich: "/get-images/dunes.jpg",
   "victoria-park": "/get-images/victoria-park.jpg",
   "cavendish-campground": "/get-images/cavendishcamp.jpg",
   "stanhope-campground": "/get-images/stanhope.jpg",
