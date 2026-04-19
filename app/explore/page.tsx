@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { ScoreBadge } from "@/components/conditions/ScoreBadge";
+import { CategoryDropdown } from "@/components/ui/CategoryDropdown";
 import { getAllLocationConditions } from "@/lib/environment";
 import type { LocationConditions, LocationType } from "@/lib/types";
 
@@ -117,41 +118,16 @@ export default async function ExplorePage() {
         </section>
       </div>
 
-      {/* ── CATEGORY CARDS ───────────────────────────────────────── */}
-      <div className="page-shell py-6">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {byCategory.map((cat) => {
-            const best = cat.locations[0];
-            return (
-              <a
-                key={cat.id}
-                href={`#${cat.id}`}
-                className="group relative overflow-hidden rounded-[1.75rem] bg-charcoal"
-                style={{ minHeight: "180px" }}
-              >
-                {cat.image ? (
-                  <Image
-                    src={cat.image}
-                    alt={cat.label}
-                    fill
-                    className="object-cover transition duration-500 group-hover:scale-105"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  />
-                ) : (
-                  <div className="absolute inset-0 bg-gradient-to-br from-sun-deep to-sun" />
-                )}
-                <div className={`absolute inset-0 bg-gradient-to-t ${cat.accent}`} />
-                <div className="absolute inset-0 flex flex-col justify-end p-5">
-                  <p className={`mb-1 text-xs font-semibold uppercase tracking-[0.22em] ${cat.textAccent}`}>
-                    {cat.locations.length} location{cat.locations.length !== 1 ? "s" : ""}
-                    {best ? ` · Best: ${best.conditions.score}` : ""}
-                  </p>
-                  <p className="font-serif text-2xl text-white">{cat.label}</p>
-                </div>
-              </a>
-            );
-          })}
-        </div>
+      {/* ── CATEGORY DROPDOWN ────────────────────────────────────── */}
+      <div className="page-shell py-4">
+        <CategoryDropdown
+          categories={byCategory.map((cat) => ({
+            id: cat.id,
+            label: cat.label,
+            count: cat.locations.length,
+            bestScore: cat.locations[0]?.conditions.score ?? null,
+          }))}
+        />
       </div>
 
       {/* ── CATEGORY SECTIONS ────────────────────────────────────── */}
