@@ -41,6 +41,14 @@ export function Footer() {
             </Link>
           </p>
         </div>
+        <div className="mt-4 border-t border-border pt-4">
+          <p className="text-xs leading-5 text-text-muted">
+            OpenAir Atlantic operates on the ancestral and unceded territory of the Mi&apos;kmaq
+            people — Epekwitk (Prince Edward Island), Siknikt, Eskikewa&apos;kik, and the broader
+            Mi&apos;kma&apos;ki homeland. We acknowledge the Mi&apos;kmaq as the original stewards
+            of this land and water, and we are grateful to share it.
+          </p>
+        </div>
       </div>
     </footer>
   );
