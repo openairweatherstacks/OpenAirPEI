@@ -75,7 +75,7 @@ const CATEGORIES: Category[] = [
     label: "Travel & Transport",
     description: "Bridge conditions, airport wind, and everything you need before you leave.",
     types: ["bridge", "airport"],
-    image: undefined,
+    image: "/get-images/confederationbridege.jpg",
     accent: "from-sun-deep/80 to-sun/40",
     textAccent: "text-yellow-100",
   },
@@ -188,6 +188,9 @@ function ExploreCard({ entry }: { entry: LocationConditions }) {
     "confederation-trail": "/get-images/confederation-trail.jpg",
     "victoria-park": "/get-images/victoria-park.jpg",
     greenwich: "/get-images/dunes.jpg",
+    "confederation-bridge": "/get-images/confederationbridege.jpg",
+    "north-cape": "/get-images/northcape.jpg",
+    "basin-head": "/get-images/singing sands.webp",
   };
 
   const image = LOCATION_IMAGES[entry.location.id];
