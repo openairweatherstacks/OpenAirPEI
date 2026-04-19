@@ -48,13 +48,13 @@ export default async function HomePage() {
         <div className="absolute inset-x-0 bottom-0 px-4 pb-28 sm:px-6 sm:pb-24 lg:px-8 lg:pb-20">
           <div className="mx-auto max-w-7xl">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-white/70">
-              Prince Edward Island · Live outdoor conditions
+              Prince Edward Island · Smart weather for the outdoors
             </p>
             <h1 className="max-w-3xl font-serif text-4xl leading-tight text-white sm:text-5xl lg:text-6xl xl:text-7xl">
               Should you go outside right now?
             </h1>
             <p className="mt-4 max-w-xl text-sm leading-7 text-white/80 sm:text-base">
-              Live weather, radar, and air quality — for every key spot on the island.
+              Smart weather for Prince Edward Island — live conditions, radar, and air quality for every key spot on the island.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link

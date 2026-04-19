@@ -4,6 +4,7 @@ const LINKS = [
   { label: "Explore", href: "/explore" },
   { label: "About", href: "/about" },
   { label: "Data Sources", href: "/data-sources" },
+  { label: "Accessibility", href: "/accessibility" },
   { label: "Privacy Policy", href: "/privacy" },
   { label: "Terms of Use", href: "/terms" },
 ];
