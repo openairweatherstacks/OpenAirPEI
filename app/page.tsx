@@ -54,7 +54,7 @@ export default async function HomePage() {
               Should you go outside right now?
             </h1>
             <p className="mt-4 max-w-xl text-sm leading-7 text-white/80 sm:text-base">
-              Live weather, radar, air quality, and AI interpretation — for every key spot on the island.
+              Live weather, radar, and air quality — for every key spot on the island.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
