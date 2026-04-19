@@ -486,7 +486,6 @@ export const BEACH_BUOYS: Record<string, string> = {
   cavendish: "C44150",
   "basin-head": "C44150",
   "brackley-beach": "C44150",
-  charlottetown: "C44137",
   "victoria-park": "C44137",
 };
 

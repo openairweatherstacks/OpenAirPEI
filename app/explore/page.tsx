@@ -191,6 +191,7 @@ function ExploreCard({ entry }: { entry: LocationConditions }) {
     "confederation-bridge": "/get-images/confederationbridege.jpg",
     "north-cape": "/get-images/northcape.jpg",
     "basin-head": "/get-images/singing sands.webp",
+    summerside: "/get-images/summerside.webp",
   };
 
   const image = LOCATION_IMAGES[entry.location.id];

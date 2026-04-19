@@ -22,6 +22,7 @@ const LOCATION_IMAGES: Record<string, string> = {
   "victoria-park": "/get-images/victoria-park.jpg",
   "cavendish-campground": "/get-images/cavendishcamp.jpg",
   "stanhope-campground": "/get-images/stanhope.jpg",
+  summerside: "/get-images/summerside.webp",
   "brackley-beach": "/brackley.webp",
   "fox-meadow-golf": "/get-images/fooxmeadow.jpg",
   "belvedere-golf": "/get-images/Belvedere.webp",
