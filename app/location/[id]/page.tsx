@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ChevronDown, Droplets, Gauge, Mountain, Navigation, ParkingCircle, Waves, Wind } from "lucide-react";
+import { ArrowLeft, ChevronDown, Droplets, Gauge, Mountain, Navigation, ParkingCircle, PawPrint, Thermometer, Waves, Wind } from "lucide-react";
 import { notFound } from "next/navigation";
 
 import { MeteorologistInsight } from "@/components/ai/MeteorologistInsight";
 import { ActivityGrid } from "@/components/conditions/ActivityGrid";
+import { PawBadge } from "@/components/conditions/PawBadge";
 import { ConditionsCard } from "@/components/conditions/ConditionsCard";
 import { WindowAlert } from "@/components/conditions/WindowAlert";
 import { PEIMap } from "@/components/map/PEIMap";
@@ -259,6 +260,58 @@ export default async function LocationPage({
           </div>
         </section>
       )}
+
+      {/* ── PAW INDEX ────────────────────────────────────────────── */}
+      <section className="panel p-6 sm:p-8">
+        <div className="mb-6 flex items-center justify-between gap-4">
+          <div>
+            <p className="eyebrow mb-2">Paw index</p>
+            <h2 className="section-title text-3xl">Is it safe for your dog?</h2>
+          </div>
+          <PawBadge score={entry.pawIndex.score} />
+        </div>
+        <p className="mb-6 text-sm leading-7 text-text-secondary">{entry.pawIndex.statement}</p>
+        <div className="grid gap-3 sm:grid-cols-3">
+          <div className="rounded-3xl bg-forest-light/70 p-4">
+            <div className="mb-2 flex items-center gap-2">
+              <Thermometer className="h-4 w-4 text-forest" />
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-forest">Air temp</p>
+            </div>
+            <p className="font-serif text-xl text-text-primary">{entry.weather.temperature}°C</p>
+            <p className="mt-0.5 text-xs text-text-muted">
+              {entry.weather.temperature > 25
+                ? "Bring water — dogs overheat faster than people"
+                : entry.weather.temperature < 0
+                  ? "Cold paws — keep walks short"
+                  : "Comfortable range for most dogs"}
+            </p>
+          </div>
+          <div className="rounded-3xl bg-sun-light/70 p-4">
+            <div className="mb-2 flex items-center gap-2">
+              <PawPrint className="h-4 w-4 text-sun-text" />
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sun-text">Pavement</p>
+            </div>
+            <p className="font-serif text-xl text-text-primary">
+              {entry.weather.uvIndex >= 7 && entry.weather.temperature >= 20
+                ? "Hot — use grass"
+                : entry.weather.uvIndex >= 4 && entry.weather.temperature >= 18
+                  ? "Warm — check first"
+                  : "Safe to walk"}
+            </p>
+            <p className="mt-0.5 text-xs text-text-muted">UV {entry.weather.uvIndex} · {entry.weather.temperature}°C air</p>
+          </div>
+          <div className="rounded-3xl bg-leaf-light p-4">
+            <div className="mb-2 flex items-center gap-2">
+              <Wind className="h-4 w-4 text-forest" />
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-forest">Wind & air</p>
+            </div>
+            <p className="font-serif text-xl text-text-primary">
+              {entry.weather.aqhi <= 3 ? "Clean air" : entry.weather.aqhi <= 6 ? "Acceptable" : "Poor — limit time"}
+            </p>
+            <p className="mt-0.5 text-xs text-text-muted">AQHI {entry.weather.aqhi} · {entry.weather.windSpeed} km/h wind</p>
+          </div>
+        </div>
+      </section>
 
       {/* ── FAQ ───────────────────────────────────────────────────── */}
       {entry.location.faqs && entry.location.faqs.length > 0 && (

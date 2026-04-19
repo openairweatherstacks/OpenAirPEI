@@ -2,7 +2,7 @@ import { BEACH_BUOYS, CACHE_DURATIONS, PEI_AQHI, PEI_LOCATIONS } from "@/lib/dat
 import { SAMPLE_ALERTS, SAMPLE_TIDES, SAMPLE_WEATHER } from "@/lib/data/sample";
 import { getClaudeConditions } from "@/lib/claude";
 import { getWaterTemp } from "@/lib/water";
-import { calculateRawScore, getBridgeStatus, getUvBurnMinutes, scoreToLabel } from "@/lib/score";
+import { calculatePawScore, calculateRawScore, getBridgeStatus, getUvBurnMinutes, scoreToLabel } from "@/lib/score";
 import type {
   ActivityAssessment,
   AlertItem,
@@ -299,6 +299,7 @@ export async function getLocationConditions(locationId: string): Promise<Locatio
     alerts,
     conditions,
     waterTemp,
+    pawIndex: calculatePawScore(weather, location.type),
     source: liveWeather || liveAqhi ? "hybrid" : "sample",
   };
 }

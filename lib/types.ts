@@ -1,5 +1,13 @@
 export type ConditionsScore = "Excellent" | "Good" | "Fair" | "Stay Inside";
 
+export type PawScore = "Great" | "Good" | "Caution" | "Stay Home";
+
+export interface PawIndex {
+  score: PawScore;
+  statement: string;
+  rawScore: number;
+}
+
 export type ActivityStatus = "great" | "ok" | "not recommended";
 
 export type BridgeStatusType =
@@ -105,5 +113,6 @@ export interface LocationConditions {
   alerts: AlertItem[];
   conditions: ConditionsResponse;
   waterTemp: number | null;
+  pawIndex: PawIndex;
   source: "sample" | "hybrid";
 }

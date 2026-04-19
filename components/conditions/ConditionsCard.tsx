@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Wind } from "lucide-react";
 
+import { PawBadge } from "@/components/conditions/PawBadge";
 import { ScoreBadge } from "@/components/conditions/ScoreBadge";
 import type { LocationConditions } from "@/lib/types";
 import { formatObservationTime } from "@/lib/utils";
@@ -90,6 +91,14 @@ export function ConditionsCard({
               {entry.weather.windSpeed} km/h {entry.weather.windDirection}
             </p>
           </div>
+        </div>
+
+        <div className="mt-3 flex items-center justify-between rounded-3xl border border-border bg-bg px-4 py-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-text-muted">Paw index</p>
+            <p className="mt-0.5 text-xs leading-5 text-text-secondary">{entry.pawIndex.statement}</p>
+          </div>
+          <PawBadge score={entry.pawIndex.score} />
         </div>
 
         {entry.waterTemp !== null && (
