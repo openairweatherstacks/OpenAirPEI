@@ -126,7 +126,7 @@ export default async function HomePage() {
                 {[charlottetown, summerside].filter(Boolean).map((entry) => entry && (
                   <div key={entry.location.id} className="rounded-[1.5rem] border border-border bg-white/90 p-4">
                     <p className="text-xs font-semibold uppercase tracking-[0.22em] text-text-muted">
-                      {entry.location.name}
+                      {entry.location.id === "charlottetown" ? "Charlottetown" : entry.location.name}
                     </p>
                     <p className="mt-2 font-serif text-2xl text-text-primary">
                       {entry.weather.temperature}°C
