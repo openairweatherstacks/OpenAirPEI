@@ -101,6 +101,28 @@ export default async function LocationPage({
         <PEIMap locations={allLocations} focusId={entry.location.id} />
       </section>
 
+      {entry.location.id === "charlottetown" && (
+        <section className="space-y-4">
+          <div>
+            <p className="eyebrow mb-2">Live camera</p>
+            <h2 className="section-title text-3xl">Queen Street right now</h2>
+          </div>
+          <div className="overflow-hidden rounded-[2rem] border border-white/70 bg-white/90 shadow-[0_24px_80px_rgba(42,42,42,0.08)]">
+            <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+              <iframe
+                src="https://media.gpei.ca/web/islandcam.html"
+                title="Live Queen Street webcam — Charlottetown"
+                allowFullScreen
+                className="absolute inset-0 h-full w-full border-0"
+              />
+            </div>
+            <div className="px-5 py-3">
+              <p className="text-xs text-text-muted">Live feed courtesy of Government of Prince Edward Island · Updates every few seconds</p>
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="grid gap-5 lg:grid-cols-3">
         <MetricCard
           icon={Wind}
