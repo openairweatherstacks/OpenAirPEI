@@ -9,6 +9,7 @@ import { MetricCard } from "@/components/ui/MetricCard";
 import { PEIMap } from "@/components/map/PEIMap";
 import { average } from "@/lib/utils";
 import { getAllLocationConditions } from "@/lib/environment";
+import { Droplets, Thermometer } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -17,6 +18,8 @@ export default async function HomePage() {
   const outdoorLocations = locations.filter((entry) => entry.location.type !== "airport");
   const ranked = [...outdoorLocations].sort((left, right) => right.rawScore - left.rawScore);
   const bestNow = ranked.slice(0, 3);
+  const charlottetown = locations.find((e) => e.location.id === "charlottetown");
+  const summerside = locations.find((e) => e.location.id === "summerside");
   const bridge = locations.find((entry) => entry.location.id === "confederation-bridge");
   const bridgeStatus = bridge?.conditions.bridgeStatus ?? null;
   const nextShiftEntry = locations
@@ -116,6 +119,38 @@ export default async function HomePage() {
               <h2 className="section-title text-3xl">Key PEI locations at a glance</h2>
             </div>
             <PEIMap locations={locations} />
+
+            {/* ── CITY CONDITIONS STRIP ── */}
+            {(charlottetown || summerside) && (
+              <div className="mt-4 grid grid-cols-2 gap-3">
+                {[charlottetown, summerside].filter(Boolean).map((entry) => entry && (
+                  <div key={entry.location.id} className="rounded-[1.5rem] border border-border bg-white/90 p-4">
+                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-text-muted">
+                      {entry.location.name}
+                    </p>
+                    <p className="mt-2 font-serif text-2xl text-text-primary">
+                      {entry.weather.temperature}°C
+                    </p>
+                    <p className="mt-0.5 text-xs text-text-secondary">
+                      Feels like {entry.weather.feelsLike}°C
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      <span className="inline-flex items-center gap-1 rounded-full bg-forest-light px-2.5 py-1 text-xs font-medium text-forest">
+                        <Wind className="h-3 w-3" />
+                        {entry.weather.windSpeed} km/h {entry.weather.windDirection}
+                      </span>
+                      <span className="inline-flex items-center gap-1 rounded-full bg-sun-light px-2.5 py-1 text-xs font-medium text-sun-deep">
+                        <Droplets className="h-3 w-3" />
+                        {entry.weather.humidity}%
+                      </span>
+                    </div>
+                    <p className="mt-2 text-xs leading-5 text-text-secondary line-clamp-2">
+                      {entry.conditions.headline}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="space-y-5">
