@@ -21,6 +21,7 @@ const config: Config = {
           DEFAULT: "#F5A623",
           deep: "#E8960F",
           light: "#FDF0D5",
+          text: "#8B5000",
         },
         forest: {
           DEFAULT: "#3A8C2F",

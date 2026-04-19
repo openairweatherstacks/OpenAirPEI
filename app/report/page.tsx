@@ -69,7 +69,7 @@ export default function ReportPage() {
             <button
               type="button"
               disabled
-              className="inline-flex min-h-11 items-center justify-center rounded-full bg-forest px-5 py-3 text-sm font-semibold text-white opacity-70"
+              className="inline-flex min-h-11 items-center justify-center rounded-full bg-forest-deep px-5 py-3 text-sm font-semibold text-white opacity-70"
             >
               Beta form coming soon
             </button>

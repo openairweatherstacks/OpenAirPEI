@@ -145,7 +145,7 @@ export default function ContactPage() {
 
             <a
               href="mailto:info@openairatlantic.com"
-              className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-forest px-6 py-3 text-sm font-semibold text-white shadow-glow transition hover:bg-forest-deep"
+              className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-forest-deep px-6 py-3 text-sm font-semibold text-white shadow-glow transition hover:bg-forest-deep"
             >
               Send message
             </a>

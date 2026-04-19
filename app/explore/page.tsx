@@ -50,7 +50,7 @@ const CATEGORIES: Category[] = [
     types: ["city"],
     image: "/get-images/charlottetown-waterfront.jpg",
     accent: "from-charcoal/80 to-charcoal/40",
-    textAccent: "text-white/70",
+    textAccent: "text-white/90",
   },
   {
     id: "campgrounds",

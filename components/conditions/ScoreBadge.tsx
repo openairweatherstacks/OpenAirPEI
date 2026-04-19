@@ -2,9 +2,9 @@ import type { ConditionsScore } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 const SCORE_STYLES: Record<ConditionsScore, string> = {
-  Excellent: "bg-forest text-white shadow-glow",
+  Excellent: "bg-forest-deep text-white",
   Good: "bg-leaf text-forest-deep",
-  Fair: "bg-sun text-sun-deep",
+  Fair: "bg-sun text-[#2a2a2a]",
   "Stay Inside": "bg-danger text-white",
 };
 

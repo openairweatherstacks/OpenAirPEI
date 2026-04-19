@@ -11,7 +11,7 @@ export function UVTimer({ uvIndex }: { uvIndex: number }) {
         <div className="rounded-2xl bg-white p-2 text-sun-deep">
           <SunMedium className="h-4 w-4" />
         </div>
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sun-deep">UV timer</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sun-text">UV timer</p>
       </div>
       <p className="font-serif text-2xl text-text-primary">Burn window: about {burnMinutes} min</p>
       <p className="mt-2 text-sm leading-6 text-text-secondary">

@@ -106,7 +106,7 @@ export default async function ActivityPage() {
           icon={Waves}
           insight="Beach weather can still be fair while swim comfort stays poor. Water access and water comfort are not the same score."
           rawLabel="Pattern · Temperature and surf both matter"
-          accentClassName="text-sun-deep"
+          accentClassName="text-sun-text"
         />
         <MetricCard
           icon={Footprints}

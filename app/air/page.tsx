@@ -65,7 +65,7 @@ export default async function AirPage() {
           icon={Wind}
           insight="The island's coastal wind often helps keep AQHI low, especially after a frontal passage when haze gets flushed quickly."
           rawLabel="Local pattern · Wind can clean the air fast"
-          accentClassName="text-sun-deep"
+          accentClassName="text-sun-text"
         />
         <MetricCard
           icon={Wind}

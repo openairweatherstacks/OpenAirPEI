@@ -91,7 +91,7 @@ export default async function LocationPage({
             href={`https://www.google.com/maps/dir/?api=1&destination=${entry.location.lat},${entry.location.lng}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full bg-sun px-5 py-3 text-sm font-semibold text-white shadow-sun transition hover:bg-sun-deep"
+            className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full bg-sun px-5 py-3 text-sm font-semibold text-[#2a2a2a] shadow-sun transition hover:bg-sun-deep"
           >
             <Navigation className="h-4 w-4" />
             Get directions
@@ -109,7 +109,7 @@ export default async function LocationPage({
               : "Wind is mild enough that the temperature will be the thing you notice first."
           }
           rawLabel={`${entry.weather.windSpeed} km/h ${entry.weather.windDirection} · Gusts ${entry.weather.gustSpeed ?? entry.weather.windSpeed} km/h`}
-          accentClassName="text-sun-deep"
+          accentClassName="text-sun-text"
         />
         <MetricCard
           icon={Droplets}
@@ -155,7 +155,7 @@ export default async function LocationPage({
           <TideCard tides={entry.tide} />
           {entry.waterTemp !== null && (
             <div className="rounded-[1.75rem] border border-[#cce8f4] bg-[#eef7fc] p-5">
-              <div className="mb-2 flex items-center gap-2 text-[#1a7aad]">
+              <div className="mb-2 flex items-center gap-2 text-[#0a527a]">
                 <Waves className="h-4 w-4" />
                 <p className="text-xs font-semibold uppercase tracking-[0.2em]">Water temperature</p>
               </div>
@@ -167,7 +167,7 @@ export default async function LocationPage({
             icon={Mountain}
             insight="OpenAir always shows the call and the proof together: the action-oriented read first, then the raw number under it so locals and visitors can trust the same screen."
             rawLabel={`Source · ${entry.source === "hybrid" ? "live data blended with local defaults" : "sample seed data"}`}
-            accentClassName="text-sun-deep"
+            accentClassName="text-sun-text"
           />
         </div>
       </section>
@@ -185,8 +185,8 @@ export default async function LocationPage({
               <div className="mb-3 flex items-center gap-2">
                 <div className={`flex h-9 w-9 items-center justify-center rounded-2xl ${
                   entry.location.amenities.parking === "free" ? "bg-forest-light text-forest" :
-                  entry.location.amenities.parking === "paid" ? "bg-sun-light text-sun-deep" :
-                  entry.location.amenities.parking === "limited" ? "bg-sun-light text-sun-deep" :
+                  entry.location.amenities.parking === "paid" ? "bg-sun-light text-sun-text" :
+                  entry.location.amenities.parking === "limited" ? "bg-sun-light text-sun-text" :
                   "bg-red-50 text-red-500"
                 }`}>
                   <ParkingCircle className="h-4 w-4" />

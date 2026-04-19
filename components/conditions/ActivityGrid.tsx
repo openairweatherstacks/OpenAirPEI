@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 const STATUS_STYLES: Record<ActivityAssessment["status"], string> = {
   great: "border-forest/20 bg-forest-light text-forest",
-  ok: "border-sun/20 bg-sun-light text-sun-deep",
+  ok: "border-sun/20 bg-sun-light text-sun-text",
   "not recommended": "border-danger/20 bg-rose-50 text-danger",
 };
 

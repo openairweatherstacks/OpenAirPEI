@@ -170,7 +170,7 @@ export function ReviewForm({ locationId }: { locationId: string }) {
       <button
         type="submit"
         disabled={!rating || !name.trim() || body.trim().length < 10 || status === "submitting"}
-        className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-forest px-6 py-3 text-sm font-semibold text-white shadow-glow transition hover:bg-forest-deep disabled:opacity-40"
+        className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-forest-deep px-6 py-3 text-sm font-semibold text-white shadow-glow transition hover:bg-forest-deep disabled:opacity-40"
       >
         {status === "submitting" ? (
           <>

@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 const STATUS_CLASSES: Record<BridgeStatusType, string> = {
   Open: "border-forest/20 bg-forest-light text-forest",
-  "High-sided vehicle restriction": "border-sun/20 bg-sun-light text-sun-deep",
+  "High-sided vehicle restriction": "border-sun/20 bg-sun-light text-sun-text",
   Closed: "border-danger/20 bg-rose-50 text-danger",
 };
 

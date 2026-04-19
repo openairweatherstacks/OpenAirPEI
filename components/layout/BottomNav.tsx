@@ -37,7 +37,7 @@ export function BottomNav() {
               className={cn(
                 "flex min-h-11 flex-col items-center justify-center rounded-2xl px-2 py-2 text-[0.68rem] font-semibold transition",
                 active
-                  ? "bg-forest text-white shadow-glow"
+                  ? "bg-forest-deep text-white shadow-glow"
                   : "text-text-secondary hover:bg-forest-light hover:text-forest",
               )}
             >

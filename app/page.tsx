@@ -59,7 +59,7 @@ export default async function HomePage() {
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 href="/explore"
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-sun px-6 py-3 text-sm font-semibold text-white shadow-sun transition hover:bg-sun-deep"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-sun px-6 py-3 text-sm font-semibold text-[#2a2a2a] shadow-sun transition hover:bg-sun-deep"
               >
                 Explore best things to do <ArrowRight className="h-4 w-4" />
               </Link>
@@ -77,15 +77,15 @@ export default async function HomePage() {
       {/* ── FLOATING STAT CARDS ──────────────────────────────────── */}
       <div className="relative z-10 mx-auto -mt-14 max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-3 sm:grid-cols-3">
-          <div className="rounded-[1.5rem] bg-forest p-4 text-white shadow-glow backdrop-blur">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/70">Best now</p>
+          <div className="rounded-[1.5rem] bg-forest-deep p-4 text-white shadow-glow backdrop-blur">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/90">Best now</p>
             <p className="mt-1.5 font-serif text-xl">{bestNow[0]?.location.name ?? "Scanning"}</p>
             <p className="mt-1 text-sm leading-5 text-white/85">
               {bestNow[0]?.conditions.headline ?? "Looking across the island."}
             </p>
           </div>
           <div className="rounded-[1.5rem] bg-white/95 p-4 shadow-glow backdrop-blur">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sun-deep">Next shift</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sun-text">Next shift</p>
             <p className="mt-1.5 font-serif text-xl text-text-primary">
               {nextShift ? `${nextShift} min` : "Holding steady"}
             </p>
@@ -139,7 +139,7 @@ export default async function HomePage() {
                         <Wind className="h-3 w-3" />
                         {entry.weather.windSpeed} km/h {entry.weather.windDirection}
                       </span>
-                      <span className="inline-flex items-center gap-1 rounded-full bg-sun-light px-2.5 py-1 text-xs font-medium text-sun-deep">
+                      <span className="inline-flex items-center gap-1 rounded-full bg-sun-light px-2.5 py-1 text-xs font-medium text-sun-text">
                         <Droplets className="h-3 w-3" />
                         {entry.weather.humidity}%
                       </span>
@@ -162,7 +162,7 @@ export default async function HomePage() {
               icon={CloudSun}
               insight="The north shore stays comfortable longest today. Cavendish and the Confederation Trail both have the cleanest mix of sun, air, and manageable wind."
               rawLabel={`Top window · ${bestNow.map((entry) => entry.location.name).join(" · ")}`}
-              accentClassName="text-sun-deep"
+              accentClassName="text-sun-text"
             />
           </div>
         </section>
@@ -178,7 +178,7 @@ export default async function HomePage() {
             icon={Wind}
             insight="Bridge wind is the island's sharpest decision point today. The shoreline can feel reasonable while the deck still runs gusty."
             rawLabel={`Bridge wind · ${bridge?.weather.windSpeed ?? "--"} km/h`}
-            accentClassName="text-sun-deep"
+            accentClassName="text-sun-text"
           />
           <MetricCard
             icon={ShieldCheck}
@@ -232,11 +232,11 @@ export default async function HomePage() {
                 key={name}
                 className={
                   isUs
-                    ? "rounded-[1.75rem] bg-forest p-5 text-white shadow-glow"
+                    ? "rounded-[1.75rem] bg-forest-deep p-5 text-white shadow-glow"
                     : "rounded-[1.75rem] border border-border bg-bg p-5"
                 }
               >
-                <p className={`mb-4 text-xs font-semibold uppercase tracking-[0.22em] ${isUs ? "text-white/70" : "text-text-muted"}`}>
+                <p className={`mb-4 text-xs font-semibold uppercase tracking-[0.22em] ${isUs ? "text-white/90" : "text-text-muted"}`}>
                   {isUs ? "✦ This app" : "Competitor"}
                 </p>
                 <p className={`mb-4 font-serif text-lg leading-snug ${isUs ? "text-white" : "text-text-primary"}`}>
@@ -245,7 +245,7 @@ export default async function HomePage() {
                 <ul className="space-y-2">
                   {features.map((f) => (
                     <li key={f} className={`flex items-start gap-2 text-sm leading-5 ${isUs ? "text-white/85" : "text-text-secondary"}`}>
-                      <span className={`mt-0.5 text-xs ${isUs ? "text-white/50" : "text-danger"}`}>
+                      <span className={`mt-0.5 text-xs ${isUs ? "text-white/80" : "text-danger"}`}>
                         {isUs ? "→" : "✕"}
                       </span>
                       {f}

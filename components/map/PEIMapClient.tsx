@@ -46,7 +46,7 @@ export default function PEIMapClient({
         className={cn(
           "absolute right-3 top-3 z-[1000] flex items-center gap-2 rounded-full px-3 py-2 text-xs font-semibold shadow-md transition",
           radarOn
-            ? "bg-forest text-white"
+            ? "bg-forest-deep text-white"
             : "bg-white/90 text-text-secondary backdrop-blur hover:text-forest"
         )}
       >

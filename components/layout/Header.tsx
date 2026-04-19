@@ -7,7 +7,6 @@ import { usePathname } from "next/navigation";
 import { LanguageToggle } from "@/components/layout/LanguageToggle";
 
 const NAV_LINKS = [
-  { href: "/", label: "Home" },
   { href: "/explore", label: "Explore" },
   { href: "/bridge", label: "Bridge" },
   { href: "/about", label: "About" },
@@ -31,7 +30,7 @@ export function Header() {
             />
           </div>
           <div className="min-w-0 hidden sm:block">
-            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-forest">
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-forest">
               OpenAir Atlantic
             </p>
             <p className="truncate font-serif text-xl text-text-primary">PEI outdoor intelligence</p>
@@ -48,7 +47,7 @@ export function Header() {
                 href={href}
                 className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
                   active
-                    ? "bg-forest text-white"
+                    ? "bg-forest-deep text-white"
                     : "text-text-secondary hover:bg-forest-light hover:text-forest"
                 }`}
               >
@@ -59,7 +58,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <div className="hidden rounded-full border border-sun/30 bg-sun-light px-3 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-sun-deep sm:block">
+          <div className="hidden rounded-full border border-sun/30 bg-sun-light px-3 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-sun-text sm:block">
             Beta
           </div>
           <LanguageToggle />

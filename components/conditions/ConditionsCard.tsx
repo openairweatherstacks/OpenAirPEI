@@ -84,7 +84,7 @@ export function ConditionsCard({
             </p>
           </div>
           <div className="rounded-3xl bg-sun-light/70 p-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sun-deep">Wind</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sun-text">Wind</p>
             <p className="mt-1 flex items-center gap-2 font-serif text-lg text-text-primary">
               <Wind className="h-4 w-4 text-sun-deep" />
               {entry.weather.windSpeed} km/h {entry.weather.windDirection}
@@ -95,7 +95,7 @@ export function ConditionsCard({
         {entry.waterTemp !== null && (
           <div className="mt-3 flex items-center justify-between rounded-3xl border border-[#cce8f4] bg-[#eef7fc] px-4 py-3">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#1a7aad]">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0a527a]">
                 Water temp
               </p>
               <p className="mt-0.5 font-serif text-lg text-text-primary">
@@ -113,7 +113,7 @@ export function ConditionsCard({
             </p>
             <Link
               href={`/location/${entry.location.id}`}
-              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-forest px-4 py-2 text-sm font-semibold text-white transition hover:bg-forest-deep"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-forest-deep px-4 py-2 text-sm font-semibold text-white transition hover:bg-forest-deep"
             >
               Full outlook <ArrowRight className="h-4 w-4" />
             </Link>

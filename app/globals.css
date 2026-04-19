@@ -6,6 +6,7 @@
   --color-sun: #f5a623;
   --color-sun-deep: #e8960f;
   --color-sun-light: #fdf0d5;
+  --color-sun-text: #8b5000;
   --color-forest: #3a8c2f;
   --color-forest-deep: #2d6e24;
   --color-forest-light: #e8f5e4;
@@ -19,7 +20,7 @@
   --color-border: #e8ede4;
   --color-text-primary: #2a2a2a;
   --color-text-secondary: #6b7366;
-  --color-text-muted: #9ba696;
+  --color-text-muted: #5c6557;
 }
 
 html {

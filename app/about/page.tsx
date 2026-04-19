@@ -98,7 +98,7 @@ export default function AboutPage() {
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
             href="/data-sources"
-            className="inline-flex min-h-11 items-center gap-2 rounded-full bg-forest px-5 py-3 text-sm font-semibold text-white shadow-glow transition hover:bg-forest-deep"
+            className="inline-flex min-h-11 items-center gap-2 rounded-full bg-forest-deep px-5 py-3 text-sm font-semibold text-white shadow-glow transition hover:bg-forest-deep"
           >
             View all data sources <ArrowRight className="h-4 w-4" />
           </Link>

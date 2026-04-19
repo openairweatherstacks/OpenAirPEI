@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s https://api.vercel.com/v13/deployments/dpl_8yfLEQ72zAUMEsXxLeuCAKLrLi4T -H 'Authorization: Bearer vca_3X6KYN0GmBQs8XMxbYhu7xBSHQA6WqxkYGg1xHvjFAGmpmNS2j3uSTob')",
+      "Bash(python3 -c ' *)",
+      "Bash(curl -s https://api.vercel.com/v2/deployments/dpl_8yfLEQ72zAUMEsXxLeuCAKLrLi4T/events -H 'Authorization: Bearer vca_3X6KYN0GmBQs8XMxbYhu7xBSHQA6WqxkYGg1xHvjFAGmpmNS2j3uSTob')",
+      "Bash(NEXT_PUBLIC_SUPABASE_URL=\"\" SUPABASE_SERVICE_ROLE_KEY=\"\" npm run build)",
+      "Bash(git add *)",
+      "Bash(curl -s 'https://api.vercel.com/v6/deployments?projectId=openairpei&limit=3&target=production' -H 'Authorization: Bearer vca_3X6KYN0GmBQs8XMxbYhu7xBSHQA6WqxkYGg1xHvjFAGmpmNS2j3uSTob')",
+      "Bash(curl -s 'https://api.vercel.com/v6/deployments?limit=5' -H 'Authorization: Bearer vca_3X6KYN0GmBQs8XMxbYhu7xBSHQA6WqxkYGg1xHvjFAGmpmNS2j3uSTob')",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('deps:', list\\(d.get\\('dependencies',{}\\).keys\\(\\)\\)\\)\")"
+    ]
+  }
+}

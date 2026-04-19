@@ -87,7 +87,7 @@ export default async function BridgePage() {
           icon={ShieldAlert}
           insight="Motorcycles feel the bridge earlier than cars do. A ride that seems fine in Borden can feel exposed once you hit the deck."
           rawLabel="Motorcycle caution · 60 km/h sustained"
-          accentClassName="text-sun-deep"
+          accentClassName="text-sun-text"
         />
         <MetricCard
           icon={ShieldAlert}
