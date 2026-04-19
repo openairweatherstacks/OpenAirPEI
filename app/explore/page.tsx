@@ -168,6 +168,11 @@ function ExploreCard({ entry }: { entry: LocationConditions }) {
     "north-cape": "/get-images/northcape.jpg",
     "basin-head": "/get-images/singing sands.webp",
     summerside: "/get-images/summerside.webp",
+    "brackley-beach": "/brackley.webp",
+    "fox-meadow-golf": "/get-images/fooxmeadow.jpg",
+    "belvedere-golf": "/get-images/Belvedere.webp",
+    "cavendish-campground": "/get-images/cavendishcamp.jpg",
+    "stanhope-campground": "/get-images/stanhope.jpg",
   };
 
   const image = LOCATION_IMAGES[entry.location.id];
