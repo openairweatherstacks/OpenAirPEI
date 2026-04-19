@@ -32,6 +32,14 @@ export const PEI_LOCATIONS: Location[] = [
     nearestStation: PEI_STATIONS.northRustico,
     activities: ["swimming", "cycling", "hiking"],
     icon: "🏖️",
+    amenities: {
+      parking: "paid",
+      parkingNote: "Parks Canada day pass required — purchase at the gate or online",
+      petFriendly: false,
+      petNote: "Pets not permitted on national park beaches",
+      wheelchairAccessible: true,
+      wheelchairNote: "Accessible boardwalk to the beach and washroom facilities",
+    },
   },
   {
     id: "charlottetown",
@@ -44,6 +52,14 @@ export const PEI_LOCATIONS: Location[] = [
     nearestStation: PEI_STATIONS.charlottetown,
     activities: ["walking", "cycling", "dining"],
     icon: "🏙️",
+    amenities: {
+      parking: "paid",
+      parkingNote: "Metered street parking and paid lots along Water St — free on Sundays",
+      petFriendly: true,
+      petNote: "Dogs welcome on leash along the entire waterfront boardwalk",
+      wheelchairAccessible: true,
+      wheelchairNote: "Fully paved boardwalk, accessible restaurants, and waterfront park",
+    },
   },
   {
     id: "greenwich",
@@ -56,6 +72,14 @@ export const PEI_LOCATIONS: Location[] = [
     nearestStation: PEI_STATIONS.eastPoint,
     activities: ["hiking", "birdwatching", "photography"],
     icon: "🌿",
+    amenities: {
+      parking: "paid",
+      parkingNote: "Parks Canada day pass required at the Greenwich Interpretation Centre",
+      petFriendly: false,
+      petNote: "Pets not permitted in PEI National Park's Greenwich sector",
+      wheelchairAccessible: true,
+      wheelchairNote: "Floating boardwalk through the dunes is accessible — some uneven sections",
+    },
   },
   {
     id: "confederation-trail",
@@ -68,6 +92,14 @@ export const PEI_LOCATIONS: Location[] = [
     nearestStation: PEI_STATIONS.summerside,
     activities: ["cycling", "walking", "running"],
     icon: "🚴",
+    amenities: {
+      parking: "free",
+      parkingNote: "Free gravel lot at the Kensington trailhead off the main street",
+      petFriendly: true,
+      petNote: "Dogs welcome on leash for the full length of the trail",
+      wheelchairAccessible: true,
+      wheelchairNote: "Crushed gravel surface is firm and flat — suitable for most mobility aids",
+    },
   },
   {
     id: "confederation-bridge",
@@ -80,6 +112,14 @@ export const PEI_LOCATIONS: Location[] = [
     nearestStation: PEI_STATIONS.borden,
     activities: ["driving", "motorcycling"],
     icon: "🌉",
+    amenities: {
+      parking: "free",
+      parkingNote: "Free parking at the Gateway Village welcome centre on the PEI side",
+      petFriendly: true,
+      petNote: "Pets travel freely in vehicles — no restrictions on the crossing",
+      wheelchairAccessible: true,
+      wheelchairNote: "Gateway Village is fully accessible; the bridge itself is vehicle-only",
+    },
   },
   {
     id: "victoria-park",
@@ -92,6 +132,14 @@ export const PEI_LOCATIONS: Location[] = [
     nearestStation: PEI_STATIONS.charlottetown,
     activities: ["walking", "picnic", "cycling"],
     icon: "🌳",
+    amenities: {
+      parking: "free",
+      parkingNote: "Free parking lots on both the north and south entrances to the park",
+      petFriendly: true,
+      petNote: "Dogs welcome on leash throughout the park and along the shore path",
+      wheelchairAccessible: true,
+      wheelchairNote: "Paved paths throughout the park; accessible washrooms near the bandstand",
+    },
   },
   {
     id: "basin-head",
@@ -104,6 +152,14 @@ export const PEI_LOCATIONS: Location[] = [
     nearestStation: PEI_STATIONS.eastPoint,
     activities: ["swimming", "walking", "photography"],
     icon: "🎵",
+    amenities: {
+      parking: "free",
+      parkingNote: "Free provincial park parking lot at the beach entrance",
+      petFriendly: true,
+      petNote: "Dogs permitted on leash — keep off the fragile dune grass",
+      wheelchairAccessible: false,
+      wheelchairNote: "No paved access to the beach; soft sand and gravel path from parking",
+    },
   },
   {
     id: "north-cape",
@@ -116,6 +172,14 @@ export const PEI_LOCATIONS: Location[] = [
     nearestStation: PEI_STATIONS.summerside,
     activities: ["hiking", "whale-watching", "photography"],
     icon: "🐋",
+    amenities: {
+      parking: "free",
+      parkingNote: "Free parking at the North Cape Interpretive Centre and Wind Energy Institute",
+      petFriendly: true,
+      petNote: "Dogs welcome on leash along the reef trail and lookout areas",
+      wheelchairAccessible: true,
+      wheelchairNote: "Paved path to the main lookout and interpretive centre; reef trail is uneven",
+    },
   },
   {
     id: "brackley-beach",
@@ -128,6 +192,14 @@ export const PEI_LOCATIONS: Location[] = [
     nearestStation: PEI_STATIONS.northRustico,
     activities: ["swimming", "hiking", "kayaking"],
     icon: "🏝️",
+    amenities: {
+      parking: "paid",
+      parkingNote: "Parks Canada day pass required — purchase at the gate or online in advance",
+      petFriendly: false,
+      petNote: "Pets not permitted on PEI National Park beaches",
+      wheelchairAccessible: true,
+      wheelchairNote: "Accessible washrooms and paved path to the beach entrance",
+    },
     faqs: [
       {
         q: "How does Brackley Beach compare to Cavendish?",
@@ -162,6 +234,14 @@ export const PEI_LOCATIONS: Location[] = [
     nearestStation: PEI_STATIONS.charlottetown,
     activities: ["golf", "walking", "dining"],
     icon: "⛳",
+    amenities: {
+      parking: "free",
+      parkingNote: "Free paved parking lot at the clubhouse — ample space even on busy days",
+      petFriendly: false,
+      petNote: "Pets not permitted on the course or clubhouse grounds",
+      wheelchairAccessible: true,
+      wheelchairNote: "Clubhouse and patio are accessible; power carts available for course access",
+    },
     faqs: [
       {
         q: "What weather conditions are ideal for golf at Fox Meadow?",
@@ -196,6 +276,14 @@ export const PEI_LOCATIONS: Location[] = [
     nearestStation: PEI_STATIONS.charlottetown,
     activities: ["golf", "walking", "dining"],
     icon: "⛳",
+    amenities: {
+      parking: "free",
+      parkingNote: "Free parking at the clubhouse — convenient 5 min drive from downtown Charlottetown",
+      petFriendly: false,
+      petNote: "Pets not permitted on the course or clubhouse grounds",
+      wheelchairAccessible: true,
+      wheelchairNote: "Accessible clubhouse entrance and facilities; power carts available on request",
+    },
     faqs: [
       {
         q: "What makes Belvedere different from other PEI golf courses?",
@@ -230,6 +318,14 @@ export const PEI_LOCATIONS: Location[] = [
     nearestStation: PEI_STATIONS.charlottetown,
     activities: ["flying", "driving", "travel-planning"],
     icon: "✈️",
+    amenities: {
+      parking: "paid",
+      parkingNote: "Short-term and long-term paid parking at the terminal — pre-book online to save",
+      petFriendly: true,
+      petNote: "Service animals welcome inside; pets in carriers permitted in the terminal",
+      wheelchairAccessible: true,
+      wheelchairNote: "Fully accessible terminal with ramps, elevators, and accessible washrooms",
+    },
   },
 ];
 

@@ -22,6 +22,15 @@ export interface LocationFAQ {
   a: string;
 }
 
+export interface LocationAmenities {
+  parking: "free" | "paid" | "limited" | "none";
+  parkingNote?: string;
+  petFriendly: boolean;
+  petNote?: string;
+  wheelchairAccessible: boolean;
+  wheelchairNote?: string;
+}
+
 export interface Location {
   id: string;
   name: string;
@@ -34,6 +43,7 @@ export interface Location {
   activities: string[];
   icon: string;
   faqs?: LocationFAQ[];
+  amenities?: LocationAmenities;
 }
 
 export interface WeatherSnapshot {

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ChevronDown, Droplets, Gauge, Mountain, Navigation, Waves, Wind } from "lucide-react";
+import { ArrowLeft, ChevronDown, Droplets, Gauge, Mountain, Navigation, ParkingCircle, Waves, Wind } from "lucide-react";
 import { notFound } from "next/navigation";
 
 import { MeteorologistInsight } from "@/components/ai/MeteorologistInsight";
@@ -171,6 +171,76 @@ export default async function LocationPage({
           />
         </div>
       </section>
+
+      {/* ── VISITOR INFO ──────────────────────────────────────────── */}
+      {entry.location.amenities && (
+        <section className="space-y-4">
+          <div>
+            <p className="eyebrow mb-2">Visitor information</p>
+            <h2 className="section-title text-3xl">Before you go</h2>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {/* Parking */}
+            <div className="rounded-[1.75rem] border border-border bg-white p-5">
+              <div className="mb-3 flex items-center gap-2">
+                <div className={`flex h-9 w-9 items-center justify-center rounded-2xl ${
+                  entry.location.amenities.parking === "free" ? "bg-forest-light text-forest" :
+                  entry.location.amenities.parking === "paid" ? "bg-sun-light text-sun-deep" :
+                  entry.location.amenities.parking === "limited" ? "bg-sun-light text-sun-deep" :
+                  "bg-red-50 text-red-500"
+                }`}>
+                  <ParkingCircle className="h-4 w-4" />
+                </div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-text-muted">Parking</p>
+              </div>
+              <p className="font-serif text-xl capitalize text-text-primary">
+                {entry.location.amenities.parking === "free" ? "Free" :
+                 entry.location.amenities.parking === "paid" ? "Paid" :
+                 entry.location.amenities.parking === "limited" ? "Limited" : "No parking"}
+              </p>
+              {entry.location.amenities.parkingNote && (
+                <p className="mt-1.5 text-sm leading-6 text-text-secondary">{entry.location.amenities.parkingNote}</p>
+              )}
+            </div>
+
+            {/* Pet friendly */}
+            <div className="rounded-[1.75rem] border border-border bg-white p-5">
+              <div className="mb-3 flex items-center gap-2">
+                <div className={`flex h-9 w-9 items-center justify-center rounded-2xl text-lg ${
+                  entry.location.amenities.petFriendly ? "bg-forest-light" : "bg-red-50"
+                }`}>
+                  🐾
+                </div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-text-muted">Pets</p>
+              </div>
+              <p className={`font-serif text-xl ${entry.location.amenities.petFriendly ? "text-forest" : "text-red-500"}`}>
+                {entry.location.amenities.petFriendly ? "Pet friendly" : "No pets"}
+              </p>
+              {entry.location.amenities.petNote && (
+                <p className="mt-1.5 text-sm leading-6 text-text-secondary">{entry.location.amenities.petNote}</p>
+              )}
+            </div>
+
+            {/* Wheelchair */}
+            <div className="rounded-[1.75rem] border border-border bg-white p-5">
+              <div className="mb-3 flex items-center gap-2">
+                <div className={`flex h-9 w-9 items-center justify-center rounded-2xl text-lg ${
+                  entry.location.amenities.wheelchairAccessible ? "bg-forest-light" : "bg-red-50"
+                }`}>
+                  ♿
+                </div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-text-muted">Accessibility</p>
+              </div>
+              <p className={`font-serif text-xl ${entry.location.amenities.wheelchairAccessible ? "text-forest" : "text-red-500"}`}>
+                {entry.location.amenities.wheelchairAccessible ? "Accessible" : "Limited access"}
+              </p>
+              {entry.location.amenities.wheelchairNote && (
+                <p className="mt-1.5 text-sm leading-6 text-text-secondary">{entry.location.amenities.wheelchairNote}</p>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── FAQ ───────────────────────────────────────────────────── */}
       {entry.location.faqs && entry.location.faqs.length > 0 && (
