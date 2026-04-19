@@ -39,6 +39,8 @@ export const PEI_LOCATIONS: Location[] = [
       petNote: "Pets not permitted on national park beaches",
       wheelchairAccessible: true,
       wheelchairNote: "Accessible boardwalk to the beach and washroom facilities",
+      washrooms: true,
+      washroomNote: "Seasonal washrooms and change rooms at the main beach entrance — open late June to Labour Day",
     },
   },
   {
@@ -59,6 +61,8 @@ export const PEI_LOCATIONS: Location[] = [
       petNote: "Dogs welcome on leash along the entire waterfront boardwalk",
       wheelchairAccessible: true,
       wheelchairNote: "Fully paved boardwalk, accessible restaurants, and waterfront park",
+      washrooms: true,
+      washroomNote: "Public washrooms at Confederation Landing Park, open year-round during business hours",
     },
   },
   {
@@ -79,6 +83,8 @@ export const PEI_LOCATIONS: Location[] = [
       petNote: "Pets not permitted in PEI National Park's Greenwich sector",
       wheelchairAccessible: true,
       wheelchairNote: "Floating boardwalk through the dunes is accessible — some uneven sections",
+      washrooms: true,
+      washroomNote: "Washrooms at the Greenwich Interpretation Centre — open during park season (June–Oct)",
     },
   },
   {
@@ -99,6 +105,8 @@ export const PEI_LOCATIONS: Location[] = [
       petNote: "Dogs welcome on leash for the full length of the trail",
       wheelchairAccessible: true,
       wheelchairNote: "Crushed gravel surface is firm and flat — suitable for most mobility aids",
+      washrooms: true,
+      washroomNote: "Portable washrooms at the Kensington trailhead in summer; nearest indoor facilities in Kensington town centre",
     },
   },
   {
@@ -119,6 +127,8 @@ export const PEI_LOCATIONS: Location[] = [
       petNote: "Pets travel freely in vehicles — no restrictions on the crossing",
       wheelchairAccessible: true,
       wheelchairNote: "Gateway Village is fully accessible; the bridge itself is vehicle-only",
+      washrooms: true,
+      washroomNote: "Accessible washrooms inside Gateway Village welcome centre — open during visitor centre hours",
     },
   },
   {
@@ -139,6 +149,8 @@ export const PEI_LOCATIONS: Location[] = [
       petNote: "Dogs welcome on leash throughout the park and along the shore path",
       wheelchairAccessible: true,
       wheelchairNote: "Paved paths throughout the park; accessible washrooms near the bandstand",
+      washrooms: true,
+      washroomNote: "Accessible washrooms near the bandstand and at the beach pavilion — open year-round",
     },
   },
   {
@@ -159,6 +171,8 @@ export const PEI_LOCATIONS: Location[] = [
       petNote: "Dogs permitted on leash — keep off the fragile dune grass",
       wheelchairAccessible: false,
       wheelchairNote: "No paved access to the beach; soft sand and gravel path from parking",
+      washrooms: true,
+      washroomNote: "Seasonal washrooms at the parking area — open late June through August",
     },
   },
   {
@@ -179,6 +193,8 @@ export const PEI_LOCATIONS: Location[] = [
       petNote: "Dogs welcome on leash along the reef trail and lookout areas",
       wheelchairAccessible: true,
       wheelchairNote: "Paved path to the main lookout and interpretive centre; reef trail is uneven",
+      washrooms: true,
+      washroomNote: "Accessible washrooms at the interpretive centre — open during operating hours (May–Oct)",
     },
   },
   {
@@ -199,6 +215,8 @@ export const PEI_LOCATIONS: Location[] = [
       petNote: "Pets not permitted on PEI National Park beaches",
       wheelchairAccessible: true,
       wheelchairNote: "Accessible washrooms and paved path to the beach entrance",
+      washrooms: true,
+      washroomNote: "Accessible change rooms and washrooms at the beach entrance — open during park season",
     },
     faqs: [
       {
@@ -241,6 +259,8 @@ export const PEI_LOCATIONS: Location[] = [
       petNote: "Pets not permitted on the course or clubhouse grounds",
       wheelchairAccessible: true,
       wheelchairNote: "Clubhouse and patio are accessible; power carts available for course access",
+      washrooms: true,
+      washroomNote: "Washrooms in the clubhouse and at on-course facilities — open during operating hours",
     },
     faqs: [
       {
@@ -283,6 +303,8 @@ export const PEI_LOCATIONS: Location[] = [
       petNote: "Pets not permitted on the course or clubhouse grounds",
       wheelchairAccessible: true,
       wheelchairNote: "Accessible clubhouse entrance and facilities; power carts available on request",
+      washrooms: true,
+      washroomNote: "Washrooms in the clubhouse and on-course — open throughout the golf season",
     },
     faqs: [
       {
@@ -325,6 +347,8 @@ export const PEI_LOCATIONS: Location[] = [
       petNote: "Service animals welcome inside; pets in carriers permitted in the terminal",
       wheelchairAccessible: true,
       wheelchairNote: "Fully accessible terminal with ramps, elevators, and accessible washrooms",
+      washrooms: true,
+      washroomNote: "Full washroom facilities inside the terminal — open 24/7 on travel days",
     },
   },
 ];

@@ -179,7 +179,7 @@ export default async function LocationPage({
             <p className="eyebrow mb-2">Visitor information</p>
             <h2 className="section-title text-3xl">Before you go</h2>
           </div>
-          <div className="grid gap-4 sm:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {/* Parking */}
             <div className="rounded-[1.75rem] border border-border bg-white p-5">
               <div className="mb-3 flex items-center gap-2">
@@ -236,6 +236,24 @@ export default async function LocationPage({
               </p>
               {entry.location.amenities.wheelchairNote && (
                 <p className="mt-1.5 text-sm leading-6 text-text-secondary">{entry.location.amenities.wheelchairNote}</p>
+              )}
+            </div>
+
+            {/* Washrooms */}
+            <div className="rounded-[1.75rem] border border-border bg-white p-5">
+              <div className="mb-3 flex items-center gap-2">
+                <div className={`flex h-9 w-9 items-center justify-center rounded-2xl text-lg ${
+                  entry.location.amenities.washrooms ? "bg-forest-light" : "bg-red-50"
+                }`}>
+                  🚻
+                </div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-text-muted">Washrooms</p>
+              </div>
+              <p className={`font-serif text-xl ${entry.location.amenities.washrooms ? "text-forest" : "text-red-500"}`}>
+                {entry.location.amenities.washrooms ? "Available" : "None on site"}
+              </p>
+              {entry.location.amenities.washroomNote && (
+                <p className="mt-1.5 text-sm leading-6 text-text-secondary">{entry.location.amenities.washroomNote}</p>
               )}
             </div>
           </div>

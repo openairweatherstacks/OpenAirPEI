@@ -29,6 +29,8 @@ export interface LocationAmenities {
   petNote?: string;
   wheelchairAccessible: boolean;
   wheelchairNote?: string;
+  washrooms: boolean;
+  washroomNote?: string;
 }
 
 export interface Location {
