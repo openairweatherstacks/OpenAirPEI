@@ -160,6 +160,7 @@ export default async function HomePage() {
             ) : null}
             <MetricCard
               icon={CloudSun}
+              title="Best conditions window"
               insight="The north shore stays comfortable longest today. Cavendish and the Confederation Trail both have the cleanest mix of sun, air, and manageable wind."
               rawLabel={`Top window · ${bestNow.map((entry) => entry.location.name).join(" · ")}`}
               accentClassName="text-sun-text"
