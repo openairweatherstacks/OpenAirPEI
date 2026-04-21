@@ -6,6 +6,7 @@ import { MeteorologistInsight } from "@/components/ai/MeteorologistInsight";
 import { BridgeStatus } from "@/components/ui/BridgeStatus";
 import { LocationGrid } from "@/components/ui/LocationGrid";
 import { MetricCard } from "@/components/ui/MetricCard";
+import { WeatherWidget } from "@/components/ui/WeatherWidget";
 import { PEIMap } from "@/components/map/PEIMap";
 import { average } from "@/lib/utils";
 import { getAllLocationConditions } from "@/lib/environment";
@@ -20,6 +21,35 @@ export default async function HomePage() {
   const bestNow = ranked.slice(0, 3);
   const charlottetown = locations.find((e) => e.location.id === "charlottetown");
   const summerside = locations.find((e) => e.location.id === "summerside");
+
+  // 7-day forecast from Open-Meteo (free, no key)
+  let forecast: { date: string; maxTemp: number; minTemp: number; precipSum: number; weatherCode: number }[] = [];
+  try {
+    const fRes = await fetch(
+      "https://api.open-meteo.com/v1/forecast?latitude=46.24&longitude=-63.13&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,weathercode&timezone=America%2FHalifax&forecast_days=7",
+      { next: { revalidate: 1800 } },
+    );
+    if (fRes.ok) {
+      const fJson = await fRes.json() as {
+        daily: {
+          time: string[];
+          temperature_2m_max: number[];
+          temperature_2m_min: number[];
+          precipitation_sum: number[];
+          weathercode: number[];
+        };
+      };
+      forecast = fJson.daily.time.map((date, i) => ({
+        date,
+        maxTemp: fJson.daily.temperature_2m_max[i],
+        minTemp: fJson.daily.temperature_2m_min[i],
+        precipSum: fJson.daily.precipitation_sum[i],
+        weatherCode: fJson.daily.weathercode[i],
+      }));
+    }
+  } catch {
+    // silently fall back to empty forecast
+  }
   const bridge = locations.find((entry) => entry.location.id === "confederation-bridge");
   const bridgeStatus = bridge?.conditions.bridgeStatus ?? null;
   const nextShiftEntry = locations
@@ -111,6 +141,20 @@ export default async function HomePage() {
 
       {/* ── REST OF PAGE ─────────────────────────────────────────── */}
       <div className="page-shell mt-8 space-y-10">
+
+        {/* ── WEATHER WIDGET ── */}
+        {charlottetown && (
+          <WeatherWidget
+            currentTemp={charlottetown.weather.temperature}
+            feelsLike={charlottetown.weather.feelsLike}
+            humidity={charlottetown.weather.humidity}
+            windSpeed={charlottetown.weather.windSpeed}
+            windDirection={charlottetown.weather.windDirection}
+            precipProbability={charlottetown.weather.precipProbability}
+            conditionText={charlottetown.weather.conditionText}
+            forecast={forecast}
+          />
+        )}
 
         <section className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
           <div>
