@@ -171,18 +171,21 @@ export default async function HomePage() {
         <section className="grid gap-5 lg:grid-cols-3">
           <MetricCard
             icon={Bike}
+            title="Activity match"
             insight="Cycling is strongest through the island interior this afternoon, where westbound routes stay more sheltered than the exposed coasts."
             rawLabel="Activity match · Trail and waterfront rides"
             accentClassName="text-forest"
           />
           <MetricCard
             icon={Wind}
+            title="Bridge wind"
             insight="Bridge wind is the island's sharpest decision point today. The shoreline can feel reasonable while the deck still runs gusty."
             rawLabel={`Bridge wind · ${bridge?.weather.windSpeed ?? "--"} km/h`}
             accentClassName="text-sun-text"
           />
           <MetricCard
             icon={ShieldCheck}
+            title="Island air quality"
             insight="AQHI is calm enough for kids, visitors, and most asthma-sensitive users to spend time outside without special precautions."
             rawLabel={`Island AQHI · ${islandAqhi.toFixed(1)}`}
             accentClassName="text-forest"
