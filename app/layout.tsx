@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Barlow_Condensed, Roboto } from "next/font/google";
+import Script from "next/script";
 import type { ReactNode } from "react";
 import "leaflet/dist/leaflet.css";
 
@@ -34,6 +35,9 @@ export const metadata: Metadata = {
     icon: "/openair-logo.png",
     apple: "/openair-logo.png",
   },
+  verification: {
+    google: "iymnYwJFYxMYT2yhI1kH8dS7Z8RB6df3Fo-SBNQxejg",
+  },
 };
 
 export const viewport: Viewport = {
@@ -57,6 +61,13 @@ export default function RootLayout({
           <BottomNav />
           <CookieBanner />
         </div>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-DSQJZ4DR81" strategy="afterInteractive" />
+        <Script id="ga-init" strategy="afterInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-DSQJZ4DR81');
+        `}</Script>
       </body>
     </html>
   );
