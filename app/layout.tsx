@@ -25,12 +25,12 @@ const barlowCondensed = Barlow_Condensed({
 
 export const metadata: Metadata = {
   title: {
-    default: "OpenAir PEI",
-    template: "%s | OpenAir PEI",
+    default: "OpenAir Atlantic",
+    template: "%s | OpenAir Atlantic",
   },
   description:
-    "Real-time environmental intelligence for Prince Edward Island. OpenAir PEI turns island conditions into confident outdoor decisions.",
-  applicationName: "OpenAir PEI",
+    "Real-time environmental intelligence for Prince Edward Island. OpenAir Atlantic turns island conditions into confident outdoor decisions.",
+  applicationName: "OpenAir Atlantic",
   icons: {
     icon: "/openair-logo.png",
     apple: "/openair-logo.png",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#fafaf7",
+  themeColor: "#2D6E24",
 };
 
 export default function RootLayout({

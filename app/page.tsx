@@ -7,7 +7,7 @@ import { BridgeStatus } from "@/components/ui/BridgeStatus";
 import { LocationGrid } from "@/components/ui/LocationGrid";
 import { MetricCard } from "@/components/ui/MetricCard";
 import { PEIMap } from "@/components/map/PEIMap";
-import { average } from "@/lib/utils";
+import { average, formatMinutes } from "@/lib/utils";
 import { getAllLocationConditions } from "@/lib/environment";
 import { Droplets } from "lucide-react";
 
@@ -87,7 +87,7 @@ export default async function HomePage() {
           <div className="rounded-[1.5rem] bg-white/95 p-4 shadow-glow backdrop-blur">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sun-text">Next shift</p>
             <p className="mt-1.5 font-serif text-xl text-text-primary">
-              {nextShift ? `${nextShift} min` : "Holding steady"}
+              {nextShift ? formatMinutes(nextShift) : "Holding steady"}
             </p>
             <p className="mt-1 text-sm leading-5 text-text-secondary">
               {nextShiftEntry
