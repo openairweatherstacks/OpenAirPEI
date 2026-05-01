@@ -19,11 +19,22 @@ export function Header() {
   return (
     <header className="sticky top-0 z-[999] border-b border-white/60 bg-[rgba(250,250,247,0.88)] backdrop-blur-xl">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-        <Link className="flex min-w-0 shrink-0 items-center" href="/">
-          <div className="relative h-12 w-48 sm:w-56">
+        <Link className="flex min-w-0 shrink-0 items-center gap-3" href="/">
+          {/* Icon badge — always visible */}
+          <div className="relative h-11 w-11 shrink-0">
+            <Image
+              src="/openair-icon.png"
+              alt="OpenAir Atlantic"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+          {/* Full wordmark — desktop only */}
+          <div className="relative hidden h-10 w-44 sm:block">
             <Image
               src="/openair-logo.png"
-              alt="OpenAir Atlantic logo"
+              alt="OpenAir Atlantic"
               fill
               className="object-contain object-left"
               priority

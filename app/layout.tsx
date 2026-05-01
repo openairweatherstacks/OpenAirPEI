@@ -32,8 +32,8 @@ export const metadata: Metadata = {
     "Real-time environmental intelligence for Prince Edward Island. OpenAir Atlantic turns island conditions into confident outdoor decisions.",
   applicationName: "OpenAir Atlantic",
   icons: {
-    icon: "/openair-logo.png",
-    apple: "/openair-logo.png",
+    icon: "/openair-icon.png",
+    apple: "/openair-icon.png",
   },
   verification: {
     google: "iymnYwJFYxMYT2yhI1kH8dS7Z8RB6df3Fo-SBNQxejg",

@@ -11,12 +11,12 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#2D6E24",
     icons: [
       {
-        src: "/openair-logo.png",
+        src: "/openair-icon.png",
         sizes: "192x192",
         type: "image/png",
       },
       {
-        src: "/openair-logo.png",
+        src: "/openair-icon.png",
         sizes: "512x512",
         type: "image/png",
       },
