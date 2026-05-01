@@ -2,6 +2,7 @@ import { BEACH_BUOYS, CACHE_DURATIONS, PEI_AQHI, PEI_LOCATIONS } from "@/lib/dat
 import { SAMPLE_ALERTS, SAMPLE_TIDES, SAMPLE_WEATHER } from "@/lib/data/sample";
 import { getClaudeConditions } from "@/lib/claude";
 import { getWaterTemp } from "@/lib/water";
+import { fetchLiveWeather } from "@/lib/weather";
 import { calculatePawScore, calculateRawScore, getBridgeStatus, getUvBurnMinutes, scoreToLabel } from "@/lib/score";
 import type {
   ActivityAssessment,
@@ -156,69 +157,6 @@ async function buildConditions(
   };
 }
 
-function pickNumber(source: Record<string, unknown>, keys: string[]) {
-  for (const key of keys) {
-    const value = source[key];
-    if (typeof value === "number" && Number.isFinite(value)) return value;
-    if (typeof value === "string" && value.trim() !== "" && !Number.isNaN(Number(value))) {
-      return Number(value);
-    }
-  }
-  return undefined;
-}
-
-function pickString(source: Record<string, unknown>, keys: string[]) {
-  for (const key of keys) {
-    const value = source[key];
-    if (typeof value === "string" && value.trim()) return value;
-  }
-  return undefined;
-}
-
-async function tryLiveObservation(location: Location): Promise<Partial<WeatherSnapshot> | null> {
-  if (!LIVE_DATA_ENABLED) return null;
-
-  try {
-    const params = new URLSearchParams({
-      station_number: location.nearestStation,
-      limit: "1",
-      f: "json",
-    });
-    const response = await fetch(
-      `https://api.weather.gc.ca/collections/swob-realtime/items?${params.toString()}`,
-      {
-        next: { revalidate: CACHE_DURATIONS.currentConditions },
-      },
-    );
-
-    if (!response.ok) return null;
-
-    const json = (await response.json()) as {
-      features?: Array<{ properties?: Record<string, unknown> }>;
-    };
-    const properties = json.features?.[0]?.properties;
-    if (!properties) return null;
-
-    return {
-      temperature: pickNumber(properties, ["air_temperature", "temperature"]) ?? undefined,
-      feelsLike:
-        pickNumber(properties, ["humidex", "wind_chill", "feels_like", "apparent_temperature"]) ??
-        undefined,
-      windSpeed:
-        pickNumber(properties, ["wind_speed", "wind_spd", "wind_speed_kmh"]) ?? undefined,
-      windDirection: pickString(properties, ["wind_direction", "wind_dir"]) ?? undefined,
-      humidity: pickNumber(properties, ["relative_humidity", "humidity"]) ?? undefined,
-      visibility: pickNumber(properties, ["visibility", "visibility_km"]) ?? undefined,
-      pressure: pickNumber(properties, ["pressure", "station_pressure"]) ?? undefined,
-      conditionText:
-        pickString(properties, ["weather", "weather_condition", "present_weather"]) ?? undefined,
-      observationTime:
-        pickString(properties, ["date_tm", "datetime", "observation_time"]) ?? undefined,
-    };
-  } catch {
-    return null;
-  }
-}
 
 async function tryLiveAqhi(locationId: string): Promise<number | null> {
   if (!LIVE_DATA_ENABLED) return null;
@@ -250,39 +188,25 @@ async function tryLiveAqhi(locationId: string): Promise<number | null> {
     };
     const properties = json.features?.[0]?.properties;
     if (!properties) return null;
-    return pickNumber(properties, ["aqhi", "aqhi_value", "aqhi_forecast"]) ?? null;
+    const raw = properties["aqhi"] ?? properties["aqhi_value"] ?? properties["aqhi_forecast"];
+    return typeof raw === "number" && Number.isFinite(raw) ? raw : null;
   } catch {
     return null;
   }
 }
 
-function mergeDefined<T extends object>(base: T, patch: Partial<T> | null): T {
-  if (!patch) return base;
-
-  const definedEntries = Object.entries(patch).filter(([, value]) => value !== undefined);
-  return {
-    ...base,
-    ...Object.fromEntries(definedEntries),
-  };
-}
 
 export async function getLocationConditions(locationId: string): Promise<LocationConditions | null> {
   const location = PEI_LOCATIONS.find((item) => item.id === locationId);
   if (!location) return null;
 
   const sampleWeather = SAMPLE_WEATHER[locationId];
-  const liveWeather = await tryLiveObservation(location);
+  const liveWeather = await fetchLiveWeather(location);
   const liveAqhi = await tryLiveAqhi(locationId);
-  const mergedWeather = mergeDefined(sampleWeather, liveWeather);
 
-  const weather: WeatherSnapshot = {
-    ...mergedWeather,
-    feelsLike: liveWeather?.feelsLike ?? liveWeather?.temperature ?? sampleWeather.feelsLike,
-    windDirection: liveWeather?.windDirection ?? sampleWeather.windDirection,
-    aqhi: liveAqhi ?? sampleWeather.aqhi,
-    observationTime: liveWeather?.observationTime ?? sampleWeather.observationTime,
-    conditionText: liveWeather?.conditionText ?? sampleWeather.conditionText,
-  };
+  const weather: WeatherSnapshot = liveWeather
+    ? { ...liveWeather, aqhi: liveAqhi ?? liveWeather.aqhi }
+    : { ...sampleWeather, aqhi: liveAqhi ?? sampleWeather.aqhi };
 
   const tide = SAMPLE_TIDES[locationId] ?? [];
   const alerts = SAMPLE_ALERTS[locationId] ?? [];
@@ -300,7 +224,7 @@ export async function getLocationConditions(locationId: string): Promise<Locatio
     conditions,
     waterTemp,
     pawIndex: calculatePawScore(weather, location.type),
-    source: liveWeather || liveAqhi ? "hybrid" : "sample",
+    source: liveWeather ? "live" : "sample",
   };
 }
 

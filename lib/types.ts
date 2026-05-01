@@ -114,5 +114,5 @@ export interface LocationConditions {
   conditions: ConditionsResponse;
   waterTemp: number | null;
   pawIndex: PawIndex;
-  source: "sample" | "hybrid";
+  source: "sample" | "hybrid" | "live";
 }
