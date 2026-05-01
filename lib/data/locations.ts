@@ -491,7 +491,7 @@ export const BEACH_BUOYS: Record<string, string> = {
 
 export const CACHE_DURATIONS = {
   currentConditions: 10 * 60,
-  aiSummary: 15 * 60,
+  aiSummary: 45 * 60,
   tides: 60 * 60,
   alerts: 5 * 60,
   radar: 6 * 60,
