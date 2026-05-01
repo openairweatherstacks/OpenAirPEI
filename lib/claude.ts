@@ -109,7 +109,7 @@ export async function getClaudeConditions(
 
   const cached = unstable_cache(
     () => callClaude(location, weather, alerts),
-    [`openair-claude-${location.id}`, fingerprint],
+    [`openair-claude-v2-${location.id}`, fingerprint],
     { revalidate: CACHE_DURATIONS.aiSummary },
   );
 
