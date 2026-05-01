@@ -71,30 +71,25 @@ async function callClaude(
   location: Location,
   weather: WeatherSnapshot,
   alerts: AlertItem[],
-): Promise<ConditionsResponse | null> {
+): Promise<ConditionsResponse> {
   const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) return null;
+  if (!apiKey) throw new Error("ANTHROPIC_API_KEY not set");
 
-  try {
-    const client = new Anthropic({ apiKey });
+  const client = new Anthropic({ apiKey });
 
-    const message = await client.messages.create({
-      model: process.env.ANTHROPIC_MODEL ?? "claude-sonnet-4-6",
-      max_tokens: 1024,
-      system: SYSTEM_PROMPT,
-      messages: [{ role: "user", content: buildPrompt(location, weather, alerts) }],
-    });
+  const message = await client.messages.create({
+    model: process.env.ANTHROPIC_MODEL ?? "claude-sonnet-4-6",
+    max_tokens: 1024,
+    system: SYSTEM_PROMPT,
+    messages: [{ role: "user", content: buildPrompt(location, weather, alerts) }],
+  });
 
-    const text = message.content[0]?.type === "text" ? message.content[0].text.trim() : null;
-    if (!text) return null;
+  const text = message.content[0]?.type === "text" ? message.content[0].text.trim() : null;
+  if (!text) throw new Error("Empty Claude response");
 
-    // Strip any accidental markdown fences
-    const cleaned = text.replace(/^```json\s*/i, "").replace(/\s*```$/i, "");
-    return JSON.parse(cleaned) as ConditionsResponse;
-  } catch {
-    // Rate limit, network error, or bad JSON — fall back to template data
-    return null;
-  }
+  // Strip any accidental markdown fences
+  const cleaned = text.replace(/^```json\s*/i, "").replace(/\s*```$/i, "");
+  return JSON.parse(cleaned) as ConditionsResponse;
 }
 
 // Fingerprint weather so near-identical conditions reuse the cached Claude response
@@ -121,6 +116,7 @@ export async function getClaudeConditions(
   try {
     return await cached();
   } catch {
+    // Errors are NOT cached by unstable_cache, so next request retries Claude
     return null;
   }
 }
