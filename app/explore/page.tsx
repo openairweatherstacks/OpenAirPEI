@@ -4,7 +4,6 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { ScoreBadge } from "@/components/conditions/ScoreBadge";
-import { CategoryDropdown } from "@/components/ui/CategoryDropdown";
 import { getAllLocationConditions } from "@/lib/environment";
 import type { LocationConditions, LocationType } from "@/lib/types";
 

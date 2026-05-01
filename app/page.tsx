@@ -9,7 +9,7 @@ import { MetricCard } from "@/components/ui/MetricCard";
 import { PEIMap } from "@/components/map/PEIMap";
 import { average } from "@/lib/utils";
 import { getAllLocationConditions } from "@/lib/environment";
-import { Droplets, Thermometer } from "lucide-react";
+import { Droplets } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
