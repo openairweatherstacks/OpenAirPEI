@@ -44,9 +44,9 @@ export default async function HomePage() {
         {/* gradient — stronger on mobile for legibility */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/5" />
 
-        {/* hero content — bottom-left */}
-        <div className="absolute inset-x-0 bottom-0 px-4 pb-24 sm:px-6 sm:pb-20 lg:px-8 lg:pb-16">
-          <div className="mx-auto max-w-7xl">
+        {/* hero content — bottom on mobile, vertically centred on desktop */}
+        <div className="absolute inset-x-0 bottom-0 px-4 pb-20 sm:inset-0 sm:flex sm:items-center sm:pb-0 sm:px-6 lg:px-8">
+          <div className="mx-auto w-full max-w-7xl">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-white/70">
               Prince Edward Island · Smart weather for the outdoors
             </p>
