@@ -31,21 +31,21 @@ export default async function HomePage() {
   return (
     <div>
       {/* ── HERO ─────────────────────────────────────────────────── */}
-      <section className="relative h-[82vh] min-h-[520px] w-full overflow-hidden">
+      <section className="relative h-[62vh] min-h-[420px] w-full overflow-hidden sm:h-[78vh] sm:min-h-[520px]">
         <Image
           src="/pei.jpg"
           alt="Prince Edward Island coastline"
           fill
           priority
-          className="object-cover object-center"
+          className="object-cover object-[center_65%]"
           sizes="100vw"
         />
 
-        {/* gradient — dark at bottom for text legibility, subtle at top */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10" />
+        {/* gradient — stronger on mobile for legibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/5" />
 
         {/* hero content — bottom-left */}
-        <div className="absolute inset-x-0 bottom-0 px-4 pb-28 sm:px-6 sm:pb-24 lg:px-8 lg:pb-20">
+        <div className="absolute inset-x-0 bottom-0 px-4 pb-24 sm:px-6 sm:pb-20 lg:px-8 lg:pb-16">
           <div className="mx-auto max-w-7xl">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-white/70">
               Prince Edward Island · Smart weather for the outdoors

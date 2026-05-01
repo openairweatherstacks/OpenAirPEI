@@ -22,7 +22,7 @@ export function Header() {
         <Link className="flex min-w-0 shrink-0 items-center gap-3" href="/">
           <div className="relative h-11 w-11 shrink-0">
             <Image
-              src="/openair-icon.png"
+              src="/openair-logo.png"
               alt="OpenAir Atlantic"
               fill
               className="object-contain"
