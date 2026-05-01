@@ -15,6 +15,7 @@ export function LocationGrid({ locations }: { locations: LocationConditions[] })
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.4, delay: index * 0.04, ease: "easeOut" }}
+          className="h-full"
         >
           <ConditionsCard entry={entry} />
         </motion.div>

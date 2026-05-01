@@ -43,7 +43,7 @@ export function ConditionsCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.45, ease: "easeOut" }}
-      className="overflow-hidden rounded-[2rem] border border-white/70 bg-white/90 shadow-[0_24px_80px_rgba(42,42,42,0.08)] backdrop-blur"
+      className="flex h-full flex-col overflow-hidden rounded-[2rem] border border-white/70 bg-white/90 shadow-[0_24px_80px_rgba(42,42,42,0.08)] backdrop-blur"
     >
       {image && (
         <div className="relative h-44 w-full">
@@ -61,7 +61,7 @@ export function ConditionsCard({
         </div>
       )}
 
-      <div className="p-5">
+      <div className="flex flex-1 flex-col p-5">
         <div className="mb-4 flex items-start justify-between gap-3">
           <div>
             <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-text-muted">
@@ -117,7 +117,8 @@ export function ConditionsCard({
         )}
 
         {!compact && (
-          <div className="mt-5 flex items-center justify-between gap-3 rounded-3xl border border-border bg-bg px-4 py-3">
+          <div className="mt-auto pt-5">
+          <div className="flex items-center justify-between gap-3 rounded-3xl border border-border bg-bg px-4 py-3">
             <p className="text-xs uppercase tracking-[0.18em] text-text-muted">
               Updated {formatObservationTime(entry.weather.observationTime)}
             </p>
@@ -127,6 +128,7 @@ export function ConditionsCard({
             >
               Full outlook <ArrowRight className="h-4 w-4" />
             </Link>
+          </div>
           </div>
         )}
       </div>
