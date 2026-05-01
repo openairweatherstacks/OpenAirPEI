@@ -56,16 +56,16 @@ export default async function HomePage() {
             <p className="mt-4 max-w-xl text-sm leading-7 text-white/80 sm:text-base">
               Smart weather for Prince Edward Island — live conditions, radar, and air quality for every key spot on the island.
             </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div className="mt-6 flex flex-wrap gap-4">
               <Link
                 href="/explore"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-sun px-6 py-3 text-sm font-semibold text-[#2a2a2a] shadow-sun transition hover:bg-sun-deep"
+                className="inline-flex min-h-12 items-center gap-2 rounded-full bg-sun px-7 py-3 text-sm font-semibold text-[#2a2a2a] shadow-sun transition hover:bg-sun-deep"
               >
                 Explore best things to do <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/bridge"
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/40 bg-white/15 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/25"
+                className="inline-flex min-h-12 items-center rounded-full border border-white/40 bg-white/15 px-7 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/25"
               >
                 Check the bridge
               </Link>
