@@ -36,6 +36,18 @@ export function ConditionsCard({
   compact?: boolean;
 }) {
   const image = LOCATION_IMAGES[entry.location.id];
+  const safetyHighlights = [
+    entry.communityNotice
+      ? entry.communityNotice.mode === "cooling"
+        ? "Cooling spaces nearby"
+        : "Warm-up spaces nearby"
+      : null,
+    entry.waterfrontRisk
+      ? entry.waterfrontRisk.level === "dangerous"
+        ? "Waterfront flood risk"
+        : "Waterfront surge watch"
+      : null,
+  ].filter((value): value is string => Boolean(value));
 
   return (
     <motion.article
@@ -76,7 +88,22 @@ export function ConditionsCard({
         <p className="mb-2 font-serif text-xl leading-tight text-text-primary">
           {entry.conditions.headline}
         </p>
-        <p className="mb-5 text-sm leading-6 text-text-secondary">{entry.conditions.summary}</p>
+        <p className={safetyHighlights.length > 0 ? "mb-3 text-sm leading-6 text-text-secondary" : "mb-5 text-sm leading-6 text-text-secondary"}>
+          {entry.conditions.summary}
+        </p>
+
+        {safetyHighlights.length > 0 && (
+          <div className="mb-5 flex flex-wrap gap-2">
+            {safetyHighlights.map((highlight) => (
+              <span
+                key={highlight}
+                className="inline-flex items-center rounded-full bg-[#eef7fc] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#0a527a]"
+              >
+                {highlight}
+              </span>
+            ))}
+          </div>
+        )}
 
         <div className="grid gap-3 text-sm sm:grid-cols-2">
           <div className="rounded-3xl bg-forest-light/70 p-3">

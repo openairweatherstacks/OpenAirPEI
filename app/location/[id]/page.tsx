@@ -11,9 +11,11 @@ import { WindowAlert } from "@/components/conditions/WindowAlert";
 import { PEIMap } from "@/components/map/PEIMap";
 import { AirQualityBar } from "@/components/ui/AirQualityBar";
 import { BridgeStatus } from "@/components/ui/BridgeStatus";
+import { CommunityNoticeCard } from "@/components/ui/CommunityNoticeCard";
 import { MetricCard } from "@/components/ui/MetricCard";
 import { TideCard } from "@/components/ui/TideCard";
 import { UVTimer } from "@/components/ui/UVTimer";
+import { WaterfrontRiskCard } from "@/components/ui/WaterfrontRiskCard";
 import { getAllLocationConditions, getLocationConditions } from "@/lib/environment";
 import { waterTempLabel } from "@/lib/water";
 import { ReviewForm } from "@/components/reviews/ReviewForm";
@@ -81,6 +83,13 @@ export default async function LocationPage({
           <MeteorologistInsight text={entry.conditions.insightOfTheDay} />
         </div>
       </section>
+
+      {(entry.communityNotice || entry.waterfrontRisk) && (
+        <section className="grid gap-5 lg:grid-cols-2">
+          {entry.communityNotice && <CommunityNoticeCard notice={entry.communityNotice} />}
+          {entry.waterfrontRisk && <WaterfrontRiskCard risk={entry.waterfrontRisk} />}
+        </section>
+      )}
 
       <section className="space-y-4">
         <div className="flex items-end justify-between gap-4">

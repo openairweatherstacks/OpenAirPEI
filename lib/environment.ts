@@ -1,6 +1,12 @@
 import { BEACH_BUOYS, CACHE_DURATIONS, PEI_AQHI, PEI_LOCATIONS } from "@/lib/data/locations";
 import { SAMPLE_ALERTS, SAMPLE_TIDES, SAMPLE_WEATHER } from "@/lib/data/sample";
 import { getClaudeConditions } from "@/lib/claude";
+import {
+  buildCommunityNotice,
+  buildWaterfrontRisk,
+  getActiveEnvironmentCanadaAlerts,
+  getEnvironmentCanadaAlertsForLocation,
+} from "@/lib/safety";
 import { getWaterTemp } from "@/lib/water";
 import { fetchLiveWeather } from "@/lib/weather";
 import { calculatePawScore, calculateRawScore, getBridgeStatus, getUvBurnMinutes, scoreToLabel } from "@/lib/score";
@@ -201,19 +207,26 @@ export async function getLocationConditions(locationId: string): Promise<Locatio
   if (!location) return null;
 
   const sampleWeather = SAMPLE_WEATHER[locationId];
-  const liveWeather = await fetchLiveWeather(location);
-  const liveAqhi = await tryLiveAqhi(locationId);
+  const buoyId = BEACH_BUOYS[locationId];
+  const [liveWeather, liveAqhi, activeEnvironmentCanadaAlerts, waterTemp] = await Promise.all([
+    fetchLiveWeather(location),
+    tryLiveAqhi(locationId),
+    getActiveEnvironmentCanadaAlerts(),
+    buoyId ? getWaterTemp(buoyId) : Promise.resolve(null),
+  ]);
 
   const weather: WeatherSnapshot = liveWeather
     ? { ...liveWeather, aqhi: liveAqhi ?? liveWeather.aqhi }
     : { ...sampleWeather, aqhi: liveAqhi ?? sampleWeather.aqhi };
 
   const tide = SAMPLE_TIDES[locationId] ?? [];
-  const alerts = SAMPLE_ALERTS[locationId] ?? [];
+  const alerts = [
+    ...getEnvironmentCanadaAlertsForLocation(location, activeEnvironmentCanadaAlerts),
+    ...(SAMPLE_ALERTS[locationId] ?? []),
+  ];
+  const communityNotice = buildCommunityNotice(location, alerts);
+  const waterfrontRisk = buildWaterfrontRisk(location, alerts);
   const conditions = await buildConditions(location, weather, alerts);
-
-  const buoyId = BEACH_BUOYS[locationId];
-  const waterTemp = buoyId ? await getWaterTemp(buoyId) : null;
 
   return {
     location,
@@ -221,6 +234,8 @@ export async function getLocationConditions(locationId: string): Promise<Locatio
     rawScore: calculateRawScore(weather),
     tide,
     alerts,
+    communityNotice,
+    waterfrontRisk,
     conditions,
     waterTemp,
     pawIndex: calculatePawScore(weather, location.type),

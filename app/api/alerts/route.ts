@@ -15,6 +15,8 @@ export async function GET(request: Request) {
     return NextResponse.json({
       location: entry.location,
       alerts: entry.alerts,
+      communityNotice: entry.communityNotice,
+      waterfrontRisk: entry.waterfrontRisk,
     });
   }
 
@@ -23,6 +25,8 @@ export async function GET(request: Request) {
     locations.map((entry) => ({
       location: entry.location,
       alerts: entry.alerts,
+      communityNotice: entry.communityNotice,
+      waterfrontRisk: entry.waterfrontRisk,
     })),
   );
 }

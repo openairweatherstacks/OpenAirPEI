@@ -84,12 +84,41 @@ export interface AlertItem {
   title: string;
   severity: "info" | "watch" | "warning";
   summary: string;
+  source?: "sample" | "environment-canada";
+  kind?: "bridge-crosswind" | "extreme-heat" | "extreme-cold" | "storm-surge" | "coastal-flood" | "weather";
+  areas?: string[];
+  issuedAt?: string;
+  expiresAt?: string;
 }
 
 export interface ActivityAssessment {
   name: string;
   status: ActivityStatus;
   reason: string;
+}
+
+export interface ReliefCentre {
+  name: string;
+  address: string;
+  note?: string;
+}
+
+export interface CommunityNotice {
+  mode: "cooling" | "warming";
+  headline: string;
+  summary: string;
+  trigger: string;
+  centres: ReliefCentre[];
+  disclaimer: string;
+}
+
+export interface WaterfrontRisk {
+  level: "monitor" | "elevated" | "dangerous";
+  headline: string;
+  summary: string;
+  trigger: string;
+  guidance: string;
+  issuedAt?: string;
 }
 
 export interface ConditionsResponse {
@@ -111,6 +140,8 @@ export interface LocationConditions {
   rawScore: number;
   tide: TideEvent[];
   alerts: AlertItem[];
+  communityNotice: CommunityNotice | null;
+  waterfrontRisk: WaterfrontRisk | null;
   conditions: ConditionsResponse;
   waterTemp: number | null;
   pawIndex: PawIndex;

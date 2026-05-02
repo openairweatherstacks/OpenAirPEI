@@ -289,6 +289,8 @@ export const SAMPLE_ALERTS: Record<string, AlertItem[]> = {
       severity: "watch",
       summary:
         "Strong west-northwest winds are pushing across the bridge deck this afternoon. High-profile vehicles should plan extra time and check restrictions before departure.",
+      source: "sample",
+      kind: "bridge-crosswind",
     },
   ],
 };
