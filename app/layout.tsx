@@ -4,6 +4,7 @@ import Script from "next/script";
 import type { ReactNode } from "react";
 import "leaflet/dist/leaflet.css";
 
+import { BetaBanner } from "@/components/layout/BetaBanner";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { Footer } from "@/components/layout/Footer";
@@ -54,6 +55,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${roboto.variable} ${barlowCondensed.variable} font-sans antialiased`}>
         <div className="min-h-screen">
+          <BetaBanner />
           <Header />
           <main className="pb-28 md:pb-12">{children}</main>
           <Footer />
