@@ -5,7 +5,7 @@ import { BridgeStatus } from "@/components/ui/BridgeStatus";
 import { MetricCard } from "@/components/ui/MetricCard";
 import { getLocationConditions } from "@/lib/environment";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 600;
 
 export const metadata = {
   title: "Confederation Bridge",

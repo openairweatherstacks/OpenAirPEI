@@ -11,7 +11,7 @@ import { average, formatMinutes } from "@/lib/utils";
 import { getAllLocationConditions } from "@/lib/environment";
 import { Droplets } from "lucide-react";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 600;
 
 export default async function HomePage() {
   const locations = await getAllLocationConditions();

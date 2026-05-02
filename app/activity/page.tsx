@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";
+export const revalidate = 600;
 
 import { Bike, Camera, Footprints, Waves } from "lucide-react";
 

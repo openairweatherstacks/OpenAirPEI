@@ -7,7 +7,7 @@ import { ScoreBadge } from "@/components/conditions/ScoreBadge";
 import { getAllLocationConditions } from "@/lib/environment";
 import type { LocationConditions, LocationType } from "@/lib/types";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 600;
 
 export const metadata: Metadata = {
   title: "Explore PEI",

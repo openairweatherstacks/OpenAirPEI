@@ -16,12 +16,17 @@ import { MetricCard } from "@/components/ui/MetricCard";
 import { TideCard } from "@/components/ui/TideCard";
 import { UVTimer } from "@/components/ui/UVTimer";
 import { WaterfrontRiskCard } from "@/components/ui/WaterfrontRiskCard";
-import { getAllLocationConditions, getLocationConditions } from "@/lib/environment";
+import { getAllLocationMapStubs, getLocationConditions } from "@/lib/environment";
+import { PEI_LOCATIONS } from "@/lib/data/locations";
 import { waterTempLabel } from "@/lib/water";
 import { ReviewForm } from "@/components/reviews/ReviewForm";
 import { ReviewList } from "@/components/reviews/ReviewList";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 600;
+
+export async function generateStaticParams() {
+  return PEI_LOCATIONS.map((location) => ({ id: location.id }));
+}
 
 export async function generateMetadata({
   params,
@@ -53,7 +58,7 @@ export default async function LocationPage({
 
   if (!entry) notFound();
 
-  const allLocations = await getAllLocationConditions();
+  const allLocations = await getAllLocationMapStubs();
 
   return (
     <div className="page-shell space-y-8">

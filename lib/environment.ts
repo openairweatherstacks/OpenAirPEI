@@ -1,3 +1,5 @@
+import { cache } from "react";
+
 import { BEACH_BUOYS, CACHE_DURATIONS, PEI_AQHI, PEI_LOCATIONS } from "@/lib/data/locations";
 import { SAMPLE_ALERTS, SAMPLE_TIDES, SAMPLE_WEATHER } from "@/lib/data/sample";
 import { getClaudeConditions } from "@/lib/claude";
@@ -202,7 +204,9 @@ async function tryLiveAqhi(locationId: string): Promise<number | null> {
 }
 
 
-export async function getLocationConditions(locationId: string): Promise<LocationConditions | null> {
+// cache() deduplicates calls within a single server render
+// (e.g. generateMetadata + page body both calling for the same id)
+export const getLocationConditions = cache(async (locationId: string): Promise<LocationConditions | null> => {
   const location = PEI_LOCATIONS.find((item) => item.id === locationId);
   if (!location) return null;
 
@@ -241,11 +245,50 @@ export async function getLocationConditions(locationId: string): Promise<Locatio
     pawIndex: calculatePawScore(weather, location.type),
     source: liveWeather ? "live" : "sample",
   };
-}
+});
 
 export async function getAllLocationConditions() {
   const results = await Promise.all(PEI_LOCATIONS.map((location) => getLocationConditions(location.id)));
   return results.filter((item): item is LocationConditions => Boolean(item));
+}
+
+// Lightweight version for map markers — fetches live weather but skips Claude, AQHI, and alerts.
+// Use this on location detail pages where you only need the pin colours and popups.
+async function buildMapStub(location: Location): Promise<LocationConditions> {
+  const sampleWeather = SAMPLE_WEATHER[location.id];
+  const liveWeather = await fetchLiveWeather(location);
+  const weather = liveWeather ?? sampleWeather;
+  const rawScore = calculateRawScore(weather);
+  const score = scoreToLabel(rawScore);
+
+  return {
+    location,
+    weather,
+    rawScore,
+    tide: [],
+    alerts: [],
+    communityNotice: null,
+    waterfrontRisk: null,
+    conditions: {
+      score,
+      headline: buildHeadline(location, weather, score),
+      summary: "",
+      windowMinutes: weather.precipMinutes,
+      windowStatement: buildWindowStatement(location, weather),
+      uvWarning: buildUvWarning(weather.uvIndex),
+      bridgeStatus: location.type === "bridge" ? getBridgeStatus(weather.windSpeed) : null,
+      activities: location.activities.map((a) => buildActivityStatus(a, location, weather)),
+      airQualityStatement: classifyAqhi(weather.aqhi),
+      insightOfTheDay: "",
+    },
+    waterTemp: null,
+    pawIndex: calculatePawScore(weather, location.type),
+    source: liveWeather ? "hybrid" : "sample",
+  };
+}
+
+export async function getAllLocationMapStubs(): Promise<LocationConditions[]> {
+  return Promise.all(PEI_LOCATIONS.map(buildMapStub));
 }
 
 export async function getIslandAqhiSummary() {
