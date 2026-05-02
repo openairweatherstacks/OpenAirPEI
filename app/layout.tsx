@@ -8,6 +8,7 @@ import { BottomNav } from "@/components/layout/BottomNav";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { getSiteUrl } from "@/lib/site";
 
 import "./globals.css";
 
@@ -28,6 +29,7 @@ export const metadata: Metadata = {
     default: "OpenAir Atlantic",
     template: "%s | OpenAir Atlantic",
   },
+  metadataBase: new URL(getSiteUrl()),
   description:
     "Real-time environmental intelligence for Prince Edward Island. OpenAir Atlantic turns island conditions into confident outdoor decisions.",
   applicationName: "OpenAir Atlantic",
