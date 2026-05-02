@@ -9,6 +9,7 @@ import { BottomNav } from "@/components/layout/BottomNav";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { InstallPrompt } from "@/components/layout/InstallPrompt";
 import { getSiteUrl } from "@/lib/site";
 
 import "./globals.css";
@@ -60,8 +61,14 @@ export default function RootLayout({
           <main className="pb-28 md:pb-12">{children}</main>
           <Footer />
           <BottomNav />
+          <InstallPrompt />
           <CookieBanner />
         </div>
+        <Script id="sw-register" strategy="afterInteractive">{`
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js');
+          }
+        `}</Script>
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-DSQJZ4DR81" strategy="afterInteractive" />
         <Script id="ga-init" strategy="afterInteractive">{`
           window.dataLayer = window.dataLayer || [];
