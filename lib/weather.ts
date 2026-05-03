@@ -93,13 +93,19 @@ function pickString(record: Record<string, unknown>, keys: string[]): string | n
 function calculatePrecipMinutes(
   hourly: { time: string[]; precipitation: number[]; precipitation_probability: number[] },
   currentTime: string,
+  currentPrecipitation?: number | null,
 ): number | null {
+  // Open-Meteo reports precipitation over the preceding hour — if it's non-zero, it's raining now
+  if (currentPrecipitation != null && currentPrecipitation > 0) return 0;
+
   const currentHour = currentTime.slice(0, 13);
   const startIdx = hourly.time.findIndex((t) => t.startsWith(currentHour));
   if (startIdx === -1) return null;
 
   for (let i = startIdx; i < hourly.time.length; i++) {
-    if ((hourly.precipitation[i] ?? 0) > 0.1 && (hourly.precipitation_probability[i] ?? 0) >= 50) {
+    // For the current hour, use a lower probability threshold — rain at low model confidence is still rain
+    const probThreshold = i === startIdx ? 20 : 50;
+    if ((hourly.precipitation[i] ?? 0) > 0.1 && (hourly.precipitation_probability[i] ?? 0) >= probThreshold) {
       return (i - startIdx) * 60;
     }
   }
@@ -164,7 +170,7 @@ async function fetchOpenMeteoForecast(location: Location): Promise<PartialWeathe
       humidity: Math.round(current.relative_humidity_2m),
       uvIndex: Math.max(0, Math.round(current.uv_index * 10) / 10),
       precipProbability: getCurrentPrecipProbability(current, json.hourly),
-      precipMinutes: calculatePrecipMinutes(json.hourly, current.time),
+      precipMinutes: calculatePrecipMinutes(json.hourly, current.time, current.precipitation),
       visibility: Math.round(current.visibility / 100) / 10,
       pressure: Math.round(current.surface_pressure),
       conditionText: wmoToConditionText(current.weather_code),

@@ -88,7 +88,7 @@ async function callClaude(
   const message = await client.messages.create({
     model: process.env.ANTHROPIC_MODEL ?? "claude-sonnet-4-6",
     max_tokens: 1024,
-    system: SYSTEM_PROMPT,
+    system: [{ type: "text", text: SYSTEM_PROMPT, cache_control: { type: "ephemeral" } }],
     messages: [{ role: "user", content: buildPrompt(location, weather, alerts) }],
   });
 
@@ -100,15 +100,16 @@ async function callClaude(
   return JSON.parse(cleaned) as ConditionsResponse;
 }
 
-// Fingerprint weather so near-identical conditions reuse the cached Claude response
+// Fingerprint weather so near-identical conditions reuse the cached Claude response.
+// precipMinutes is bucketed to 30-min intervals so a rain event ticking down (180→170→160...)
+// doesn't create a new cache entry — and a new Claude call — on every 10-min weather refresh.
 function weatherFingerprint(weather: WeatherSnapshot): string {
   const temp = Math.round(weather.temperature);
   const wind = Math.round(weather.windSpeed / 5) * 5;
   const precip = Math.round(weather.precipProbability / 10) * 10;
-  const currentPrecipitation = Math.round((weather.currentPrecipitation ?? 0) * 10) / 10;
   const conditionCode = weather.conditionCode ?? -1;
-  const precipMinutes = weather.precipMinutes ?? -1;
-  return `${temp}-${wind}-${precip}-${weather.aqhi}-${weather.uvIndex}-${conditionCode}-${currentPrecipitation}-${precipMinutes}`;
+  const precipMinutes = weather.precipMinutes !== null ? Math.round(weather.precipMinutes / 30) * 30 : -1;
+  return `${temp}-${wind}-${precip}-${weather.aqhi}-${weather.uvIndex}-${conditionCode}-${precipMinutes}`;
 }
 
 export async function getClaudeConditions(
