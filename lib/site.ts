@@ -1,4 +1,4 @@
-const DEFAULT_SITE_URL = "https://openairpei.ca";
+const DEFAULT_SITE_URL = "https://openairatlantic.com";
 
 function trimTrailingSlash(value: string) {
   return value.replace(/\/+$/, "");

@@ -43,7 +43,7 @@ export default function PrivacyPage() {
           {
             title: "Environmental data",
             body: [
-              "All weather, radar, air quality, and tide data shown in the app comes from Canadian government open-data APIs (Environment Canada, Fisheries & Oceans Canada). This data is public and not tied to any individual user.",
+              "Current weather observations, radar, air quality, alerts, and tide data shown in the app come from Canadian government open-data APIs (Environment Canada and Fisheries & Oceans Canada). We also use Open-Meteo's open forecast API for the short-range rain-window timing shown in the app.",
               "AI-generated condition summaries are processed via the Anthropic Claude API. Queries to this API contain only environmental data — never personal information about you.",
             ],
           },

@@ -8,6 +8,29 @@ export const PEI_STATIONS = {
   borden: "8300100",
 } as const;
 
+export const PEI_OBSERVATION_STATIONS = {
+  charlottetown: {
+    queryName: "CHARLOTTETOWN",
+  },
+  summerside: {
+    queryName: "SUMMERSIDE",
+  },
+  eastPoint: {
+    queryName: "EAST POINT",
+  },
+} as const;
+
+export const PEI_OBSERVATION_STATION_BY_WEATHER_STATION: Record<
+  (typeof PEI_STATIONS)[keyof typeof PEI_STATIONS],
+  keyof typeof PEI_OBSERVATION_STATIONS
+> = {
+  [PEI_STATIONS.charlottetown]: "charlottetown",
+  [PEI_STATIONS.summerside]: "summerside",
+  [PEI_STATIONS.northRustico]: "charlottetown",
+  [PEI_STATIONS.eastPoint]: "eastPoint",
+  [PEI_STATIONS.borden]: "summerside",
+};
+
 export const PEI_AQHI = {
   charlottetown: "PEI-001",
   summerside: "PEI-002",

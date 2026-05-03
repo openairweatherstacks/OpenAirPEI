@@ -31,6 +31,12 @@ function buildPrompt(location: Location, data: WeatherSnapshot, alerts: AlertIte
     alerts.length > 0
       ? `Active alerts: ${alerts.map((a) => a.title).join("; ")}`
       : "No active alerts";
+  const windowStatement =
+    data.precipMinutes === null
+      ? "null"
+      : data.precipMinutes === 0
+        ? `"Rain is already on top of this location right now"`
+        : `"You have about ${data.precipMinutes} minutes of good conditions before rain arrives around ${precipArrival}"`;
 
   return `Give me a plain-English outdoor report for ${location.name}, Prince Edward Island. Write like you're texting a friend — short words, real times, clear action at the end.
 
@@ -39,12 +45,14 @@ Raw data:
 - Wind: ${data.windSpeed} km/h from the ${data.windDirection}${data.gustSpeed ? ` (gusts ${data.gustSpeed} km/h)` : ""}
 - Humidity: ${data.humidity}%
 - UV Index: ${data.uvIndex}
+- Current precipitation: ${data.currentPrecipitation !== null && data.currentPrecipitation !== undefined ? `${data.currentPrecipitation} mm` : "not reported"}
 - Precipitation probability (next 3hrs): ${data.precipProbability}%
 - Precipitation arriving in: ${data.precipMinutes !== null ? `${data.precipMinutes} minutes (around ${precipArrival})` : "none forecast"}
 - Air Quality Health Index: ${data.aqhi} (scale 1-10, 1=best)
 - Visibility: ${data.visibility} km
 - Pressure: ${data.pressure} hPa
 - Conditions: ${data.conditionText}
+- Observation time: ${data.observationTime}
 - Location type: ${location.type}
 - Typical activities here: ${location.activities.join(", ")}
 - Current time (Atlantic): ${now}
@@ -56,7 +64,7 @@ Return ONLY this JSON, no other text:
   "headline": "One punchy sentence (max 12 words) that captures the situation",
   "summary": "2-3 sentences. Specific, actionable, local. What should they know and do right now?",
   "windowMinutes": ${data.precipMinutes !== null ? data.precipMinutes : "null"},
-  "windowStatement": ${data.precipMinutes !== null ? `"You have about ${data.precipMinutes} minutes of good conditions before rain arrives around ${precipArrival}"` : "null"},
+  "windowStatement": ${windowStatement},
   "uvWarning": "string or null — only if UV 5+, e.g. Fair skin burns in ~X min at UV ${data.uvIndex}. Reapply SPF.",
   "bridgeStatus": ${location.type === "bridge" ? `"${getBridgeStatus(data.windSpeed)}"` : "null"},
   "activities": [
@@ -97,7 +105,10 @@ function weatherFingerprint(weather: WeatherSnapshot): string {
   const temp = Math.round(weather.temperature);
   const wind = Math.round(weather.windSpeed / 5) * 5;
   const precip = Math.round(weather.precipProbability / 10) * 10;
-  return `${temp}-${wind}-${precip}-${weather.aqhi}-${weather.uvIndex}`;
+  const currentPrecipitation = Math.round((weather.currentPrecipitation ?? 0) * 10) / 10;
+  const conditionCode = weather.conditionCode ?? -1;
+  const precipMinutes = weather.precipMinutes ?? -1;
+  return `${temp}-${wind}-${precip}-${weather.aqhi}-${weather.uvIndex}-${conditionCode}-${currentPrecipitation}-${precipMinutes}`;
 }
 
 export async function getClaudeConditions(

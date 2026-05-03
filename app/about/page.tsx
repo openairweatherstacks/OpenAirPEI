@@ -33,8 +33,9 @@ export default function AboutPage() {
             should I go to Cavendish Beach right now, and how long do I have before the rain hits?
           </p>
           <p className="mt-3 text-sm leading-7 text-text-secondary">
-            OpenAir pulls live data from Environment Canada, Fisheries & Oceans Canada, and ocean
-            buoys — then runs it through an AI meteorologist trained to speak like a local, not a
+            OpenAir pulls live observations and alerts from Environment Canada, tides and buoy data
+            from Fisheries & Oceans Canada and CIOOS, and short-range rain timing from Open-Meteo
+            — then runs it through an AI meteorologist trained to speak like a local, not a
             textbook. The result is one clear answer per location, in plain English.
           </p>
         </div>
@@ -65,7 +66,7 @@ export default function AboutPage() {
             {
               step: "01",
               title: "Live data",
-              body: "We pull real-time weather, air quality, radar, tides, and water temperature from free Canadian government APIs — Environment Canada, Fisheries & Oceans, and ocean buoy networks. No paywalls. No third-party data brokers.",
+              body: "We pull real-time weather observations, air quality, radar, tides, and water temperature from open public feeds — mainly Environment Canada, Fisheries & Oceans, and ocean buoy networks, with Open-Meteo filling in short-range rain timing. No paywalls. No third-party data brokers.",
             },
             {
               step: "02",
@@ -91,9 +92,9 @@ export default function AboutPage() {
         <p className="eyebrow mb-3">Data & transparency</p>
         <h2 className="section-title text-3xl">Open data, open about how we use it</h2>
         <p className="section-copy mt-3">
-          All environmental data comes from Canadian federal government sources — free, public, and
-          updated in near-real time. We do not sell data, we do not profile users, and we do not
-          require an account to use the app.
+          OpenAir uses public environmental data sources — primarily Canadian federal government
+          feeds, plus Open-Meteo for short-range precipitation timing. We do not sell data, we do
+          not profile users, and we do not require an account to use the app.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Link

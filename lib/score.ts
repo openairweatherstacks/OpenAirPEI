@@ -1,5 +1,28 @@
 import type { BridgeStatusType, ConditionsScore, LocationType, PawIndex, PawScore, WeatherSnapshot } from "@/lib/types";
 
+function normalizeConditionText(text: string) {
+  return text.trim().toLowerCase();
+}
+
+export function isStormyWeather(data: WeatherSnapshot): boolean {
+  if (typeof data.conditionCode === "number" && data.conditionCode >= 95) return true;
+  return /thunderstorm/.test(normalizeConditionText(data.conditionText));
+}
+
+export function hasCurrentPrecipitation(data: WeatherSnapshot): boolean {
+  if ((data.currentPrecipitation ?? 0) > 0) return true;
+
+  if (typeof data.conditionCode === "number") {
+    if ((data.conditionCode >= 51 && data.conditionCode <= 67) || (data.conditionCode >= 80 && data.conditionCode <= 86)) {
+      return true;
+    }
+  }
+
+  return /(rain|drizzle|shower|snow|sleet|hail|ice pellets|freezing)/.test(
+    normalizeConditionText(data.conditionText),
+  );
+}
+
 export function calculateRawScore(data: WeatherSnapshot): number {
   let score = 100;
 
@@ -11,6 +34,9 @@ export function calculateRawScore(data: WeatherSnapshot): number {
   else if (data.windSpeed > 25) score -= 10;
 
   score -= data.precipProbability * 0.4;
+
+  if (isStormyWeather(data)) score -= 45;
+  else if (hasCurrentPrecipitation(data)) score -= 25;
 
   if (data.uvIndex >= 8) score -= 15;
   else if (data.uvIndex >= 6) score -= 5;
@@ -57,6 +83,10 @@ export function calculatePawScore(data: WeatherSnapshot, locationType: LocationT
   // Air quality — dogs breathe harder during exercise
   if (data.aqhi >= 7) { score -= 30; mainConcern = mainConcern || "Poor air quality — quick bathroom trip only"; }
   else if (data.aqhi >= 4) { score -= 15; mainConcern = mainConcern || "Moderate air quality — keep walks short"; }
+
+  // Active precipitation — not usually dangerous, but less comfortable and harder to read
+  if (isStormyWeather(data)) { score -= 45; mainConcern = mainConcern || "Stormy weather — wait this one out"; }
+  else if (hasCurrentPrecipitation(data)) { score -= 35; mainConcern = mainConcern || "Wet weather — better for a short break than a long outing"; }
 
   // Wind — stressful, especially for small dogs
   if (data.windSpeed > 60) { score -= 15; mainConcern = mainConcern || "Very gusty — stressful for most dogs"; }

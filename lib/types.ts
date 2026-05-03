@@ -71,6 +71,8 @@ export interface WeatherSnapshot {
   visibility: number;
   pressure: number;
   conditionText: string;
+  conditionCode?: number | null;
+  currentPrecipitation?: number | null;
   observationTime: string;
 }
 

@@ -20,7 +20,11 @@ export function WindowAlert({
             3-hour window
           </p>
           <p className="font-serif text-xl text-text-primary">
-            {minutes === null ? "Conditions hold steady" : `You have ${formatMinutes(minutes)}`}
+            {minutes === null
+              ? "Conditions hold steady"
+              : minutes === 0
+                ? "Rain is here now"
+                : `You have ${formatMinutes(minutes)}`}
           </p>
           <p className="text-sm leading-6 text-text-secondary">
             {statement ?? "No near-term weather shift is showing up in the current forecast window."}

@@ -11,7 +11,15 @@ import {
 } from "@/lib/safety";
 import { getWaterTemp } from "@/lib/water";
 import { fetchLiveWeather } from "@/lib/weather";
-import { calculatePawScore, calculateRawScore, getBridgeStatus, getUvBurnMinutes, scoreToLabel } from "@/lib/score";
+import {
+  calculatePawScore,
+  calculateRawScore,
+  getBridgeStatus,
+  getUvBurnMinutes,
+  hasCurrentPrecipitation,
+  isStormyWeather,
+  scoreToLabel,
+} from "@/lib/score";
 import type {
   ActivityAssessment,
   AlertItem,
@@ -25,6 +33,12 @@ import type {
 import { formatClock } from "@/lib/utils";
 
 const LIVE_DATA_ENABLED = process.env.OPENAIR_DISABLE_LIVE_DATA !== "true";
+const SCORE_RANK: Record<ConditionsScore, number> = {
+  "Stay Inside": 0,
+  Fair: 1,
+  Good: 2,
+  Excellent: 3,
+};
 
 function classifyAqhi(aqhi: number) {
   if (aqhi <= 3) return "Air is clean and easy on lungs today.";
@@ -38,6 +52,8 @@ function buildHeadline(location: Location, weather: WeatherSnapshot, score: Cond
       ? "Bridge travel needs a wind check first"
       : "Bridge is passable, but winds stay noticeable";
   }
+  if (isStormyWeather(weather)) return `${location.name} is getting hammered right now`;
+  if (hasCurrentPrecipitation(weather) || weather.precipMinutes === 0) return `${location.name} is wet right now`;
   if (score === "Excellent") return `Best window right now at ${location.name}`;
   if (score === "Good") return `${location.name} is in a solid outdoor window`;
   if (score === "Fair") return `${location.name} needs better timing today`;
@@ -45,8 +61,14 @@ function buildHeadline(location: Location, weather: WeatherSnapshot, score: Cond
 }
 
 function buildSummary(location: Location, weather: WeatherSnapshot, score: ConditionsScore) {
+  const stormy = isStormyWeather(weather);
+  const wetNow = hasCurrentPrecipitation(weather) || weather.precipMinutes === 0;
   const intro =
-    score === "Excellent"
+    stormy
+      ? `${location.name} is getting active weather right now, with ${weather.conditionText.toLowerCase()}.`
+      : wetNow
+        ? `${location.name} is already dealing with ${weather.conditionText.toLowerCase()} right now.`
+        : score === "Excellent"
       ? `${location.name} is in a sweet spot right now with ${weather.conditionText.toLowerCase()}.`
       : score === "Good"
         ? `${location.name} is workable right now, with ${weather.conditionText.toLowerCase()}.`
@@ -55,7 +77,11 @@ function buildSummary(location: Location, weather: WeatherSnapshot, score: Condi
           : `${location.name} is the kind of stop to postpone until conditions improve.`;
 
   const action =
-    weather.precipMinutes && weather.precipMinutes < 120
+    stormy
+      ? `Skip this one until the cell moves through.`
+      : wetNow
+        ? `Wait for a drier break or keep this stop very short.`
+        : weather.precipMinutes !== null && weather.precipMinutes < 120
       ? `Go sooner than later because showers are lining up for around ${formatClock(
           new Date(Date.now() + weather.precipMinutes * 60_000).toISOString(),
         )}.`
@@ -63,7 +89,12 @@ function buildSummary(location: Location, weather: WeatherSnapshot, score: Condi
         ? `Stick to sheltered routes and keep loose gear packed down.`
         : `If this is your stop, head out now and take advantage of the next couple of hours.`;
 
-  return `${intro} Wind is ${weather.windSpeed} km/h from the ${weather.windDirection}, and the air quality is favorable. ${action}`;
+  const visibilityContext =
+    weather.visibility < 5
+      ? `Visibility is down to ${weather.visibility} km, so it feels tighter than the temperature alone suggests.`
+      : `Air quality is favorable.`;
+
+  return `${intro} Wind is ${weather.windSpeed} km/h from the ${weather.windDirection}. ${visibilityContext} ${action}`;
 }
 
 function buildInsight(location: Location) {
@@ -90,14 +121,26 @@ function buildActivityStatus(
   location: Location,
   weather: WeatherSnapshot,
 ): ActivityAssessment {
+  const wetNow = hasCurrentPrecipitation(weather) || weather.precipMinutes === 0;
   const windy = weather.windSpeed >= 35;
-  const wetSoon = Boolean(weather.precipMinutes && weather.precipMinutes <= 120);
+  const wetSoon = weather.precipMinutes !== null && weather.precipMinutes <= 120;
   const coldSwim = weather.temperature < 13;
 
   let status: ActivityAssessment["status"] = "great";
   let reason = "Conditions line up nicely right now.";
 
-  if (activity === "swimming" && (coldSwim || windy)) {
+  if (wetNow) {
+    if (activity === "dining") {
+      status = "ok";
+      reason = "Indoor plans fit better until the wet weather eases off.";
+    } else if (activity === "driving") {
+      status = "ok";
+      reason = "Travel is still possible, but wet pavement and lower visibility call for extra care.";
+    } else {
+      status = "not recommended";
+      reason = "Active precipitation is already on top of this location.";
+    }
+  } else if (activity === "swimming" && (coldSwim || windy)) {
     status = "not recommended";
     reason = coldSwim
       ? "Water-side temperatures still feel too chilly for a comfortable swim."
@@ -120,7 +163,13 @@ function buildActivityStatus(
 }
 
 function buildWindowStatement(location: Location, weather: WeatherSnapshot) {
-  if (!weather.precipMinutes) return null;
+  if (hasCurrentPrecipitation(weather)) {
+    return `Rain is already on top of ${location.name}. Wait for a break before heading out.`;
+  }
+  if (weather.precipMinutes === null) return null;
+  if (weather.precipMinutes === 0) {
+    return `Rain is already on top of ${location.name}. Wait for a break before heading out.`;
+  }
   const arrival = new Date(Date.now() + weather.precipMinutes * 60_000).toISOString();
   return `You have about ${weather.precipMinutes} minutes before conditions soften near ${location.name} around ${formatClock(arrival)}.`;
 }
@@ -135,11 +184,7 @@ async function buildConditions(
   weather: WeatherSnapshot,
   alerts: AlertItem[],
 ): Promise<ConditionsResponse> {
-  // Try Claude first — returns null if no API key or call fails
-  const aiConditions = await getClaudeConditions(location, weather, alerts);
-  if (aiConditions) return aiConditions;
-
-  // Fallback: deterministic template-based conditions
+  const wetNow = hasCurrentPrecipitation(weather) || weather.precipMinutes === 0;
   const rawScore = calculateRawScore(weather);
   const score = scoreToLabel(rawScore);
   const bridgeStatus = location.type === "bridge" ? getBridgeStatus(weather.windSpeed) : null;
@@ -148,11 +193,11 @@ async function buildConditions(
     buildActivityStatus(activity, location, weather),
   );
 
-  return {
+  const deterministicConditions: ConditionsResponse = {
     score,
     headline: buildHeadline(location, weather, score),
     summary: buildSummary(location, weather, score),
-    windowMinutes: weather.precipMinutes,
+    windowMinutes: wetNow ? 0 : weather.precipMinutes,
     windowStatement: buildWindowStatement(location, weather),
     uvWarning: buildUvWarning(weather.uvIndex),
     bridgeStatus,
@@ -163,6 +208,18 @@ async function buildConditions(
         : classifyAqhi(weather.aqhi),
     insightOfTheDay: buildInsight(location),
   };
+
+  if (wetNow) return deterministicConditions;
+
+  // Try Claude first — returns null if no API key or call fails
+  const aiConditions = await getClaudeConditions(location, weather, alerts);
+  if (!aiConditions) return deterministicConditions;
+
+  if (SCORE_RANK[aiConditions.score] > SCORE_RANK[deterministicConditions.score]) {
+    return deterministicConditions;
+  }
+
+  return aiConditions;
 }
 
 

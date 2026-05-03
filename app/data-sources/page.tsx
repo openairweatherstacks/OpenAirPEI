@@ -10,10 +10,19 @@ const SOURCES = [
     org: "Environment and Climate Change Canada",
     shortName: "ECCC / MSC GeoMet",
     url: "https://api.weather.gc.ca/",
-    what: "Real-time weather observations, hourly forecasts, precipitation radar, air quality (AQHI), and the official Environment Canada alert stack used for heat, cold, and coastal flood / storm surge messaging.",
+    what: "Real-time weather observations, precipitation radar, air quality (AQHI), and the official Environment Canada alert stack used for heat, cold, and coastal flood / storm surge messaging.",
     cost: "Free — no API key required",
     updateFrequency: "Weather: every 10 min · Radar: every 6 min · AQHI: every 10 min · Alerts: every 5 min",
     license: "Open Government Licence — Canada",
+  },
+  {
+    org: "Open-Meteo",
+    shortName: "Open-Meteo forecast",
+    url: "https://open-meteo.com/",
+    what: "Short-range forecast support used for OpenAir's near-term rain-window timing, including precipitation probability and estimated minutes until the next band arrives.",
+    cost: "Free — no API key required",
+    updateFrequency: "Forecast support: refreshed every 10 min",
+    license: "Open data terms published by Open-Meteo",
   },
   {
     org: "City of Charlottetown",
@@ -71,7 +80,7 @@ export default function DataSourcesPage() {
         <p className="section-copy mt-4">
           Every number shown in OpenAir Atlantic comes from a Canadian government or open-data
           source. We do not fabricate, estimate, or pay for proprietary data feeds. All sources
-          below are publicly accessible — you can query them yourself.
+          below are publicly accessible, and most are official Canadian public feeds.
         </p>
       </section>
 
