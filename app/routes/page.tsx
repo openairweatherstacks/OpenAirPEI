@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
-import { ArrowRight, MapPin, AlertCircle } from "lucide-react";
+import { ArrowRight, MapPin, AlertCircle, Navigation } from "lucide-react";
 
 import { RoutesMap } from "@/components/map/RoutesMap";
 import { RouteFilters } from "@/components/routes/RouteFilters";
+import { RouteReviews } from "@/components/routes/RouteReviews";
 import { ALL_CONFEDERATION_ROUTES, TRAIL_PARKING } from "@/lib/data/routes";
 import { getAllLocationConditions } from "@/lib/environment";
 import { scoreRoute } from "@/lib/score";
@@ -215,17 +216,30 @@ export default async function RoutesPage({
 
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {TRAIL_PARKING.map((lot) => (
-              <div key={lot.id} className="rounded-xl border border-border bg-white p-4 hover:shadow-sm">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <p className="font-medium text-text-primary">{lot.name}</p>
-                    <p className="text-xs text-text-muted">{lot.address}</p>
+              <a
+                key={lot.id}
+                href={`https://www.google.com/maps/search/${lot.lat},${lot.lng}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group rounded-xl border border-border bg-white p-4 hover:border-forest-light hover:shadow-sm transition"
+              >
+                <div className="flex items-start justify-between gap-2 mb-3">
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium text-text-primary group-hover:text-forest transition">{lot.name}</p>
+                    <p className="text-xs text-text-muted mt-1">{lot.address}</p>
                   </div>
-                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-sun-light text-xs font-semibold text-sun">
+                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-sun-light text-xs font-semibold text-sun flex-shrink-0">
                     {lot.id}
                   </span>
                 </div>
-              </div>
+                <div className="flex items-center justify-between pt-3 border-t border-border/40">
+                  <div className="flex items-center gap-1 text-xs text-text-muted">
+                    <MapPin className="h-3 w-3" />
+                    {lot.lat.toFixed(4)}°, {lot.lng.toFixed(4)}°
+                  </div>
+                  <Navigation className="h-4 w-4 text-forest opacity-0 group-hover:opacity-100 transition" />
+                </div>
+              </a>
             ))}
           </div>
         </section>
@@ -269,6 +283,9 @@ export default async function RoutesPage({
             </div>
           </div>
         </section>
+
+        {/* REVIEWS */}
+        <RouteReviews />
 
         {/* CTA */}
         <section className="text-center py-8">
