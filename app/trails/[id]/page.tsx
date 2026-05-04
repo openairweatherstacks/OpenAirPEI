@@ -3,9 +3,11 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, MapPin, Navigation, Clock, TrendingUp, AlertCircle, CheckCircle2 } from "lucide-react";
+import { Suspense } from "react";
 
 import { ALL_HIKING_TRAILS } from "@/lib/data/trails";
 import { getTrailConditions } from "@/lib/environment";
+import { TrailReviews } from "@/components/routes/TrailReviews";
 
 export const revalidate = 600;
 
@@ -298,6 +300,11 @@ export default async function TrailDetailPage({
             </div>
           </div>
         </section>
+
+        {/* REVIEWS */}
+        <Suspense fallback={null}>
+          <TrailReviews />
+        </Suspense>
 
         {/* Footer Link */}
         <div className="text-center pt-4">

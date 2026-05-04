@@ -3,11 +3,13 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, MapPin, Navigation, ParkingCircle } from "lucide-react";
+import { Suspense } from "react";
 
 import { ALL_CONFEDERATION_ROUTES } from "@/lib/data/routes";
 import { getRouteConditions } from "@/lib/environment";
 import { resolveRouteGeometry } from "@/lib/geometry";
 import { SingleRouteMap } from "@/components/map/SingleRouteMap";
+import { RouteReviews } from "@/components/routes/RouteReviews";
 
 export const revalidate = 600;
 
@@ -211,6 +213,11 @@ export default async function RouteDetailPage({
             </div>
           </section>
         )}
+
+        {/* REVIEWS */}
+        <Suspense fallback={null}>
+          <RouteReviews />
+        </Suspense>
 
         {/* Footer Link */}
         <div className="text-center pt-4">
