@@ -11,14 +11,16 @@ interface RoutesMapProps {
   activeRouteId?: string;
 }
 
-delete (L.Icon.Default.prototype as any)._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
-  iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
-  shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
-});
+if (typeof window !== "undefined") {
+  delete (L.Icon.Default.prototype as any)._getIconUrl;
+  L.Icon.Default.mergeOptions({
+    iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
+    iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
+    shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+  });
+}
 
-export function RoutesMap({ routes, activeRouteId }: RoutesMapProps) {
+function RoutesMapClient({ routes, activeRouteId }: RoutesMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<L.Map | null>(null);
   const markersRef = useRef<L.Layer[]>([]);
@@ -106,3 +108,14 @@ export function RoutesMap({ routes, activeRouteId }: RoutesMapProps) {
     />
   );
 }
+
+import dynamic from "next/dynamic";
+
+export const RoutesMap = dynamic(() => Promise.resolve(RoutesMapClient), {
+  ssr: false,
+  loading: () => (
+    <div className="flex h-[400px] w-full items-center justify-center rounded-2xl border border-border bg-white/80 text-sm font-medium text-text-secondary">
+      Loading map...
+    </div>
+  ),
+});

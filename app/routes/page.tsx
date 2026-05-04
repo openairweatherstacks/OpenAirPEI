@@ -218,7 +218,7 @@ export default async function RoutesPage({
             {TRAIL_PARKING.map((lot) => (
               <a
                 key={lot.id}
-                href={`https://www.google.com/maps/search/${lot.lat},${lot.lng}`}
+                href={`https://www.google.com/maps/search/${lot.civic}+${encodeURIComponent(lot.name)}+PEI`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group rounded-xl border border-border bg-white p-4 hover:border-forest-light hover:shadow-sm transition"
@@ -227,6 +227,7 @@ export default async function RoutesPage({
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-text-primary group-hover:text-forest transition">{lot.name}</p>
                     <p className="text-xs text-text-muted mt-1">{lot.address}</p>
+                    <p className="text-xs text-text-muted mt-1">Civic: {lot.civic}</p>
                   </div>
                   <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-sun-light text-xs font-semibold text-sun flex-shrink-0">
                     {lot.id}
