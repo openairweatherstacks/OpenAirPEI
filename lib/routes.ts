@@ -1,8 +1,8 @@
-import type { BikeRoute } from "@/lib/data/routes";
-import { ALL_CONFEDERATION_ROUTES } from "@/lib/data/routes";
+import type { BikeRoute, TrailParking } from "@/lib/data/routes";
+import { ALL_CONFEDERATION_ROUTES, TRAIL_PARKING } from "@/lib/data/routes";
 
 // Haversine formula to calculate distance between two points
-function haversineDistance(
+export function haversineDistance(
   lat1: number,
   lon1: number,
   lat2: number,
@@ -66,4 +66,36 @@ export function getMainTrail(): BikeRoute | undefined {
 // Get all branches
 export function getBranchRoutes(): BikeRoute[] {
   return ALL_CONFEDERATION_ROUTES.filter((r) => r.type === "branch");
+}
+
+// Find parking locations near a route
+export function findParkingNearRoute(
+  route: BikeRoute,
+  maxDistanceKm: number = 10
+): TrailParking[] {
+  return TRAIL_PARKING.filter((lot) => {
+    const distToStart = haversineDistance(
+      lot.lat,
+      lot.lng,
+      route.startPoint.lat,
+      route.startPoint.lng
+    );
+    const distToEnd = haversineDistance(
+      lot.lat,
+      lot.lng,
+      route.endPoint.lat,
+      route.endPoint.lng
+    );
+    return Math.min(distToStart, distToEnd) <= maxDistanceKm;
+  }).sort((a, b) => {
+    const minDistA = Math.min(
+      haversineDistance(a.lat, a.lng, route.startPoint.lat, route.startPoint.lng),
+      haversineDistance(a.lat, a.lng, route.endPoint.lat, route.endPoint.lng)
+    );
+    const minDistB = Math.min(
+      haversineDistance(b.lat, b.lng, route.startPoint.lat, route.startPoint.lng),
+      haversineDistance(b.lat, b.lng, route.endPoint.lat, route.endPoint.lng)
+    );
+    return minDistA - minDistB;
+  });
 }

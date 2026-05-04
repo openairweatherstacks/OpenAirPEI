@@ -1,6 +1,7 @@
 import { cache } from "react";
 
 import { BEACH_BUOYS, CACHE_DURATIONS, PEI_AQHI, PEI_LOCATIONS } from "@/lib/data/locations";
+import { ALL_CONFEDERATION_ROUTES } from "@/lib/data/routes";
 import { SAMPLE_ALERTS, SAMPLE_TIDES, SAMPLE_WEATHER } from "@/lib/data/sample";
 import { getClaudeConditions } from "@/lib/claude";
 import {
@@ -18,8 +19,10 @@ import {
   getUvBurnMinutes,
   hasCurrentPrecipitation,
   isStormyWeather,
+  scoreRoute,
   scoreToLabel,
 } from "@/lib/score";
+import { findParkingNearRoute } from "@/lib/routes";
 import type {
   ActivityAssessment,
   AlertItem,
@@ -30,6 +33,7 @@ import type {
   TideEvent,
   WeatherSnapshot,
 } from "@/lib/types";
+import type { BikeRoute, TrailParking } from "@/lib/data/routes";
 import { formatClock } from "@/lib/utils";
 
 const LIVE_DATA_ENABLED = process.env.OPENAIR_DISABLE_LIVE_DATA !== "true";
@@ -363,3 +367,35 @@ export function getNextTide(tideEvents: TideEvent[]) {
   const now = Date.now();
   return tideEvents.find((event) => new Date(event.time).getTime() >= now) ?? tideEvents[0] ?? null;
 }
+
+// ── Route Conditions ───────────────────────────────────────────────────
+
+export interface RouteConditions {
+  route: BikeRoute;
+  weather: WeatherSnapshot;
+  routeScore: ReturnType<typeof scoreRoute>;
+  nearbyParking: TrailParking[];
+  source: "sample" | "hybrid" | "live";
+}
+
+export const getRouteConditions = cache(
+  async (routeId: string): Promise<RouteConditions | null> => {
+    const route = ALL_CONFEDERATION_ROUTES.find((r) => r.id === routeId);
+    if (!route) return null;
+
+    const charlottetown = PEI_LOCATIONS.find((l) => l.id === "charlottetown")!;
+    const liveWeather = await fetchLiveWeather(charlottetown);
+    const sampleWeather = SAMPLE_WEATHER["charlottetown"];
+    const weather = liveWeather ?? sampleWeather;
+
+    const nearbyParking = findParkingNearRoute(route);
+
+    return {
+      route,
+      weather,
+      routeScore: scoreRoute(weather),
+      nearbyParking,
+      source: liveWeather ? "live" : "sample",
+    };
+  }
+);

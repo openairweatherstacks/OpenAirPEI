@@ -183,6 +183,7 @@ export const CONFEDERATION_BRANCH_TRAILS: BikeRoute[] = [
       "Embranchement de 39 km à travers le comté de Queens vers la ville côtière de Georgetown. Accès aux plages tranquilles et au patrimoine local.",
     activities: ["cycling", "walking", "beach"],
     letterCode: "G",
+    image: "/get-images/dunes.jpg",
     startPoint: {
       name: "Mount Stewart",
       lat: 46.3083,
@@ -270,6 +271,7 @@ export const CONFEDERATION_BRANCH_TRAILS: BikeRoute[] = [
       "Long embranchement de 79 km de Charlottetown au port de Murray Harbour. Plus long trajet possible sur le système de sentiers.",
     activities: ["cycling", "walking", "touring"],
     letterCode: "MH",
+    image: "/get-images/singing sands.webp",
     startPoint: {
       name: "Charlottetown",
       lat: 46.2382,
@@ -299,6 +301,7 @@ export const CONFEDERATION_BRANCH_TRAILS: BikeRoute[] = [
       "Court sentier vers la gare de Wood Islands (terminal du traversier vers la Nouvelle-Écosse).",
     activities: ["cycling", "walking"],
     letterCode: "WI",
+    image: "/brackley.webp",
     startPoint: {
       name: "Wood Islands North Junction",
       lat: 46.0667,
@@ -328,6 +331,7 @@ export const CONFEDERATION_BRANCH_TRAILS: BikeRoute[] = [
       "Quick 8 km connector to the fishing town of Souris on the east shore. Accès aux restaurants de fruits de mer.",
     activities: ["cycling", "walking", "dining"],
     letterCode: "S",
+    image: "/get-images/dunes.jpg",
     startPoint: {
       name: "New Harmony Junction",
       lat: 46.3500,
@@ -336,8 +340,8 @@ export const CONFEDERATION_BRANCH_TRAILS: BikeRoute[] = [
     },
     endPoint: {
       name: "Souris",
-      lat: 46.3500,
-      lng: -61.9833,
+      lat: 46.3554,
+      lng: -62.2536,
       km: 8,
     },
   },

@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense } from "react";
 import { ArrowRight, MapPin, AlertCircle } from "lucide-react";
 
 import { RoutesMap } from "@/components/map/RoutesMap";
+import { RouteFilters } from "@/components/routes/RouteFilters";
 import { ALL_CONFEDERATION_ROUTES, TRAIL_PARKING } from "@/lib/data/routes";
 import { getAllLocationConditions } from "@/lib/environment";
 import { scoreRoute } from "@/lib/score";
@@ -14,7 +16,17 @@ export const metadata = {
   description: "Perfect biking conditions on the Confederation Trail — real-time route scoring.",
 };
 
-export default async function RoutesPage() {
+export default async function RoutesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    difficulty?: string;
+    distance?: string;
+    activity?: string;
+  }>;
+}) {
+  const { difficulty, distance, activity } = await searchParams;
+
   const locations = await getAllLocationConditions();
   const charlottetown = locations.find((e) => e.location.id === "charlottetown");
   const weather = charlottetown?.weather;
@@ -24,6 +36,18 @@ export default async function RoutesPage() {
   }
 
   const routeScore = scoreRoute(weather);
+
+  // Filter routes
+  const filteredRoutes = ALL_CONFEDERATION_ROUTES.filter((route) => {
+    if (difficulty && route.difficulty !== difficulty) return false;
+    if (distance) {
+      if (distance === "short" && route.distance >= 20) return false;
+      if (distance === "medium" && (route.distance < 20 || route.distance > 50)) return false;
+      if (distance === "long" && route.distance <= 50) return false;
+    }
+    if (activity && !route.activities.includes(activity)) return false;
+    return true;
+  });
 
   return (
     <div>
@@ -102,15 +126,27 @@ export default async function RoutesPage() {
             <p className="eyebrow mb-2">Trail network</p>
             <h2 className="section-title text-3xl">Explore the Confederation Trail</h2>
             <p className="section-copy mt-2">
-              {ALL_CONFEDERATION_ROUTES.length} routes spanning 273 km main trail + {ALL_CONFEDERATION_ROUTES.length - 1} branch connections
+              {filteredRoutes.length} of {ALL_CONFEDERATION_ROUTES.length} routes
             </p>
           </div>
 
+          {/* Filters */}
+          <Suspense fallback={null}>
+            <RouteFilters
+              currentDifficulty={typeof difficulty === "string" ? difficulty : null}
+              currentDistance={typeof distance === "string" ? distance : null}
+              currentActivity={typeof activity === "string" ? activity : null}
+              filteredCount={filteredRoutes.length}
+              totalCount={ALL_CONFEDERATION_ROUTES.length}
+            />
+          </Suspense>
+
           <div className="grid gap-6 lg:grid-cols-2">
-            {ALL_CONFEDERATION_ROUTES.map((route) => (
-              <div
+            {filteredRoutes.map((route) => (
+              <Link
                 key={route.id}
-                className={`rounded-2xl border overflow-hidden transition ${
+                href={`/routes/${route.id}`}
+                className={`rounded-2xl border overflow-hidden transition block ${
                   route.type === "main"
                     ? "border-forest-light bg-white shadow-sm hover:shadow-md lg:col-span-2"
                     : "border-border bg-white hover:border-forest-light hover:shadow-sm"
@@ -164,7 +200,7 @@ export default async function RoutesPage() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </section>

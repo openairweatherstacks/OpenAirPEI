@@ -44,7 +44,7 @@ export function NearbyRoutes({
           return (
             <Link
               key={route.id}
-              href="/routes"
+              href={`/routes/${route.id}`}
               className="group overflow-hidden rounded-xl border border-border bg-white p-4 hover:border-forest-light hover:shadow-sm transition"
             >
               <div className="flex items-start justify-between gap-3">
