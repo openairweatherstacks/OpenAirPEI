@@ -128,3 +128,77 @@ export function getUvBurnMinutes(uvIndex: number) {
   if (uvIndex <= 2) return 120;
   return Math.max(12, Math.round(150 / uvIndex));
 }
+
+export interface RouteScore {
+  score: number;
+  status: "great" | "good" | "ok" | "not recommended";
+  reason: string;
+  timeWindow: number | null;
+}
+
+export function scoreRoute(weather: WeatherSnapshot): RouteScore {
+  let score = 85;
+
+  // Wind — headwind saps energy, crosswind is unsettling
+  if (weather.windSpeed > 40) score -= 15;
+  else if (weather.windSpeed > 30) score -= 8;
+  else if (weather.windSpeed > 20) score -= 3;
+
+  // Rain — wet pavement + visibility
+  if (hasCurrentPrecipitation(weather)) score -= 25;
+  else if (weather.precipMinutes !== null && weather.precipMinutes < 60) score -= 10;
+
+  // Temperature — cold hands, cold muscles
+  if (weather.temperature < 5) score -= 15;
+  else if (weather.temperature < 10) score -= 8;
+
+  // Visibility
+  if (weather.visibility < 3) score -= 12;
+  else if (weather.visibility < 5) score -= 6;
+
+  score = Math.max(0, Math.min(100, score));
+
+  let status: "great" | "good" | "ok" | "not recommended";
+  let reason = "";
+
+  if (score >= 75) {
+    status = "great";
+    if (hasCurrentPrecipitation(weather)) {
+      reason = "Wet right now — still rideable, but conditions are damp.";
+    } else if (weather.windSpeed > 30) {
+      reason = "Good window, but expect strong headwinds on exposed sections.";
+    } else {
+      reason = "Perfect conditions for a ride.";
+    }
+  } else if (score >= 50) {
+    status = "good";
+    if (weather.windSpeed > 35) {
+      reason = "Doable, but winds are noticeable. Consider a shorter route.";
+    } else if (weather.precipMinutes !== null && weather.precipMinutes < 120) {
+      reason = `Good window, but rain arriving in ${weather.precipMinutes} minutes — go soon.`;
+    } else {
+      reason = "Decent conditions, but one or two factors could be better.";
+    }
+  } else if (score >= 25) {
+    status = "ok";
+    reason = "Challenging conditions. Only ride if you're experienced and comfortable.";
+  } else {
+    status = "not recommended";
+    if (isStormyWeather(weather)) {
+      reason = "Stormy weather — wait this one out.";
+    } else if (hasCurrentPrecipitation(weather)) {
+      reason = "Heavy rain right now. Try again when it clears.";
+    } else if (weather.windSpeed > 50) {
+      reason = "Dangerous winds for cyclists. Not recommended today.";
+    } else {
+      reason = "Conditions are too poor for cycling today.";
+    }
+  }
+
+  return {
+    score: Math.round(score),
+    status,
+    reason,
+    timeWindow: weather.precipMinutes,
+  };
+}

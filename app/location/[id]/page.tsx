@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 
 import { MeteorologistInsight } from "@/components/ai/MeteorologistInsight";
 import { ActivityGrid } from "@/components/conditions/ActivityGrid";
+import { NearbyRoutes } from "@/components/routes/NearbyRoutes";
 import { PawBadge } from "@/components/conditions/PawBadge";
 import { ConditionsCard } from "@/components/conditions/ConditionsCard";
 import { WindowAlert } from "@/components/conditions/WindowAlert";
@@ -186,6 +187,13 @@ export default async function LocationPage({
 
         <div className="space-y-5">
           <div className="panel p-5">
+
+      {/* Nearby Routes */}
+      <NearbyRoutes
+        lat={entry.location.lat}
+        lng={entry.location.lng}
+        weather={entry.weather}
+      />
             <p className="eyebrow mb-3">Activity matcher</p>
             <ActivityGrid activities={entry.conditions.activities} />
           </div>

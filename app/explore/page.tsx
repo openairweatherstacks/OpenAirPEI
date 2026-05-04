@@ -154,6 +154,25 @@ export default async function ExplorePage() {
         </div>
       </div>
 
+
+      {/* ── PERFECT CYCLING ROUTES ───────────────────────────────── */}
+      <div className="page-shell">
+        <div className="rounded-[2rem] bg-gradient-to-br from-leaf-light to-forest-light p-8 border border-forest-light">
+          <p className="eyebrow mb-3">449 km of flat cycling</p>
+          <div className="flex items-start justify-between gap-4 mb-4">
+            <div>
+              <h2 className="section-title text-3xl">Confederation Trail Routes</h2>
+              <p className="section-copy mt-2">Real-time route scoring. 1 main trail. 8 coastal branches. Perfect biking conditions, right now.</p>
+            </div>
+            <Link
+              href="/routes"
+              className="flex items-center gap-2 rounded-full bg-forest px-6 py-3 font-semibold text-white hover:bg-forest-deep transition flex-shrink-0"
+            >
+              Explore routes <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </div>
       {/* ── CATEGORY SECTIONS ────────────────────────────────────── */}
       <div className="page-shell space-y-14 pt-2">
         {byCategory.map((cat) => (
