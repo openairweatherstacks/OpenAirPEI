@@ -136,6 +136,91 @@ export interface RouteScore {
   timeWindow: number | null;
 }
 
+export interface TrailScore {
+  score: number;
+  status: "great" | "good" | "ok" | "not recommended";
+  reason: string;
+  timeWindow: number | null;
+}
+
+export function scoreTrail(
+  weather: WeatherSnapshot,
+  trail: { difficulty: string; hazards?: string[] }
+): TrailScore {
+  let score = 85;
+
+  // Wind — stronger impact on exposed trails
+  if (trail.hazards?.includes("exposed-sections")) {
+    if (weather.windSpeed > 50) score -= 30;
+    else if (weather.windSpeed > 35) score -= 15;
+    else if (weather.windSpeed > 25) score -= 8;
+  } else {
+    if (weather.windSpeed > 45) score -= 20;
+    else if (weather.windSpeed > 30) score -= 10;
+    else if (weather.windSpeed > 20) score -= 3;
+  }
+
+  // Rain — mud and visibility impact
+  if (hasCurrentPrecipitation(weather)) score -= 20;
+  else if (weather.precipMinutes !== null && weather.precipMinutes < 90) score -= 12;
+
+  // Temperature — hiking feels effects more than cycling
+  if (weather.temperature < 0) score -= 20;
+  else if (weather.temperature < 5) score -= 12;
+  else if (weather.temperature > 30) score -= 8;
+
+  // Visibility — critical for trails
+  if (weather.visibility < 2) score -= 18;
+  else if (weather.visibility < 5) score -= 10;
+
+  // Humidity/mud risk
+  if (weather.humidity > 85 && weather.precipMinutes !== null && weather.precipMinutes < 240) {
+    score -= 15; // Very muddy
+  } else if (weather.humidity > 75 && weather.precipProbability > 50) {
+    score -= 8;
+  }
+
+  score = Math.max(0, Math.min(100, score));
+
+  let status: "great" | "good" | "ok" | "not recommended";
+  let reason = "";
+
+  if (score >= 75) {
+    status = "great";
+    if (weather.windSpeed > 25) {
+      reason = "Great conditions, though wind is noticeable on exposed sections.";
+    } else {
+      reason = "Perfect hiking weather.";
+    }
+  } else if (score >= 50) {
+    status = "good";
+    if (weather.precipMinutes !== null && weather.precipMinutes < 150) {
+      reason = `Good window, but rain arriving in ${weather.precipMinutes} minutes.`;
+    } else if (weather.visibility < 5) {
+      reason = "Decent conditions, but limited views due to poor visibility.";
+    } else {
+      reason = "Reasonable conditions, one or two factors could be better.";
+    }
+  } else if (score >= 25) {
+    status = "ok";
+    reason = "Challenging conditions. Experienced hikers only, bring extra gear.";
+  } else {
+    status = "not recommended";
+    if (hasCurrentPrecipitation(weather) || weather.windSpeed > 50) {
+      reason = "Too wet or windy. Consider waiting for better conditions.";
+    } else {
+      reason = "Trail conditions are poor today. Wait for improvement.";
+    }
+  }
+
+  return {
+    score: Math.round(score),
+    status,
+    reason,
+    timeWindow: weather.precipMinutes,
+  };
+}
+
 export function scoreRoute(weather: WeatherSnapshot): RouteScore {
   let score = 85;
 

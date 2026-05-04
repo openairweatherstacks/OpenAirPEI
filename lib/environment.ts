@@ -23,6 +23,9 @@ import {
   scoreToLabel,
 } from "@/lib/score";
 import { findParkingNearRoute } from "@/lib/routes";
+import { ALL_HIKING_TRAILS } from "@/lib/data/trails";
+import type { HikingTrail } from "@/lib/data/trails";
+import { scoreTrail } from "@/lib/score";
 import type {
   ActivityAssessment,
   AlertItem,
@@ -395,6 +398,59 @@ export const getRouteConditions = cache(
       weather,
       routeScore: scoreRoute(weather),
       nearbyParking,
+      source: liveWeather ? "live" : "sample",
+    };
+  }
+);
+
+// ── Trail Conditions ────────────────────────────────────────────────────
+
+export interface TrailConditions {
+  trail: HikingTrail;
+  weather: WeatherSnapshot;
+  trailScore: ReturnType<typeof scoreTrail>;
+  mudRisk: "low" | "medium" | "high";
+  conditions: string[];
+  source: "sample" | "live";
+}
+
+export const getTrailConditions = cache(
+  async (trailId: string): Promise<TrailConditions | null> => {
+    const trail = ALL_HIKING_TRAILS.find((t) => t.id === trailId);
+    if (!trail) return null;
+
+    const charlottetown = PEI_LOCATIONS.find((l) => l.id === "charlottetown")!;
+    const liveWeather = await fetchLiveWeather(charlottetown);
+    const sampleWeather = SAMPLE_WEATHER["charlottetown"];
+    const weather = liveWeather ?? sampleWeather;
+
+    const trailScore = scoreTrail(weather, trail);
+
+    // Calculate mud risk based on weather
+    let mudRisk: "low" | "medium" | "high" = "low";
+    if (weather.humidity > 80 && weather.precipMinutes !== null && weather.precipMinutes < 180) {
+      mudRisk = "high";
+    } else if (weather.humidity > 70 && weather.precipProbability > 40) {
+      mudRisk = "medium";
+    }
+
+    // Build condition notes
+    const conditions: string[] = [];
+    if (mudRisk === "high") conditions.push("Trail muddy from recent rain");
+    if (trail.hazards?.includes("exposed-sections") && weather.windSpeed > 40) {
+      conditions.push("Wind gusts strong on exposed sections");
+    }
+    if (trail.hazards?.includes("wet-marshy") && weather.humidity > 75) {
+      conditions.push("Marsh sections very wet");
+    }
+    if (weather.visibility < 2) conditions.push("Poor visibility due to fog");
+
+    return {
+      trail,
+      weather,
+      trailScore,
+      mudRisk,
+      conditions,
       source: liveWeather ? "live" : "sample",
     };
   }
