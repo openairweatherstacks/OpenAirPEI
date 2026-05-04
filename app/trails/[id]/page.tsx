@@ -76,15 +76,15 @@ export default async function TrailDetailPage({
         </div>
       )}
 
-      <div className="page-shell mt-8 space-y-8">
+      <div className="page-shell mt-8 space-y-6">
         {/* Title and Meta */}
         <section>
-          <div className="flex items-start gap-3 mb-4">
+          <div className="flex items-start gap-3 mb-3">
             <div className="flex-1">
               <p className="text-xs font-semibold uppercase tracking-wide text-forest">
                 {entry.trail.region} Region
               </p>
-              <h1 className="font-serif text-4xl leading-tight text-text-primary sm:text-5xl mt-2">
+              <h1 className="font-serif text-4xl leading-tight text-text-primary sm:text-5xl mt-1">
                 {entry.trail.name.split("—")[0].trim()}
               </h1>
             </div>
@@ -93,12 +93,12 @@ export default async function TrailDetailPage({
             </span>
           </div>
 
-          <p className="mt-4 max-w-2xl text-base leading-7 text-text-secondary">
+          <p className="mt-3 max-w-2xl text-base leading-7 text-text-secondary">
             {entry.trail.description}
           </p>
 
           {/* Quick Info Pills */}
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-4 flex flex-wrap gap-2">
             <div className="inline-flex items-center gap-1.5 rounded-full bg-white border border-forest-light px-4 py-2 text-sm font-medium text-text-primary">
               <MapPin className="h-4 w-4" />
               {entry.trail.distance} km
@@ -118,7 +118,7 @@ export default async function TrailDetailPage({
         </section>
 
         {/* Live Conditions Banner */}
-        <section className={`rounded-2xl border-2 p-6 ${statusColor[entry.trailScore.status]}`}>
+        <section className={`rounded-2xl border-2 p-6 ${statusColor[entry.trailScore.status]}`} style={{marginTop: "-0.5rem"}}>
           <div className="flex items-start justify-between gap-4">
             <div>
               <p className="text-xs font-semibold uppercase tracking-wide opacity-90">Right now</p>

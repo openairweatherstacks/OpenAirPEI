@@ -77,12 +77,12 @@ export default async function TrailsPage() {
       </section>
 
       {/* TRAILS GRID */}
-      <div className="page-shell mt-8 space-y-8">
+      <div className="page-shell mt-6 space-y-6">
         <section>
-          <div className="mb-6">
-            <p className="eyebrow mb-2">Browse trails</p>
+          <div className="mb-4">
+            <p className="eyebrow mb-1">Browse trails</p>
             <h2 className="section-title text-3xl">All trails on PEI</h2>
-            <p className="section-copy mt-2">Sorted by difficulty — easy to challenging</p>
+            <p className="section-copy mt-1 text-sm">Sorted by difficulty — easy to challenging</p>
           </div>
 
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

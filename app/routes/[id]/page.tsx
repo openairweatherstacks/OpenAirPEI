@@ -67,10 +67,10 @@ export default async function RouteDetailPage({
         </div>
       )}
 
-      <div className="page-shell mt-8 space-y-8">
+      <div className="page-shell mt-8 space-y-6">
         {/* Title and Meta */}
         <section>
-          <div className="flex items-start gap-3 mb-3">
+          <div className="flex items-start gap-3 mb-2">
             <div>
               <p className="text-xs font-semibold uppercase tracking-wide text-forest">
                 {entry.route.type === "main" ? "Main Trail" : "Branch Trail"}
@@ -82,15 +82,15 @@ export default async function RouteDetailPage({
               </span>
             )}
           </div>
-          <h1 className="font-serif text-4xl leading-tight text-text-primary sm:text-5xl">
+          <h1 className="font-serif text-4xl leading-tight text-text-primary sm:text-5xl mt-1">
             {entry.route.name.split("—")[0].trim()}
           </h1>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-text-secondary">
+          <p className="mt-3 max-w-2xl text-base leading-7 text-text-secondary">
             {entry.route.description}
           </p>
 
           {/* Quick Info Pills */}
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-4 flex flex-wrap gap-2">
             <div className="inline-flex items-center gap-1.5 rounded-full bg-white border border-forest-light px-4 py-2 text-sm font-medium text-text-primary">
               <MapPin className="h-4 w-4" />
               {entry.route.distance} km
@@ -106,7 +106,7 @@ export default async function RouteDetailPage({
         </section>
 
         {/* Live Conditions Banner */}
-        <section className="rounded-2xl border border-forest-light bg-white p-6 shadow-sm">
+        <section className="rounded-2xl border border-forest-light bg-white p-6 shadow-sm" style={{marginTop: "-0.5rem"}}>
           <div className="flex items-start justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-wide text-text-muted">Right now</p>
