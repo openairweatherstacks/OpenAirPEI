@@ -12,12 +12,19 @@ interface RoutesMapProps {
 }
 
 if (typeof window !== "undefined") {
-  delete (L.Icon.Default.prototype as any)._getIconUrl;
-  L.Icon.Default.mergeOptions({
+  const iconDefault = L.Icon.Default.prototype as unknown as Record<string, unknown>;
+  delete iconDefault._getIconUrl;
+  type IconOptions = {
+    iconRetinaUrl: string;
+    iconUrl: string;
+    shadowUrl: string;
+  };
+  const options: IconOptions = {
     iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
     iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
     shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
-  });
+  };
+  L.Icon.Default.mergeOptions(options);
 }
 
 function RoutesMapClient({ routes, activeRouteId }: RoutesMapProps) {

@@ -1,7 +1,6 @@
 import type { GeoJSON } from "geojson";
 
 const OVERPASS_API = "https://overpass-api.de/api/interpreter";
-const PEI_BBOX = "46.0,-64.1,47.15,-61.9";
 
 // ── OSM Type Definitions ──────────────────────────────────────────────
 
