@@ -5,7 +5,6 @@ import { ArrowRight, MapPin, AlertCircle, Navigation } from "lucide-react";
 
 import { RoutesMap } from "@/components/map/RoutesMap";
 import { RouteFilters } from "@/components/routes/RouteFilters";
-import { RouteReviews } from "@/components/routes/RouteReviews";
 import { ALL_CONFEDERATION_ROUTES, TRAIL_PARKING } from "@/lib/data/routes";
 import { getAllLocationConditions } from "@/lib/environment";
 import { scoreRoute } from "@/lib/score";
@@ -153,8 +152,8 @@ export default async function RoutesPage({
                     : "border-border bg-white hover:border-forest-light hover:shadow-sm"
                 }`}
               >
-                {route.type === "main" && route.image && (
-                  <div className="relative h-48 w-full overflow-hidden">
+                {route.image && (
+                  <div className={`relative overflow-hidden ${route.type === "main" ? "h-48" : "h-32"}`}>
                     <Image
                       src={route.image}
                       alt={route.name}
@@ -284,9 +283,6 @@ export default async function RoutesPage({
             </div>
           </div>
         </section>
-
-        {/* REVIEWS */}
-        <RouteReviews />
 
         {/* CTA */}
         <section className="text-center py-8">
