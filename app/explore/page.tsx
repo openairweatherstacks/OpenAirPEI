@@ -26,6 +26,15 @@ type Category = {
 
 const CATEGORIES: Category[] = [
   {
+    id: "cycling",
+    label: "Cycling Routes",
+    description: "449 km of flat, car-free trails across the whole island.",
+    types: [],
+    image: "/get-images/confederation-trail.jpg",
+    accent: "from-forest/80 to-leaf/40",
+    textAccent: "text-green-200",
+  },
+  {
     id: "beaches",
     label: "Beaches",
     description: "Red sand, warm gulf water, and the best swimming in Atlantic Canada.",
@@ -122,10 +131,13 @@ export default async function ExplorePage() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {byCategory.map((cat) => {
             const best = cat.locations[0];
+            const href = cat.id === "cycling" ? "/routes" : `#${cat.id}`;
+            const Component = cat.id === "cycling" ? Link : "a";
+
             return (
-              <a
+              <Component
                 key={cat.id}
-                href={`#${cat.id}`}
+                href={href}
                 className="group relative overflow-hidden rounded-[1.75rem] bg-charcoal"
                 style={{ minHeight: "180px" }}
               >
@@ -142,40 +154,27 @@ export default async function ExplorePage() {
                 )}
                 <div className={`absolute inset-0 bg-gradient-to-t ${cat.accent}`} />
                 <div className="absolute inset-0 flex flex-col justify-end p-5">
-                  <p className={`mb-1 text-xs font-semibold uppercase tracking-[0.22em] ${cat.textAccent}`}>
-                    {cat.locations.length} location{cat.locations.length !== 1 ? "s" : ""}
-                    {best ? ` · Best: ${best.conditions.score}` : ""}
-                  </p>
+                  {cat.id !== "cycling" && (
+                    <p className={`mb-1 text-xs font-semibold uppercase tracking-[0.22em] ${cat.textAccent}`}>
+                      {cat.locations.length} location{cat.locations.length !== 1 ? "s" : ""}
+                      {best ? ` · Best: ${best.conditions.score}` : ""}
+                    </p>
+                  )}
+                  {cat.id === "cycling" && (
+                    <p className={`mb-1 text-xs font-semibold uppercase tracking-[0.22em] ${cat.textAccent}`}>
+                      9 Routes · Real-time scoring
+                    </p>
+                  )}
                   <p className="font-serif text-2xl text-white">{cat.label}</p>
                 </div>
-              </a>
+              </Component>
             );
           })}
         </div>
       </div>
-
-
-      {/* ── PERFECT CYCLING ROUTES ───────────────────────────────── */}
-      <div className="page-shell">
-        <div className="rounded-[2rem] bg-gradient-to-br from-leaf-light to-forest-light p-8 border border-forest-light">
-          <p className="eyebrow mb-3">449 km of flat cycling</p>
-          <div className="flex items-start justify-between gap-4 mb-4">
-            <div>
-              <h2 className="section-title text-3xl">Confederation Trail Routes</h2>
-              <p className="section-copy mt-2">Real-time route scoring. 1 main trail. 8 coastal branches. Perfect biking conditions, right now.</p>
-            </div>
-            <Link
-              href="/routes"
-              className="flex items-center gap-2 rounded-full bg-forest px-6 py-3 font-semibold text-white hover:bg-forest-deep transition flex-shrink-0"
-            >
-              Explore routes <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </div>
       {/* ── CATEGORY SECTIONS ────────────────────────────────────── */}
       <div className="page-shell space-y-14 pt-2">
-        {byCategory.map((cat) => (
+        {byCategory.filter((cat) => cat.id !== "cycling").map((cat) => (
           <section key={cat.id} id={cat.id} className="scroll-mt-6">
             <div className="mb-6 flex items-end justify-between gap-4">
               <div>
