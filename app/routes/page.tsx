@@ -152,19 +152,6 @@ export default async function RoutesPage({
                     : "border-border bg-white hover:border-forest-light hover:shadow-sm"
                 }`}
               >
-                {route.image && (
-                  <div className={`relative overflow-hidden ${route.type === "main" ? "h-48" : "h-32"}`}>
-                    <Image
-                      src={route.image}
-                      alt={route.name}
-                      fill
-                      className="object-cover"
-                      sizes="100vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  </div>
-                )}
-
                 <div className="p-6">
                   <div className="flex items-center gap-2 mb-2">
                     <p className="text-xs font-semibold uppercase tracking-wide text-forest">
