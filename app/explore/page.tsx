@@ -5,6 +5,8 @@ import { ArrowRight } from "lucide-react";
 
 import { ScoreBadge } from "@/components/conditions/ScoreBadge";
 import { getAllLocationConditions } from "@/lib/environment";
+import { scoreRoute } from "@/lib/score";
+import { ALL_CONFEDERATION_ROUTES } from "@/lib/data/routes";
 import type { LocationConditions, LocationType } from "@/lib/types";
 
 export const revalidate = 600;
@@ -174,6 +176,9 @@ export default async function ExplorePage() {
       </div>
       {/* ── CATEGORY SECTIONS ────────────────────────────────────── */}
       <div className="page-shell space-y-14 pt-2">
+        {/* CYCLING ROUTES */}
+        <CyclingSection locations={allLocations} />
+
         {byCategory.filter((cat) => cat.id !== "cycling").map((cat) => (
           <section key={cat.id} id={cat.id} className="scroll-mt-6">
             <div className="mb-6 flex items-end justify-between gap-4">
@@ -196,6 +201,73 @@ export default async function ExplorePage() {
         ))}
       </div>
     </div>
+  );
+}
+
+async function CyclingSection({ locations }: { locations: LocationConditions[] }) {
+  const charlottetown = locations.find((e) => e.location.id === "charlottetown");
+  const weather = charlottetown?.weather;
+
+  if (!weather) return null;
+
+  const routeScore = scoreRoute(weather);
+  const topRoutes = ALL_CONFEDERATION_ROUTES.slice(0, 3);
+
+  return (
+    <section id="cycling" className="scroll-mt-6">
+      <div className="mb-6">
+        <p className="eyebrow mb-2">Cycling Routes</p>
+        <h2 className="section-title text-3xl">449 km of flat cycling across the whole island.</h2>
+      </div>
+
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {topRoutes.map((route) => (
+          <Link
+            key={route.id}
+            href={`/routes/${route.id}`}
+            className="group overflow-hidden rounded-[1.75rem] border border-white/70 bg-white/90 shadow-[0_8px_40px_rgba(42,42,42,0.07)] transition hover:shadow-[0_16px_60px_rgba(42,42,42,0.12)]"
+          >
+            {route.image && (
+              <div className="relative h-36 w-full overflow-hidden">
+                <Image
+                  src={route.image}
+                  alt={route.name}
+                  fill
+                  className="object-cover transition duration-500 group-hover:scale-105"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                <div className="absolute bottom-2 right-2">
+                  <ScoreBadge score={routeScore.status === "great" ? "Excellent" : routeScore.status === "good" ? "Good" : "Fair"} />
+                </div>
+              </div>
+            )}
+
+            <div className="p-4">
+              <div className="mb-2">
+                <p className="font-serif text-lg leading-snug text-text-primary">
+                  {route.name.split("—")[0].trim()}
+                </p>
+                <p className="mt-0.5 text-xs leading-5 text-text-muted line-clamp-2">
+                  {route.distance} km · {route.difficulty}
+                </p>
+              </div>
+
+              <p className="mt-2 text-sm leading-5 text-text-secondary line-clamp-2">
+                Best window right now on {route.name.split("—")[0].trim()}
+              </p>
+
+              <div className="mt-3 flex items-center justify-between">
+                <p className="text-xs text-text-muted">
+                  {weather.temperature}°C · Wind {weather.windSpeed} km/h
+                </p>
+                <ArrowRight className="h-4 w-4 text-forest opacity-0 transition group-hover:opacity-100" />
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 }
 

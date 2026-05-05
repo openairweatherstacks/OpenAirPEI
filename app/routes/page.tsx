@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
-import { ArrowRight, MapPin, AlertCircle, Navigation } from "lucide-react";
+import { ArrowRight, AlertCircle, MapPin } from "lucide-react";
 
 import { RoutesMap } from "@/components/map/RoutesMap";
 import { RouteFilters } from "@/components/routes/RouteFilters";
-import { ALL_CONFEDERATION_ROUTES, TRAIL_PARKING } from "@/lib/data/routes";
+import { ALL_CONFEDERATION_ROUTES } from "@/lib/data/routes";
 import { getAllLocationConditions } from "@/lib/environment";
 import { scoreRoute } from "@/lib/score";
 
@@ -201,45 +201,6 @@ export default async function RoutesPage({
                   </div>
                 </div>
               </Link>
-            ))}
-          </div>
-        </section>
-
-        {/* PARKING */}
-        <section>
-          <div className="mb-6">
-            <p className="eyebrow mb-2">Trailheads</p>
-            <h2 className="section-title text-3xl">{TRAIL_PARKING.length} parking locations</h2>
-            <p className="section-copy mt-2">Free or low-cost access points along the full trail network</p>
-          </div>
-
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {TRAIL_PARKING.map((lot) => (
-              <a
-                key={lot.id}
-                href={`https://www.google.com/maps/search/${lot.civic}+${encodeURIComponent(lot.name)}+PEI`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group rounded-xl border border-border bg-white p-4 hover:border-forest-light hover:shadow-sm transition"
-              >
-                <div className="flex items-start justify-between gap-2 mb-3">
-                  <div className="flex-1 min-w-0">
-                    <p className="font-medium text-text-primary group-hover:text-forest transition">{lot.name}</p>
-                    <p className="text-xs text-text-muted mt-1">{lot.address}</p>
-                    <p className="text-xs text-text-muted mt-1">Civic: {lot.civic}</p>
-                  </div>
-                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-sun-light text-xs font-semibold text-sun flex-shrink-0">
-                    {lot.id}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between pt-3 border-t border-border/40">
-                  <div className="flex items-center gap-1 text-xs text-text-muted">
-                    <MapPin className="h-3 w-3" />
-                    {lot.lat.toFixed(4)}°, {lot.lng.toFixed(4)}°
-                  </div>
-                  <Navigation className="h-4 w-4 text-forest opacity-0 group-hover:opacity-100 transition" />
-                </div>
-              </a>
             ))}
           </div>
         </section>

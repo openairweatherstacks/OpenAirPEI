@@ -92,31 +92,6 @@ export default async function TrailsPage() {
                 href={`/trails/${trail.id}`}
                 className="group overflow-hidden rounded-[1.75rem] border border-white/70 bg-white/90 shadow-[0_8px_40px_rgba(42,42,42,0.07)] transition hover:shadow-[0_16px_60px_rgba(42,42,42,0.12)]"
               >
-                {trail.image && (
-                  <div className="relative h-36 w-full overflow-hidden bg-gray-200">
-                    <Image
-                      src={trail.image}
-                      alt={trail.name}
-                      fill
-                      className="object-cover transition duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                    <div className="absolute bottom-2 right-2">
-                      <span
-                        className={`inline-flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold text-white ${
-                          trail.difficulty === "easy"
-                            ? "bg-green-600"
-                            : trail.difficulty === "moderate"
-                              ? "bg-amber-600"
-                              : "bg-red-600"
-                        }`}
-                      >
-                        {trail.difficulty === "easy" ? "E" : trail.difficulty === "moderate" ? "M" : "C"}
-                      </span>
-                    </div>
-                  </div>
-                )}
-
                 <div className="p-4">
                   <div className="mb-2">
                     <p className="font-serif text-lg leading-snug text-text-primary">
