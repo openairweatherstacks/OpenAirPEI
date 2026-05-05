@@ -192,14 +192,6 @@ export default async function HomePage() {
           />
         </section>
 
-        <section className="space-y-4">
-          <div>
-            <p className="eyebrow mb-2">Location cards</p>
-            <h2 className="section-title text-3xl">Where to go, and how long you have</h2>
-          </div>
-          <LocationGrid locations={ranked} />
-        </section>
-
         {/* ── CONFEDERATION TRAIL FEATURE ──────────────────────────── */}
         <section className="rounded-[2rem] bg-gradient-to-br from-forest to-leaf p-8 text-white overflow-hidden">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
@@ -222,6 +214,14 @@ export default async function HomePage() {
               />
             </div>
           </div>
+        </section>
+
+        <section className="space-y-4">
+          <div>
+            <p className="eyebrow mb-2">Location cards</p>
+            <h2 className="section-title text-3xl">Where to go, and how long you have</h2>
+          </div>
+          <LocationGrid locations={ranked} />
         </section>
 
         <section className="panel p-6 sm:p-8">
