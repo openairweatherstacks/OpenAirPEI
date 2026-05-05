@@ -204,17 +204,14 @@ export default async function HomePage() {
         <section className="rounded-[2rem] bg-gradient-to-br from-forest to-leaf p-8 text-white overflow-hidden">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
             <div className="flex-1">
-              <p className="eyebrow mb-3 text-green-200">Tip to tip cycling</p>
-              <h2 className="section-title text-4xl text-white mb-3">Confederation Trail — Tignish to Elmira</h2>
+              <p className="eyebrow mb-3 text-green-200">Coming Soon</p>
+              <h2 className="section-title text-4xl text-white mb-3">Cycling Routes — Confederation Trail</h2>
               <p className="text-white/90 mb-6 max-w-lg">
-                273 km of flat, car-free cycling across the whole island. Real-time route scoring and live conditions before you ride.
+                Real-time route scoring for 449 km of flat, car-free cycling across the whole island. Live conditions before you ride.
               </p>
-              <Link
-                href="/routes/confederation-main-tignish-elmira"
-                className="inline-flex items-center gap-2 rounded-full bg-white/20 hover:bg-white/30 px-6 py-3 font-semibold text-white transition backdrop-blur border border-white/30"
-              >
-                View route details <ArrowRight className="h-4 w-4" />
-              </Link>
+              <button className="inline-flex items-center gap-2 rounded-full bg-white/20 px-6 py-3 font-semibold text-white opacity-60 cursor-not-allowed">
+                Coming soon <ArrowRight className="h-4 w-4" />
+              </button>
             </div>
             <div className="hidden lg:block flex-1 relative h-64 rounded-xl overflow-hidden shadow-lg">
               <Image

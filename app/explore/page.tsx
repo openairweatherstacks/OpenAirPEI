@@ -176,9 +176,6 @@ export default async function ExplorePage() {
       </div>
       {/* ── CATEGORY SECTIONS ────────────────────────────────────── */}
       <div className="page-shell space-y-14 pt-2">
-        {/* CYCLING ROUTES */}
-        <CyclingSection locations={allLocations} />
-
         {byCategory.filter((cat) => cat.id !== "cycling").map((cat) => (
           <section key={cat.id} id={cat.id} className="scroll-mt-6">
             <div className="mb-6 flex items-end justify-between gap-4">
