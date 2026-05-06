@@ -46,16 +46,16 @@ export async function GET() {
   const avgHigh = Math.round(avg(maxTemps) * 10) / 10
   const avgLow = Math.round(avg(minTemps) * 10) / 10
 
-  const recordHighIdx = maxTemps.indexOf(Math.max(...maxTemps))
-  const recordLowIdx = minTemps.indexOf(Math.min(...minTemps))
-  const recordPrecipIdx = precips.indexOf(Math.max(...precips))
+  const maxVal = Math.max(...maxTemps)
+  const minVal = Math.min(...minTemps)
+  const maxPrecip = Math.max(...precips)
 
-  const recordHigh = maxTemps[recordHighIdx]
-  const recordHighYear = records.filter(r => r.max_temp !== null)[recordHighIdx]?.year
-  const recordLow = minTemps[recordLowIdx]
-  const recordLowYear = records.filter(r => r.min_temp !== null)[recordLowIdx]?.year
-  const recordPrecip = precips[recordPrecipIdx]
-  const recordPrecipYear = records.filter(r => r.total_precip !== null)[recordPrecipIdx]?.year
+  const recordHigh = maxVal
+  const recordHighYear = records.find(r => r.max_temp === maxVal)?.year
+  const recordLow = minVal
+  const recordLowYear = records.find(r => r.min_temp === minVal)?.year
+  const recordPrecip = maxPrecip
+  const recordPrecipYear = records.find(r => r.total_precip === maxPrecip)?.year
   const precipFrequency = Math.round((precips.filter(p => p > 0).length / precips.length) * 100)
   const yearsOnRecord = records.length
 
@@ -72,7 +72,7 @@ export async function GET() {
 Be specific, reference the actual numbers, and make it interesting for an Islander. Do not start with "Today".`
 
   const message = await anthropic.messages.create({
-    model: 'claude-sonnet-4-20250514',
+    model: process.env.ANTHROPIC_MODEL ?? 'claude-sonnet-4-6',
     max_tokens: 150,
     messages: [{ role: 'user', content: prompt }],
   })

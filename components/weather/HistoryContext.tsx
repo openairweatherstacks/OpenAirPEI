@@ -20,7 +20,7 @@ export default function HistoryContext({ forecastHigh }: Props) {
 
   useEffect(() => {
     fetch('/api/history/today')
-      .then(r => r.json())
+      .then(r => { if (!r.ok) throw new Error(r.statusText); return r.json() })
       .then(setData)
       .catch(() => setData(null))
   }, [])
