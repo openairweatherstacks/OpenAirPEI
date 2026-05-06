@@ -9,11 +9,7 @@ export const metadata: Metadata = {
   description: "Cycling routes feature coming soon to OpenAir PEI.",
 };
 
-export default async function RouteDetailPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+export default async function RouteDetailPage() {
   return (
     <div className="page-shell mt-8 text-center py-16">
       <p className="text-sm text-text-muted mb-3 uppercase tracking-wide font-semibold">Coming Soon</p>

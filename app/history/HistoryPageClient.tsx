@@ -40,7 +40,7 @@ export default function HistoryPageClient() {
       <section className="grid gap-6 lg:grid-cols-[1fr_1fr]">
         <div className="rounded-[2rem] border border-forest-light bg-gradient-to-br from-forest-light/30 to-leaf-light/20 p-6">
           <div className="mb-4">
-            <p className="eyebrow mb-2">Today's date</p>
+            <p className="eyebrow mb-2">Today&apos;s date</p>
             <h2 className="section-title text-3xl">{today} in history</h2>
           </div>
 
@@ -129,7 +129,7 @@ export default function HistoryPageClient() {
           </div>
         </div>
         <p className="text-sm text-text-secondary mt-6 leading-relaxed">
-          All data is open government data under the <a href="https://open.canada.ca/en/open-government-licence-canada" target="_blank" rel="noopener noreferrer" className="text-forest hover:underline">Statistics Canada Open Licence</a>. This record provides the longest continuous daily weather observations for Prince Edward Island, allowing us to compare today's conditions against 150+ years of history.
+          All data is open government data under the <a href="https://open.canada.ca/en/open-government-licence-canada" target="_blank" rel="noopener noreferrer" className="text-forest hover:underline">Statistics Canada Open Licence</a>. This record provides the longest continuous daily weather observations for Prince Edward Island, allowing us to compare today&apos;s conditions against 150+ years of history.
         </p>
       </section>
     </div>

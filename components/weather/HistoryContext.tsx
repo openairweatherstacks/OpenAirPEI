@@ -15,7 +15,7 @@ interface HistoryData {
   ai_narrative: string
 }
 
-export default function HistoryContext({ locationName, forecastHigh }: Props) {
+export default function HistoryContext({ forecastHigh }: Props) {
   const [data, setData] = useState<HistoryData | null>(null)
 
   useEffect(() => {
