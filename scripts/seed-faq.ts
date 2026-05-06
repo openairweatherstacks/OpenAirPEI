@@ -41,7 +41,7 @@ const initialFAQs = [
   },
   {
     question: 'Why do I see different conditions at different PEI locations?',
-    answer: 'Prince Edward Island's weather varies dramatically by location. Charlottetown, Cavendish, and the north shore each have their own micro-climate. We show live conditions for 8+ key locations so you can find the best spot right now, not just a generic "PEI forecast."',
+    answer: "Prince Edward Island's weather varies dramatically by location. Charlottetown, Cavendish, and the north shore each have their own micro-climate. We show live conditions for 8+ key locations so you can find the best spot right now, not just a generic \"PEI forecast.\"",
     category: 'weather',
     order_index: 4,
   },

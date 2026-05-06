@@ -5,8 +5,6 @@ import { ArrowRight } from "lucide-react";
 
 import { ScoreBadge } from "@/components/conditions/ScoreBadge";
 import { getAllLocationConditions } from "@/lib/environment";
-import { scoreRoute } from "@/lib/score";
-import { ALL_CONFEDERATION_ROUTES } from "@/lib/data/routes";
 import type { LocationConditions, LocationType } from "@/lib/types";
 
 export const revalidate = 600;

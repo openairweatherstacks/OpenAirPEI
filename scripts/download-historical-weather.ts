@@ -49,7 +49,7 @@ function parseCSV(csv: string): ECCCRow[] {
     .filter(l => l.trim())
     .map(line => {
       const values = line.split(',').map(v => v.replace(/"/g, '').trim())
-      return Object.fromEntries(headers.map((h, i) => [h, values[i]])) as ECCCRow
+      return Object.fromEntries(headers.map((h, i) => [h, values[i]])) as unknown as ECCCRow
     })
 }
 
