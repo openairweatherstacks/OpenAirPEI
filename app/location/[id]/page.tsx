@@ -22,6 +22,7 @@ import { PEI_LOCATIONS } from "@/lib/data/locations";
 import { waterTempLabel } from "@/lib/water";
 import { ReviewForm } from "@/components/reviews/ReviewForm";
 import { ReviewList } from "@/components/reviews/ReviewList";
+import HistoryContext from "@/components/weather/HistoryContext";
 
 export const revalidate = 600;
 
@@ -62,7 +63,7 @@ export default async function LocationPage({
   const allLocations = await getAllLocationMapStubs();
 
   return (
-    <div className="page-shell space-y-8">
+    <div className="page-shell space-y-6">
       <div className="flex items-center gap-3 text-sm font-semibold text-text-secondary">
         <Link href="/" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm">
           <ArrowLeft className="h-4 w-4" />
@@ -79,8 +80,11 @@ export default async function LocationPage({
         </p>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-        <ConditionsCard entry={entry} compact />
+      <section className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="space-y-5">
+          <ConditionsCard entry={entry} compact />
+          <HistoryContext locationName={entry.location.name} forecastHigh={entry.weather.temperature} />
+        </div>
         <div className="space-y-5">
           <WindowAlert
             minutes={entry.conditions.windowMinutes}
@@ -91,13 +95,13 @@ export default async function LocationPage({
       </section>
 
       {(entry.communityNotice || entry.waterfrontRisk) && (
-        <section className="grid gap-5 lg:grid-cols-2">
+        <section className="grid gap-4 lg:grid-cols-2">
           {entry.communityNotice && <CommunityNoticeCard notice={entry.communityNotice} />}
           {entry.waterfrontRisk && <WaterfrontRiskCard risk={entry.waterfrontRisk} />}
         </section>
       )}
 
-      <section className="space-y-4">
+      <section className="space-y-3">
         <div className="flex items-end justify-between gap-4">
           <div>
             <p className="eyebrow mb-2">Map context</p>
@@ -138,7 +142,7 @@ export default async function LocationPage({
         </section>
       )}
 
-      <section className="grid gap-5 lg:grid-cols-3">
+      <section className="grid gap-4 lg:grid-cols-3">
         <MetricCard
           icon={Wind}
           insight={
@@ -186,14 +190,12 @@ export default async function LocationPage({
         </div>
 
         <div className="space-y-5">
+          <NearbyRoutes
+            lat={entry.location.lat}
+            lng={entry.location.lng}
+            weather={entry.weather}
+          />
           <div className="panel p-5">
-
-      {/* Nearby Routes */}
-      <NearbyRoutes
-        lat={entry.location.lat}
-        lng={entry.location.lng}
-        weather={entry.weather}
-      />
             <p className="eyebrow mb-3">Activity matcher</p>
             <ActivityGrid activities={entry.conditions.activities} />
           </div>
@@ -219,7 +221,7 @@ export default async function LocationPage({
 
       {/* ── VISITOR INFO ──────────────────────────────────────────── */}
       {entry.location.amenities && (
-        <section className="space-y-4">
+        <section className="space-y-3">
           <div>
             <p className="eyebrow mb-2">Visitor information</p>
             <h2 className="section-title text-3xl">Before you go</h2>
@@ -359,7 +361,7 @@ export default async function LocationPage({
 
       {/* ── FAQ ───────────────────────────────────────────────────── */}
       {entry.location.faqs && entry.location.faqs.length > 0 && (
-        <section className="space-y-4">
+        <section className="space-y-3">
           <div>
             <p className="eyebrow mb-2">Frequently asked questions</p>
             <h2 className="section-title text-3xl">What visitors want to know</h2>
@@ -379,7 +381,7 @@ export default async function LocationPage({
       )}
 
       {/* ── REVIEWS ───────────────────────────────────────────────── */}
-      <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+      <section className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
         <div>
           <p className="eyebrow mb-3">Visitor reviews</p>
           <h2 className="section-title text-3xl mb-6">What people are saying</h2>
