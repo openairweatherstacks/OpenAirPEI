@@ -1,13 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import { Suspense } from "react";
-import { ArrowRight, AlertCircle, MapPin } from "lucide-react";
-
-import { RoutesMap } from "@/components/map/RoutesMap";
-import { RouteFilters } from "@/components/routes/RouteFilters";
-import { ALL_CONFEDERATION_ROUTES } from "@/lib/data/routes";
-import { getAllLocationConditions } from "@/lib/environment";
-import { scoreRoute } from "@/lib/score";
+import { ArrowRight } from "lucide-react";
 
 export const revalidate = 600;
 
@@ -16,15 +8,7 @@ export const metadata = {
   description: "Perfect biking conditions on the Confederation Trail — real-time route scoring.",
 };
 
-export default async function RoutesPage({
-  searchParams,
-}: {
-  searchParams: Promise<{
-    difficulty?: string;
-    distance?: string;
-    activity?: string;
-  }>;
-}) {
+export default async function RoutesPage() {
   return (
     <div className="page-shell mt-8 text-center py-16">
       <p className="text-sm text-text-muted mb-3 uppercase tracking-wide font-semibold">Coming Soon</p>
