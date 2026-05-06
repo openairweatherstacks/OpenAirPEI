@@ -11,6 +11,7 @@ import { average, formatMinutes } from "@/lib/utils";
 import { getAllLocationConditions } from "@/lib/environment";
 import { Droplets } from "lucide-react";
 import ThisDayWidget from "@/components/weather/ThisDayWidget";
+import { DynamicFAQSection } from "@/components/faq/DynamicFAQSection";
 
 export const revalidate = 600;
 
@@ -287,6 +288,8 @@ export default async function HomePage() {
             ))}
           </div>
         </section>
+
+        <DynamicFAQSection />
 
       </div>
     </div>
