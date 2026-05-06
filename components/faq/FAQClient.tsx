@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { FAQSection } from './FAQSection'
 
 interface FAQItem {
-  id: number
+  _id: string
   question: string
   answer: string
   category?: string
@@ -23,7 +23,7 @@ export function FAQClient({ category, title = 'Frequently asked questions', desc
   useEffect(() => {
     const fetchFAQs = async () => {
       try {
-        const url = category ? `/api/faq?category=${encodeURIComponent(category)}` : '/api/faq'
+        const url = category ? `/api/faq/sanity?category=${encodeURIComponent(category)}` : '/api/faq/sanity'
         const response = await fetch(url)
         const data = await response.json()
         setFaqs(Array.isArray(data) ? data : [])

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 
 interface DynamicFAQ {
+  _id?: string
   question: string
   answer: string
   location: string
@@ -62,7 +63,7 @@ export function DynamicFAQSection() {
       <div className="space-y-3">
         {faqs.map((faq, idx) => (
           <details
-            key={idx}
+            key={faq._id || idx}
             className="group rounded-[1.75rem] border border-border bg-white"
           >
             <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 font-semibold text-text-primary hover:text-forest transition">

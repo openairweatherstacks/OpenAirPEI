@@ -1,7 +1,8 @@
 import { ChevronDown } from 'lucide-react'
 
 interface FAQItem {
-  id: number
+  _id?: string
+  id?: number
   question: string
   answer: string
   category?: string
@@ -26,9 +27,9 @@ export function FAQSection({ items, title, description }: FAQSectionProps) {
       )}
 
       <div className="space-y-3">
-        {items.map(({ id, question, answer }) => (
+        {items.map(({ _id, id, question, answer }) => (
           <details
-            key={id}
+            key={_id || id}
             className="group rounded-[1.75rem] border border-border bg-white"
           >
             <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 font-semibold text-text-primary hover:text-forest transition">
