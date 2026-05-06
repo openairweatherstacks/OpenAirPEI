@@ -29,6 +29,7 @@ export async function GET() {
       const summary = entry.conditions.summary
       const weather = entry.weather
       const activities = entry.conditions.activities
+      const activityStatus = activities.map((a) => `${a.name}: ${a.status} (${a.reason})`).join(', ')
 
       const prompt = `You are OpenAir Atlantic's meteorologist. Generate 2 FAQs about current conditions at ${locationName}.
 
@@ -43,7 +44,7 @@ Current conditions:
 - Visibility: ${weather.visibility} km
 - Air quality (AQHI): ${weather.aqhi}
 - Pressure: ${weather.pressure} hPa
-- Activity status: ${activities.map((a) => \`\${a.name}: \${a.status} (\${a.reason})\`).join(', ')}
+- Activity status: ${activityStatus}
 
 Generate exactly 2 FAQs in this JSON format:
 [
