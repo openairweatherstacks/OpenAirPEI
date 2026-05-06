@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, MapPin, Clock } from "lucide-react";
 
 import { ALL_HIKING_TRAILS } from "@/lib/data/trails";
+import { getAllLocationConditions } from "@/lib/environment";
 
 export const revalidate = 600;
 
