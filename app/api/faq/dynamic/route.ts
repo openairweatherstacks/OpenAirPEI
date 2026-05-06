@@ -40,22 +40,24 @@ Current conditions:
 - Wind: ${weather.windSpeed} km/h from ${weather.windDirection}
 - Humidity: ${weather.humidity}%
 - UV Index: ${weather.uvIndex}
+- Visibility: ${weather.visibility} km
 - Air quality (AQHI): ${weather.aqhi}
+- Pressure: ${weather.pressure} hPa
 - Activity status: ${activities.map((a) => \`\${a.name}: \${a.status} (\${a.reason})\`).join(', ')}
 
 Generate exactly 2 FAQs in this JSON format:
 [
   {
-    "question": "What's happening at [Location] right now?",
-    "answer": "A 2-3 sentence explanation of current conditions and what visitors should know"
+    "question": "What's the current weather at ${locationName}?",
+    "answer": "3 specific data points (temperature, wind speed, and one other metric with exact numbers). Example: 'It's ${weather.temperature}°C with ${weather.windSpeed} km/h winds and AQHI ${weather.aqhi} air quality.'"
   },
   {
-    "question": "Should I go to [Location] today for [activity]?",
-    "answer": "A 2-3 sentence recommendation based on current score and activities"
+    "question": "Is it a good time for [activity] at ${locationName} right now?",
+    "answer": "Based on specific metrics. Include actual numbers. Example: 'The ${weather.temperature}°C temperature and ${weather.windSpeed} km/h wind make it fair for cycling - manageable but exposed sections will feel gusty.'"
   }
 ]
 
-Be specific, reference actual numbers from the conditions above, and make it actionable. Do NOT include markdown or any text outside the JSON array.`
+CRITICAL: Include 2-3 specific numbers (temperature, wind, humidity, AQHI, UV index, etc.) in EACH answer. Do NOT include markdown or any text outside the JSON array.`
 
       const message = await anthropic.messages.create({
         model: 'claude-sonnet-4-20250514',
