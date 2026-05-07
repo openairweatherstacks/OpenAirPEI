@@ -74,7 +74,7 @@ export default async function LocationPage({
 
       <section className="panel p-5 sm:p-6">
         <p className="eyebrow mb-2">{entry.location.type}</p>
-        <h1 className="section-title text-4xl">{entry.location.name}</h1>
+        <h1 className="section-title sm:text-4xl">{entry.location.name}</h1>
         <p className="mt-2 max-w-2xl text-base leading-7 text-text-secondary">
           {entry.location.tagline}
         </p>
@@ -105,7 +105,7 @@ export default async function LocationPage({
         <div className="flex items-end justify-between gap-4">
           <div>
             <p className="eyebrow mb-2">Map context</p>
-            <h2 className="section-title text-3xl">{entry.location.name} on the island</h2>
+            <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">{entry.location.name} on the island</h2>
           </div>
           <a
             href={`https://www.google.com/maps/dir/?api=1&destination=${entry.location.lat},${entry.location.lng}`}
@@ -124,7 +124,7 @@ export default async function LocationPage({
         <section className="space-y-4">
           <div>
             <p className="eyebrow mb-2">Live camera</p>
-            <h2 className="section-title text-3xl">Queen Street right now</h2>
+            <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">Queen Street right now</h2>
           </div>
           <div className="overflow-hidden rounded-[2rem] border border-white/70 bg-white/90 shadow-[0_24px_80px_rgba(42,42,42,0.08)]">
             <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
@@ -224,7 +224,7 @@ export default async function LocationPage({
         <section className="space-y-3">
           <div>
             <p className="eyebrow mb-2">Visitor information</p>
-            <h2 className="section-title text-3xl">Before you go</h2>
+            <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">Before you go</h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {/* Parking */}
@@ -312,7 +312,7 @@ export default async function LocationPage({
         <div className="mb-6 flex items-center justify-between gap-4">
           <div>
             <p className="eyebrow mb-2">Paw index</p>
-            <h2 className="section-title text-3xl">Is it safe for your dog?</h2>
+            <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">Is it safe for your dog?</h2>
           </div>
           <PawBadge score={entry.pawIndex.score} />
         </div>
@@ -364,7 +364,7 @@ export default async function LocationPage({
         <section className="space-y-3">
           <div>
             <p className="eyebrow mb-2">Frequently asked questions</p>
-            <h2 className="section-title text-3xl">What visitors want to know</h2>
+            <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">What visitors want to know</h2>
           </div>
           <div className="space-y-3">
             {entry.location.faqs.map(({ q, a }) => (

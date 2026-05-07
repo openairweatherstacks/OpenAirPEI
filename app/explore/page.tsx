@@ -116,7 +116,7 @@ export default async function ExplorePage() {
       <div className="page-shell pb-0">
         <section className="panel p-6 sm:p-8">
           <p className="eyebrow mb-3">Explore Prince Edward Island</p>
-          <h1 className="section-title text-4xl sm:text-5xl">
+          <h1 className="section-title text-3xl sm:text-4xl lg:text-5xl">
             Find your perfect spot today
           </h1>
           <p className="section-copy mt-3">
@@ -179,7 +179,7 @@ export default async function ExplorePage() {
             <div className="mb-6 flex items-end justify-between gap-4">
               <div>
                 <p className="eyebrow mb-2">{cat.label}</p>
-                <h2 className="section-title text-3xl">{cat.description}</h2>
+                <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">{cat.description}</h2>
               </div>
             </div>
 

@@ -11,7 +11,7 @@ export default function ContactPage() {
     <div className="page-shell space-y-10">
       <section className="panel p-6 sm:p-8">
         <p className="eyebrow mb-3">Contact Us</p>
-        <h1 className="section-title text-4xl sm:text-5xl">Get in touch</h1>
+        <h1 className="section-title text-3xl sm:text-4xl lg:text-5xl">Get in touch</h1>
         <p className="section-copy mt-4">
           We&apos;re a small team building something we genuinely love. Whether you have a question,
           a bug report, a location suggestion, or just want to say hello — we read every message.

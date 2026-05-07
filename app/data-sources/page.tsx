@@ -76,7 +76,7 @@ export default function DataSourcesPage() {
     <div className="page-shell space-y-8">
       <section className="panel p-6 sm:p-8">
         <p className="eyebrow mb-3">Transparency</p>
-        <h1 className="section-title text-4xl">Data sources</h1>
+        <h1 className="section-title text-3xl sm:text-4xl">Data sources</h1>
         <p className="section-copy mt-4">
           Every number shown in OpenAir Atlantic comes from a Canadian government or open-data
           source. We do not fabricate, estimate, or pay for proprietary data feeds. All sources

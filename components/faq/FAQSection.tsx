@@ -17,7 +17,7 @@ export function FAQSection({ items, title, description }: FAQSectionProps) {
       {title && (
         <div>
           <p className="eyebrow mb-2">{title}</p>
-          <h2 className="section-title text-3xl">{description}</h2>
+          <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">{description}</h2>
         </div>
       )}
 

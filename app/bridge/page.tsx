@@ -59,7 +59,7 @@ export default async function BridgePage() {
       <section className="space-y-4">
         <div>
           <p className="eyebrow mb-2">Live camera</p>
-          <h2 className="section-title text-3xl">Watch the crossing right now</h2>
+          <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">Watch the crossing right now</h2>
         </div>
         <div className="overflow-hidden rounded-[1.75rem] border border-border bg-black shadow-sm">
           <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
@@ -116,7 +116,7 @@ export default async function BridgePage() {
       <section className="space-y-4">
         <div>
           <p className="eyebrow mb-2">Frequently asked questions</p>
-          <h2 className="section-title text-3xl">Bridge crossing — what you need to know</h2>
+          <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">Bridge crossing — what you need to know</h2>
         </div>
         <div className="space-y-3">
           {FAQS.map(({ q, a }) => (

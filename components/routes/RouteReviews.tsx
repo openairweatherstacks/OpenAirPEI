@@ -67,7 +67,7 @@ export function RouteReviews() {
     <section className="space-y-8">
       <div>
         <p className="eyebrow mb-3">Visitor reviews</p>
-        <h2 className="section-title text-3xl">What cyclists are saying</h2>
+        <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">What cyclists are saying</h2>
       </div>
 
       {/* Rating summary */}

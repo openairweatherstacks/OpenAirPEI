@@ -41,7 +41,7 @@ export default function HistoryPageClient() {
         <div className="rounded-[2rem] border border-forest-light bg-gradient-to-br from-forest-light/30 to-leaf-light/20 p-6">
           <div className="mb-4">
             <p className="eyebrow mb-2">Today&apos;s date</p>
-            <h2 className="section-title text-3xl">{today} in history</h2>
+            <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">{today} in history</h2>
           </div>
 
           <div className="space-y-4">
@@ -76,7 +76,7 @@ export default function HistoryPageClient() {
         <div className="rounded-[2rem] border border-border bg-white p-6 space-y-4">
           <div>
             <p className="eyebrow mb-2">Historical Records</p>
-            <h2 className="section-title text-3xl">All-time extremes</h2>
+            <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">All-time extremes</h2>
           </div>
 
           <div className="space-y-3">

@@ -12,7 +12,7 @@ export default function AccessibilityPage() {
     <div className="page-shell space-y-10 py-10">
       <section className="panel p-6 sm:p-10">
         <p className="eyebrow mb-3">Accessibility</p>
-        <h1 className="section-title text-4xl sm:text-5xl">Smart weather for everyone</h1>
+        <h1 className="section-title text-3xl sm:text-4xl lg:text-5xl">Smart weather for everyone</h1>
         <p className="section-copy mt-4">
           OpenAir Atlantic is built on a simple belief: knowing what the outdoors is doing should
           not depend on your ability, device, or background. The island belongs to everyone. So

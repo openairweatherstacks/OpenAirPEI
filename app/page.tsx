@@ -118,7 +118,7 @@ export default async function HomePage() {
           <div>
             <div className="mb-4">
               <p className="eyebrow mb-2">Live island map</p>
-              <h2 className="section-title text-3xl">Key PEI locations at a glance</h2>
+              <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">Key PEI locations at a glance</h2>
             </div>
             <PEIMap locations={locations} />
 
@@ -223,14 +223,14 @@ export default async function HomePage() {
         <section className="space-y-4">
           <div>
             <p className="eyebrow mb-2">Location cards</p>
-            <h2 className="section-title text-3xl">Where to go, and how long you have</h2>
+            <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">Where to go, and how long you have</h2>
           </div>
           <LocationGrid locations={ranked} />
         </section>
 
         <section className="panel p-6 sm:p-8">
           <p className="eyebrow mb-3">Why OpenAir Atlantic</p>
-          <h2 className="section-title text-3xl">Every other option leaves you guessing</h2>
+          <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">Every other option leaves you guessing</h2>
           <p className="section-copy mt-3">Other tools show you numbers. OpenAir tells you what to do.</p>
 
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">

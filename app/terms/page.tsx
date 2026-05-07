@@ -12,7 +12,7 @@ export default function TermsPage() {
     <div className="page-shell space-y-8">
       <section className="panel p-6 sm:p-8">
         <p className="eyebrow mb-3">Legal</p>
-        <h1 className="section-title text-4xl">Terms of Use</h1>
+        <h1 className="section-title text-3xl sm:text-4xl">Terms of Use</h1>
         <p className="mt-3 text-sm text-text-muted">Last updated: {LAST_UPDATED}</p>
         <p className="section-copy mt-4">
           By using OpenAir Atlantic, you agree to these terms. Please read them — they are short and

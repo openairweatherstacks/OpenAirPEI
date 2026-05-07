@@ -11,7 +11,7 @@ export default function FAQPage() {
     <div className="page-shell mt-8 space-y-12">
       <section className="panel p-6 sm:p-8">
         <p className="eyebrow mb-3">Help & Support</p>
-        <h1 className="section-title text-4xl">Frequently asked questions</h1>
+        <h1 className="section-title text-3xl sm:text-4xl">Frequently asked questions</h1>
         <p className="section-copy mt-3">
           Find answers to common questions about OpenAir Atlantic, how it works, and how to get the most out of the app.
         </p>

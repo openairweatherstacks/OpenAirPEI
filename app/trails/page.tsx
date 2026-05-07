@@ -80,7 +80,7 @@ export default async function TrailsPage() {
         <section>
           <div className="mb-4">
             <p className="eyebrow mb-1">Browse trails</p>
-            <h2 className="section-title text-3xl">All trails on PEI</h2>
+            <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">All trails on PEI</h2>
             <p className="section-copy mt-1 text-sm">Sorted by difficulty — easy to challenging</p>
           </div>
 
@@ -149,7 +149,7 @@ export default async function TrailsPage() {
         {/* COMPARISON */}
         <section className="panel p-6 sm:p-8">
           <p className="eyebrow mb-3">Why OpenAir trails</p>
-          <h2 className="section-title text-3xl">How we beat Island Trails</h2>
+          <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">How we beat Island Trails</h2>
 
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {[

@@ -11,7 +11,7 @@ export default function HistoryPage() {
     <div className="page-shell mt-8 space-y-8">
       <section className="panel p-6 sm:p-8">
         <p className="eyebrow mb-3">Weather History</p>
-        <h1 className="section-title text-4xl">
+        <h1 className="section-title text-3xl sm:text-4xl">
           PEI Weather History
         </h1>
         <p className="section-copy mt-3">

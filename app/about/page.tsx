@@ -12,7 +12,7 @@ export default function AboutPage() {
     <div className="page-shell space-y-10">
       <section className="panel p-6 sm:p-8">
         <p className="eyebrow mb-3">About OpenAir Atlantic</p>
-        <h1 className="section-title text-4xl sm:text-5xl">
+        <h1 className="section-title text-3xl sm:text-4xl lg:text-5xl">
           Built for people who live outside
         </h1>
         <p className="section-copy mt-4">
@@ -60,7 +60,7 @@ export default function AboutPage() {
 
       <section className="panel p-6 sm:p-8">
         <p className="eyebrow mb-3">How it works</p>
-        <h2 className="section-title text-3xl">Three layers, one answer</h2>
+        <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">Three layers, one answer</h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-3">
           {[
             {
@@ -90,7 +90,7 @@ export default function AboutPage() {
 
       <section className="panel p-6 sm:p-8">
         <p className="eyebrow mb-3">Data & transparency</p>
-        <h2 className="section-title text-3xl">Open data, open about how we use it</h2>
+        <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">Open data, open about how we use it</h2>
         <p className="section-copy mt-3">
           OpenAir uses public environmental data sources — primarily Canadian federal government
           feeds, plus Open-Meteo for short-range precipitation timing. We do not sell data, we do

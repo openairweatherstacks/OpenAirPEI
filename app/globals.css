@@ -25,15 +25,22 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   min-height: 100vh;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at top left, rgba(245, 166, 35, 0.16), transparent 34%),
     radial-gradient(circle at top right, rgba(125, 200, 50, 0.14), transparent 32%),
     linear-gradient(180deg, #fffdf6 0%, #fafaf7 28%, #f7faf4 100%);
   color: var(--color-text-primary);
+}
+
+*, *::before, *::after {
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 ::selection {
@@ -58,12 +65,17 @@ body {
 
 .page-shell {
   @apply mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8;
+  overflow: hidden;
 }
 
 .section-title {
-  @apply font-serif text-3xl font-extrabold leading-tight tracking-wide text-text-primary sm:text-4xl;
+  @apply font-serif font-bold leading-tight tracking-normal text-text-primary;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .section-copy {
   @apply max-w-3xl text-sm leading-7 text-text-secondary sm:text-base;
+  overflow-wrap: break-word;
 }

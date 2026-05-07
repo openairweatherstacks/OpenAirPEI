@@ -37,7 +37,7 @@ export function DynamicFAQSection() {
       <section className="space-y-4">
         <div>
           <p className="eyebrow mb-2">Today&apos;s Questions</p>
-          <h2 className="section-title text-3xl">What people are asking right now</h2>
+          <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">What people are asking right now</h2>
         </div>
         <div className="space-y-3">
           {[1, 2, 3].map((i) => (
@@ -57,7 +57,7 @@ export function DynamicFAQSection() {
     <section className="space-y-4">
       <div>
         <p className="eyebrow mb-2">Today&apos;s Questions</p>
-        <h2 className="section-title text-3xl">What people are asking right now</h2>
+        <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">What people are asking right now</h2>
       </div>
 
       <div className="space-y-3">
