@@ -46,15 +46,15 @@ export async function GET() {
   const normals = MONTHLY_NORMALS[month]
   const dateStr = today.toLocaleDateString('en-CA', { month: 'long', day: 'numeric' })
 
-  let aiNarrative = `On ${dateStr}, Charlottetown averages a high of ${normals.avgHigh}°C and a low of ${normals.avgLow}°C. Rain falls on about ${normals.precipFrequency}% of years on this date historically.`
+  let aiNarrative = `On ${dateStr}, Charlottetown averages a high of ${normals.avgHigh}°C and a low of ${normals.avgLow}°C. Rain falls on about ${normals.precipFrequency}% of years on this date. The all-time record high for today stands at ${ALL_TIME_RECORDS.recordHigh}°C set in ${ALL_TIME_RECORDS.recordHighYear}.`
 
   try {
     const message = await anthropic.messages.create({
       model: process.env.ANTHROPIC_MODEL ?? 'claude-sonnet-4-6',
-      max_tokens: 150,
+      max_tokens: 200,
       messages: [{
         role: 'user',
-        content: `You are the voice of OpenAir Atlantic, a PEI outdoor conditions app. Write exactly 2 sentences in plain, friendly English summarizing what today's date means in PEI weather history. Use these stats for ${dateStr}:
+        content: `You are the voice of OpenAir Atlantic, a PEI outdoor conditions app. Write exactly 3 sentences in plain, friendly English summarizing what today's date means in PEI weather history. Use these stats for ${dateStr}:
 - Historical average high: ${normals.avgHigh}°C
 - Historical average low: ${normals.avgLow}°C
 - All-time record high: ${ALL_TIME_RECORDS.recordHigh}°C in ${ALL_TIME_RECORDS.recordHighYear}
@@ -62,7 +62,7 @@ export async function GET() {
 - Precipitation falls on this date about ${normals.precipFrequency}% of years historically
 - Data covers ${ALL_TIME_RECORDS.yearsOnRecord} years of records
 
-Be specific, reference the actual numbers, and make it interesting for an Islander. Do not start with "Today".`,
+Sentence 1: what the typical weather is like on this date. Sentence 2: something interesting about the record or precipitation. Sentence 3: a short local flavour observation an Islander would appreciate. Use real numbers. Do not start with "Today".`,
       }],
     })
     if (message.content[0]?.type === 'text') {

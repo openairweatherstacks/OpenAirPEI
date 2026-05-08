@@ -83,7 +83,6 @@ export default async function LocationPage({
       <section className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
         <div className="space-y-5">
           <ConditionsCard entry={entry} compact />
-          <HistoryContext locationName={entry.location.name} forecastHigh={entry.weather.temperature} />
         </div>
         <div className="space-y-5">
           <WindowAlert
@@ -91,6 +90,7 @@ export default async function LocationPage({
             statement={entry.conditions.windowStatement}
           />
           <MeteorologistInsight text={entry.conditions.insightOfTheDay} />
+          <HistoryContext locationName={entry.location.name} forecastHigh={entry.weather.temperature} />
         </div>
       </section>
 
