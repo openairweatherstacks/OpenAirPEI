@@ -5,7 +5,7 @@ export default function NotFound() {
     <div className="page-shell">
       <div className="panel max-w-3xl p-8">
         <p className="eyebrow mb-3">Lost in the fog</p>
-        <h1 className="section-title">That island outlook does not exist.</h1>
+        <h1 className="section-title text-2xl sm:text-3xl">That island outlook does not exist.</h1>
         <p className="section-copy mt-4">
           The location may have moved or the route is not wired up yet. Head back to the main map to
           pick another PEI stop.

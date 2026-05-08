@@ -46,7 +46,7 @@ export default async function BridgePage() {
     <div className="page-shell space-y-8">
       <section className="panel p-6 sm:p-8">
         <p className="eyebrow mb-3">Confederation Bridge</p>
-        <h1 className="section-title">Bridge conditions before you leave home</h1>
+        <h1 className="section-title text-2xl sm:text-3xl">Bridge conditions before you leave home</h1>
         <p className="section-copy mt-4">
           Shoreline weather is not enough. The bridge deck runs its own reality when crosswinds pick
           up, especially for motorcycles and taller vehicles.

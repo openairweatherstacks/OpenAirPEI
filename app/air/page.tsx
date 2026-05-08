@@ -15,7 +15,7 @@ export default async function AirPage() {
     <div className="page-shell space-y-8">
       <section className="panel p-6 sm:p-8">
         <p className="eyebrow mb-3">Island-wide air quality</p>
-        <h1 className="section-title">Can kids, runners, and asthma-prone visitors breathe easy?</h1>
+        <h1 className="section-title text-2xl sm:text-3xl">Can kids, runners, and asthma-prone visitors breathe easy?</h1>
         <p className="section-copy mt-4">
           OpenAir translates AQHI into plain language because a low-risk number matters most when it
           changes what you choose to do next.

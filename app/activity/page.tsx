@@ -50,7 +50,7 @@ export default async function ActivityPage() {
     <div className="page-shell space-y-8">
       <section className="panel p-6 sm:p-8">
         <p className="eyebrow mb-3">Activity matcher</p>
-        <h1 className="section-title">What should you do on PEI right now?</h1>
+        <h1 className="section-title text-2xl sm:text-3xl">What should you do on PEI right now?</h1>
         <p className="section-copy mt-4">
           This page ranks the island by activity rather than by weather. The best idea is not always
           the warmest one. Sometimes it is the most sheltered, driest, or easiest on lungs.

@@ -5,7 +5,7 @@ export default function ReportPage() {
     <div className="page-shell space-y-8">
       <section className="panel p-6 sm:p-8">
         <p className="eyebrow mb-3">Community reports</p>
-        <h1 className="section-title">Help OpenAir see what the sensors miss</h1>
+        <h1 className="section-title text-2xl sm:text-3xl">Help OpenAir see what the sensors miss</h1>
         <p className="section-copy mt-4">
           Beta reporting is designed to capture surf conditions, local fog, trail washouts, and beach
           crowding without turning the app into a social feed.

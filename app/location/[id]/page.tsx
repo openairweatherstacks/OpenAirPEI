@@ -74,7 +74,7 @@ export default async function LocationPage({
 
       <section className="panel p-5 sm:p-6">
         <p className="eyebrow mb-2">{entry.location.type}</p>
-        <h1 className="section-title sm:text-4xl">{entry.location.name}</h1>
+        <h1 className="section-title text-2xl sm:text-4xl">{entry.location.name}</h1>
         <p className="mt-2 max-w-2xl text-base leading-7 text-text-secondary">
           {entry.location.tagline}
         </p>
@@ -384,12 +384,12 @@ export default async function LocationPage({
       <section className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
         <div>
           <p className="eyebrow mb-3">Visitor reviews</p>
-          <h2 className="section-title text-3xl mb-6">What people are saying</h2>
+          <h2 className="section-title text-xl sm:text-2xl lg:text-3xl mb-6">What people are saying</h2>
           <ReviewList locationId={entry.location.id} />
         </div>
         <div>
           <p className="eyebrow mb-3">Share your experience</p>
-          <h2 className="section-title text-3xl mb-6">Leave a review</h2>
+          <h2 className="section-title text-xl sm:text-2xl lg:text-3xl mb-6">Leave a review</h2>
           <ReviewForm locationId={entry.location.id} />
         </div>
       </section>
