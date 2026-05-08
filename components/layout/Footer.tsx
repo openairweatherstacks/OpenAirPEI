@@ -2,6 +2,7 @@ import Link from "next/link";
 
 const LINKS = [
   { label: "Explore", href: "/explore" },
+  { label: "Best Time to Visit", href: "/best-time-to-visit-pei" },
   { label: "About", href: "/about" },
   { label: "Data Sources", href: "/data-sources" },
   { label: "Accessibility", href: "/accessibility" },

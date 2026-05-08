@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/activity", changeFrequency: "daily", priority: 0.9 },
     { path: "/bridge", changeFrequency: "daily", priority: 0.9 },
     { path: "/air", changeFrequency: "daily", priority: 0.8 },
+    { path: "/best-time-to-visit-pei", changeFrequency: "monthly", priority: 0.95 },
     { path: "/routes", changeFrequency: "daily", priority: 0.8 },
     { path: "/history", changeFrequency: "daily", priority: 0.7 },
     { path: "/faq", changeFrequency: "weekly", priority: 0.7 },
