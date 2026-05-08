@@ -11,14 +11,15 @@ interface DynamicFAQ {
   score: string
 }
 
-export function DynamicFAQSection() {
+export function DynamicFAQSection({ locationId }: { locationId?: string }) {
   const [faqs, setFaqs] = useState<DynamicFAQ[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchDynamicFAQs = async () => {
       try {
-        const response = await fetch('/api/faq/dynamic')
+        const url = locationId ? `/api/faq/dynamic?locationId=${locationId}` : '/api/faq/dynamic'
+        const response = await fetch(url)
         const data = await response.json()
         setFaqs(Array.isArray(data) ? data : [])
       } catch (error) {

@@ -182,7 +182,7 @@ export default async function LocationPage({
             </p>
           </div>
           <UVTimer uvIndex={entry.weather.uvIndex} />
-          <DynamicFAQSection />
+          <DynamicFAQSection locationId={entry.location.id} />
           {entry.conditions.bridgeStatus && (
             <BridgeStatus
               status={entry.conditions.bridgeStatus}
