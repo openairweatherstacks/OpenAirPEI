@@ -85,6 +85,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://openairatlantic.com",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/openair-icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [
+      { url: "/openair-icon.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+  },
   verification: {
     google: "iymnYwJFYxMYT2yhI1kH8dS7Z8RB6df3Fo-SBNQxejg",
   },
