@@ -79,13 +79,13 @@ export function ConditionsCard({
             <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-text-muted">
               {entry.location.type}
             </p>
-            <h3 className="font-serif text-2xl text-text-primary">{entry.location.name}</h3>
+            <h3 className="font-serif text-xl text-text-primary break-words">{entry.location.name}</h3>
             <p className="mt-1 text-xs leading-5 text-text-muted">{entry.location.tagline}</p>
           </div>
           {!image && <ScoreBadge score={entry.conditions.score} />}
         </div>
 
-        <p className="mb-2 font-serif text-xl leading-tight text-text-primary">
+        <p className="mb-2 font-serif text-lg leading-snug text-text-primary break-words">
           {entry.conditions.headline}
         </p>
         <p className={safetyHighlights.length > 0 ? "mb-3 text-sm leading-6 text-text-secondary" : "mb-5 text-sm leading-6 text-text-secondary"}>

@@ -24,7 +24,7 @@ export function BridgeStatus({
         </div>
         <p className="text-xs font-semibold uppercase tracking-[0.18em]">Confederation Bridge</p>
       </div>
-      <p className="font-serif text-2xl">{status}</p>
+      <p className="font-serif text-2xl break-words">{status}</p>
       <p className="mt-2 text-sm leading-6">
         Sustained wind is {windSpeed} km/h. Motorcycles feel the bridge first, then taller vehicles,
         then everyone else.

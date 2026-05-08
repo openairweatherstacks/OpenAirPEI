@@ -175,7 +175,7 @@ export function TrailReviews() {
 
       {/* Leave a review CTA */}
       <div className="rounded-2xl border-2 border-dashed border-forest-light bg-forest-light/50 p-8 text-center">
-        <p className="font-serif text-2xl text-forest mb-2">Share your experience</p>
+        <p className="font-serif text-xl text-forest mb-2 break-words">Share your experience</p>
         <p className="text-text-secondary mb-6 max-w-md mx-auto">
           Have you hiked this trail? Leave a review to help other adventurers find the best conditions.
         </p>

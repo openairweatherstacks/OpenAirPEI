@@ -206,7 +206,7 @@ export default async function LocationPage({
                 <Waves className="h-4 w-4" />
                 <p className="text-xs font-semibold uppercase tracking-[0.2em]">Water temperature</p>
               </div>
-              <p className="font-serif text-3xl text-text-primary">{entry.waterTemp}°C</p>
+              <p className="font-serif text-2xl text-text-primary">{entry.waterTemp}°C</p>
               <p className="mt-1 text-sm text-text-secondary">{waterTempLabel(entry.waterTemp)}</p>
             </div>
           )}

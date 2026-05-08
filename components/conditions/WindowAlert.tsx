@@ -19,7 +19,7 @@ export function WindowAlert({
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sun-text">
             3-hour window
           </p>
-          <p className="font-serif text-xl text-text-primary">
+          <p className="font-serif text-lg text-text-primary break-words">
             {minutes === null
               ? "Conditions hold steady"
               : minutes === 0

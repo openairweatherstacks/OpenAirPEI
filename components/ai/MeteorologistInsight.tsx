@@ -7,7 +7,7 @@ export function MeteorologistInsight({ text }: { text: string }) {
         <Sparkles className="h-4 w-4" />
         <p className="text-xs font-semibold uppercase tracking-[0.2em]">Insight of the day</p>
       </div>
-      <p className="font-serif text-2xl leading-tight text-text-primary">{text}</p>
+      <p className="font-serif text-lg leading-snug text-text-primary break-words">{text}</p>
     </div>
   );
 }

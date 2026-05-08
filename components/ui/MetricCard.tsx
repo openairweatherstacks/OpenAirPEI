@@ -33,7 +33,7 @@ export function MetricCard({
           )}
         </div>
       )}
-      <p className="font-serif text-[1.08rem] leading-7 text-text-primary">{insight}</p>
+      <p className="font-serif text-[1.05rem] leading-6 text-text-primary break-words">{insight}</p>
       <p className="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-text-muted">
         {rawLabel}
       </p>
