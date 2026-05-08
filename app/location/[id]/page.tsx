@@ -102,8 +102,8 @@ export default async function LocationPage({
       )}
 
       <section className="space-y-3">
-        <div className="flex items-end justify-between gap-4">
-          <div>
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <div className="min-w-0">
             <p className="eyebrow mb-2">Map context</p>
             <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">{entry.location.name} on the island</h2>
           </div>
@@ -111,7 +111,7 @@ export default async function LocationPage({
             href={`https://www.google.com/maps/dir/?api=1&destination=${entry.location.lat},${entry.location.lng}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full bg-sun px-5 py-3 text-sm font-semibold text-[#2a2a2a] shadow-sun transition hover:bg-sun-deep"
+            className="inline-flex shrink-0 min-h-11 items-center gap-2 rounded-full bg-sun px-5 py-3 text-sm font-semibold text-[#2a2a2a] shadow-sun transition hover:bg-sun-deep"
           >
             <Navigation className="h-4 w-4" />
             Get directions

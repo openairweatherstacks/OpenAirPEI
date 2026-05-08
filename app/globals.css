@@ -69,10 +69,11 @@ body {
 }
 
 .section-title {
-  @apply font-serif font-bold leading-tight tracking-normal text-text-primary;
+  @apply font-serif font-semibold leading-tight text-text-primary;
   overflow-wrap: break-word;
   word-break: break-word;
   hyphens: auto;
+  letter-spacing: 0.01em;
 }
 
 .section-copy {

@@ -39,9 +39,9 @@ export default function HistoryContext({ forecastHigh }: Props) {
   }
 
   return (
-    <div className="mt-4 rounded-[1.75rem] bg-forest-light/40 border border-forest-light p-4 space-y-2">
+    <div className="rounded-[1.75rem] bg-forest-light/40 border border-forest-light p-4 space-y-2">
       <p className="text-xs font-semibold text-forest uppercase tracking-wide">
-        🗓️ Historical Context
+        Historical Context
       </p>
       <p className="text-sm text-text-primary leading-relaxed">
         {percentileNote || data.ai_narrative}
