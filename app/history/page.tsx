@@ -1,9 +1,19 @@
 import { Suspense } from 'react'
 import HistoryPageClient from './HistoryPageClient'
 
-export const metadata = {
-  title: 'PEI Weather History | OpenAir Atlantic',
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'PEI Weather History',
   description: 'Explore 150 years of Prince Edward Island weather records. Daily records, climate trends, and historical data for Charlottetown.',
+  openGraph: {
+    title: 'PEI Weather History — 150 Years of Climate Data | OpenAir Atlantic',
+    description: '150 years of daily weather records from Charlottetown Airport — the longest climate record on Prince Edward Island.',
+    url: 'https://openairatlantic.com/history',
+    images: [{ url: '/og-default.png', width: 1200, height: 630, alt: 'PEI Weather History — OpenAir Atlantic' }],
+  },
+  twitter: { card: 'summary_large_image', images: ['/og-default.png'] },
+  alternates: { canonical: 'https://openairatlantic.com/history' },
 }
 
 export default function HistoryPage() {

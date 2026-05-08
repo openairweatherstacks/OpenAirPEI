@@ -27,15 +27,64 @@ const barlowCondensed = Barlow_Condensed({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://openairatlantic.com"),
   title: {
-    default: "OpenAir Atlantic",
+    default: "OpenAir Atlantic — Smart Weather for the Outdoors",
     template: "%s | OpenAir Atlantic",
   },
-  metadataBase: new URL(getSiteUrl()),
   description:
-    "Real-time environmental intelligence for Prince Edward Island. OpenAir Atlantic turns island conditions into confident outdoor decisions.",
+    "Real-time outdoor conditions for Prince Edward Island. Live weather, air quality, tides, and UV — translated into plain-English verdicts for 16 PEI locations.",
   applicationName: "OpenAir Atlantic",
-
+  keywords: [
+    "PEI weather",
+    "Prince Edward Island weather",
+    "Cavendish beach conditions",
+    "PEI outdoor conditions",
+    "should I go outside PEI",
+    "PEI tide times",
+    "Confederation Bridge wind",
+    "PEI air quality",
+    "openairatlantic",
+  ],
+  authors: [{ name: "OpenAir Atlantic", url: "https://openairatlantic.com" }],
+  creator: "OpenAir Atlantic",
+  publisher: "OpenAir Atlantic",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_CA",
+    url: "https://openairatlantic.com",
+    siteName: "OpenAir Atlantic",
+    title: "OpenAir Atlantic — Smart Weather for the Outdoors",
+    description: "Real-time outdoor conditions for Prince Edward Island. Should you go outside right now? We tell you.",
+    images: [
+      {
+        url: "/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "OpenAir Atlantic — Smart Weather for PEI",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "OpenAir Atlantic — Smart Weather for the Outdoors",
+    description: "Real-time outdoor conditions for Prince Edward Island.",
+    images: ["/og-default.png"],
+  },
+  alternates: {
+    canonical: "https://openairatlantic.com",
+  },
   verification: {
     google: "iymnYwJFYxMYT2yhI1kH8dS7Z8RB6df3Fo-SBNQxejg",
   },

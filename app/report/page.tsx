@@ -1,4 +1,17 @@
+import type { Metadata } from "next";
 import { Camera, Flag, MapPinned, MessageSquareMore } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Report Conditions",
+  description: "Submit a community conditions report for any PEI location. Help others know what's really happening on the ground.",
+  openGraph: {
+    title: "Report Conditions | OpenAir Atlantic",
+    description: "Submit a community conditions report for any PEI location.",
+    url: "https://openairatlantic.com/report",
+    images: [{ url: "/og-default.png", width: 1200, height: 630, alt: "Report Conditions — OpenAir Atlantic" }],
+  },
+  alternates: { canonical: "https://openairatlantic.com/report" },
+};
 
 export default function ReportPage() {
   return (

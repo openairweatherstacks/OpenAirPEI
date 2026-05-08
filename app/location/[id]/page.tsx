@@ -24,6 +24,8 @@ import { waterTempLabel } from "@/lib/water";
 import { ReviewForm } from "@/components/reviews/ReviewForm";
 import { ReviewList } from "@/components/reviews/ReviewList";
 import HistoryContext from "@/components/weather/HistoryContext";
+import { LocationJsonLd } from "@/components/seo/LocationJsonLd";
+import { WeatherFaqJsonLd } from "@/components/seo/WeatherFaqJsonLd";
 
 export const revalidate = 600;
 
@@ -45,9 +47,35 @@ export async function generateMetadata({
     };
   }
 
+  const name = entry.location.name;
+  const score = entry.conditions.score;
+  const desc = `${score} conditions at ${name} right now. ${entry.conditions.summary.slice(0, 120)}`;
+
   return {
-    title: entry.location.name,
-    description: entry.conditions.summary,
+    title: name,
+    description: desc,
+    openGraph: {
+      title: `${name} — ${score} conditions | OpenAir Atlantic`,
+      description: desc,
+      url: `https://openairatlantic.com/location/${id}`,
+      images: [
+        {
+          url: `/api/og?location=${encodeURIComponent(name)}&score=${encodeURIComponent(score)}`,
+          width: 1200,
+          height: 630,
+          alt: `${name} outdoor conditions — OpenAir Atlantic`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${name} — ${score} | OpenAir Atlantic`,
+      description: desc,
+      images: [`/api/og?location=${encodeURIComponent(name)}&score=${encodeURIComponent(score)}`],
+    },
+    alternates: {
+      canonical: `https://openairatlantic.com/location/${id}`,
+    },
   };
 }
 
@@ -65,6 +93,18 @@ export default async function LocationPage({
 
   return (
     <div className="page-shell space-y-6">
+      <LocationJsonLd
+        name={entry.location.name}
+        description={entry.location.tagline ?? entry.conditions.summary}
+        url={`https://openairatlantic.com/location/${id}`}
+        lat={entry.location.lat}
+        lng={entry.location.lng}
+      />
+      {entry.location.faqs && entry.location.faqs.length > 0 && (
+        <WeatherFaqJsonLd
+          faqs={entry.location.faqs.map(({ q, a }) => ({ question: q, answer: a }))}
+        />
+      )}
       <div className="flex items-center gap-3 text-sm font-semibold text-text-secondary">
         <Link href="/" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm">
           <ArrowLeft className="h-4 w-4" />

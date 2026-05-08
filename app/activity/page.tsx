@@ -1,6 +1,20 @@
 export const revalidate = 600;
 
+import type { Metadata } from "next";
 import { Bike, Camera, Footprints, Waves } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Activity Planner",
+  description: "Find the best outdoor activity on PEI right now. Swimming, cycling, hiking, and more — ranked by today's conditions across all locations.",
+  openGraph: {
+    title: "Activity Planner — What to Do on PEI Today | OpenAir Atlantic",
+    description: "Find the best outdoor activity on PEI right now. Swimming, cycling, hiking, and more — ranked by today's conditions.",
+    url: "https://openairatlantic.com/activity",
+    images: [{ url: "/og-default.png", width: 1200, height: 630, alt: "OpenAir Atlantic Activity Planner" }],
+  },
+  twitter: { card: "summary_large_image", images: ["/og-default.png"] },
+  alternates: { canonical: "https://openairatlantic.com/activity" },
+};
 
 import { ScoreBadge } from "@/components/conditions/ScoreBadge";
 import { MetricCard } from "@/components/ui/MetricCard";

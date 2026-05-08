@@ -1,9 +1,18 @@
 import { Suspense } from 'react'
 import { FAQClient } from '@/components/faq/FAQClient'
 
-export const metadata = {
-  title: 'FAQ | OpenAir Atlantic',
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'FAQ',
   description: 'Frequently asked questions about OpenAir Atlantic weather intelligence for Prince Edward Island.',
+  openGraph: {
+    title: 'FAQ — OpenAir Atlantic',
+    description: 'Frequently asked questions about OpenAir Atlantic weather intelligence for Prince Edward Island.',
+    url: 'https://openairatlantic.com/faq',
+    images: [{ url: '/og-default.png', width: 1200, height: 630, alt: 'FAQ — OpenAir Atlantic' }],
+  },
+  alternates: { canonical: 'https://openairatlantic.com/faq' },
 }
 
 export default function FAQPage() {

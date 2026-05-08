@@ -12,6 +12,14 @@ export const revalidate = 600;
 export const metadata: Metadata = {
   title: "Explore PEI",
   description: "Browse beaches, parks, trails, and landmarks across Prince Edward Island by today's conditions.",
+  openGraph: {
+    title: "Explore PEI — All Locations by Today's Conditions | OpenAir Atlantic",
+    description: "Browse beaches, parks, trails, and landmarks across Prince Edward Island by today's conditions.",
+    url: "https://openairatlantic.com/explore",
+    images: [{ url: "/og-default.png", width: 1200, height: 630, alt: "Explore PEI — OpenAir Atlantic" }],
+  },
+  twitter: { card: "summary_large_image", images: ["/og-default.png"] },
+  alternates: { canonical: "https://openairatlantic.com/explore" },
 };
 
 type Category = {

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { ChevronDown, ShieldAlert, Truck } from "lucide-react";
 import { notFound } from "next/navigation";
 
@@ -7,9 +8,17 @@ import { getLocationConditions } from "@/lib/environment";
 
 export const revalidate = 600;
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Confederation Bridge",
-  description: "Live wind conditions, vehicle restrictions, and crossing guidance for Confederation Bridge.",
+  description: "Live wind conditions, vehicle restrictions, and crossing guidance for Confederation Bridge — updated every 10 minutes.",
+  openGraph: {
+    title: "Confederation Bridge Status — Live Wind & Restrictions | OpenAir Atlantic",
+    description: "Live wind conditions and vehicle restrictions for Confederation Bridge. Updated every 10 minutes.",
+    url: "https://openairatlantic.com/bridge",
+    images: [{ url: "/og-default.png", width: 1200, height: 630, alt: "Confederation Bridge status — OpenAir Atlantic" }],
+  },
+  twitter: { card: "summary_large_image", images: ["/og-default.png"] },
+  alternates: { canonical: "https://openairatlantic.com/bridge" },
 };
 
 const FAQS = [

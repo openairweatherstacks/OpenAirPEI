@@ -1,6 +1,20 @@
 export const revalidate = 600;
 
+import type { Metadata } from "next";
 import { Wind } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Air Quality",
+  description: "Real-time AQHI air quality readings across Prince Edward Island. Plain-English health guidance for kids, runners, and asthma-prone visitors.",
+  openGraph: {
+    title: "PEI Air Quality — Real-Time AQHI | OpenAir Atlantic",
+    description: "Real-time AQHI air quality readings across Prince Edward Island. Plain-English health guidance for everyone.",
+    url: "https://openairatlantic.com/air",
+    images: [{ url: "/og-default.png", width: 1200, height: 630, alt: "OpenAir Atlantic Air Quality" }],
+  },
+  twitter: { card: "summary_large_image", images: ["/og-default.png"] },
+  alternates: { canonical: "https://openairatlantic.com/air" },
+};
 
 import { AirQualityBar } from "@/components/ui/AirQualityBar";
 import { MetricCard } from "@/components/ui/MetricCard";
