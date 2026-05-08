@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ChevronDown, Droplets, Gauge, Mountain, Navigation, ParkingCircle, PawPrint, Thermometer, Waves, Wind } from "lucide-react";
+import { ArrowLeft, ChevronDown, Droplets, Gauge, Navigation, ParkingCircle, PawPrint, Thermometer, Waves, Wind } from "lucide-react";
 import { notFound } from "next/navigation";
 
 import { MeteorologistInsight } from "@/components/ai/MeteorologistInsight";
@@ -14,6 +14,7 @@ import { AirQualityBar } from "@/components/ui/AirQualityBar";
 import { BridgeStatus } from "@/components/ui/BridgeStatus";
 import { CommunityNoticeCard } from "@/components/ui/CommunityNoticeCard";
 import { MetricCard } from "@/components/ui/MetricCard";
+import { DynamicFAQSection } from "@/components/faq/DynamicFAQSection";
 import { TideCard } from "@/components/ui/TideCard";
 import { UVTimer } from "@/components/ui/UVTimer";
 import { WaterfrontRiskCard } from "@/components/ui/WaterfrontRiskCard";
@@ -181,6 +182,7 @@ export default async function LocationPage({
             </p>
           </div>
           <UVTimer uvIndex={entry.weather.uvIndex} />
+          <DynamicFAQSection />
           {entry.conditions.bridgeStatus && (
             <BridgeStatus
               status={entry.conditions.bridgeStatus}
@@ -210,12 +212,6 @@ export default async function LocationPage({
               <p className="mt-1 text-sm text-text-secondary">{waterTempLabel(entry.waterTemp)}</p>
             </div>
           )}
-          <MetricCard
-            icon={Mountain}
-            insight="OpenAir always shows the call and the proof together: the action-oriented read first, then the raw number under it so locals and visitors can trust the same screen."
-            rawLabel={`Source · ${entry.source === "hybrid" ? "live data blended with local defaults" : "sample seed data"}`}
-            accentClassName="text-sun-text"
-          />
         </div>
       </section>
 
