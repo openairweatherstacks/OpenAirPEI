@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description: "OpenAir Atlantic privacy policy — how we handle your data.",
 };
 
-const LAST_UPDATED = "April 16, 2026";
+const LAST_UPDATED = "May 9, 2026";
 
 export default function PrivacyPage() {
   return (
@@ -28,7 +28,7 @@ export default function PrivacyPage() {
             body: [
               "OpenAir Atlantic does not require you to create an account. You can use the app entirely without providing any personal information.",
               "If you grant location permission in your browser, we use your approximate location to show you the nearest PEI locations. This data is processed locally in your browser and is not transmitted to our servers.",
-              "We may collect anonymous usage analytics (page views, feature usage) to understand how people use the app. This data does not identify you personally.",
+              "If you accept optional tracking, we may collect usage analytics such as page views, referrers, and feature interactions to understand how people use the app and measure marketing performance.",
               "If you submit a community conditions report (when that feature is available), we collect the information you voluntarily provide in the form.",
             ],
           },
@@ -36,8 +36,8 @@ export default function PrivacyPage() {
             title: "Cookies and local storage",
             body: [
               "We use browser local storage to remember your preferences (e.g. cookie consent, last-viewed location). This data stays on your device.",
-              "We may use analytics cookies (e.g. from a privacy-respecting analytics provider) to understand aggregate usage. You can decline these through our cookie consent banner.",
-              "We do not use advertising cookies or sell your data to advertisers.",
+              "We use optional analytics and marketing cookies, including Google Analytics and Meta Pixel, to measure traffic and ad campaign performance. These scripts load only if you accept them through our cookie consent banner.",
+              "We do not sell your personal information to advertisers.",
             ],
           },
           {
@@ -52,14 +52,14 @@ export default function PrivacyPage() {
             body: [
               "Map tiles are served by OpenStreetMap. See openstreetmap.org/privacy for their policy.",
               "AI summaries are generated via the Anthropic API. See anthropic.com/privacy for their policy.",
-              "We do not share your data with any other third parties.",
+              "If you accept optional tracking, website analytics and ad measurement may be provided by Google and Meta. See policies.google.com/privacy and privacycenter.instagram.com/policy for their policies.",
             ],
           },
           {
             title: "Data retention",
             body: [
               "We do not store personal data on our servers. Any preferences stored in your browser remain there until you clear them.",
-              "Anonymous analytics data may be retained for up to 12 months to identify usage trends.",
+              "Optional analytics and marketing measurement data may be retained for up to 12 months to identify usage trends and campaign performance.",
             ],
           },
           {

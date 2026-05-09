@@ -4,13 +4,13 @@ import Script from "next/script";
 import type { ReactNode } from "react";
 import "leaflet/dist/leaflet.css";
 
+import { AnalyticsScripts } from "@/components/analytics/AnalyticsScripts";
 import { BetaBanner } from "@/components/layout/BetaBanner";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { InstallPrompt } from "@/components/layout/InstallPrompt";
-import { getSiteUrl } from "@/lib/site";
 
 import "./globals.css";
 
@@ -122,18 +122,12 @@ export default function RootLayout({
           <BottomNav />
           <InstallPrompt />
           <CookieBanner />
+          <AnalyticsScripts />
         </div>
         <Script id="sw-register" strategy="afterInteractive">{`
           if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/sw.js');
           }
-        `}</Script>
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-DSQJZ4DR81" strategy="afterInteractive" />
-        <Script id="ga-init" strategy="afterInteractive">{`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-DSQJZ4DR81');
         `}</Script>
       </body>
     </html>
