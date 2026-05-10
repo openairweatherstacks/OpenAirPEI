@@ -18,6 +18,7 @@ export type BridgeStatusType =
 export type LocationType =
   | "beach"
   | "city"
+  | "community"
   | "park"
   | "trail"
   | "bridge"

@@ -21,6 +21,8 @@
   --color-text-primary: #2a2a2a;
   --color-text-secondary: #6b7366;
   --color-text-muted: #5c6557;
+  --shadow-card: 0 18px 42px rgba(33, 54, 24, 0.06), 0 3px 12px rgba(33, 54, 24, 0.04);
+  --shadow-card-soft: 0 10px 26px rgba(33, 54, 24, 0.05), 0 2px 8px rgba(33, 54, 24, 0.035);
 }
 
 html {
@@ -32,9 +34,9 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at top left, rgba(245, 166, 35, 0.16), transparent 34%),
-    radial-gradient(circle at top right, rgba(125, 200, 50, 0.14), transparent 32%),
-    linear-gradient(180deg, #fffdf6 0%, #fafaf7 28%, #f7faf4 100%);
+    radial-gradient(circle at top left, rgba(245, 166, 35, 0.08), transparent 38%),
+    radial-gradient(circle at top right, rgba(125, 200, 50, 0.07), transparent 36%),
+    linear-gradient(180deg, #fffef8 0%, #fbfbf8 34%, #f7faf5 100%);
   color: var(--color-text-primary);
 }
 
@@ -56,7 +58,21 @@ body {
 }
 
 .panel {
-  @apply rounded-[2rem] border border-white/70 bg-white/85 shadow-[0_24px_80px_rgba(42,42,42,0.07)] backdrop-blur;
+  @apply rounded-[1.75rem] border bg-white;
+  border-color: rgba(232, 237, 228, 0.96);
+  box-shadow: var(--shadow-card);
+}
+
+.surface-card {
+  @apply rounded-[1.75rem] border bg-white;
+  border-color: rgba(232, 237, 228, 0.96);
+  box-shadow: var(--shadow-card);
+}
+
+.surface-card-soft {
+  @apply rounded-[1.75rem] border bg-white;
+  border-color: rgba(232, 237, 228, 0.92);
+  box-shadow: var(--shadow-card-soft);
 }
 
 .eyebrow {

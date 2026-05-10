@@ -55,7 +55,7 @@ export function ConditionsCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.45, ease: "easeOut" }}
-      className="flex h-full flex-col overflow-hidden rounded-[2rem] border border-white/70 bg-white/90 shadow-[0_24px_80px_rgba(42,42,42,0.08)] backdrop-blur"
+      className="surface-card flex h-full flex-col overflow-hidden rounded-[2rem]"
     >
       {image && (
         <div className="relative h-44 w-full">
@@ -106,13 +106,13 @@ export function ConditionsCard({
         )}
 
         <div className="grid gap-3 text-sm sm:grid-cols-2">
-          <div className="rounded-3xl bg-forest-light/70 p-3">
+          <div className="rounded-[1.5rem] bg-forest-light/70 p-3">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-forest">Right now</p>
             <p className="mt-1 font-serif text-lg text-text-primary">
               {entry.weather.temperature}°C, feels like {entry.weather.feelsLike}°C
             </p>
           </div>
-          <div className="rounded-3xl bg-sun-light/70 p-3">
+          <div className="rounded-[1.5rem] bg-sun-light/70 p-3">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sun-text">Wind</p>
             <p className="mt-1 flex items-center gap-2 font-serif text-lg text-text-primary">
               <Wind className="h-4 w-4 text-sun-deep" />
@@ -121,7 +121,7 @@ export function ConditionsCard({
           </div>
         </div>
 
-        <div className="mt-3 flex items-center justify-between rounded-3xl border border-border bg-bg px-4 py-3">
+        <div className="mt-3 flex items-center justify-between rounded-[1.5rem] border border-border bg-bg px-4 py-3">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-text-muted">Paw index</p>
             <p className="mt-0.5 text-xs leading-5 text-text-secondary">{entry.pawIndex.statement}</p>
@@ -130,7 +130,7 @@ export function ConditionsCard({
         </div>
 
         {entry.waterTemp !== null && (
-          <div className="mt-3 flex items-center justify-between rounded-3xl border border-[#cce8f4] bg-[#eef7fc] px-4 py-3">
+          <div className="mt-3 flex items-center justify-between rounded-[1.5rem] border border-[#cce8f4] bg-[#eef7fc] px-4 py-3">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0a527a]">
                 Water temp
@@ -145,17 +145,17 @@ export function ConditionsCard({
 
         {!compact && (
           <div className="mt-auto pt-5">
-          <div className="flex items-center justify-between gap-3 rounded-3xl border border-border bg-bg px-4 py-3">
-            <p className="text-xs uppercase tracking-[0.18em] text-text-muted">
-              Updated {formatObservationTime(entry.weather.observationTime)}
-            </p>
-            <Link
-              href={`/location/${entry.location.id}`}
-              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-forest-deep px-4 py-2 text-sm font-semibold text-white transition hover:bg-forest-deep"
-            >
-              Full outlook <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
+            <div className="flex items-center justify-between gap-3 rounded-[1.5rem] border border-border bg-bg px-4 py-3">
+              <p className="text-xs uppercase tracking-[0.18em] text-text-muted">
+                Updated {formatObservationTime(entry.weather.observationTime)}
+              </p>
+              <Link
+                href={`/location/${entry.location.id}`}
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-forest-deep px-4 py-2 text-sm font-semibold text-white transition hover:bg-forest-deep"
+              >
+                Full outlook <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
         )}
       </div>

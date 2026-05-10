@@ -28,6 +28,19 @@ interface OpenMeteoResponse {
   };
 }
 
+interface OpenMeteoDailyResponse {
+  daily: {
+    time: string[];
+    weather_code: number[];
+    temperature_2m_max: number[];
+    temperature_2m_min: number[];
+    precipitation_probability_max: number[];
+    precipitation_sum: number[];
+    wind_speed_10m_max: number[];
+    uv_index_max: number[];
+  };
+}
+
 interface EnvironmentCanadaObservationResponse {
   features?: Array<{
     properties?: Record<string, unknown>;
@@ -35,6 +48,19 @@ interface EnvironmentCanadaObservationResponse {
 }
 
 type PartialWeatherSnapshot = Partial<WeatherSnapshot>;
+type ForecastCoordinates = Pick<Location, "lat" | "lng">;
+
+export interface DailyForecastSnapshot {
+  date: string;
+  conditionText: string;
+  conditionCode: number | null;
+  high: number;
+  low: number;
+  precipProbability: number;
+  precipAmount: number;
+  maxWindSpeed: number;
+  uvIndexMax: number;
+}
 
 function degreesToCardinal(deg: number): string {
   const dirs = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
@@ -127,7 +153,7 @@ function getCurrentPrecipProbability(
   return Math.round(hourly.precipitation_probability[hourlyIndex] ?? 0);
 }
 
-async function fetchOpenMeteoForecast(location: Location): Promise<PartialWeatherSnapshot | null> {
+export async function fetchOpenMeteoForecast(location: ForecastCoordinates): Promise<PartialWeatherSnapshot | null> {
   try {
     const params = new URLSearchParams({
       latitude: location.lat.toString(),
@@ -183,6 +209,51 @@ async function fetchOpenMeteoForecast(location: Location): Promise<PartialWeathe
     };
   } catch {
     return null;
+  }
+}
+
+export async function fetchOpenMeteoDailyForecast(
+  location: ForecastCoordinates,
+): Promise<DailyForecastSnapshot[]> {
+  try {
+    const params = new URLSearchParams({
+      latitude: location.lat.toString(),
+      longitude: location.lng.toString(),
+      daily: [
+        "weather_code",
+        "temperature_2m_max",
+        "temperature_2m_min",
+        "precipitation_probability_max",
+        "precipitation_sum",
+        "wind_speed_10m_max",
+        "uv_index_max",
+      ].join(","),
+      wind_speed_unit: "kmh",
+      timezone: "America/Halifax",
+      forecast_days: "7",
+    });
+
+    const res = await fetch(`https://api.open-meteo.com/v1/forecast?${params.toString()}`, {
+      next: { revalidate: CACHE_DURATIONS.currentConditions },
+    });
+
+    if (!res.ok) return [];
+
+    const json = (await res.json()) as OpenMeteoDailyResponse;
+
+    return json.daily.time.map((date, index) => ({
+      date,
+      conditionText: wmoToConditionText(json.daily.weather_code[index] ?? 0),
+      conditionCode: json.daily.weather_code[index] ?? null,
+      high: Math.round((json.daily.temperature_2m_max[index] ?? 0) * 10) / 10,
+      low: Math.round((json.daily.temperature_2m_min[index] ?? 0) * 10) / 10,
+      precipProbability: Math.round(json.daily.precipitation_probability_max[index] ?? 0),
+      precipAmount: Math.round((json.daily.precipitation_sum[index] ?? 0) * 10) / 10,
+      maxWindSpeed: Math.round(json.daily.wind_speed_10m_max[index] ?? 0),
+      uvIndexMax: Math.round(((json.daily.uv_index_max[index] ?? 0) + Number.EPSILON) * 10) / 10,
+    }));
+  } catch {
+    return [];
   }
 }
 
