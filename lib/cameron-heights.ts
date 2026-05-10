@@ -1,11 +1,20 @@
 import { cache } from "react";
 
-import { buildLocationConditionsEntry, getLiveAqhiReading } from "@/lib/environment";
+import { buildLocationConditionsEntry, getLiveAqhiReading, getLocationConditions } from "@/lib/environment";
 import { PEI_AQHI, PEI_STATIONS } from "@/lib/data/locations";
 import { fetchOpenMeteoDailyForecast, fetchOpenMeteoForecast, type DailyForecastSnapshot } from "@/lib/weather";
 import { getActiveEnvironmentCanadaAlerts, getEnvironmentCanadaAlertsForLocation } from "@/lib/safety";
 import { getTempestLatestObservation, getTempestStation } from "@/lib/tempest";
 import type { Location, LocationConditions, WeatherSnapshot } from "@/lib/types";
+
+export interface AirportComparison {
+  tempDiff: number;
+  windDiff: number;
+  aqhiDiff: number;
+  airportTemp: number;
+  airportWind: number;
+  airportAqhi: number;
+}
 
 export interface CameronHeightsDashboardData {
   entry: LocationConditions;
@@ -21,6 +30,7 @@ export interface CameronHeightsDashboardData {
   lightningNow: number;
   lightningLastHour: number;
   lightningLast3Hours: number;
+  airportComparison: AirportComparison | null;
 }
 
 function degreesToCardinal(deg: number): string {
@@ -96,11 +106,12 @@ export const getCameronHeightsDashboardData = cache(
     if (!station || !observation) return null;
 
     const location = buildCameronHeightsLocation(station.latitude, station.longitude);
-    const [forecast, sevenDayForecast, aqhi, activeAlerts] = await Promise.all([
+    const [forecast, sevenDayForecast, aqhi, activeAlerts, airportEntry] = await Promise.all([
       fetchOpenMeteoForecast(location),
       fetchOpenMeteoDailyForecast(location),
       getLiveAqhiReading(PEI_AQHI.charlottetown),
       getActiveEnvironmentCanadaAlerts(),
+      getLocationConditions("charlottetown"),
     ]);
 
     const weather = mergeTempestAndForecast(observation, forecast, aqhi ?? 2);
@@ -114,8 +125,20 @@ export const getCameronHeightsDashboardData = cache(
       source: "live",
     });
 
+    const airportComparison: AirportComparison | null = airportEntry
+      ? {
+          tempDiff: Math.round((weather.temperature - airportEntry.weather.temperature) * 10) / 10,
+          windDiff: weather.windSpeed - airportEntry.weather.windSpeed,
+          aqhiDiff: weather.aqhi - airportEntry.weather.aqhi,
+          airportTemp: airportEntry.weather.temperature,
+          airportWind: airportEntry.weather.windSpeed,
+          airportAqhi: airportEntry.weather.aqhi,
+        }
+      : null;
+
     return {
       entry,
+      airportComparison,
       stationName: observation.stationName,
       stationPublicName: observation.publicName,
       stationDeviceId: station.deviceId,

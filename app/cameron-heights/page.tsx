@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CloudRain, Gauge, Radio, SunMedium, Wind, Zap } from "lucide-react";
+import { AlertTriangle, ArrowDown, ArrowUp, CloudRain, Gauge, Lightbulb, Moon, Radio, Sunrise, SunMedium, Wind, Zap } from "lucide-react";
 import Image from "next/image";
 
 import { MeteorologistInsight } from "@/components/ai/MeteorologistInsight";
@@ -78,6 +78,53 @@ function describeRain(precipToday: number, precipLastHour: number) {
   return "No measurable rain has shown up at the station today, so the neighbourhood is still working with a dry board.";
 }
 
+interface ActionItem {
+  icon: typeof Lightbulb;
+  text: string;
+}
+
+function buildActionRecommendations(dashboard: Awaited<ReturnType<typeof getCameronHeightsDashboardData>>): ActionItem[] {
+  if (!dashboard) return [];
+  const actions: ActionItem[] = [];
+  const { entry } = dashboard;
+  const wind = entry.weather.windSpeed;
+  const gusts = entry.weather.gustSpeed ?? wind;
+  const temp = entry.weather.temperature;
+  const uv = entry.weather.uvIndex;
+  const aqhi = entry.weather.aqhi;
+
+  if (dashboard.lightningLastHour > 0) {
+    actions.push({ icon: Zap, text: "Lightning active nearby — stay indoors, avoid showers, unplug sensitive electronics." });
+  }
+  if (gusts >= 60) {
+    actions.push({ icon: Wind, text: `Park in the garage — gusts to ${gusts} km/h. Secure trash bins and patio furniture.` });
+  } else if (gusts >= 40) {
+    actions.push({ icon: Wind, text: `Tie down anything light outside — gusts around ${gusts} km/h.` });
+  }
+  if (dashboard.precipLastHour >= 1) {
+    actions.push({ icon: CloudRain, text: "Rain is active — close windows and bring laundry indoors." });
+  }
+  if (aqhi >= 7) {
+    actions.push({ icon: AlertTriangle, text: "Air quality is poor — kids, seniors, and anyone with asthma should stay indoors." });
+  } else if (aqhi <= 2 && temp >= 15 && temp <= 25 && wind < 25) {
+    actions.push({ icon: Lightbulb, text: "Excellent air and comfortable temps — open the windows and air the house out." });
+  }
+  if (uv >= 7) {
+    actions.push({ icon: SunMedium, text: "UV is high — sunscreen before the kids head out, and reapply every 2 hours." });
+  }
+  if (temp <= 0 && wind >= 20) {
+    actions.push({ icon: AlertTriangle, text: "Wind chill is biting — bundle up before stepping out, especially for the school walk." });
+  }
+  if (temp >= 28) {
+    actions.push({ icon: AlertTriangle, text: "Hot day — hydrate, check on neighbours, and keep pets off pavement." });
+  }
+
+  if (actions.length === 0) {
+    actions.push({ icon: Lightbulb, text: "Nothing pressing right now — the neighbourhood is calm. Enjoy it." });
+  }
+  return actions.slice(0, 3);
+}
+
 export default async function CameronHeightsPage() {
   const dashboard = await getCameronHeightsDashboardData();
 
@@ -97,7 +144,11 @@ export default async function CameronHeightsPage() {
     );
   }
 
-  const { entry } = dashboard;
+  const { entry, airportComparison } = dashboard;
+  const actions = buildActionRecommendations(dashboard);
+  const lightningActive = dashboard.lightningLastHour > 0;
+  const todayForecast = dashboard.sevenDayForecast[0];
+  const tomorrowForecast = dashboard.sevenDayForecast[1];
 
   return (
     <div className="space-y-8 pb-6">
@@ -118,7 +169,41 @@ export default async function CameronHeightsPage() {
         </div>
       </section>
 
-      <div className="relative z-10 mx-auto -mt-16 max-w-7xl px-4 sm:-mt-20 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto -mt-16 max-w-7xl px-4 sm:-mt-20 sm:px-6 lg:px-8 space-y-6">
+        {lightningActive && (
+          <div className="rounded-[1.5rem] border-2 border-red-500 bg-red-50 p-5 shadow-lg animate-pulse">
+            <div className="flex items-start gap-3">
+              <Zap className="h-6 w-6 text-red-600 shrink-0 mt-0.5" />
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.22em] text-red-700 mb-1">Lightning active — get inside</p>
+                <p className="font-serif text-xl text-red-900 leading-snug">
+                  {dashboard.lightningLastHour} strike{dashboard.lightningLastHour === 1 ? "" : "s"} in the last hour. Stay indoors, avoid plumbing and electronics, and wait 30 minutes after the last thunder before heading back out.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div className="rounded-[1.75rem] border border-forest/30 bg-gradient-to-br from-forest-light to-leaf-light p-5 shadow-sm sm:p-6">
+          <div className="mb-4 flex items-center gap-2">
+            <Lightbulb className="h-4 w-4 text-forest" />
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-forest">What to do right now</p>
+          </div>
+          <ul className="space-y-3">
+            {actions.map((action, i) => {
+              const Icon = action.icon;
+              return (
+                <li key={i} className="flex items-start gap-3">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white shadow-sm">
+                    <Icon className="h-4 w-4 text-forest" />
+                  </div>
+                  <p className="font-serif text-lg leading-7 text-text-primary break-words">{action.text}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+
         <section className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="panel p-6 sm:p-8">
             <div className="max-w-3xl">
@@ -189,6 +274,114 @@ export default async function CameronHeightsPage() {
         </section>
 
         {entry.communityNotice && <CommunityNoticeCard notice={entry.communityNotice} />}
+
+        {airportComparison && (
+          <section className="rounded-[1.75rem] border border-border bg-white p-6 shadow-sm">
+            <div className="mb-4 flex items-center gap-2">
+              <Radio className="h-4 w-4 text-forest" />
+              <p className="eyebrow">Your station vs. the airport</p>
+            </div>
+            <p className="font-serif text-xl leading-snug text-text-primary mb-5 break-words">
+              {(() => {
+                const parts: string[] = [];
+                if (Math.abs(airportComparison.tempDiff) >= 1) {
+                  parts.push(`${Math.abs(airportComparison.tempDiff).toFixed(1)}°C ${airportComparison.tempDiff > 0 ? "warmer" : "cooler"}`);
+                }
+                if (Math.abs(airportComparison.windDiff) >= 5) {
+                  parts.push(`wind is ${Math.abs(airportComparison.windDiff)} km/h ${airportComparison.windDiff > 0 ? "stronger" : "lighter"}`);
+                }
+                if (parts.length === 0) {
+                  return "Cameron Heights is reading nearly identical to the airport right now — a calm, even day across town.";
+                }
+                return `Cameron Heights is ${parts.join(", ")} than Charlottetown Airport right now — this is why your on-site read matters.`;
+              })()}
+            </p>
+            <div className="grid gap-3 sm:grid-cols-3">
+              <div className="rounded-2xl border border-border bg-[#fafaf7] p-4">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-text-muted mb-2">Temperature</p>
+                <div className="flex items-baseline gap-2">
+                  <p className="font-serif text-2xl text-text-primary">{entry.weather.temperature}°C</p>
+                  <span className="text-xs text-text-muted">vs {airportComparison.airportTemp}°C</span>
+                </div>
+                <div className={`mt-2 inline-flex items-center gap-1 text-xs font-semibold ${airportComparison.tempDiff > 0 ? "text-sun-text" : airportComparison.tempDiff < 0 ? "text-blue-600" : "text-text-muted"}`}>
+                  {airportComparison.tempDiff > 0 ? <ArrowUp className="h-3 w-3" /> : airportComparison.tempDiff < 0 ? <ArrowDown className="h-3 w-3" /> : null}
+                  {airportComparison.tempDiff > 0 ? "+" : ""}{airportComparison.tempDiff}°C
+                </div>
+              </div>
+              <div className="rounded-2xl border border-border bg-[#fafaf7] p-4">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-text-muted mb-2">Wind</p>
+                <div className="flex items-baseline gap-2">
+                  <p className="font-serif text-2xl text-text-primary">{entry.weather.windSpeed} km/h</p>
+                  <span className="text-xs text-text-muted">vs {airportComparison.airportWind} km/h</span>
+                </div>
+                <div className={`mt-2 inline-flex items-center gap-1 text-xs font-semibold ${airportComparison.windDiff > 0 ? "text-sun-text" : airportComparison.windDiff < 0 ? "text-forest" : "text-text-muted"}`}>
+                  {airportComparison.windDiff > 0 ? <ArrowUp className="h-3 w-3" /> : airportComparison.windDiff < 0 ? <ArrowDown className="h-3 w-3" /> : null}
+                  {airportComparison.windDiff > 0 ? "+" : ""}{airportComparison.windDiff} km/h
+                </div>
+              </div>
+              <div className="rounded-2xl border border-border bg-[#fafaf7] p-4">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-text-muted mb-2">Air quality (AQHI)</p>
+                <div className="flex items-baseline gap-2">
+                  <p className="font-serif text-2xl text-text-primary">{entry.weather.aqhi}</p>
+                  <span className="text-xs text-text-muted">vs {airportComparison.airportAqhi}</span>
+                </div>
+                <div className="mt-2 text-xs text-text-muted">
+                  Shared across the city
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {(todayForecast || tomorrowForecast) && (
+          <section className="grid gap-4 lg:grid-cols-2">
+            {todayForecast && (
+              <div className="rounded-[1.75rem] border border-border bg-gradient-to-br from-[#1a2238]/95 to-[#3a4a6b]/90 p-6 shadow-sm text-white">
+                <div className="mb-4 flex items-center gap-2">
+                  <Moon className="h-4 w-4 text-white/80" />
+                  <p className="text-xs font-bold uppercase tracking-[0.22em] text-white/80">Tonight</p>
+                </div>
+                <p className="font-serif text-2xl mb-3 break-words leading-snug">
+                  Low of {todayForecast.low}°C · {todayForecast.conditionText}
+                </p>
+                <div className="grid grid-cols-2 gap-3 text-sm">
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/60 mb-1">Rain chance</p>
+                    <p className="font-medium">{todayForecast.precipProbability}%</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/60 mb-1">Wind peak</p>
+                    <p className="font-medium">{todayForecast.maxWindSpeed} km/h</p>
+                  </div>
+                </div>
+              </div>
+            )}
+            {tomorrowForecast && (
+              <div className="rounded-[1.75rem] border border-border bg-gradient-to-br from-sun-light to-white p-6 shadow-sm">
+                <div className="mb-4 flex items-center gap-2">
+                  <Sunrise className="h-4 w-4 text-sun-text" />
+                  <p className="text-xs font-bold uppercase tracking-[0.22em] text-sun-text">Tomorrow morning</p>
+                </div>
+                <p className="font-serif text-2xl mb-3 text-text-primary break-words leading-snug">
+                  {tomorrowForecast.low}° → {tomorrowForecast.high}°C · {tomorrowForecast.conditionText}
+                </p>
+                <div className="grid grid-cols-2 gap-3 text-sm">
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-text-muted mb-1">Rain chance</p>
+                    <p className="font-medium text-text-primary">{tomorrowForecast.precipProbability}%</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-text-muted mb-1">UV peak</p>
+                    <p className="font-medium text-text-primary">{tomorrowForecast.uvIndexMax}</p>
+                  </div>
+                </div>
+                <p className="mt-4 text-xs leading-5 text-text-secondary">
+                  Plan the school run and morning commute around this.
+                </p>
+              </div>
+            )}
+          </section>
+        )}
 
         <section className="grid gap-5 lg:grid-cols-4">
           <MetricCard
