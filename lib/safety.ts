@@ -35,9 +35,10 @@ const LOCATION_ALERT_KEYWORDS: Record<string, string[]> = {
   "stanhope-campground": ["Queens County P.E.I.", "Prince Edward Island", "Stanhope"],
   summerside: ["Prince County P.E.I.", "Prince Edward Island", "Summerside"],
   "charlottetown-airport": ["Queens County P.E.I.", "Prince Edward Island", "Charlottetown"],
+  "cameron-heights": ["Queens County P.E.I.", "Prince Edward Island", "Stratford", "Charlottetown", "Cameron Heights"],
 };
 
-const COMMUNITY_NOTICE_LOCATION_IDS = new Set(["charlottetown", "victoria-park"]);
+const COMMUNITY_NOTICE_LOCATION_IDS = new Set(["charlottetown", "victoria-park", "cameron-heights"]);
 
 const CHARLOTTETOWN_RELIEF_CENTRES: ReliefCentre[] = [
   {

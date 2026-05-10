@@ -120,6 +120,9 @@ function buildInsight(location: Location) {
   if (location.id === "charlottetown-airport") {
     return "The airport sits in a wind shadow most of the time, so gusts feel lighter on the tarmac than they do on the Charlottetown waterfront just 5 km south.";
   }
+  if (location.id === "cameron-heights") {
+    return "This read is coming from a Tempest station inside Cameron Heights itself, so it catches neighbourhood wind and rain shifts faster than airport or shoreline readings.";
+  }
   return `${location.name} is getting the kind of Atlantic light that makes short outdoor stops feel longer and better than the numbers suggest.`;
 }
 
@@ -230,15 +233,8 @@ async function buildConditions(
 }
 
 
-async function tryLiveAqhi(locationId: string): Promise<number | null> {
+export async function getLiveAqhiReading(aqhiLocation: string): Promise<number | null> {
   if (!LIVE_DATA_ENABLED) return null;
-
-  const aqhiLocation =
-    locationId === "charlottetown" || locationId === "victoria-park"
-      ? PEI_AQHI.charlottetown
-      : locationId === "confederation-bridge" || locationId === "confederation-trail"
-        ? PEI_AQHI.summerside
-        : PEI_AQHI.wellington;
 
   try {
     const params = new URLSearchParams({
@@ -267,6 +263,53 @@ async function tryLiveAqhi(locationId: string): Promise<number | null> {
   }
 }
 
+async function tryLiveAqhi(locationId: string): Promise<number | null> {
+  const aqhiLocation =
+    locationId === "charlottetown" || locationId === "victoria-park"
+      ? PEI_AQHI.charlottetown
+      : locationId === "confederation-bridge" || locationId === "confederation-trail"
+        ? PEI_AQHI.summerside
+        : PEI_AQHI.wellington;
+
+  return getLiveAqhiReading(aqhiLocation);
+}
+
+interface BuildLocationConditionsEntryInput {
+  location: Location;
+  weather: WeatherSnapshot;
+  tide?: TideEvent[];
+  alerts?: AlertItem[];
+  waterTemp?: number | null;
+  source: "sample" | "hybrid" | "live";
+}
+
+export async function buildLocationConditionsEntry({
+  location,
+  weather,
+  tide = [],
+  alerts = [],
+  waterTemp = null,
+  source,
+}: BuildLocationConditionsEntryInput): Promise<LocationConditions> {
+  const communityNotice = buildCommunityNotice(location, alerts);
+  const waterfrontRisk = buildWaterfrontRisk(location, alerts);
+  const conditions = await buildConditions(location, weather, alerts);
+
+  return {
+    location,
+    weather,
+    rawScore: calculateRawScore(weather),
+    tide,
+    alerts,
+    communityNotice,
+    waterfrontRisk,
+    conditions,
+    waterTemp,
+    pawIndex: calculatePawScore(weather, location.type),
+    source,
+  };
+}
+
 
 // cache() deduplicates calls within a single server render
 // (e.g. generateMetadata + page body both calling for the same id)
@@ -292,23 +335,14 @@ export const getLocationConditions = cache(async (locationId: string): Promise<L
     ...getEnvironmentCanadaAlertsForLocation(location, activeEnvironmentCanadaAlerts),
     ...(SAMPLE_ALERTS[locationId] ?? []),
   ];
-  const communityNotice = buildCommunityNotice(location, alerts);
-  const waterfrontRisk = buildWaterfrontRisk(location, alerts);
-  const conditions = await buildConditions(location, weather, alerts);
-
-  return {
+  return buildLocationConditionsEntry({
     location,
     weather,
-    rawScore: calculateRawScore(weather),
     tide,
     alerts,
-    communityNotice,
-    waterfrontRisk,
-    conditions,
     waterTemp,
-    pawIndex: calculatePawScore(weather, location.type),
     source: liveWeather ? "live" : "sample",
-  };
+  });
 });
 
 export async function getAllLocationConditions() {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { MapContainer, TileLayer } from "react-leaflet";
+import { Circle, MapContainer, TileLayer } from "react-leaflet";
 import { CloudRain } from "lucide-react";
 
 import { LocationMarker } from "@/components/map/LocationMarker";
@@ -13,9 +13,11 @@ import { cn } from "@/lib/utils";
 export default function PEIMapClient({
   locations,
   focusId,
+  highlightRadiusMeters,
 }: {
   locations: LocationConditions[];
   focusId?: string;
+  highlightRadiusMeters?: number;
 }) {
   const [radarOn, setRadarOn] = useState(true);
 
@@ -35,6 +37,18 @@ export default function PEIMapClient({
       >
         <TileLayer attribution={MAP_CONFIG.attribution} url={MAP_CONFIG.tileUrl} />
         <RadarOverlay visible={radarOn} />
+        {focus && highlightRadiusMeters ? (
+          <Circle
+            center={center}
+            radius={highlightRadiusMeters}
+            pathOptions={{
+              color: "#2D6E24",
+              weight: 2,
+              fillColor: "#7DC832",
+              fillOpacity: 0.12,
+            }}
+          />
+        ) : null}
         {locations.map((entry) => (
           <LocationMarker key={entry.location.id} entry={entry} />
         ))}

@@ -13,6 +13,11 @@ const SCORE_COLORS = {
 } as const;
 
 export function LocationMarker({ entry }: { entry: LocationConditions }) {
+  const fullConditionsHref =
+    entry.location.id === "cameron-heights"
+      ? "/cameron-heights"
+      : `/location/${entry.location.id}`;
+
   return (
     <CircleMarker
       center={[entry.location.lat, entry.location.lng]}
@@ -32,7 +37,7 @@ export function LocationMarker({ entry }: { entry: LocationConditions }) {
             {entry.weather.temperature}°C · Wind {entry.weather.windSpeed} km/h {entry.weather.windDirection}
           </p>
           <div className="flex gap-2 pt-1">
-            <Link className="font-semibold text-forest underline" href={`/location/${entry.location.id}`}>
+            <Link className="font-semibold text-forest underline" href={fullConditionsHref}>
               Full conditions
             </Link>
             <span className="text-gray-300">·</span>

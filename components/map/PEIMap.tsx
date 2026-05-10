@@ -16,9 +16,17 @@ const PEIMapClient = dynamic(() => import("@/components/map/PEIMapClient"), {
 export function PEIMap({
   locations,
   focusId,
+  highlightRadiusMeters,
 }: {
   locations: LocationConditions[];
   focusId?: string;
+  highlightRadiusMeters?: number;
 }) {
-  return <PEIMapClient locations={locations} focusId={focusId} />;
+  return (
+    <PEIMapClient
+      locations={locations}
+      focusId={focusId}
+      highlightRadiusMeters={highlightRadiusMeters}
+    />
+  );
 }

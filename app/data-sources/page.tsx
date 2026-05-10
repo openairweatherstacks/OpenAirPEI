@@ -19,7 +19,7 @@ const SOURCES = [
     org: "Open-Meteo",
     shortName: "Open-Meteo forecast",
     url: "https://open-meteo.com/",
-    what: "Short-range forecast support used for OpenAir's near-term rain-window timing, including precipitation probability and estimated minutes until the next band arrives.",
+    what: "Forecast support used for OpenAir's near-term rain-window timing and daily outlook cards, including precipitation probability, estimated minutes until the next band arrives, and multi-day high/low trends.",
     cost: "Free — no API key required",
     updateFrequency: "Forecast support: refreshed every 10 min",
     license: "Open data terms published by Open-Meteo",
@@ -52,6 +52,15 @@ const SOURCES = [
     license: "Open Government Licence — Canada",
   },
   {
+    org: "Tempest by WeatherFlow",
+    shortName: "Tempest personal weather station",
+    url: "https://weatherflow.github.io/Tempest/api/",
+    what: "First-party hyperlocal station data used for the Cameron Heights resident dashboard, including on-site temperature, wind, pressure, rain, UV, solar radiation, and lightning counts.",
+    cost: "Private station owner API access",
+    updateFrequency: "Station observations: refreshed every 60 seconds on the Cameron Heights board",
+    license: "Tempest API terms and station owner access",
+  },
+  {
     org: "Anthropic",
     shortName: "Claude AI (claude-sonnet-4-6)",
     url: "https://www.anthropic.com",
@@ -78,9 +87,10 @@ export default function DataSourcesPage() {
         <p className="eyebrow mb-3">Transparency</p>
         <h1 className="section-title text-3xl sm:text-4xl">Data sources</h1>
         <p className="section-copy mt-4">
-          Every number shown in OpenAir Atlantic comes from a Canadian government or open-data
-          source. We do not fabricate, estimate, or pay for proprietary data feeds. All sources
-          below are publicly accessible, and most are official Canadian public feeds.
+          Every number shown in OpenAir Atlantic comes from an official public feed, an open-data
+          source, or an approved first-party sensor integration. We do not fabricate or estimate
+          environmental readings. Most feeds are public Canadian sources, with Cameron Heights using
+          an owner-authorized Tempest station for hyperlocal conditions.
         </p>
       </section>
 
