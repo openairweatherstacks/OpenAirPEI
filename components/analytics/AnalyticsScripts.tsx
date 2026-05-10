@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 const CONSENT_KEY = "openair-cookie-consent";
 const CONSENT_EVENT = "openair:cookie-consent-changed";
@@ -81,7 +81,7 @@ function initializeMetaPixel() {
   window.fbq("init", META_PIXEL_ID);
 }
 
-export function AnalyticsScripts() {
+function AnalyticsScriptsInner() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [hasConsent, setHasConsent] = useState(false);
@@ -126,4 +126,12 @@ export function AnalyticsScripts() {
   }, [hasConsent, pathname, searchParams]);
 
   return null;
+}
+
+export function AnalyticsScripts() {
+  return (
+    <Suspense fallback={null}>
+      <AnalyticsScriptsInner />
+    </Suspense>
+  );
 }

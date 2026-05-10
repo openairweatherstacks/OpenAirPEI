@@ -31,7 +31,7 @@ export function DynamicFAQSection({ locationId }: { locationId?: string }) {
     }
 
     fetchDynamicFAQs()
-  }, [])
+  }, [locationId])
 
   if (loading) {
     return (

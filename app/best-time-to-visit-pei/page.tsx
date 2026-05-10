@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { CalendarDays, CloudRain, Sun, Thermometer, Wind, CheckCircle2, XCircle, ArrowRight } from "lucide-react";
+import { CloudRain, Sun, Thermometer, CheckCircle2, XCircle, ArrowRight } from "lucide-react";
 
 import { WeatherFaqJsonLd } from "@/components/seo/WeatherFaqJsonLd";
 
