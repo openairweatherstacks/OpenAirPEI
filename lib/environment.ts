@@ -10,6 +10,7 @@ import {
   getActiveEnvironmentCanadaAlerts,
   getEnvironmentCanadaAlertsForLocation,
 } from "@/lib/safety";
+import { getLiveTides } from "@/lib/tides";
 import { getWaterTemp } from "@/lib/water";
 import { fetchLiveWeather } from "@/lib/weather";
 import {
@@ -320,20 +321,26 @@ export const getLocationConditions = cache(async (locationId: string): Promise<L
 
   const sampleWeather = SAMPLE_WEATHER[locationId];
   const buoyId = BEACH_BUOYS[locationId];
-  const [liveWeather, liveAqhi, activeEnvironmentCanadaAlerts, waterTemp] = await Promise.all([
+  const [liveWeather, liveAqhi, activeEnvironmentCanadaAlerts, waterTemp, liveTides] = await Promise.all([
     fetchLiveWeather(location),
     tryLiveAqhi(locationId),
     getActiveEnvironmentCanadaAlerts(),
     buoyId ? getWaterTemp(buoyId) : Promise.resolve(null),
+    getLiveTides(locationId),
   ]);
 
   const weather: WeatherSnapshot = liveWeather
     ? { ...liveWeather, aqhi: liveAqhi ?? liveWeather.aqhi }
     : { ...sampleWeather, aqhi: liveAqhi ?? sampleWeather.aqhi };
 
-  // Tides: only use SAMPLE_TIDES as a fallback when live weather failed,
-  // since we don't yet integrate a live DFO tide fetch.
-  const tide = liveWeather ? [] : SAMPLE_TIDES[locationId] ?? [];
+  // Tides: prefer live DFO predictions; fall back to SAMPLE_TIDES only when
+  // both live tides and live weather are unavailable (full outage path).
+  const tide =
+    liveTides.length > 0
+      ? liveTides
+      : liveWeather
+        ? []
+        : SAMPLE_TIDES[locationId] ?? [];
 
   // Alerts: never append SAMPLE_ALERTS on top of live EC alerts (would
   // surface stale watches alongside real ones). Only fall back when both

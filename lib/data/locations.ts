@@ -41,11 +41,38 @@ export const PEI_AQHI = {
   stPeters: "BAEMV",
 } as const;
 
+// DFO tide station IDs from api-iwls.dfo-mpo.gc.ca. The legacy
+// azure.cloud-nuage.canada.ca endpoint and its UUIDs are retired.
+// Verify by hitting: https://api-iwls.dfo-mpo.gc.ca/api/v1/stations
 export const PEI_TIDE_STATIONS = {
-  charlottetown: "5cebf1e23d0f4a073c4bbffa",
-  summerside: "5cebf1de3d0f4a073c4bba15",
-  georgetownHarbour: "5cebf1e43d0f4a073c4bc05c",
+  charlottetown: "5cebf1e33d0f4a073c4bc21f", // 01700 Charlottetown
+  summerside: "5cebf1e33d0f4a073c4bc227",    // 01735 Summerside
+  rustico: "5cebf1e33d0f4a073c4bc25c",       // 01915 Rustico (north shore)
+  northLakeHarbour: "5cebf1e33d0f4a073c4bc264", // 01955 (Basin Head area)
+  georgetown: "5cebf1e33d0f4a073c4bc211",    // 01660 Georgetown
+  portBorden: "5cebf1e33d0f4a073c4bc225",    // 01725 Port Borden (bridge)
+  victoria: "5cebf1e33d0f4a073c4bc223",      // 01715 Victoria, PEI
+  covehead: "5dd3064ce0fdc4b9b4be6602",      // 01918 Covehead (Stanhope)
 } as const;
+
+// Maps each location to its nearest tide station for live wlp-hilo queries.
+export const TIDE_STATION_BY_LOCATION: Record<string, keyof typeof PEI_TIDE_STATIONS> = {
+  cavendish: "rustico",
+  "brackley-beach": "covehead",
+  "stanhope-campground": "covehead",
+  "cavendish-campground": "rustico",
+  greenwich: "northLakeHarbour",
+  "basin-head": "northLakeHarbour",
+  charlottetown: "charlottetown",
+  "charlottetown-airport": "charlottetown",
+  "victoria-park": "charlottetown",
+  "belvedere-golf": "charlottetown",
+  "fox-meadow-golf": "charlottetown",
+  "confederation-bridge": "portBorden",
+  "confederation-trail": "summerside",
+  summerside: "summerside",
+  "north-cape": "summerside",
+};
 
 export const PEI_LOCATIONS: Location[] = [
   {
