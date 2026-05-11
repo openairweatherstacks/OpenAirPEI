@@ -15,6 +15,7 @@ import { UVTimer } from "@/components/ui/UVTimer";
 import { LiveAutoRefresh } from "@/components/weather/LiveAutoRefresh";
 import { SevenDayForecast } from "@/components/weather/SevenDayForecast";
 import { WastePickupCard } from "@/components/community/WastePickupCard";
+import { PowerOutageCard } from "@/components/community/PowerOutageCard";
 import { getCameronHeightsDashboardData } from "@/lib/cameron-heights";
 import { formatObservationTime } from "@/lib/utils";
 
@@ -185,7 +186,6 @@ export default async function CameronHeightsPage() {
           </div>
         )}
 
-        <div className="grid gap-5 lg:grid-cols-[1.4fr_1fr]">
         <div className="rounded-[1.75rem] border border-forest/30 bg-gradient-to-br from-forest-light to-leaf-light p-5 shadow-sm sm:p-6">
           <div className="mb-4 flex items-center gap-2">
             <Lightbulb className="h-4 w-4 text-forest" />
@@ -206,7 +206,9 @@ export default async function CameronHeightsPage() {
           </ul>
         </div>
 
-        <WastePickupCard />
+        <div className="grid gap-5 lg:grid-cols-2">
+          <WastePickupCard />
+          <PowerOutageCard />
         </div>
 
         <section className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
