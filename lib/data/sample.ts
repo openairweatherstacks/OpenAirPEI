@@ -1,7 +1,20 @@
 import type { AlertItem, TideEvent, WeatherSnapshot } from "@/lib/types";
 
+// Sample data falls back to today's date so stale timestamps don't appear
+// to users when live APIs are briefly unavailable. The hours are still
+// fixed (matching a representative spring afternoon) — only the date rolls.
 function atlanticTime(time: string) {
-  return `2026-04-06T${time}:00-03:00`;
+  const now = new Date();
+  const fmt = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Halifax",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+  const parts = fmt.formatToParts(now);
+  const get = (type: string) => parts.find((p) => p.type === type)?.value ?? "";
+  const date = `${get("year")}-${get("month")}-${get("day")}`;
+  return `${date}T${time}:00-03:00`;
 }
 
 export const SAMPLE_WEATHER: Record<string, WeatherSnapshot> = {

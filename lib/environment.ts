@@ -239,6 +239,7 @@ export async function getLiveAqhiReading(aqhiLocation: string): Promise<number |
   try {
     const params = new URLSearchParams({
       location_id: aqhiLocation,
+      latest: "true",
       limit: "1",
       f: "json",
     });
@@ -330,11 +331,18 @@ export const getLocationConditions = cache(async (locationId: string): Promise<L
     ? { ...liveWeather, aqhi: liveAqhi ?? liveWeather.aqhi }
     : { ...sampleWeather, aqhi: liveAqhi ?? sampleWeather.aqhi };
 
-  const tide = SAMPLE_TIDES[locationId] ?? [];
-  const alerts = [
-    ...getEnvironmentCanadaAlertsForLocation(location, activeEnvironmentCanadaAlerts),
-    ...(SAMPLE_ALERTS[locationId] ?? []),
-  ];
+  // Tides: only use SAMPLE_TIDES as a fallback when live weather failed,
+  // since we don't yet integrate a live DFO tide fetch.
+  const tide = liveWeather ? [] : SAMPLE_TIDES[locationId] ?? [];
+
+  // Alerts: never append SAMPLE_ALERTS on top of live EC alerts (would
+  // surface stale watches alongside real ones). Only fall back when both
+  // live weather and live alerts are absent.
+  const liveAlerts = getEnvironmentCanadaAlertsForLocation(location, activeEnvironmentCanadaAlerts);
+  const alerts =
+    liveWeather || liveAlerts.length > 0
+      ? liveAlerts
+      : [...liveAlerts, ...(SAMPLE_ALERTS[locationId] ?? [])];
   return buildLocationConditionsEntry({
     location,
     weather,

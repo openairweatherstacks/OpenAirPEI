@@ -31,10 +31,14 @@ export const PEI_OBSERVATION_STATION_BY_WEATHER_STATION: Record<
   [PEI_STATIONS.borden]: "summerside",
 };
 
+// ECCC AQHI station IDs as of 2026. The legacy "PEI-001" style IDs were
+// retired in favour of 5-letter alphanumeric codes. Verify periodically via:
+// https://api.weather.gc.ca/collections/aqhi-observations-realtime/items?bbox=-64.5,46,-62,47.2
 export const PEI_AQHI = {
-  charlottetown: "PEI-001",
-  summerside: "PEI-002",
-  wellington: "PEI-003",
+  charlottetown: "BAARG",
+  summerside: "BADSZ",
+  wellington: "BADSZ",
+  stPeters: "BAEMV",
 } as const;
 
 export const PEI_TIDE_STATIONS = {
