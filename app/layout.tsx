@@ -1,10 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Barlow_Condensed, Roboto } from "next/font/google";
 import Script from "next/script";
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
 import "leaflet/dist/leaflet.css";
 
 import { AnalyticsScripts } from "@/components/analytics/AnalyticsScripts";
+import { SiteJsonLd } from "@/components/seo/SiteJsonLd";
 import { BetaBanner } from "@/components/layout/BetaBanner";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { CookieBanner } from "@/components/layout/CookieBanner";
@@ -115,6 +116,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${roboto.variable} ${barlowCondensed.variable} font-sans antialiased`}>
         <div className="min-h-screen">
+          <SiteJsonLd />
           <BetaBanner />
           <Header />
           <main className="pb-28 md:pb-12">{children}</main>
@@ -122,7 +124,9 @@ export default function RootLayout({
           <BottomNav />
           <InstallPrompt />
           <CookieBanner />
-          <AnalyticsScripts />
+          <Suspense fallback={null}>
+            <AnalyticsScripts />
+          </Suspense>
         </div>
         <Script id="sw-register" strategy="afterInteractive">{`
           if ('serviceWorker' in navigator) {

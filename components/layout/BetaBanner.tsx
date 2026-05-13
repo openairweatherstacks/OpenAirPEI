@@ -27,7 +27,7 @@ export function BetaBanner() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6">
         <div className="space-y-1">
           <p className="text-base font-bold text-white sm:text-lg">
-            🎉 OpenAir PEI is in beta — we want your feedback.
+            🎉 OpenAir Atlantic is in beta — we want your feedback.
           </p>
           <p className="text-sm leading-6 text-white/80">
             Share what you think and be entered to win a{" "}

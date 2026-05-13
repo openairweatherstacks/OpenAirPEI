@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { CloudRain, Sun, Thermometer, CheckCircle2, XCircle, ArrowRight } from "lucide-react";
 
+import { ArticleJsonLd } from "@/components/seo/ArticleJsonLd";
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 import { WeatherFaqJsonLd } from "@/components/seo/WeatherFaqJsonLd";
 
 export const metadata: Metadata = {
@@ -285,7 +287,25 @@ export default async function BestTimeToVisitPage({
 
   return (
     <div className="page-shell space-y-12">
-      <WeatherFaqJsonLd faqs={FAQS} />
+      <ArticleJsonLd
+        slug="best-time-to-visit-pei"
+        headline="Best Time to Visit PEI — Month-by-Month Weather Guide"
+        description="When is the best time to visit Prince Edward Island? Based on 150 years of climate data: month-by-month temperatures, rain chances, and what to expect every season."
+        datePublished="2026-05-01"
+        image="/get-images/cavendish.jpg"
+        keywords={["best time to visit PEI", "PEI weather by month", "Prince Edward Island travel guide", "PEI climate", "PEI tourism"]}
+        articleSection="Travel guides"
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Best Time to Visit PEI", url: "/best-time-to-visit-pei" },
+        ]}
+      />
+      <WeatherFaqJsonLd
+        anchorId="https://openairatlantic.com/best-time-to-visit-pei#faq"
+        faqs={FAQS}
+      />
 
       {/* ── HERO ─────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden rounded-[2rem] border border-white/70 bg-white/85 shadow-[0_24px_80px_rgba(42,42,42,0.07)]">

@@ -24,7 +24,9 @@ import { waterTempLabel } from "@/lib/water";
 import { ReviewForm } from "@/components/reviews/ReviewForm";
 import { ReviewList } from "@/components/reviews/ReviewList";
 import HistoryContext from "@/components/weather/HistoryContext";
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 import { LocationJsonLd } from "@/components/seo/LocationJsonLd";
+import { ObservationJsonLd } from "@/components/seo/ObservationJsonLd";
 import { WeatherFaqJsonLd } from "@/components/seo/WeatherFaqJsonLd";
 
 export const revalidate = 600;
@@ -93,15 +95,18 @@ export default async function LocationPage({
 
   return (
     <div className="page-shell space-y-6">
-      <LocationJsonLd
-        name={entry.location.name}
-        description={entry.location.tagline ?? entry.conditions.summary}
-        url={`https://openairatlantic.com/location/${id}`}
-        lat={entry.location.lat}
-        lng={entry.location.lng}
+      <LocationJsonLd location={entry.location} />
+      <ObservationJsonLd location={entry.location} weather={entry.weather} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Explore PEI", url: "/explore" },
+          { name: entry.location.name, url: `/location/${id}` },
+        ]}
       />
       {entry.location.faqs && entry.location.faqs.length > 0 && (
         <WeatherFaqJsonLd
+          anchorId={`https://openairatlantic.com/location/${id}#faq`}
           faqs={entry.location.faqs.map(({ q, a }) => ({ question: q, answer: a }))}
         />
       )}

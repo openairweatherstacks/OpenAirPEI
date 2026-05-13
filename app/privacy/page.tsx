@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description: "OpenAir Atlantic privacy policy — how we handle your data.",
 };
 
-const LAST_UPDATED = "May 9, 2026";
+const LAST_UPDATED = "May 10, 2026";
 
 export default function PrivacyPage() {
   return (
@@ -43,7 +43,8 @@ export default function PrivacyPage() {
           {
             title: "Environmental data",
             body: [
-              "Current weather observations, radar, air quality, alerts, and tide data shown in the app come from Canadian government open-data APIs (Environment Canada and Fisheries & Oceans Canada). We also use Open-Meteo's open forecast API for the short-range rain-window timing shown in the app.",
+              "Current weather observations, radar, air quality, alerts, and tide data shown in the app mainly come from Canadian government open-data APIs (Environment Canada and Fisheries & Oceans Canada). We also use Open-Meteo's open forecast API for the short-range rain-window timing shown in the app.",
+              "Some private dashboards may also use owner-authorized first-party sensor integrations, such as a Tempest weather station, to provide hyperlocal neighbourhood readings.",
               "AI-generated condition summaries are processed via the Anthropic Claude API. Queries to this API contain only environmental data — never personal information about you.",
             ],
           },

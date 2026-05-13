@@ -583,3 +583,4 @@ NEXT_PUBLIC_APP_URL=https://openairatlantic.com
 - Supabase free tier handles 45,000 rows easily — no scaling concerns for this dataset
 - The AI narrative is cached daily so Claude API costs are minimal — approximately 150 tokens per day = negligible cost
 - All data is open government data under Statistics Canada Open Licence — free to use commercially
+o

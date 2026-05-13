@@ -8,7 +8,7 @@ import { getAllLocationConditions } from "@/lib/environment";
 export const revalidate = 600;
 
 export const metadata: Metadata = {
-  title: "Hiking & Walking Trails — OpenAir PEI",
+  title: "Hiking & Walking Trails — OpenAir Atlantic",
   description: "Discover PEI's best hiking and walking trails with live conditions, difficulty ratings, and real-time weather assessments.",
 };
 

@@ -34,9 +34,10 @@ export default function AboutPage() {
           </p>
           <p className="mt-3 text-sm leading-7 text-text-secondary">
             OpenAir pulls live observations and alerts from Environment Canada, tides and buoy data
-            from Fisheries & Oceans Canada and CIOOS, and short-range rain timing from Open-Meteo
-            — then runs it through an AI meteorologist trained to speak like a local, not a
-            textbook. The result is one clear answer per location, in plain English.
+            from Fisheries & Oceans Canada and CIOOS, short-range rain timing from Open-Meteo, and
+            approved first-party station feeds where a private dashboard needs hyperlocal detail —
+            then runs it through an AI meteorologist trained to speak like a local, not a textbook.
+            The result is one clear answer per location, in plain English.
           </p>
         </div>
 
@@ -46,7 +47,7 @@ export default function AboutPage() {
             PEI is the launch. Atlantic Canada is the goal.
           </h2>
           <p className="mt-4 text-sm leading-7 text-text-secondary">
-            The same codebase that powers OpenAir PEI is built to scale to New Brunswick, Nova
+            The same codebase that powers OpenAir Atlantic is built to scale to New Brunswick, Nova
             Scotia, and Newfoundland & Labrador. Each province gets its own location layer, data
             sources, and local knowledge — but the same AI interpretation engine underneath.
           </p>
@@ -66,7 +67,7 @@ export default function AboutPage() {
             {
               step: "01",
               title: "Live data",
-              body: "We pull real-time weather observations, air quality, radar, tides, and water temperature from open public feeds — mainly Environment Canada, Fisheries & Oceans, and ocean buoy networks, with Open-Meteo filling in short-range rain timing. No paywalls. No third-party data brokers.",
+              body: "We pull real-time weather observations, air quality, radar, tides, and water temperature from public feeds — mainly Environment Canada, Fisheries & Oceans, and ocean buoy networks — with Open-Meteo filling in short-range rain timing and approved first-party sensors adding hyperlocal reads where needed.",
             },
             {
               step: "02",
@@ -93,8 +94,9 @@ export default function AboutPage() {
         <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">Open data, open about how we use it</h2>
         <p className="section-copy mt-3">
           OpenAir uses public environmental data sources — primarily Canadian federal government
-          feeds, plus Open-Meteo for short-range precipitation timing. We do not sell data, we do
-          not profile users, and we do not require an account to use the app.
+          feeds, plus Open-Meteo for short-range precipitation timing and approved first-party
+          sensors for private hyperlocal dashboards. We do not sell data, we do not profile users,
+          and we do not require an account to use the public app.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Link

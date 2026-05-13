@@ -6,7 +6,7 @@ export const revalidate = 600;
 
 export const metadata: Metadata = {
   title: "Cycling Routes — Coming Soon",
-  description: "Cycling routes feature coming soon to OpenAir PEI.",
+  description: "Cycling routes feature coming soon to OpenAir Atlantic.",
 };
 
 export default async function RouteDetailPage() {

@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 export const revalidate = 600;
 
 export const metadata = {
-  title: "Cycling Routes — OpenAir PEI",
+  title: "Cycling Routes — OpenAir Atlantic",
   description: "Perfect biking conditions on the Confederation Trail — real-time route scoring.",
 };
 
