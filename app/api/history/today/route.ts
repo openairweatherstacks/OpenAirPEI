@@ -62,7 +62,10 @@ export async function GET() {
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err)
     console.error('[/api/history/today] error:', msg)
-    return NextResponse.json({ error: msg }, { status: 500 })
+    return NextResponse.json(
+      { error: 'Failed to load historical data' },
+      { status: 500 }
+    )
   }
 }
 
