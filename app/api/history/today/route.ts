@@ -1,14 +1,22 @@
 import { NextResponse } from 'next/server'
 import Anthropic from '@anthropic-ai/sdk'
-import { createClient } from '@supabase/supabase-js'
+import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 
 // Computes real day-of-year weather stats for Charlottetown from the
 // pei_weather_history table (1872-present, stitched from 3 ECCC stations).
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+export const dynamic = 'force-dynamic'
+
+let _supabase: SupabaseClient | null = null
+function getSupabase(): SupabaseClient {
+  if (!_supabase) {
+    _supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    )
+  }
+  return _supabase
+}
 
 const anthropic = new Anthropic()
 
@@ -51,7 +59,7 @@ export async function GET() {
   }
 
   // Try the persistent daily cache first
-  const { data: persisted } = await supabase
+  const { data: persisted } = await getSupabase()
     .from('pei_history_daily_cache')
     .select('*')
     .eq('cache_date', cacheDate)
@@ -62,7 +70,7 @@ export async function GET() {
     return NextResponse.json(persisted)
   }
 
-  const { data: records, error } = await supabase
+  const { data: records, error } = await getSupabase()
     .from('pei_weather_history')
     .select('year, max_temp, min_temp, total_precip')
     .eq('month', month)
@@ -144,7 +152,7 @@ Sentence 1: what the typical weather is like on this date. Sentence 2: something
   }
 
   // Persist to daily cache (best-effort)
-  await supabase
+  await getSupabase()
     .from('pei_history_daily_cache')
     .upsert(result, { onConflict: 'cache_date' })
 
