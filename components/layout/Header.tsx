@@ -8,6 +8,7 @@ import { LanguageToggle } from "@/components/layout/LanguageToggle";
 
 const NAV_LINKS = [
   { href: "/explore", label: "Explore" },
+  { href: "/history", label: "History" },
   { href: "/bridge", label: "Bridge" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
