@@ -10,15 +10,23 @@ export const dynamic = 'force-dynamic'
 let _supabase: SupabaseClient | null = null
 function getSupabase(): SupabaseClient {
   if (!_supabase) {
-    _supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
-    )
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const key = process.env.SUPABASE_SERVICE_ROLE_KEY
+    if (!url || !key) {
+      throw new Error(
+        `Missing Supabase env vars: NEXT_PUBLIC_SUPABASE_URL=${url ? 'set' : 'MISSING'}, SUPABASE_SERVICE_ROLE_KEY=${key ? 'set' : 'MISSING'}`
+      )
+    }
+    _supabase = createClient(url, key)
   }
   return _supabase
 }
 
-const anthropic = new Anthropic()
+let _anthropic: Anthropic | null = null
+function getAnthropic(): Anthropic {
+  if (!_anthropic) _anthropic = new Anthropic()
+  return _anthropic
+}
 
 interface DayRecord {
   year: number
@@ -49,6 +57,16 @@ function round1(n: number): number {
 }
 
 export async function GET() {
+  try {
+    return await handle()
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err)
+    console.error('[/api/history/today] error:', msg)
+    return NextResponse.json({ error: msg }, { status: 500 })
+  }
+}
+
+async function handle() {
   const today = new Date()
   const month = today.getMonth() + 1
   const day = today.getDate()
@@ -113,7 +131,7 @@ export async function GET() {
   let aiNarrative = `On ${dateStr}, Charlottetown averages a high of ${avgHigh}°C and a low of ${avgLow}°C across ${yearsOnRecord} years of records. Precipitation falls on roughly ${precipFrequency}% of years on this date. The hottest ${dateStr} on record was ${hottest?.max_temp}°C in ${hottest?.year}; the coldest morning was ${coldest?.min_temp}°C in ${coldest?.year}.`
 
   try {
-    const message = await anthropic.messages.create({
+    const message = await getAnthropic().messages.create({
       model: process.env.ANTHROPIC_MODEL ?? 'claude-sonnet-4-6',
       max_tokens: 200,
       messages: [{
