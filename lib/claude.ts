@@ -1,10 +1,14 @@
-import Anthropic from "@anthropic-ai/sdk";
+import { generateText } from "ai";
 import { unstable_cache } from "next/cache";
 
+import { getGatewayModel } from "@/lib/ai-model";
 import { CACHE_DURATIONS } from "@/lib/data/locations";
 import { getBridgeStatus } from "@/lib/score";
 import type { AlertItem, ConditionsResponse, Location, WeatherSnapshot } from "@/lib/types";
 import { formatClock } from "@/lib/utils";
+
+// Gateway auth: AI_GATEWAY_API_KEY locally, or OIDC on Vercel (see CLAUDE.md). No explicit key check —
+// missing/invalid credentials fail inside generateText and are handled by getClaudeConditions.
 
 const SYSTEM_PROMPT = `You are OpenAir PEI's weather guide — a friendly local who has lived on Prince Edward Island for 30 years and loves helping people enjoy the outdoors.
 
@@ -80,23 +84,17 @@ async function callClaude(
   weather: WeatherSnapshot,
   alerts: AlertItem[],
 ): Promise<ConditionsResponse> {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) throw new Error("ANTHROPIC_API_KEY not set");
-
-  const client = new Anthropic({ apiKey });
-
-  const message = await client.messages.create({
-    model: process.env.ANTHROPIC_MODEL ?? "claude-sonnet-4-6",
-    max_tokens: 1024,
-    system: [{ type: "text", text: SYSTEM_PROMPT, cache_control: { type: "ephemeral" } }],
-    messages: [{ role: "user", content: buildPrompt(location, weather, alerts) }],
+  const { text } = await generateText({
+    model: getGatewayModel(),
+    maxOutputTokens: 1024,
+    system: SYSTEM_PROMPT,
+    prompt: buildPrompt(location, weather, alerts),
   });
 
-  const text = message.content[0]?.type === "text" ? message.content[0].text.trim() : null;
-  if (!text) throw new Error("Empty Claude response");
+  const trimmed = text.trim();
+  if (!trimmed) throw new Error("Empty Claude response");
 
-  // Strip any accidental markdown fences
-  const cleaned = text.replace(/^```json\s*/i, "").replace(/\s*```$/i, "");
+  const cleaned = trimmed.replace(/^```json\s*/i, "").replace(/\s*```$/i, "");
   return JSON.parse(cleaned) as ConditionsResponse;
 }
 
