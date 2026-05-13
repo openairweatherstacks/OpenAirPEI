@@ -44,14 +44,14 @@ export default function PrivacyPage() {
             title: "Environmental data",
             body: [
               "Current weather observations, radar, air quality, alerts, and tide data shown in the app come from Canadian government open-data APIs (Environment Canada and Fisheries & Oceans Canada). We also use Open-Meteo's open forecast API for the short-range rain-window timing shown in the app.",
-              "AI-generated condition summaries are processed via the Anthropic Claude API. Queries to this API contain only environmental data — never personal information about you.",
+              "AI-generated condition summaries are sent through Vercel AI Gateway to Anthropic Claude models. Queries contain only environmental data — never personal information about you.",
             ],
           },
           {
             title: "Third parties",
             body: [
               "Map tiles are served by OpenStreetMap. See openstreetmap.org/privacy for their policy.",
-              "AI summaries are generated via the Anthropic API. See anthropic.com/privacy for their policy.",
+              "AI summaries route through Vercel AI Gateway to Anthropic models. See vercel.com/legal/privacy-policy and anthropic.com/privacy for their policies.",
               "If you accept optional tracking, website analytics and ad measurement may be provided by Google and Meta. See policies.google.com/privacy and privacycenter.instagram.com/policy for their policies.",
             ],
           },

@@ -14,7 +14,7 @@ The core question this app answers is not "what is the weather?" It answers:
 - **"Is the air safe for my child with asthma?"**
 - **"Will the bridge be open when I'm leaving?"**
 
-The AI brain (Anthropic Claude API) powers the interpretation layer — it reads raw environmental data and speaks to users in plain, intelligent, human language. Every data point gets translated into a decision, not a number.
+The AI brain (Anthropic Claude via **Vercel AI Gateway**) powers the interpretation layer — it reads raw environmental data and speaks to users in plain, intelligent, human language. Every data point gets translated into a decision, not a number.
 
 ---
 
@@ -98,7 +98,7 @@ colors: {
 | Language | **TypeScript** | Type safety for API responses |
 | Styling | **Tailwind CSS** | Rapid mobile-first styling |
 | Map | **Leaflet.js** + **React-Leaflet** | Free, no API key, OpenStreetMap tiles |
-| AI Brain | **Anthropic Claude API** (claude-sonnet-4-6) | Meteorologist interpretation layer |
+| AI Brain | **Vercel AI Gateway** → Anthropic Claude (`anthropic/claude-sonnet-4.6`) | Meteorologist interpretation layer |
 | Data APIs | **MSC GeoMet** (Environment Canada) | Free, no key, real-time weather |
 | Air Quality | **ECCC AQHI API** | Free, real-time air quality health index |
 | Tides | **Fisheries & Oceans Canada API** | Free, PEI tide data |
@@ -114,12 +114,25 @@ colors: {
 
 Create `.env.local` with:
 ```
-ANTHROPIC_API_KEY=your_key_here
+AI_GATEWAY_API_KEY=your_vercel_ai_gateway_key
+# Optional — defaults to anthropic/claude-sonnet-4.6
+AI_GATEWAY_MODEL=anthropic/claude-sonnet-4.6
 NEXT_PUBLIC_APP_NAME=OpenAir PEI
 NEXT_PUBLIC_APP_URL=https://openairpei.ca
 ```
 
-Never expose `ANTHROPIC_API_KEY` to the client. All Claude API calls must go through `/app/api/` server routes.
+**Vercel AI Gateway (dashboard):** In the Vercel project, enable **AI Gateway** and create an API key for local development (`AI_GATEWAY_API_KEY`). On Vercel deployments, OIDC authentication is used automatically when Gateway is enabled — no API key in env required for production if OIDC is configured.
+
+For local scripts or CLI runs without a key, you can use **`VERCEL_OIDC_TOKEN`** (for example from `vercel env pull` after OIDC is enabled on the project).
+
+Never expose `AI_GATEWAY_API_KEY` or `VERCEL_OIDC_TOKEN` to the client. All model calls must go through server routes or server-only code (`/app/api/`, `lib/`, scripts).
+
+### vercel-gateway-setup (manual)
+
+1. Vercel project → **AI** (or AI Gateway) → enable Gateway for the team/project.
+2. Create an **API key** for local `.env.local` as `AI_GATEWAY_API_KEY`.
+3. Optionally set **`AI_GATEWAY_MODEL`**; default is `anthropic/claude-sonnet-4.6`.
+4. For production, rely on **OIDC** from the Vercel runtime, or set `AI_GATEWAY_API_KEY` in the dashboard if you prefer key-based auth.
 
 ---
 
@@ -290,7 +303,7 @@ export const PEI_LOCATIONS = [
 
 ## The AI Brain — How Claude Thinks
 
-Every location gets its conditions assessed by Claude API. The server route processes raw data and asks Claude to respond as a meteorologist.
+Every location gets its conditions assessed by Claude (via AI Gateway). The server route processes raw data and asks the model to respond as a meteorologist.
 
 ### Server Route: `/app/api/conditions/route.ts`
 
@@ -574,7 +587,7 @@ vercel --prod        # Deploy to production
 ## Build Conventions
 
 - **Server components by default** — only add `'use client'` when you need interactivity
-- **API routes for all external calls** — never call MSC GeoMet or Anthropic from the browser
+- **API routes for all external calls** — never call MSC GeoMet or the AI Gateway from the browser
 - **TypeScript strict mode** — no `any` types
 - **Mobile breakpoints first** — `sm:` and up, never `max-w` mobile overrides
 - **Tailwind only** — no inline styles except for dynamic values (map colours, etc.)
