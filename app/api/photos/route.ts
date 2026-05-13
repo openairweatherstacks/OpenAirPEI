@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
+
+import { uploadReviewPhoto } from "@/lib/blob";
+import { getDb } from "@/lib/db";
+import { photos, reviews } from "@/lib/db/schema";
+import { eq } from "drizzle-orm";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
@@ -7,11 +11,17 @@ const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 // POST /api/photos  (multipart form: reviewId, locationId, file)
 export async function POST(request: Request) {
   const form = await request.formData();
-  const reviewId = form.get("reviewId") as string;
+  const reviewIdRaw = form.get("reviewId");
   const locationId = form.get("locationId") as string;
   const file = form.get("file") as File | null;
 
-  if (!reviewId || !locationId || !file) {
+  const reviewIdStr = typeof reviewIdRaw === "string" ? reviewIdRaw : "";
+  const reviewId = Number(reviewIdStr);
+  if (!reviewIdStr || !Number.isFinite(reviewId) || reviewId <= 0) {
+    return NextResponse.json({ error: "Invalid reviewId" }, { status: 400 });
+  }
+
+  if (!locationId || !file) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
 
@@ -23,27 +33,36 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "File must be under 5MB" }, { status: 400 });
   }
 
-  const ext = file.name.split(".").pop() ?? "jpg";
-  const path = `${locationId}/${reviewId}/${Date.now()}.${ext}`;
-
-  const { error: uploadError } = await supabase.storage
-    .from("location-photos")
-    .upload(path, file, { contentType: file.type, upsert: false });
-
-  if (uploadError) {
-    return NextResponse.json({ error: uploadError.message }, { status: 500 });
+  if (!process.env.DATABASE_URL) {
+    return NextResponse.json({ error: "Database not configured" }, { status: 503 });
   }
 
-  const { error: dbError } = await supabase.from("photos").insert({
-    location_id: locationId,
-    review_id: reviewId,
-    storage_path: path,
-    approved: false,
-  });
+  try {
+    const db = getDb();
+    const [review] = await db
+      .select({ id: reviews.id })
+      .from(reviews)
+      .where(eq(reviews.id, reviewId))
+      .limit(1);
 
-  if (dbError) {
-    return NextResponse.json({ error: dbError.message }, { status: 500 });
+    if (!review) {
+      return NextResponse.json({ error: "Review not found" }, { status: 404 });
+    }
+
+    const ext = file.name.split(".").pop() ?? "jpg";
+    const pathname = `${locationId}/${reviewId}/${Date.now()}.${ext}`;
+    const { url } = await uploadReviewPhoto(file, pathname);
+
+    await db.insert(photos).values({
+      reviewId,
+      locationId,
+      storagePath: url,
+      approved: false,
+    });
+
+    return NextResponse.json({ success: true, path: url });
+  } catch (e) {
+    const message = e instanceof Error ? e.message : "Unknown error";
+    return NextResponse.json({ error: message }, { status: 500 });
   }
-
-  return NextResponse.json({ success: true, path });
 }
