@@ -1,22 +1,24 @@
-import { NextResponse } from 'next/server'
-import Anthropic from '@anthropic-ai/sdk'
+import { generateText } from "ai";
+import { NextResponse } from "next/server";
+
+import { getGatewayModel } from "@/lib/ai-model";
 
 // Hardcoded historical averages for Charlottetown Airport (Environment Canada)
 // Source: 1874–2024 daily normals for each day of year
 const MONTHLY_NORMALS: Record<number, { avgHigh: number; avgLow: number; precipFrequency: number }> = {
-  1:  { avgHigh: -3.5,  avgLow: -12.5, precipFrequency: 52 },
-  2:  { avgHigh: -3.1,  avgLow: -12.9, precipFrequency: 48 },
-  3:  { avgHigh: 1.4,   avgLow: -7.8,  precipFrequency: 44 },
-  4:  { avgHigh: 8.2,   avgLow: -0.7,  precipFrequency: 42 },
-  5:  { avgHigh: 15.3,  avgLow: 5.3,   precipFrequency: 38 },
-  6:  { avgHigh: 20.8,  avgLow: 10.7,  precipFrequency: 36 },
-  7:  { avgHigh: 24.2,  avgLow: 14.5,  precipFrequency: 34 },
-  8:  { avgHigh: 23.9,  avgLow: 14.3,  precipFrequency: 36 },
-  9:  { avgHigh: 19.0,  avgLow: 9.7,   precipFrequency: 38 },
-  10: { avgHigh: 12.3,  avgLow: 4.0,   precipFrequency: 44 },
-  11: { avgHigh: 5.6,   avgLow: -1.6,  precipFrequency: 52 },
-  12: { avgHigh: -0.5,  avgLow: -8.5,  precipFrequency: 54 },
-}
+  1: { avgHigh: -3.5, avgLow: -12.5, precipFrequency: 52 },
+  2: { avgHigh: -3.1, avgLow: -12.9, precipFrequency: 48 },
+  3: { avgHigh: 1.4, avgLow: -7.8, precipFrequency: 44 },
+  4: { avgHigh: 8.2, avgLow: -0.7, precipFrequency: 42 },
+  5: { avgHigh: 15.3, avgLow: 5.3, precipFrequency: 38 },
+  6: { avgHigh: 20.8, avgLow: 10.7, precipFrequency: 36 },
+  7: { avgHigh: 24.2, avgLow: 14.5, precipFrequency: 34 },
+  8: { avgHigh: 23.9, avgLow: 14.3, precipFrequency: 36 },
+  9: { avgHigh: 19.0, avgLow: 9.7, precipFrequency: 38 },
+  10: { avgHigh: 12.3, avgLow: 4.0, precipFrequency: 44 },
+  11: { avgHigh: 5.6, avgLow: -1.6, precipFrequency: 52 },
+  12: { avgHigh: -0.5, avgLow: -8.5, precipFrequency: 54 },
+};
 
 // All-time records for Charlottetown Airport
 const ALL_TIME_RECORDS = {
@@ -27,34 +29,34 @@ const ALL_TIME_RECORDS = {
   recordPrecip: 115.0,
   recordPrecipYear: 1954,
   yearsOnRecord: 150,
-}
+};
 
-const anthropic = new Anthropic()
+const HISTORY_SYSTEM =
+  "You are the voice of OpenAir Atlantic, a PEI outdoor conditions app. Write in plain, friendly English.";
 
 // Simple in-memory cache for the day
-let dailyCache: { date: string; data: unknown } | null = null
+let dailyCache: { date: string; data: unknown } | null = null;
 
 export async function GET() {
-  const today = new Date()
-  const month = today.getMonth() + 1
-  const cacheDate = today.toISOString().split('T')[0]
+  const today = new Date();
+  const month = today.getMonth() + 1;
+  const cacheDate = today.toISOString().split("T")[0];
 
   if (dailyCache?.date === cacheDate) {
-    return NextResponse.json(dailyCache.data)
+    return NextResponse.json(dailyCache.data);
   }
 
-  const normals = MONTHLY_NORMALS[month]
-  const dateStr = today.toLocaleDateString('en-CA', { month: 'long', day: 'numeric' })
+  const normals = MONTHLY_NORMALS[month];
+  const dateStr = today.toLocaleDateString("en-CA", { month: "long", day: "numeric" });
 
-  let aiNarrative = `On ${dateStr}, Charlottetown averages a high of ${normals.avgHigh}°C and a low of ${normals.avgLow}°C. Rain falls on about ${normals.precipFrequency}% of years on this date. The all-time record high for today stands at ${ALL_TIME_RECORDS.recordHigh}°C set in ${ALL_TIME_RECORDS.recordHighYear}.`
+  let aiNarrative = `On ${dateStr}, Charlottetown averages a high of ${normals.avgHigh}°C and a low of ${normals.avgLow}°C. Rain falls on about ${normals.precipFrequency}% of years on this date. The all-time record high for today stands at ${ALL_TIME_RECORDS.recordHigh}°C set in ${ALL_TIME_RECORDS.recordHighYear}.`;
 
   try {
-    const message = await anthropic.messages.create({
-      model: process.env.ANTHROPIC_MODEL ?? 'claude-sonnet-4-6',
-      max_tokens: 200,
-      messages: [{
-        role: 'user',
-        content: `You are the voice of OpenAir Atlantic, a PEI outdoor conditions app. Write exactly 3 sentences in plain, friendly English summarizing what today's date means in PEI weather history. Use these stats for ${dateStr}:
+    const { text } = await generateText({
+      model: getGatewayModel(),
+      maxOutputTokens: 200,
+      system: HISTORY_SYSTEM,
+      prompt: `Write exactly 3 sentences summarizing what today's date means in PEI weather history. Use these stats for ${dateStr}:
 - Historical average high: ${normals.avgHigh}°C
 - Historical average low: ${normals.avgLow}°C
 - All-time record high: ${ALL_TIME_RECORDS.recordHigh}°C in ${ALL_TIME_RECORDS.recordHighYear}
@@ -63,11 +65,9 @@ export async function GET() {
 - Data covers ${ALL_TIME_RECORDS.yearsOnRecord} years of records
 
 Sentence 1: what the typical weather is like on this date. Sentence 2: something interesting about the record or precipitation. Sentence 3: a short local flavour observation an Islander would appreciate. Use real numbers. Do not start with "Today".`,
-      }],
-    })
-    if (message.content[0]?.type === 'text') {
-      aiNarrative = message.content[0].text
-    }
+    });
+    const trimmed = text.trim();
+    if (trimmed) aiNarrative = trimmed;
   } catch {
     // Fallback narrative already set above
   }
@@ -85,8 +85,8 @@ Sentence 1: what the typical weather is like on this date. Sentence 2: something
     precip_frequency: normals.precipFrequency,
     years_on_record: ALL_TIME_RECORDS.yearsOnRecord,
     ai_narrative: aiNarrative,
-  }
+  };
 
-  dailyCache = { date: cacheDate, data: result }
-  return NextResponse.json(result)
+  dailyCache = { date: cacheDate, data: result };
+  return NextResponse.json(result);
 }
