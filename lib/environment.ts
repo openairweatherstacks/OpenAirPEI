@@ -127,7 +127,7 @@ function buildInsight(location: Location) {
   return `${location.name} is getting the kind of Atlantic light that makes short outdoor stops feel longer and better than the numbers suggest.`;
 }
 
-function buildActivityStatus(
+export function buildActivityStatus(
   activity: string,
   location: Location,
   weather: WeatherSnapshot,
@@ -267,7 +267,10 @@ export async function getLiveAqhiReading(aqhiLocation: string): Promise<number |
 
 async function tryLiveAqhi(locationId: string): Promise<number | null> {
   const aqhiLocation =
-    locationId === "charlottetown" || locationId === "victoria-park"
+    locationId === "charlottetown" ||
+    locationId === "victoria-park" ||
+    locationId === "stratford" ||
+    locationId === "charlottetown-airport"
       ? PEI_AQHI.charlottetown
       : locationId === "confederation-bridge" || locationId === "confederation-trail"
         ? PEI_AQHI.summerside

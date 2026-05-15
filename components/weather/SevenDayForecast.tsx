@@ -46,7 +46,15 @@ function getPrecipTone(probability: number) {
   return "text-text-muted";
 }
 
-export function SevenDayForecast({ forecast }: { forecast: DailyForecastSnapshot[] }) {
+export function SevenDayForecast({
+  forecast,
+  title = "Cameron Heights through the week",
+  subtitle = "Daily outlook from Open-Meteo, paired with your live Tempest station for the current read.",
+}: {
+  forecast: DailyForecastSnapshot[];
+  title?: string;
+  subtitle?: string;
+}) {
   if (!forecast.length) return null;
 
   return (
@@ -55,11 +63,11 @@ export function SevenDayForecast({ forecast }: { forecast: DailyForecastSnapshot
         <div>
           <p className="eyebrow mb-2">7-day forecast</p>
           <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">
-            Cameron Heights through the week
+            {title}
           </h2>
         </div>
         <p className="text-sm text-text-muted">
-          Daily outlook from Open-Meteo, paired with your live Tempest station for the current read.
+          {subtitle}
         </p>
       </div>
 

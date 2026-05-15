@@ -21,6 +21,15 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: "/location/stratford",
+        destination: "/town/stratford",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

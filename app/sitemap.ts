@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { PEI_LOCATIONS } from "@/lib/data/locations";
+import { TOWN_PROFILES } from "@/lib/data/towns";
 import { getSiteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -30,11 +31,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
   ];
 
-  const locationRoutes = PEI_LOCATIONS.map((location) => ({
+  const locationRoutes = PEI_LOCATIONS.filter((location) => !TOWN_PROFILES[location.id]).map((location) => ({
     url: `${siteUrl}/location/${location.id}`,
     lastModified,
     changeFrequency: "daily" as const,
     priority: 0.8,
+  }));
+
+  const townRoutes = Object.keys(TOWN_PROFILES).map((slug) => ({
+    url: `${siteUrl}/town/${slug}`,
+    lastModified,
+    changeFrequency: "daily" as const,
+    priority: 0.85,
   }));
 
   return [
@@ -44,6 +52,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: route.changeFrequency,
       priority: route.priority,
     })),
+    ...townRoutes,
     ...locationRoutes,
   ];
 }

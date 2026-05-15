@@ -65,6 +65,7 @@ export const TIDE_STATION_BY_LOCATION: Record<string, keyof typeof PEI_TIDE_STAT
   "basin-head": "northLakeHarbour",
   charlottetown: "charlottetown",
   "charlottetown-airport": "charlottetown",
+  stratford: "charlottetown",
   "victoria-park": "charlottetown",
   "belvedere-golf": "charlottetown",
   "fox-meadow-golf": "charlottetown",
@@ -494,6 +495,28 @@ export const PEI_LOCATIONS: Location[] = [
     },
   },
   {
+    id: "stratford",
+    name: "Stratford",
+    nameFr: "Stratford",
+    tagline: "Charlottetown's east-shore neighbour — quiet harbourfront trails, family beaches, and a quick hop across the Hillsborough Bridge.",
+    lat: 46.2160,
+    lng: -63.0884,
+    type: "community",
+    nearestStation: PEI_STATIONS.charlottetown,
+    activities: ["walking", "cycling", "running"],
+    icon: "🌾",
+    amenities: {
+      parking: "free",
+      parkingNote: "Free parking at Robert Cotton Park, Tea Hill Park, and along the waterfront trail",
+      petFriendly: true,
+      petNote: "Dogs welcome on leash along the Stratford Town Trail and at Tea Hill Park",
+      wheelchairAccessible: true,
+      wheelchairNote: "Paved Stratford Town Trail and accessible boardwalk sections at Robert Cotton Park",
+      washrooms: true,
+      washroomNote: "Seasonal washrooms at Tea Hill Park and Robert Cotton Park, open mid-May through early October",
+    },
+  },
+  {
     id: "charlottetown-airport",
     name: "Charlottetown Airport",
     nameFr: "Aéroport de Charlottetown",
@@ -541,6 +564,8 @@ export const BEACH_BUOYS: Record<string, string> = {
   "basin-head": "C44150",
   "brackley-beach": "C44150",
   "victoria-park": "C44137",
+  stratford: "C44137",
+  "tea-hill": "C44137",
 };
 
 export const CACHE_DURATIONS = {
