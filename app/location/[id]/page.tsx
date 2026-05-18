@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ChevronDown, Droplets, Gauge, Navigation, ParkingCircle, PawPrint, Thermometer, Waves, Wind } from "lucide-react";
 import { notFound } from "next/navigation";
@@ -30,6 +31,33 @@ import { ObservationJsonLd } from "@/components/seo/ObservationJsonLd";
 import { WeatherFaqJsonLd } from "@/components/seo/WeatherFaqJsonLd";
 
 export const revalidate = 600;
+
+const LOCATION_HERO_IMAGES: Record<string, { src: string; alt: string }> = {
+  cavendish: { src: "/get-images/cavendish.jpg", alt: "Cavendish Beach red sand and blue water, PEI" },
+  charlottetown: { src: "/get-images/charlottetown-waterfront.jpg", alt: "Charlottetown waterfront at golden hour" },
+  greenwich: { src: "/get-images/dunes.jpg", alt: "Greenwich Dunes boardwalk through coastal dunes" },
+  "confederation-trail": { src: "/get-images/confederation-trail.jpg", alt: "Confederation Trail flat path through PEI countryside" },
+  "confederation-bridge": { src: "/get-images/confederationbridege.jpg", alt: "Confederation Bridge spanning the Northumberland Strait" },
+  "victoria-park": { src: "/get-images/victoria-park.jpg", alt: "Victoria Park trees and waterfront, Charlottetown" },
+  "basin-head": { src: "/get-images/singing sands.webp", alt: "Basin Head singing sands beach, PEI" },
+  "north-cape": { src: "/get-images/northcape.jpg", alt: "North Cape lighthouse and wind turbines, PEI" },
+  "brackley-beach": { src: "/brackley.webp", alt: "Brackley Beach dunes and shoreline, PEI" },
+  "fox-meadow-golf": { src: "/get-images/fooxmeadow.jpg", alt: "Fox Meadow Golf Course fairway, Stratford PEI" },
+  "belvedere-golf": { src: "/get-images/Belvedere.webp", alt: "Belvedere Golf Club course, Charlottetown PEI" },
+  "cavendish-campground": { src: "/get-images/cavendishcamp.jpg", alt: "Cavendish Campground among the trees, PEI" },
+  "stanhope-campground": { src: "/get-images/stanhope.jpg", alt: "Stanhope Campground near the beach, PEI" },
+  summerside: { src: "/get-images/summerside.webp", alt: "Summerside waterfront along Bedeque Bay" },
+  stratford: { src: "/stratford-hero.png", alt: "Town of Stratford welcome sign at golden hour" },
+  cornwall: { src: "/cornwall-hero.png", alt: "Cornwall PEI boardwalk along the West River" },
+  "tea-hill": { src: "/tea-hill-hero.jpg", alt: "Tea Hill Provincial Park beach and Hillsborough Bay, Stratford PEI" },
+};
+
+const SCORE_PILL: Record<string, { bg: string; text: string; dot: string }> = {
+  Excellent: { bg: "bg-[#E8F5E4]", text: "text-[#2D6E24]", dot: "bg-[#3A8C2F]" },
+  Good: { bg: "bg-[#F2F8EE]", text: "text-[#5FA025]", dot: "bg-[#7DC832]" },
+  Fair: { bg: "bg-[#FDF0D5]", text: "text-[#E8960F]", dot: "bg-[#F5A623]" },
+  "Stay Inside": { bg: "bg-[#FCE9E6]", text: "text-[#9C2D22]", dot: "bg-[#C0392B]" },
+};
 
 export async function generateStaticParams() {
   return PEI_LOCATIONS.map((location) => ({ id: location.id }));
@@ -93,8 +121,11 @@ export default async function LocationPage({
 
   const allLocations = await getAllLocationMapStubs();
 
+  const hero = LOCATION_HERO_IMAGES[id];
+  const heroPill = SCORE_PILL[entry.conditions.score];
+
   return (
-    <div className="page-shell space-y-6">
+    <>
       <LocationJsonLd location={entry.location} />
       <ObservationJsonLd location={entry.location} weather={entry.weather} />
       <BreadcrumbJsonLd
@@ -110,21 +141,59 @@ export default async function LocationPage({
           faqs={entry.location.faqs.map(({ q, a }) => ({ question: q, answer: a }))}
         />
       )}
-      <div className="flex items-center gap-3 text-sm font-semibold text-text-secondary">
-        <Link href="/" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm">
-          <ArrowLeft className="h-4 w-4" />
-          Home
-        </Link>
-        <span>Location outlook</span>
-      </div>
 
-      <section className="panel p-5 sm:p-6">
-        <p className="eyebrow mb-2">{entry.location.type}</p>
-        <h1 className="section-title text-2xl sm:text-4xl">{entry.location.name}</h1>
-        <p className="mt-2 max-w-2xl text-base leading-7 text-text-secondary">
-          {entry.location.tagline}
-        </p>
-      </section>
+      {/* FULL-BLEED HERO */}
+      {hero ? (
+        <div className="relative w-full overflow-hidden bg-[#F2F4EF] aspect-[21/9] sm:aspect-[16/7] lg:aspect-[21/8]">
+          <Image
+            src={hero.src}
+            alt={hero.alt}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+          <div className="absolute inset-0 flex items-end">
+            <div className="mx-auto w-full max-w-5xl px-4 pb-8 sm:pb-10 lg:pb-14 space-y-2">
+              <p className="text-[10px] sm:text-xs uppercase tracking-widest text-white/85 font-semibold">
+                Live conditions · {entry.location.name}, Prince Edward Island
+              </p>
+              <h1
+                className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight drop-shadow-md"
+                style={{ fontFamily: "var(--font-barlow), system-ui, sans-serif" }}
+              >
+                {entry.location.name}, <span className="text-[#7DC832]">right now</span>
+              </h1>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="page-shell pt-6 pb-0">
+          <section className="panel p-5 sm:p-6">
+            <p className="eyebrow mb-2">{entry.location.type}</p>
+            <h1 className="section-title text-2xl sm:text-4xl">{entry.location.name}</h1>
+            <p className="mt-2 max-w-2xl text-base leading-7 text-text-secondary">
+              {entry.location.tagline}
+            </p>
+          </section>
+        </div>
+      )}
+
+    <div className="page-shell space-y-6">
+      {/* Back nav + score pill row */}
+      <div className="flex items-center justify-between gap-3 flex-wrap">
+        <Link href="/explore" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm text-sm font-semibold text-text-secondary">
+          <ArrowLeft className="h-4 w-4" />
+          Explore
+        </Link>
+        {heroPill && (
+          <div className={`${heroPill.bg} ${heroPill.text} inline-flex items-center gap-2 rounded-full px-3 py-1.5`}>
+            <span className={`${heroPill.dot} h-2 w-2 rounded-full`} aria-hidden />
+            <span className="text-sm font-bold tracking-wide">{entry.conditions.score}</span>
+          </div>
+        )}
+      </div>
 
       <section className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
         <div className="space-y-5">
@@ -435,5 +504,6 @@ export default async function LocationPage({
         </div>
       </section>
     </div>
+    </>
   );
 }

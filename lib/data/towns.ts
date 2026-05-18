@@ -493,6 +493,91 @@ export const TOWN_PROFILES: Record<string, TownProfile> = {
     ],
     nearbyLocationIds: ["confederation-trail", "confederation-bridge", "charlottetown"],
   },
+  "tea-hill": {
+    slug: "tea-hill",
+    locationId: "stratford",
+    displayName: "Tea Hill Provincial Park",
+    lede:
+      "Live beach conditions, water temperature, and tide times for Tea Hill Provincial Park — Stratford's red-sand beach on Hillsborough Bay.",
+    officialSiteUrl: "https://www.tourismpei.com/provincial-parks/tea-hill-provincial-park",
+    parksAndTrailsUrl: "https://www.tourismpei.com/provincial-parks/tea-hill-provincial-park",
+    heroImagePath: "/tea-hill-hero.jpg",
+    heroImageAlt: "Tea Hill Provincial Park beach and Hillsborough Bay, Stratford PEI",
+    intelSpots: [
+      {
+        key: "hillsborough-wind",
+        label: "Hillsborough Bay wind",
+        kind: "wind-commute",
+        sourceLocationId: "charlottetown",
+        note: "Crosswind reading from Charlottetown harbour — the closest active station to Tea Hill's open bay shoreline.",
+      },
+      {
+        key: "tea-hill-water",
+        label: "Hillsborough Bay water temperature",
+        kind: "water-temp",
+        buoyId: "C44137",
+        note: "Live read from the Northumberland Strait DFO buoy — Hillsborough Bay connects directly to the Strait.",
+      },
+      {
+        key: "next-tide",
+        label: "Next Charlottetown harbour tide",
+        kind: "tide",
+        note: "DFO tide prediction for the Charlottetown station, the closest official tide gauge to Tea Hill.",
+      },
+    ],
+    beaches: [
+      {
+        id: "tea-hill-main",
+        name: "Tea Hill Beach",
+        address: "492 Keppoch Road, Stratford, PE C1B 2J9",
+        lat: 46.175,
+        lng: -63.098,
+        description:
+          "A long sweep of red PEI sand fronting Hillsborough Bay — managed provincial park with full amenities, calm bay water warm enough for swimming by July, and a playground behind the dunes.",
+        amenities: ["Washrooms", "Showers", "Playground", "Beach volleyball", "Parking", "Picnic tables"],
+      },
+    ],
+    parks: [
+      {
+        id: "tea-hill-park",
+        name: "Tea Hill Provincial Park",
+        address: "492 Keppoch Road, Stratford, PE",
+        highlights: "PEI's most popular family beach in the Charlottetown area — red sand, calm bay swimming, full amenities, and a playground. Open mid-May through early October.",
+        trailKm: 1,
+      },
+    ],
+    faqs: [
+      {
+        q: "Is Tea Hill Beach open today?",
+        a: "Tea Hill Provincial Park runs mid-May through early October, with seasonal amenities (washrooms, showers, playground) available throughout. The beach itself is accessible year-round on foot. The OpenAir live verdict at the top of this page tells you whether conditions are good for swimming, beach walking, or staying home.",
+      },
+      {
+        q: "What's the water temperature at Tea Hill Beach today?",
+        a: "We pull a live water temperature reading from the Northumberland Strait DFO buoy — the same body of water that feeds Hillsborough Bay. Typical range is 15–22°C in July and August. The current reading appears in the intel block on this page.",
+      },
+      {
+        q: "What's the weather at Tea Hill Beach right now?",
+        a: "Tea Hill shares the Charlottetown weather station across Hillsborough Bay, so the temperature, wind, UV, and air quality on this page reflect what you'll feel on the beach. The OpenAir verdict at the top translates those readings into a plain-English swimming and beach call.",
+      },
+      {
+        q: "Is Tea Hill Beach good for kids?",
+        a: "Tea Hill is one of the best family beaches near Charlottetown — calm Hillsborough Bay water, no riptides, warm sand, a playground, and full washroom facilities. The water warms up faster than the north shore because the bay is more sheltered from the Gulf. Current water temp and UV index are on this page.",
+      },
+      {
+        q: "What's the next high tide at Tea Hill?",
+        a: "Tea Hill uses the Charlottetown harbour tide table from Fisheries and Oceans Canada — the closest official station. High tide brings deeper, calmer water for swimming; low tide exposes a wider beach and tide pools. The next high and low tide times appear in the intel block on this page.",
+      },
+      {
+        q: "How far is Tea Hill from Charlottetown?",
+        a: "Tea Hill Provincial Park is about 15 minutes from downtown Charlottetown — cross the Hillsborough Bridge into Stratford and follow Keppoch Road south. Free parking on site.",
+      },
+      {
+        q: "Are dogs allowed at Tea Hill Beach?",
+        a: "Dogs are generally not permitted on the managed beach area during the day in peak season (late June through Labour Day). Outside those hours and off-season, dogs on leash are usually welcome. Check with provincial parks for the current season's rules before you go.",
+      },
+    ],
+    nearbyLocationIds: ["stratford", "charlottetown", "victoria-park", "belvedere-golf"],
+  },
 };
 
 export function getTownProfile(slug: string): TownProfile | null {
