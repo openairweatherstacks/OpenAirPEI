@@ -11,6 +11,8 @@ import type { LocationConditions } from "@/lib/types";
 import { formatObservationTime } from "@/lib/utils";
 import { waterTempLabel } from "@/lib/water";
 
+const TOWN_PAGE_IDS = new Set(["cornwall", "stratford", "summerside"]);
+
 const LOCATION_IMAGES: Record<string, string> = {
   cavendish: "/get-images/cavendish.jpg",
   charlottetown: "/get-images/charlottetown-waterfront.jpg",
@@ -23,6 +25,8 @@ const LOCATION_IMAGES: Record<string, string> = {
   "cavendish-campground": "/get-images/cavendishcamp.jpg",
   "stanhope-campground": "/get-images/stanhope.jpg",
   summerside: "/get-images/summerside.webp",
+  stratford: "/stratford-hero.png",
+  cornwall: "/cornwall-hero.png",
   "brackley-beach": "/brackley.webp",
   "fox-meadow-golf": "/get-images/fooxmeadow.jpg",
   "belvedere-golf": "/get-images/Belvedere.webp",
@@ -150,7 +154,7 @@ export function ConditionsCard({
                 Updated {formatObservationTime(entry.weather.observationTime)}
               </p>
               <Link
-                href={`/location/${entry.location.id}`}
+                href={TOWN_PAGE_IDS.has(entry.location.id) ? `/town/${entry.location.id}` : `/location/${entry.location.id}`}
                 className="inline-flex min-h-11 items-center gap-2 rounded-full bg-forest-deep px-4 py-2 text-sm font-semibold text-white transition hover:bg-forest-deep"
               >
                 Full outlook <ArrowRight className="h-4 w-4" />
