@@ -5,7 +5,7 @@ function normalizeConditionText(text: string) {
 }
 
 export function isStormyWeather(data: WeatherSnapshot): boolean {
-  if (typeof data.conditionCode === "number" && data.conditionCode >= 95) return true;
+  if (typeof data.conditionCode === "number" && data.conditionCode >= 95 && data.conditionCode < 100) return true;
   return /thunderstorm/.test(normalizeConditionText(data.conditionText));
 }
 

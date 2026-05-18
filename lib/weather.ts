@@ -273,16 +273,20 @@ function buildEnvironmentCanadaConditionText(properties: Record<string, unknown>
     .map((value) => (value === null ? null : presentWeatherToConditionText(value)))
     .filter((value): value is string => Boolean(value));
 
+  // Only store the code when it's a genuine present-weather code (0–99).
+  // Codes 100+ are past-weather observations and must not influence scoring.
+  const safeCode = primaryCode !== null && primaryCode < 100 ? primaryCode : null;
+
   if (presentWeather.length > 0) {
     return {
       text: Array.from(new Set(presentWeather)).join(" and "),
-      code: primaryCode,
+      code: safeCode,
     };
   }
 
   return {
     text: cloudCoverToConditionText(pickNumber(properties, ["tot_cld_amt"])),
-    code: primaryCode,
+    code: safeCode,
   };
 }
 
