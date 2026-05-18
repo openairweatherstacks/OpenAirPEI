@@ -12,6 +12,7 @@ import { getAllLocationConditions } from "@/lib/environment";
 import { Droplets } from "lucide-react";
 import ThisDayWidget from "@/components/weather/ThisDayWidget";
 import { DynamicFAQSection } from "@/components/faq/DynamicFAQSection";
+import { SubscribeStrip } from "@/components/ui/SubscribeStrip";
 
 export const revalidate = 600;
 
@@ -29,6 +30,25 @@ export default async function HomePage() {
     .sort((a, b) => (a.weather.precipMinutes ?? 0) - (b.weather.precipMinutes ?? 0))[0] ?? null;
   const nextShift = nextShiftEntry?.weather.precipMinutes ?? null;
   const islandAqhi = average(locations.map((entry) => entry.weather.aqhi));
+
+  // Best conditions window — derived from top 3 ranked locations
+  const bestWindowInsight = bestNow.length > 0
+    ? `${bestNow[0].location.name} leads right now with ${bestNow[0].conditions.score.toLowerCase()} conditions. ${bestNow[0].conditions.headline}`
+    : "Scanning conditions across the island.";
+
+  // Activity match — find best location for cycling specifically
+  const bestCycling = ranked.find((e) => e.location.activities.includes("cycling"));
+  const cyclingActivity = bestCycling?.conditions.activities.find((a) => a.name === "cycling");
+  const activityInsight = bestCycling && cyclingActivity
+    ? `Cycling is ${cyclingActivity.status} at ${bestCycling.location.name} right now. ${cyclingActivity.reason}`
+    : "Check individual locations for activity-specific conditions.";
+
+  // Island air quality — derived from live AQHI average
+  const aqhiInsight = islandAqhi <= 3
+    ? `Air is clean across the island at AQHI ${islandAqhi.toFixed(1)}. Fine for everyone including kids and anyone with asthma.`
+    : islandAqhi <= 6
+      ? `Air quality is acceptable island-wide at AQHI ${islandAqhi.toFixed(1)}. Sensitive groups should ease off hard outdoor effort.`
+      : `Air quality is poor across the island at AQHI ${islandAqhi.toFixed(1)}. Limit outdoor time, especially for kids and anyone with asthma.`;
 
   return (
     <div>
@@ -163,7 +183,7 @@ export default async function HomePage() {
             <MetricCard
               icon={CloudSun}
               title="Best conditions window"
-              insight="The north shore stays comfortable longest today. Cavendish and the Confederation Trail both have the cleanest mix of sun, air, and manageable wind."
+              insight={bestWindowInsight}
               rawLabel={`Top window · ${bestNow.map((entry) => entry.location.name).join(" · ")}`}
               accentClassName="text-sun-text"
             />
@@ -174,21 +194,21 @@ export default async function HomePage() {
           <MetricCard
             icon={Bike}
             title="Activity match"
-            insight="Cycling is strongest through the island interior this afternoon, where westbound routes stay more sheltered than the exposed coasts."
-            rawLabel="Activity match · Trail and waterfront rides"
+            insight={activityInsight}
+            rawLabel={`Best cycling · ${bestCycling?.location.name ?? "scanning"}`}
             accentClassName="text-forest"
           />
           <MetricCard
             icon={Wind}
             title="Bridge wind"
-            insight="Bridge wind is the island's sharpest decision point today. The shoreline can feel reasonable while the deck still runs gusty."
-            rawLabel={`Bridge wind · ${bridge?.weather.windSpeed ?? "--"} km/h`}
+            insight={bridge ? bridge.conditions.summary.split(".")[0] + "." : "Bridge wind data loading."}
+            rawLabel={`Bridge wind · ${bridge?.weather.windSpeed ?? "--"} km/h · ${bridge?.conditions.bridgeStatus ?? "checking"}`}
             accentClassName="text-sun-text"
           />
           <MetricCard
             icon={ShieldCheck}
             title="Island air quality"
-            insight="AQHI is calm enough for kids, visitors, and most asthma-sensitive users to spend time outside without special precautions."
+            insight={aqhiInsight}
             rawLabel={`Island AQHI · ${islandAqhi.toFixed(1)}`}
             accentClassName="text-forest"
           />
@@ -290,6 +310,10 @@ export default async function HomePage() {
         </section>
 
         <DynamicFAQSection />
+
+        <div className="max-w-xl mx-auto">
+          <SubscribeStrip source="home" />
+        </div>
 
       </div>
     </div>
