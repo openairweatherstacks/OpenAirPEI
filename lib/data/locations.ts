@@ -540,6 +540,42 @@ export const PEI_LOCATIONS: Location[] = [
     },
   },
   {
+    id: "tea-hill",
+    name: "Tea Hill Provincial Park",
+    nameFr: "Parc provincial Tea Hill",
+    tagline: "Stratford's family beach and park on Hillsborough Bay — calm red-sand swimming, full amenities, and a quick drive from Charlottetown.",
+    lat: 46.175,
+    lng: -63.098,
+    type: "park",
+    nearestStation: PEI_STATIONS.charlottetown,
+    activities: ["swimming", "walking", "picnic"],
+    icon: "🏖️",
+    amenities: {
+      parking: "free",
+      parkingNote: "Free parking in the provincial park lot on Keppoch Road",
+      petFriendly: false,
+      petNote: "Pets not permitted on the managed beach during peak season",
+      wheelchairAccessible: true,
+      wheelchairNote: "Accessible washrooms and a path to the beach entrance",
+      washrooms: true,
+      washroomNote: "Washrooms and showers open mid-May through early October",
+    },
+    faqs: [
+      {
+        q: "Is Tea Hill Beach open today?",
+        a: "Tea Hill Provincial Park runs mid-May through early October. The beach is accessible year-round on foot outside those hours. The OpenAir verdict at the top of this page tells you whether conditions are good for swimming right now.",
+      },
+      {
+        q: "How warm is the water at Tea Hill Beach?",
+        a: "Hillsborough Bay warms faster than the north shore because it's more sheltered. Expect 15–18°C by early July and up to 22°C in August. Live water temperature from the Northumberland Strait buoy appears on the Tea Hill park page.",
+      },
+      {
+        q: "How far is Tea Hill from Charlottetown?",
+        a: "About 15 minutes — cross the Hillsborough Bridge into Stratford and follow Keppoch Road south. Free parking on site.",
+      },
+    ],
+  },
+  {
     id: "charlottetown-airport",
     name: "Charlottetown Airport",
     nameFr: "Aéroport de Charlottetown",

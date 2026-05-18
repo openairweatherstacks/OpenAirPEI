@@ -11,7 +11,7 @@ import type { LocationConditions } from "@/lib/types";
 import { formatObservationTime } from "@/lib/utils";
 import { waterTempLabel } from "@/lib/water";
 
-const TOWN_PAGE_IDS = new Set(["cornwall", "stratford", "summerside"]);
+const TOWN_PAGE_IDS = new Set(["cornwall", "stratford", "summerside", "tea-hill"]);
 
 const LOCATION_IMAGES: Record<string, string> = {
   cavendish: "/get-images/cavendish.jpg",
@@ -27,6 +27,7 @@ const LOCATION_IMAGES: Record<string, string> = {
   summerside: "/get-images/summerside.webp",
   stratford: "/stratford-hero.png",
   cornwall: "/cornwall-hero.png",
+  "tea-hill": "/tea-hill-hero.jpg",
   "brackley-beach": "/brackley.webp",
   "fox-meadow-golf": "/get-images/fooxmeadow.jpg",
   "belvedere-golf": "/get-images/Belvedere.webp",

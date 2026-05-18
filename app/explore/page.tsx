@@ -27,6 +27,7 @@ type Category = {
   label: string;
   description: string;
   types: LocationType[];
+  extraIds?: string[];
   image?: string;
   accent: string;
   textAccent: string;
@@ -47,6 +48,7 @@ const CATEGORIES: Category[] = [
     label: "Beaches",
     description: "Red sand, warm gulf water, and the best swimming in Atlantic Canada.",
     types: ["beach"],
+    extraIds: ["tea-hill"],
     image: "/get-images/cavendish.jpg",
     accent: "from-blue-900/70 to-blue-600/40",
     textAccent: "text-blue-200",
@@ -111,7 +113,7 @@ export default async function ExplorePage() {
   const byCategory = CATEGORIES.map((cat) => ({
     ...cat,
     locations: allLocations
-      .filter((entry) => cat.types.includes(entry.location.type))
+      .filter((entry) => cat.types.includes(entry.location.type) || (cat.extraIds ?? []).includes(entry.location.id))
       .sort((a, b) => scoreRank(b.conditions.score) - scoreRank(a.conditions.score)),
   }));
 
@@ -207,7 +209,7 @@ export default async function ExplorePage() {
   );
 }
 
-const TOWN_PAGE_IDS = new Set(["cornwall", "stratford", "summerside"]);
+const TOWN_PAGE_IDS = new Set(["cornwall", "stratford", "summerside", "tea-hill"]);
 
 function ExploreCard({ entry }: { entry: LocationConditions }) {
   const LOCATION_IMAGES: Record<string, string> = {
@@ -222,6 +224,7 @@ function ExploreCard({ entry }: { entry: LocationConditions }) {
     summerside: "/get-images/summerside.webp",
     stratford: "/stratford-hero.png",
     cornwall: "/cornwall-hero.png",
+    "tea-hill": "/tea-hill-hero.jpg",
     "brackley-beach": "/brackley.webp",
     "fox-meadow-golf": "/get-images/fooxmeadow.jpg",
     "belvedere-golf": "/get-images/Belvedere.webp",
