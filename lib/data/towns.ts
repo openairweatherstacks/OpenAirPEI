@@ -47,6 +47,156 @@ export interface TownProfile {
 }
 
 export const TOWN_PROFILES: Record<string, TownProfile> = {
+  cornwall: {
+    slug: "cornwall",
+    locationId: "cornwall",
+    displayName: "Cornwall",
+    lede:
+      "Live conditions, tides, and outdoor verdicts for Cornwall, PEI — Charlottetown's west-shore neighbour on the West River.",
+    officialSiteUrl: "https://cornwallpe.ca",
+    parksAndTrailsUrl: "https://cornwallpe.ca/recreation/",
+    heroImagePath: "/cornwall-hero.png",
+    heroImageAlt: "Cornwall, PEI boardwalk along the West River with the town in the background",
+    intelSpots: [
+      {
+        key: "trans-canada-wind",
+        label: "Trans-Canada (Route 1) wind",
+        kind: "wind-commute",
+        sourceLocationId: "charlottetown",
+        note: "Crosswind reading from Charlottetown harbour — the closest active station to the Route 1 corridor through Cornwall.",
+      },
+      {
+        key: "west-river-water",
+        label: "West River water temperature",
+        kind: "water-temp",
+        buoyId: "C44137",
+        note: "Live read from the Northumberland Strait DFO buoy — the same body of water that feeds the West River estuary.",
+      },
+      {
+        key: "cornwall-boardwalk-trail",
+        label: "Cornwall Boardwalk trail",
+        kind: "trail-status",
+        note: "Walking verdict for the paved West River boardwalk, scored against current Cornwall conditions.",
+      },
+      {
+        key: "next-tide",
+        label: "Next Charlottetown harbour tide",
+        kind: "tide",
+        note: "DFO tide prediction for the Charlottetown station, the closest official tide gauge to Cornwall's West River estuary.",
+      },
+    ],
+    beaches: [
+      {
+        id: "argyle-shore",
+        name: "Argyle Shore Provincial Park Beach",
+        address: "Route 19, Argyle Shore, PE",
+        lat: 46.1283,
+        lng: -63.3611,
+        description:
+          "The closest red-sand beach to Cornwall — a managed provincial park on the south shore with warm Northumberland Strait water, picnic grounds, and a great view of Nova Scotia across the strait.",
+        amenities: ["Washrooms", "Picnic shelter", "Parking", "Stairs to beach"],
+      },
+      {
+        id: "canoe-cove",
+        name: "Canoe Cove Beach",
+        address: "Canoe Cove Road, Canoe Cove, PE",
+        lat: 46.1078,
+        lng: -63.3239,
+        description:
+          "Quiet south-shore beach a short drive from Cornwall — red sand, warm strait water, and tide pools at low tide. Informal access with no facilities.",
+        amenities: ["Informal parking", "No facilities"],
+      },
+      {
+        id: "rocky-point",
+        name: "Rocky Point Beach",
+        address: "Rocky Point, PE",
+        lat: 46.1969,
+        lng: -63.1411,
+        description:
+          "Across the harbour from Charlottetown — a quiet shoreline with views of the city skyline, Skmaqn–Port-la-Joye–Fort Amherst National Historic Site, and the Hillsborough Bay tide.",
+        amenities: ["Parking at Fort Amherst", "Picnic tables", "Interpretive trails"],
+      },
+    ],
+    parks: [
+      {
+        id: "cornwall-boardwalk",
+        name: "Cornwall Boardwalk",
+        address: "Cornwall Centennial Park, Cornwall, PE",
+        highlights: "Paved waterfront boardwalk along the West River — the town's flagship walking trail with estuary views and benches throughout.",
+        trailKm: 1.5,
+      },
+      {
+        id: "terry-fox-sports-complex",
+        name: "Terry Fox Sports Complex",
+        address: "20 Centennial Drive, Cornwall, PE",
+        highlights: "The town's main outdoor sports hub — soccer fields, baseball diamonds, playground, and a walking loop on landscaped grounds.",
+      },
+      {
+        id: "apm-centre-grounds",
+        name: "APM Centre Grounds",
+        address: "1 Cornwall Road, Cornwall, PE",
+        highlights: "Cornwall's twin-pad arena with adjacent green space, a playground, and the trailhead for the Cornwall Trail.",
+      },
+      {
+        id: "cornwall-watershed-trails",
+        name: "Cornwall & Area Watershed Trails",
+        address: "North River Causeway, Cornwall, PE",
+        highlights: "Natural trail network along the North River with marsh boardwalks and woodland sections — a quieter alternative to the main boardwalk.",
+        trailKm: 3,
+      },
+      {
+        id: "warren-grove-park",
+        name: "Warren Grove Park",
+        address: "Warren Grove Road, Cornwall, PE",
+        highlights: "Neighbourhood park with playground and open green space, popular with families in the Warren Grove subdivision.",
+      },
+      {
+        id: "meadowbank-park",
+        name: "Meadowbank Park",
+        address: "Meadowbank Road, Cornwall, PE",
+        highlights: "Rural community park on the western edge of Cornwall — playground, ballfield, and quiet trails.",
+      },
+    ],
+    faqs: [
+      {
+        q: "What's the weather like in Cornwall, PEI right now?",
+        a: "Cornwall shares the Charlottetown weather station roughly nine kilometres east, so live temperature, wind, UV, and air quality all reflect what you'll feel on the West River. The OpenAir verdict at the top of this page combines those readings into a plain-English call on whether right now is good for outdoor plans.",
+      },
+      {
+        q: "Which beach near Cornwall is best for swimming today?",
+        a: "Argyle Shore Provincial Park is the closest managed beach — a 20-minute drive south on Route 19 with washrooms, picnic grounds, and warm strait water. Canoe Cove is quieter and good for wading, while Rocky Point Beach offers harbour views and tide pools. The beach cards on this page show live conditions for each, so pick whichever has the best Go/Caution/Skip rating right now.",
+      },
+      {
+        q: "Is the Cornwall Boardwalk open today?",
+        a: "The Cornwall Boardwalk along the West River is open year-round for walking, with the main season running from mid-May through October. We surface live wind, UV, and rainfall on this page so you can see if it's a comfortable day for the loop before you head out.",
+      },
+      {
+        q: "What parks and trails are in Cornwall?",
+        a: "Cornwall has the West River Boardwalk, the Terry Fox Sports Complex grounds, the APM Centre walking loop, the Cornwall & Area Watershed trails along the North River, and neighbourhood parks at Warren Grove and Meadowbank. Each is scored live on this page against current Cornwall conditions.",
+      },
+      {
+        q: "How windy is Route 1 through Cornwall today?",
+        a: "We pull the live wind reading from the Charlottetown harbour station, the closest active observation site to the Trans-Canada Highway as it runs through Cornwall. Sustained winds above 50 km/h make the bridge approaches and Route 1 open stretches noticeably gusty; above 70 km/h, expect provincial restrictions on the Confederation Bridge to the west.",
+      },
+      {
+        q: "What's the next high tide on the West River?",
+        a: "Cornwall uses the Charlottetown harbour tide table from Fisheries and Oceans Canada — the closest official station. The West River estuary tides closely follow the Charlottetown reading. The next high and low tide times appear in the Cornwall intel block on this page, refreshed throughout the day.",
+      },
+      {
+        q: "When does the sun rise and set in Cornwall?",
+        a: "Sunrise and sunset times update daily on this page, calculated for Cornwall's exact coordinates (46.237°N, 63.215°W). In peak summer, expect daylight from before 5:30 AM until after 9:00 PM; in midwinter, the window shrinks to roughly 7:45 AM to 4:30 PM.",
+      },
+      {
+        q: "Where can I park in Cornwall?",
+        a: "Free parking at the Terry Fox Sports Complex, the APM Centre, and along the Cornwall Boardwalk. The boardwalk lot fills up fastest on summer weekends with good weather — check the OpenAir verdict at the top of this page before deciding when to arrive.",
+      },
+      {
+        q: "How far is Cornwall from Charlottetown?",
+        a: "Cornwall is about nine kilometres west of downtown Charlottetown along Route 1 (Trans-Canada Highway) — a 12-minute drive in normal traffic. T3 Transit's Route 3 connects Cornwall to Charlottetown's downtown core throughout the day.",
+      },
+    ],
+    nearbyLocationIds: ["charlottetown", "victoria-park", "fox-meadow-golf", "confederation-bridge"],
+  },
   stratford: {
     slug: "stratford",
     locationId: "stratford",
@@ -198,6 +348,150 @@ export const TOWN_PROFILES: Record<string, TownProfile> = {
       },
     ],
     nearbyLocationIds: ["charlottetown", "victoria-park", "fox-meadow-golf", "belvedere-golf"],
+  },
+  summerside: {
+    slug: "summerside",
+    locationId: "summerside",
+    displayName: "Summerside",
+    lede:
+      "Live conditions, tides, and outdoor verdicts for Summerside, PEI — the Island's second city on Bedeque Bay.",
+    officialSiteUrl: "https://www.summerside.ca",
+    parksAndTrailsUrl: "https://www.summerside.ca/residents/recreation-and-parks",
+    heroImagePath: "/summerside-hero.webp",
+    heroImageAlt: "Summerside Waterfront boardwalk along Bedeque Bay at sunset",
+    intelSpots: [
+      {
+        key: "bedeque-bay-wind",
+        label: "Bedeque Bay wind",
+        kind: "wind-commute",
+        sourceLocationId: "summerside",
+        note: "Live wind from the Summerside observation station — the closest active station to the bay waterfront and downtown.",
+      },
+      {
+        key: "bedeque-bay-water",
+        label: "Bedeque Bay water temperature",
+        kind: "water-temp",
+        buoyId: "C44137",
+        note: "Live read from the Northumberland Strait DFO buoy — Bedeque Bay opens directly onto the Strait.",
+      },
+      {
+        key: "rotary-trail",
+        label: "Rotary Friendship Park trail",
+        kind: "trail-status",
+        note: "Walking verdict for the paved waterfront trail, scored against current Summerside conditions.",
+      },
+      {
+        key: "next-tide",
+        label: "Next Summerside tide",
+        kind: "tide",
+        note: "DFO tide prediction for the Charlottetown station — Bedeque Bay tides run roughly 20 minutes later.",
+      },
+    ],
+    beaches: [
+      {
+        id: "linkletter-beach",
+        name: "Linkletter Provincial Park Beach",
+        address: "Route 11, Linkletter, PE",
+        lat: 46.3583,
+        lng: -63.8411,
+        description:
+          "The most popular beach near Summerside — managed provincial park on the south shore of Bedeque Bay with a long red-sand shoreline, warm Northumberland Strait water, and full amenities.",
+        amenities: ["Washrooms", "Showers", "Parking", "Picnic tables", "Change rooms"],
+      },
+      {
+        id: "cedar-dunes",
+        name: "Cedar Dunes Provincial Park Beach",
+        address: "Route 14, West Point, PE",
+        lat: 46.6186,
+        lng: -64.0711,
+        description:
+          "A 45-minute drive west of Summerside but worth it — a wide red-sand beach at the tip of the Island with the iconic West Point Lighthouse and warm Gulf water.",
+        amenities: ["Washrooms", "Showers", "Playground", "Parking", "Lighthouse inn on site"],
+      },
+      {
+        id: "summerside-rotary-beach",
+        name: "Rotary Friendship Park Waterfront",
+        address: "Rotary Drive, Summerside, PE",
+        lat: 46.3889,
+        lng: -63.7917,
+        description:
+          "Summerside's downtown waterfront — a paved walking trail along Bedeque Bay with harbour views, public art, and a small beach area popular for evening walks.",
+        amenities: ["Parking", "Washrooms seasonal", "Picnic tables"],
+      },
+    ],
+    parks: [
+      {
+        id: "rotary-friendship-park",
+        name: "Rotary Friendship Park",
+        address: "Rotary Drive, Summerside, PE",
+        highlights: "Summerside's signature waterfront park — a 3 km paved trail loop along Bedeque Bay, bandshell, splash pad, and the city's main festival grounds.",
+        trailKm: 3,
+      },
+      {
+        id: "credit-union-place-grounds",
+        name: "Credit Union Place Park",
+        address: "511 Notre Dame Street, Summerside, PE",
+        highlights: "Outdoor plaza beside the main arena with walking paths, community garden, and open green space.",
+      },
+      {
+        id: "memorial-park",
+        name: "Memorial Park",
+        address: "Summer Street, Summerside, PE",
+        highlights: "Downtown Summerside's central park — trees, benches, a monument, and the heart of summer events.",
+      },
+      {
+        id: "wyatt-heritage",
+        name: "Wyatt Centre Heritage Cultural District",
+        address: "Spinnaker Drive, Summerside, PE",
+        highlights: "Restored 19th-century buildings with public green space fronting Bedeque Bay — venue for theatre and cultural events.",
+      },
+      {
+        id: "sunfish-pond-park",
+        name: "Sunfish Pond Nature Park",
+        address: "MacEwen Road, Summerside, PE",
+        highlights: "Quiet nature park with a small pond, boardwalk sections, and bird habitat — popular with local birders and dog walkers.",
+        trailKm: 1.5,
+      },
+    ],
+    faqs: [
+      {
+        q: "What's the weather like in Summerside, PEI right now?",
+        a: "Summerside has its own Environment Canada weather station, so the temperature, wind, UV index, and air quality on this page reflect conditions measured directly in the city. The OpenAir verdict at the top translates those readings into a plain-English call on whether right now is good for outdoor plans.",
+      },
+      {
+        q: "Which beach near Summerside is best for swimming today?",
+        a: "Linkletter Provincial Park is the closest managed beach — 15 minutes west on Route 11 with warm Bedeque Bay water and full facilities. Cedar Dunes Provincial Park at West Point is a longer drive but has some of the best swimming on the Island. The beach cards on this page show live conditions for each, so pick the one with the best Go/Caution/Skip rating right now.",
+      },
+      {
+        q: "Is the Rotary Friendship Park trail open today?",
+        a: "The Rotary Friendship Park waterfront trail is open year-round, with the paved 3 km loop accessible in all seasons. We surface live wind, UV, and rainfall on this page so you can see if it's a comfortable day for the walk before heading out.",
+      },
+      {
+        q: "What parks and trails are in Summerside?",
+        a: "Summerside's main outdoor spaces are Rotary Friendship Park (3 km waterfront trail), Memorial Park downtown, the Wyatt Heritage Cultural District waterfront, Credit Union Place Park, and Sunfish Pond Nature Park. The Confederation Trail also runs through Summerside, connecting east across the Island.",
+      },
+      {
+        q: "How windy is Bedeque Bay today?",
+        a: "We pull the live wind reading from the Summerside observation station, the closest active site to the bay. Sustained winds above 40 km/h make the exposed waterfront trail noticeably gusty; above 60 km/h, Linkletter Beach and the open bay shore can be uncomfortable for anything but photography.",
+      },
+      {
+        q: "What's the next high tide in Summerside?",
+        a: "Summerside uses Charlottetown harbour tide predictions from Fisheries and Oceans Canada — the closest official station, with Bedeque Bay tides running roughly 20 minutes later. The next high and low tide times appear in the Summerside intel block on this page, updated throughout the day.",
+      },
+      {
+        q: "When does the sun rise and set in Summerside?",
+        a: "Sunrise and sunset times update daily on this page, calculated for Summerside's coordinates (46.389°N, 63.791°W). In peak summer, expect daylight from before 5:30 AM until nearly 9:30 PM; in midwinter, the window narrows to roughly 7:50 AM to 4:20 PM.",
+      },
+      {
+        q: "Is Summerside on the Confederation Trail?",
+        a: "Yes — the Confederation Trail runs through Summerside and connects to the island-wide network. The paved section from the city links east toward Charlottetown and west toward Tignish across flat, car-free terrain. Live conditions for the nearest trail section appear on the Confederation Trail page.",
+      },
+      {
+        q: "How far is Summerside from Charlottetown?",
+        a: "Summerside is about 71 kilometres west of Charlottetown along the Trans-Canada Highway (Route 1) — roughly a 50-minute drive. T3 Transit's regional routes connect the two cities on weekdays.",
+      },
+    ],
+    nearbyLocationIds: ["confederation-trail", "confederation-bridge", "charlottetown"],
   },
 };
 

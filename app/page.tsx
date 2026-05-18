@@ -13,6 +13,7 @@ import { Droplets } from "lucide-react";
 import ThisDayWidget from "@/components/weather/ThisDayWidget";
 import { DynamicFAQSection } from "@/components/faq/DynamicFAQSection";
 import { SubscribeStrip } from "@/components/ui/SubscribeStrip";
+import { CitiesAndTownsSection } from "@/components/ui/CitiesAndTownsSection";
 
 export const revalidate = 600;
 
@@ -239,6 +240,8 @@ export default async function HomePage() {
         </section>
 
         <ThisDayWidget />
+
+        <CitiesAndTownsSection />
 
         <section className="space-y-4">
           <div>
