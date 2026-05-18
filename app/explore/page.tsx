@@ -62,9 +62,9 @@ const CATEGORIES: Category[] = [
   },
   {
     id: "city",
-    label: "City & Waterfront",
-    description: "Charlottetown's harbour, restaurants, and walkable waterfront.",
-    types: ["city"],
+    label: "Cities & Towns",
+    description: "Live conditions for Charlottetown, Summerside, Stratford, Cornwall, and more.",
+    types: ["city", "community"],
     image: "/get-images/charlottetown-waterfront.jpg",
     accent: "from-charcoal/80 to-charcoal/40",
     textAccent: "text-white/90",
@@ -207,6 +207,8 @@ export default async function ExplorePage() {
   );
 }
 
+const TOWN_PAGE_IDS = new Set(["cornwall", "stratford", "summerside"]);
+
 function ExploreCard({ entry }: { entry: LocationConditions }) {
   const LOCATION_IMAGES: Record<string, string> = {
     cavendish: "/get-images/cavendish.jpg",
@@ -218,6 +220,8 @@ function ExploreCard({ entry }: { entry: LocationConditions }) {
     "north-cape": "/get-images/northcape.jpg",
     "basin-head": "/get-images/singing sands.webp",
     summerside: "/get-images/summerside.webp",
+    stratford: "/stratford-hero.png",
+    cornwall: "/cornwall-hero.png",
     "brackley-beach": "/brackley.webp",
     "fox-meadow-golf": "/get-images/fooxmeadow.jpg",
     "belvedere-golf": "/get-images/Belvedere.webp",
@@ -226,10 +230,13 @@ function ExploreCard({ entry }: { entry: LocationConditions }) {
   };
 
   const image = LOCATION_IMAGES[entry.location.id];
+  const href = TOWN_PAGE_IDS.has(entry.location.id)
+    ? `/town/${entry.location.id}`
+    : `/location/${entry.location.id}`;
 
   return (
     <Link
-      href={`/location/${entry.location.id}`}
+      href={href}
       className="group overflow-hidden rounded-[1.75rem] border border-white/70 bg-white/90 shadow-[0_8px_40px_rgba(42,42,42,0.07)] transition hover:shadow-[0_16px_60px_rgba(42,42,42,0.12)]"
     >
       {image && (
