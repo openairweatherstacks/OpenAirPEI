@@ -24,6 +24,13 @@ export function ParkConditionsGrid({
   if (parks.length === 0) return null;
 
   const recreationUrl = parksAndTrailsUrl;
+  const parksHost = (() => {
+    try {
+      return new URL(parksAndTrailsUrl).hostname.replace(/^www\./, "");
+    } catch {
+      return "official site";
+    }
+  })();
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
@@ -78,7 +85,7 @@ export function ParkConditionsGrid({
                 rel="noopener noreferrer"
                 className="text-[#6B7366] hover:text-[#2D6E24] inline-flex items-center gap-1"
               >
-                Hours & info → townofstratford.ca
+                Hours & info → {parksHost}
                 <ArrowUpRight size={12} />
               </a>
             </div>

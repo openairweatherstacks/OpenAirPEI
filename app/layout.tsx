@@ -1,10 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Barlow_Condensed, Roboto } from "next/font/google";
 import Script from "next/script";
-import { Suspense, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import "leaflet/dist/leaflet.css";
 
-import { AnalyticsScripts } from "@/components/analytics/AnalyticsScripts";
 import { SiteJsonLd } from "@/components/seo/SiteJsonLd";
 import { BetaBanner } from "@/components/layout/BetaBanner";
 import { BottomNav } from "@/components/layout/BottomNav";
@@ -115,6 +114,28 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Consent Mode v2 — must run before GTM loads */}
+        <Script id="gtm-consent-default" strategy="beforeInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('consent', 'default', {
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied',
+            analytics_storage: 'denied',
+            wait_for_update: 500
+          });
+          var consent = null;
+          try { consent = localStorage.getItem('openair-cookie-consent'); } catch(e) {}
+          if (consent === 'accepted') {
+            gtag('consent', 'update', {
+              ad_storage: 'granted',
+              ad_user_data: 'granted',
+              ad_personalization: 'granted',
+              analytics_storage: 'granted'
+            });
+          }
+        `}</Script>
         <Script id="gtm-init" strategy="afterInteractive">{`
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -141,9 +162,6 @@ export default function RootLayout({
           <BottomNav />
           <InstallPrompt />
           <CookieBanner />
-          <Suspense fallback={null}>
-            <AnalyticsScripts />
-          </Suspense>
         </div>
         <Script id="sw-register" strategy="afterInteractive">{`
           if ('serviceWorker' in navigator) {

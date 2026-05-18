@@ -16,6 +16,14 @@ export function CookieBanner() {
 
   function updateConsent(value: "accepted" | "declined") {
     localStorage.setItem(CONSENT_KEY, value);
+    const granted = value === "accepted" ? "granted" : "denied";
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(["consent", "update", {
+      ad_storage: granted,
+      ad_user_data: granted,
+      ad_personalization: granted,
+      analytics_storage: granted,
+    }]);
     window.dispatchEvent(new Event(CONSENT_EVENT));
     setVisible(false);
   }

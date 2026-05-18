@@ -28,6 +28,11 @@ const nextConfig: NextConfig = {
         destination: "/town/stratford",
         permanent: true,
       },
+      {
+        source: "/location/cornwall",
+        destination: "/town/cornwall",
+        permanent: true,
+      },
     ];
   },
 };

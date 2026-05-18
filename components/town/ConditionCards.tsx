@@ -19,13 +19,13 @@ function describeWind(weather: WeatherSnapshot): string {
   return `Wind is ${speed} km/h from the ${weather.windDirection}, with gusts near ${gust} km/h — calm conditions across the area.`;
 }
 
-function describeRainToday(today: DailyForecastSnapshot | undefined): string {
+function describeRainToday(today: DailyForecastSnapshot | undefined, townName: string): string {
   if (!today) return "Daily rain total is briefly unavailable from Open-Meteo.";
   const mm = today.precipAmount;
-  if (mm <= 0.1) return "No measurable rain has fallen in Stratford today — the day is staying dry.";
-  if (mm < 2) return `Light rain so far in Stratford today (${mm.toFixed(1)} mm) — enough to see, not enough to disrupt plans.`;
-  if (mm < 10) return `Moderate rain has fallen in Stratford today (${mm.toFixed(1)} mm) — wet ground for the rest of the day.`;
-  return `Heavy rain has fallen in Stratford today (${mm.toFixed(1)} mm) — flooding and runoff worth watching.`;
+  if (mm <= 0.1) return `No measurable rain has fallen in ${townName} today — the day is staying dry.`;
+  if (mm < 2) return `Light rain so far in ${townName} today (${mm.toFixed(1)} mm) — enough to see, not enough to disrupt plans.`;
+  if (mm < 10) return `Moderate rain has fallen in ${townName} today (${mm.toFixed(1)} mm) — wet ground for the rest of the day.`;
+  return `Heavy rain has fallen in ${townName} today (${mm.toFixed(1)} mm) — flooding and runoff worth watching.`;
 }
 
 function describeWatch(alerts: AlertItem[]): { insight: string; raw: string } {
@@ -77,10 +77,12 @@ export function ConditionCards({
   weather,
   dailyForecast,
   alerts,
+  townName = "this town",
 }: {
   weather: WeatherSnapshot;
   dailyForecast: DailyForecastSnapshot[];
   alerts: AlertItem[];
+  townName?: string;
 }) {
   const watch = describeWatch(alerts);
   const pressure = describePressure(weather);
@@ -97,7 +99,7 @@ export function ConditionCards({
       <MetricCard
         icon={CloudRain}
         title="Rain today"
-        insight={describeRainToday(dailyForecast[0])}
+        insight={describeRainToday(dailyForecast[0], townName)}
         rawLabel={`${(dailyForecast[0]?.precipAmount ?? 0).toFixed(1)} mm today · Open-Meteo`}
       />
       <MetricCard

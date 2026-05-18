@@ -62,6 +62,13 @@ export async function BeachConditionsGrid({
   if (beaches.length === 0) return null;
 
   const readings = await Promise.all(beaches.map(readBeach));
+  const parksHost = (() => {
+    try {
+      return new URL(parksAndTrailsUrl).hostname.replace(/^www\./, "");
+    } catch {
+      return "official site";
+    }
+  })();
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
@@ -132,7 +139,7 @@ export async function BeachConditionsGrid({
                 rel="noopener noreferrer"
                 className="text-[#6B7366] hover:text-[#2D6E24] inline-flex items-center gap-1"
               >
-                Park info → townofstratford.ca
+                Park info → {parksHost}
                 <ArrowUpRight size={12} />
               </a>
             </div>

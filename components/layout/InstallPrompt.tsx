@@ -2,6 +2,7 @@
 
 import { Download, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 const DISMISS_KEY = "openair-install-dismissed-v1";
 
@@ -14,6 +15,7 @@ export function InstallPrompt() {
   const [promptEvent, setPromptEvent] = useState<BeforeInstallPromptEvent | null>(null);
   const [isIOS, setIsIOS] = useState(false);
   const [visible, setVisible] = useState(false);
+  const { trackPwaPromptShown, trackPwaInstalled } = useAnalytics();
 
   useEffect(() => {
     if (localStorage.getItem(DISMISS_KEY)) return;
@@ -26,6 +28,7 @@ export function InstallPrompt() {
     if (ios) {
       setIsIOS(true);
       setVisible(true);
+      trackPwaPromptShown();
       return;
     }
 
@@ -33,10 +36,12 @@ export function InstallPrompt() {
       e.preventDefault();
       setPromptEvent(e as BeforeInstallPromptEvent);
       setVisible(true);
+      trackPwaPromptShown();
     };
 
     window.addEventListener("beforeinstallprompt", handler);
     return () => window.removeEventListener("beforeinstallprompt", handler);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function dismiss() {
@@ -48,7 +53,10 @@ export function InstallPrompt() {
     if (!promptEvent) return;
     await promptEvent.prompt();
     const { outcome } = await promptEvent.userChoice;
-    if (outcome === "accepted") setVisible(false);
+    if (outcome === "accepted") {
+      trackPwaInstalled();
+      setVisible(false);
+    }
   }
 
   if (!visible) return null;

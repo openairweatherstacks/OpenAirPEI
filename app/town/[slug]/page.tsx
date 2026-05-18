@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
+import { TrackViewContent } from "@/components/analytics/TrackViewContent";
+import { SubscribeStrip } from "@/components/ui/SubscribeStrip";
 import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 import { LocationJsonLd } from "@/components/seo/LocationJsonLd";
 import { ObservationJsonLd } from "@/components/seo/ObservationJsonLd";
@@ -92,9 +94,21 @@ export default async function TownPage({
 
   const siteUrl = getSiteUrl();
   const heroPill = SCORE_PILL[data.conditions.score];
+  const parksHost = (() => {
+    try {
+      return new URL(profile.parksAndTrailsUrl).hostname.replace(/^www\./, "");
+    } catch {
+      return "official site";
+    }
+  })();
 
   return (
     <>
+      <TrackViewContent
+        contentName={profile.displayName}
+        locationSlug={profile.slug}
+        score={data.conditions.score}
+      />
       {/* FULL-BLEED HERO IMAGE WITH OVERLAID TITLE */}
       {profile.heroImagePath && (
         <div className="relative w-full overflow-hidden bg-[#F2F4EF] aspect-[21/9] sm:aspect-[16/7] lg:aspect-[21/8]">
@@ -274,7 +288,7 @@ export default async function TownPage({
                 rel="noopener noreferrer"
                 className="text-[#2D6E24] underline hover:text-[#1F5018]"
               >
-                townofstratford.ca
+                {parksHost}
               </a>
             </p>
           </div>
@@ -323,7 +337,7 @@ export default async function TownPage({
                 rel="noopener noreferrer"
                 className="text-[#2D6E24] underline hover:text-[#1F5018]"
               >
-                townofstratford.ca
+                {parksHost}
               </a>
             </p>
           </div>
@@ -382,6 +396,7 @@ export default async function TownPage({
         weather={data.weather}
         dailyForecast={dailyForecast}
         alerts={data.alerts}
+        townName={profile.displayName}
       />
 
       {/* 7-DAY FORECAST */}
@@ -433,7 +448,10 @@ export default async function TownPage({
         </div>
       </section>
 
-      {/* 10. FOOTER EMBED CTA */}
+      {/* 10. SUBSCRIBE */}
+      <SubscribeStrip source={`town-${profile.slug}`} />
+
+      {/* 11. FOOTER EMBED CTA */}
       <footer className="text-xs text-[#6B7366] pt-6 border-t border-[#E8EDE4] flex items-center justify-between gap-4 flex-wrap">
         <span>
           Last observation: {formatClock(data.weather.observationTime)} · Source: Environment Canada,
