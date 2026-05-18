@@ -4,6 +4,7 @@ import { BEACH_BUOYS, CACHE_DURATIONS, PEI_AQHI, PEI_LOCATIONS } from "@/lib/dat
 import { ALL_CONFEDERATION_ROUTES } from "@/lib/data/routes";
 import { SAMPLE_ALERTS, SAMPLE_TIDES, SAMPLE_WEATHER } from "@/lib/data/sample";
 import { getClaudeConditions } from "@/lib/claude";
+import { getTemplateResponse } from "@/lib/responses";
 import {
   buildCommunityNotice,
   buildWaterfrontRisk,
@@ -222,7 +223,18 @@ async function buildConditions(
 
   if (wetNow) return deterministicConditions;
 
-  // Try Claude first — returns null if no API key or call fails
+  // Try pre-written templates first — instant, free, no API call
+  const template = getTemplateResponse(location.id, score, weather);
+  if (template) {
+    return {
+      ...deterministicConditions,
+      headline: template.headline,
+      summary: template.summary,
+      insightOfTheDay: template.insight,
+    };
+  }
+
+  // Fall back to Claude for locations/conditions not covered by templates
   const aiConditions = await getClaudeConditions(location, weather, alerts);
   if (!aiConditions) return deterministicConditions;
 
@@ -270,6 +282,7 @@ async function tryLiveAqhi(locationId: string): Promise<number | null> {
     locationId === "charlottetown" ||
     locationId === "victoria-park" ||
     locationId === "stratford" ||
+    locationId === "cornwall" ||
     locationId === "charlottetown-airport"
       ? PEI_AQHI.charlottetown
       : locationId === "confederation-bridge" || locationId === "confederation-trail"
@@ -363,8 +376,17 @@ export const getLocationConditions = cache(async (locationId: string): Promise<L
   });
 });
 
+async function chunkPromiseAll<T>(items: T[], fn: (item: T) => Promise<unknown>, concurrency: number) {
+  const results: unknown[] = [];
+  for (let i = 0; i < items.length; i += concurrency) {
+    const batch = await Promise.all(items.slice(i, i + concurrency).map(fn));
+    results.push(...batch);
+  }
+  return results;
+}
+
 export async function getAllLocationConditions() {
-  const results = await Promise.all(PEI_LOCATIONS.map((location) => getLocationConditions(location.id)));
+  const results = await chunkPromiseAll(PEI_LOCATIONS, (location) => getLocationConditions(location.id), 5);
   return results.filter((item): item is LocationConditions => Boolean(item));
 }
 
@@ -404,7 +426,8 @@ async function buildMapStub(location: Location): Promise<LocationConditions> {
 }
 
 export async function getAllLocationMapStubs(): Promise<LocationConditions[]> {
-  return Promise.all(PEI_LOCATIONS.map(buildMapStub));
+  const results = await chunkPromiseAll(PEI_LOCATIONS, buildMapStub, 5);
+  return results as LocationConditions[];
 }
 
 export async function getIslandAqhiSummary() {

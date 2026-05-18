@@ -82,6 +82,9 @@ function wmoToConditionText(code: number): string {
 }
 
 function presentWeatherToConditionText(code: number): string | null {
+  // EC SWOB prsnt_wx codes 100+ are *past* weather codes, not present conditions.
+  // Treating them as current would falsely trigger rain/precipitation states.
+  if (code >= 100) return null;
   if (code >= 95) return "Thunderstorm";
   if (code >= 80) return "Rain showers";
   if (code >= 71) return "Snow";

@@ -3,6 +3,10 @@
     {
       "path": "/api/cron/refresh-history",
       "schedule": "0 6 * * *"
+    },
+    {
+      "path": "/api/warm",
+      "schedule": "*/30 * * * *"
     }
   ]
 }
