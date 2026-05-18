@@ -312,6 +312,14 @@ async function fetchEnvironmentCanadaObservation(location: Location): Promise<Pa
     const properties = json.features?.[0]?.properties;
     if (!properties) return null;
 
+    // Reject stale EC observations older than 90 minutes — a stuck observation
+    // with past-weather codes will otherwise override fresh Open-Meteo data.
+    const obsTime = pickString(properties, ["obs_date_tm", "date_tm-value"]);
+    if (obsTime) {
+      const ageMs = Date.now() - new Date(obsTime).getTime();
+      if (ageMs > 90 * 60 * 1000) return null;
+    }
+
     const condition = buildEnvironmentCanadaConditionText(properties);
     const windDirection = pickNumber(properties, [
       "avg_wnd_dir_10m_pst2mts",
