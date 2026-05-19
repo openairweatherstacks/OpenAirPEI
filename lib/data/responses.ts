@@ -1766,7 +1766,61 @@ const charlottetownAirport: ResponseTemplates = {
 
 // ─── ALL TEMPLATES ────────────────────────────────────────────────────────────
 
+const teaHill: ResponseTemplates = {
+  excellent_none_calm: [
+    {
+      headline: "Tea Hill is perfect right now.",
+      summary: "Calm, warm, and sunny on Hillsborough Bay. The water is gentle and the red-sand beach is at its best. This is the easy beach day — 15 minutes from Charlottetown with free parking and no crowds. Go.",
+      insight: "Hillsborough Bay warms up faster than the north shore because it's shallower and more sheltered from the Gulf. By mid-July the water here is consistently warmer than Cavendish by two or three degrees.",
+    },
+    {
+      headline: "Best family beach on the island today.",
+      summary: "Excellent conditions at Tea Hill. Calm bay water, warm sand, and full facilities. No riptides, no rough surf — just clean swimming in warm Hillsborough Bay. The playground is open and the beach isn't crowded.",
+      insight: "Tea Hill is where Charlottetown families go when they want a beach day without the drive. The bay water is calm enough that kids can wade out quite far and still be in their depth.",
+    },
+    {
+      headline: "Calm bay, warm sand — easy yes.",
+      summary: "Tea Hill Provincial Park is fully on right now. The bay is calm, air is warm, and visibility is clear across to the Charlottetown skyline. Get there before lunch and you'll have your pick of the beach.",
+      insight: "On clear days from Tea Hill Beach you can see the Prince Edward Island Museum and Heritage Foundation building across the bay in Charlottetown — one of the few beaches with a city-skyline view.",
+    },
+  ],
+  good_none_calm: [
+    {
+      headline: "Good beach day at Tea Hill.",
+      summary: "Comfortable conditions on Hillsborough Bay. Water is calm, air is pleasant, and the beach is in good shape. A reliable choice for a family afternoon — full facilities and easy parking.",
+      insight: "Tea Hill's bay-facing orientation means it gets afternoon sun longer than north-facing beaches. If you arrive at 2pm you'll still have four or five hours of direct light.",
+    },
+    {
+      headline: "Tea Hill is worth the drive today.",
+      summary: "Good conditions at Tea Hill Provincial Park. Calm water, reasonable temperatures, and no sign of weather. The playground and picnic area are open. Solid beach afternoon.",
+      insight: "The sandbar at the eastern end of Tea Hill Beach appears at low tide — kids love walking it. Check the tide intel on this page before you go.",
+    },
+  ],
+  good_none_breezy: [
+    {
+      headline: "Breezy but the bay keeps it swimmable.",
+      summary: "Wind is up but Hillsborough Bay stays calmer than the open Gulf in these conditions. Swimming is comfortable, waves are minimal. Bring a layer for the walk back to the parking lot.",
+      insight: "Tea Hill's bay position is its best feature on breezy days — the opposite shore absorbs most of the fetch, keeping chop much lower than Cavendish or Brackley in similar wind.",
+    },
+  ],
+  fair_none_calm: [
+    {
+      headline: "Marginal conditions — quick visit only.",
+      summary: "Not the best day at Tea Hill. Conditions are fair — the beach is accessible but the swim isn't ideal. Worth a walk along the shore if you're nearby, but not worth a dedicated trip today.",
+      insight: "Tea Hill is a great low-key picnic spot even when swimming conditions are poor — the picnic shelter near the parking lot is one of the better-equipped ones in the provincial park system.",
+    },
+  ],
+  "stay inside_none_calm": [
+    {
+      headline: "Skip Tea Hill today.",
+      summary: "Conditions aren't right for a beach visit right now. Check back later — Hillsborough Bay clears quickly when the system passes.",
+      insight: "Tea Hill after a storm often has exceptional clarity in the water — the bay flushes quickly and the sand resets. The day after a blow can be one of the best beach days of the summer.",
+    },
+  ],
+};
+
 export const RESPONSE_TEMPLATES: Record<string, ResponseTemplates> = {
+  "tea-hill": teaHill,
   cavendish,
   charlottetown,
   greenwich,

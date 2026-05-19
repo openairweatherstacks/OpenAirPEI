@@ -209,7 +209,7 @@ export default async function ExplorePage() {
   );
 }
 
-const TOWN_PAGE_IDS = new Set(["cornwall", "stratford", "summerside", "tea-hill"]);
+const TOWN_PAGE_IDS = new Set(["cornwall", "stratford", "summerside"]);
 
 function ExploreCard({ entry }: { entry: LocationConditions }) {
   const LOCATION_IMAGES: Record<string, string> = {
