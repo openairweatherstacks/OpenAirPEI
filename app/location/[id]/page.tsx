@@ -39,7 +39,7 @@ const LOCATION_HERO_IMAGES: Record<string, { src: string; alt: string }> = {
   "confederation-trail": { src: "/get-images/confederation-trail.jpg", alt: "Confederation Trail flat path through PEI countryside" },
   "confederation-bridge": { src: "/get-images/confederationbridege.jpg", alt: "Confederation Bridge spanning the Northumberland Strait" },
   "victoria-park": { src: "/get-images/victoria-park.jpg", alt: "Victoria Park trees and waterfront, Charlottetown" },
-  "basin-head": { src: "/get-images/singing sands.webp", alt: "Basin Head singing sands beach, PEI" },
+  "basin-head": { src: "/basinhead-hero.png", alt: "Basin Head singing sands beach, PEI" },
   "north-cape": { src: "/get-images/northcape.jpg", alt: "North Cape lighthouse and wind turbines, PEI" },
   "brackley-beach": { src: "/brackley.webp", alt: "Brackley Beach dunes and shoreline, PEI" },
   "fox-meadow-golf": { src: "/get-images/fooxmeadow.jpg", alt: "Fox Meadow Golf Course fairway, Stratford PEI" },

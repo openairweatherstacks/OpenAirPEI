@@ -20,7 +20,7 @@ const LOCATION_IMAGES: Record<string, string> = {
   greenwich: "/get-images/dunes.jpg",
   "confederation-bridge": "/get-images/confederationbridege.jpg",
   "north-cape": "/get-images/northcape.jpg",
-  "basin-head": "/get-images/singing sands.webp",
+  "basin-head": "/basinhead-hero.png",
   "victoria-park": "/get-images/victoria-park.jpg",
   "cavendish-campground": "/get-images/cavendishcamp.jpg",
   "stanhope-campground": "/get-images/stanhope.jpg",

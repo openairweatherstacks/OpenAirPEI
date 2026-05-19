@@ -220,7 +220,7 @@ function ExploreCard({ entry }: { entry: LocationConditions }) {
     greenwich: "/get-images/dunes.jpg",
     "confederation-bridge": "/get-images/confederationbridege.jpg",
     "north-cape": "/get-images/northcape.jpg",
-    "basin-head": "/get-images/singing sands.webp",
+    "basin-head": "/basinhead-hero.png",
     summerside: "/get-images/summerside.webp",
     stratford: "/stratford-hero.png",
     cornwall: "/cornwall-hero.png",
