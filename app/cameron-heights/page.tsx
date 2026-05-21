@@ -163,6 +163,7 @@ export default async function CameronHeightsPage() {
             alt="Cameron Heights townhomes and neighbourhood roadway under a bright sky"
             fill
             priority
+            quality={90}
             sizes="100vw"
             className="object-cover object-[center_82%] sm:object-[center_84%] lg:object-[center_86%]"
           />

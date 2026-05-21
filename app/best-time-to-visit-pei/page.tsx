@@ -314,6 +314,7 @@ export default async function BestTimeToVisitPage({
             src="/get-images/cavendish.jpg"
             alt="Cavendish Beach, Prince Edward Island — red sand dunes and warm Gulf water"
             fill
+            quality={90}
             className="object-cover"
             priority
           />
@@ -415,6 +416,7 @@ export default async function BestTimeToVisitPage({
                 src={season.image}
                 alt={season.imageAlt}
                 fill
+                quality={90}
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />

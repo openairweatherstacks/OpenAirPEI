@@ -117,6 +117,7 @@ export default async function TownPage({
             alt={profile.heroImageAlt ?? `${profile.displayName}, PEI`}
             fill
             priority
+            quality={90}
             sizes="100vw"
             className="object-cover"
           />

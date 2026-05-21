@@ -68,6 +68,7 @@ export default async function TrailDetailPage({
             src={entry.trail.image}
             alt={entry.trail.name}
             fill
+            quality={90}
             className="object-cover"
             sizes="100vw"
             priority

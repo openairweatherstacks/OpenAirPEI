@@ -156,6 +156,7 @@ export default async function ExplorePage() {
                     src={cat.image}
                     alt={cat.label}
                     fill
+                    quality={90}
                     className="object-cover transition duration-500 group-hover:scale-105"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
@@ -249,6 +250,7 @@ function ExploreCard({ entry }: { entry: LocationConditions }) {
             src={image}
             alt={entry.location.name}
             fill
+            quality={90}
             className="object-cover transition duration-500 group-hover:scale-105"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />

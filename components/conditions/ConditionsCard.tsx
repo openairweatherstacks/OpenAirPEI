@@ -68,6 +68,7 @@ export function ConditionsCard({
             src={image}
             alt={entry.location.name}
             fill
+            quality={90}
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 50vw"
           />

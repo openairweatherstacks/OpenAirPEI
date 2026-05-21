@@ -60,6 +60,7 @@ export default async function HomePage() {
           alt="Prince Edward Island coastline"
           fill
           priority
+          quality={90}
           className="object-cover object-[center_65%]"
           sizes="100vw"
         />
@@ -233,6 +234,7 @@ export default async function HomePage() {
                 src="/cycling.png"
                 alt="Confederation Trail"
                 fill
+                quality={90}
                 className="object-cover"
               />
             </div>
