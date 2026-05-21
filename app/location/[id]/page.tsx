@@ -49,6 +49,7 @@ const LOCATION_HERO_IMAGES: Record<string, { src: string; alt: string }> = {
   summerside: { src: "/get-images/summerside.webp", alt: "Summerside waterfront along Bedeque Bay" },
   stratford: { src: "/stratford-hero.png", alt: "Town of Stratford welcome sign at golden hour" },
   cornwall: { src: "/cornwall-hero.png", alt: "Cornwall PEI boardwalk along the West River" },
+  "pondside-park": { src: "/ponside.jpeg", alt: "Pondside Park natural trail along the stream, Stratford PEI" },
   "tea-hill": { src: "/tea-hill-hero.jpg", alt: "Tea Hill Provincial Park beach and Hillsborough Bay, Stratford PEI" },
 };
 

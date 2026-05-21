@@ -578,6 +578,138 @@ export const TOWN_PROFILES: Record<string, TownProfile> = {
     ],
     nearbyLocationIds: ["stratford", "charlottetown", "victoria-park", "belvedere-golf"],
   },
+  kensington: {
+    slug: "kensington",
+    locationId: "kensington",
+    displayName: "Kensington",
+    lede:
+      "Live conditions, tides, and outdoor verdicts for Kensington, PEI — the Island's fastest-growing town, home to the Confederation Trail trailhead and rolling potato-country farmland.",
+    officialSiteUrl: "https://kensington.ca",
+    parksAndTrailsUrl: "https://kensington.ca",
+    intelSpots: [
+      {
+        key: "route-2-wind",
+        label: "Route 2 wind",
+        kind: "wind-commute",
+        sourceLocationId: "kensington",
+        note: "Wind reading from the Summerside observation station — the closest active station to the Route 2 corridor through Kensington.",
+      },
+      {
+        key: "confederation-trail-status",
+        label: "Confederation Trail (Kensington trailhead)",
+        kind: "trail-status",
+        note: "Walking and cycling verdict for the Confederation Trail crushed-gravel surface, scored against current Kensington conditions.",
+      },
+      {
+        key: "next-tide",
+        label: "Next Summerside tide",
+        kind: "tide",
+        note: "DFO tide prediction for the Summerside station — the closest official tide gauge to Kensington.",
+      },
+    ],
+    beaches: [
+      {
+        id: "north-shore-stanley-bridge",
+        name: "Stanley Bridge Beach",
+        address: "Stanley Bridge, PE C0A 1E0",
+        lat: 46.4856,
+        lng: -63.5533,
+        description:
+          "A quiet north-shore beach about 10 km from Kensington — red PEI sand at the mouth of the Stanley River estuary. Calm Gulf water, good for families and wading. No formal facilities.",
+        amenities: ["Informal parking", "Beach access"],
+      },
+      {
+        id: "cavendish-20min",
+        name: "Cavendish Beach (20 min)",
+        address: "Cavendish, PE C0A 1N0",
+        lat: 46.4943,
+        lng: -63.3971,
+        description:
+          "Kensington's closest managed beach — a 20-minute drive northeast. Full PEI National Park amenities, red sand, and the warmest Gulf water on the north shore.",
+        amenities: ["Washrooms", "Showers", "Parking (fee)", "Lifeguards in season", "Canteen"],
+      },
+      {
+        id: "linkletter-beach-kensington",
+        name: "Linkletter Provincial Park Beach (25 min)",
+        address: "Route 11, Linkletter, PE",
+        lat: 46.3583,
+        lng: -63.8411,
+        description:
+          "The closest south-shore beach to Kensington — a 25-minute drive toward Summerside. Long red sand, warm Northumberland Strait water, full amenities.",
+        amenities: ["Washrooms", "Showers", "Parking", "Picnic tables"],
+      },
+    ],
+    parks: [
+      {
+        id: "confederation-trail-kensington",
+        name: "Confederation Trail — Kensington Trailhead",
+        address: "Victoria Street East, Kensington, PE",
+        highlights: "The Island's flagship cycling and walking trail — flat, car-free crushed gravel running the full length of PEI. The Kensington trailhead is the most central on-ramp on the central route.",
+        trailKm: 450,
+      },
+      {
+        id: "kensington-park",
+        name: "Kensington Town Park",
+        address: "Victoria Street, Kensington, PE",
+        highlights: "The town's central green space — playground, picnic area, and community gathering spot used for the annual Harvest Festival.",
+      },
+      {
+        id: "credit-union-centre-kensington",
+        name: "Credit Union Centre (EVK Memorial Pool)",
+        address: "Kensington, PE",
+        highlights: "Kensington's main recreation facility — indoor pool, fitness centre, and the town's hub for year-round physical activity.",
+      },
+      {
+        id: "heritage-park-kensington",
+        name: "Kensington Heritage Area",
+        address: "Broadway Street, Kensington, PE",
+        highlights: "The Kensington Heritage Library and surrounding green space — a quiet corner of the downtown for a short walk or a sit.",
+      },
+    ],
+    faqs: [
+      {
+        q: "What's the weather like in Kensington, PEI right now?",
+        a: "Kensington uses the Summerside weather station, about 25 kilometres to the west — the closest active Environment Canada observation site. Temperature, wind, UV index, and air quality on this page reflect what you'll feel in town. The OpenAir verdict at the top translates those readings into a plain-English call on whether now is good for outdoor plans.",
+      },
+      {
+        q: "Is the Confederation Trail open near Kensington today?",
+        a: "The Confederation Trail is open year-round for walking and cycling. The crushed-gravel surface dries quickly after rain and handles shoulder-season conditions well. We surface live wind, UV, and rainfall on this page so you can see whether it's a comfortable day for the trail before you head to the trailhead on Victoria Street East.",
+      },
+      {
+        q: "Which beach near Kensington is best for swimming today?",
+        a: "Cavendish Beach in PEI National Park is the most popular managed beach, about 20 minutes northeast with full amenities and warm Gulf water. Stanley Bridge Beach is closer and quieter, good for wading. Linkletter Provincial Park Beach near Summerside is the best south-shore option. The beach cards on this page show live conditions for each.",
+      },
+      {
+        q: "What is there to do in Kensington, PEI?",
+        a: "Kensington is the best base on the Island for the Confederation Trail — flat, car-free cycling in either direction through potato-country farmland. The town also hosts the Harvest Festival each fall, has the EVK Memorial Pool at the Credit Union Centre for rainy-day recreation, and sits 20 minutes from Cavendish Beach and the north shore.",
+      },
+      {
+        q: "When is the Kensington Harvest Festival?",
+        a: "The Kensington Harvest Festival runs annually in late September or early October, celebrating the Island's potato harvest with local food, live music, and community events in the town park. Check kensington.ca for the current year's dates. Weather for festival weekend appears at the top of this page.",
+      },
+      {
+        q: "What's the next high tide near Kensington?",
+        a: "Kensington is inland, but the closest tide reading is from the Summerside station on Fisheries and Oceans Canada — the gateway to Bedeque Bay, about 25 km west. Tide times appear in the intel block on this page, useful for planning a beach trip to the coast.",
+      },
+      {
+        q: "When does the sun rise and set in Kensington?",
+        a: "Sunrise and sunset times update daily on this page, calculated for Kensington's coordinates (46.443°N, 63.640°W). In peak summer, expect daylight from before 5:30 AM until after 9:00 PM; in midwinter, the window narrows to roughly 7:50 AM to 4:25 PM.",
+      },
+      {
+        q: "How far is Kensington from Charlottetown?",
+        a: "Kensington is about 53 kilometres west of Charlottetown along Route 2 — roughly a 40-minute drive. It sits almost exactly halfway between Charlottetown and the Confederation Bridge, making it a natural stopping point on a cross-island trip.",
+      },
+      {
+        q: "How far is Kensington from Summerside?",
+        a: "Kensington is about 25 kilometres east of Summerside along Route 2 — a 20-minute drive. Bedeque Bay and the Summerside waterfront are the nearest coastal options when the weather calls for it.",
+      },
+      {
+        q: "Is Kensington good for cycling?",
+        a: "It's one of the best cycling bases on the Island. The Confederation Trail trailhead on Victoria Street East puts you directly onto 450 km of flat, car-free crushed gravel in either direction — east toward Charlottetown or west toward Summerside and beyond. Live cycling conditions are scored on this page against current wind, UV, and precipitation.",
+      },
+    ],
+    nearbyLocationIds: ["confederation-trail", "summerside", "cavendish", "confederation-bridge"],
+  },
 };
 
 export function getTownProfile(slug: string): TownProfile | null {

@@ -224,6 +224,7 @@ function ExploreCard({ entry }: { entry: LocationConditions }) {
     summerside: "/get-images/summerside.webp",
     stratford: "/stratford-hero.png",
     cornwall: "/cornwall-hero.png",
+    "pondside-park": "/ponside.jpeg",
     "tea-hill": "/tea-hill-hero.jpg",
     "brackley-beach": "/brackley.webp",
     "fox-meadow-golf": "/get-images/fooxmeadow.jpg",
