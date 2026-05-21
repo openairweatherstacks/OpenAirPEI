@@ -24,12 +24,9 @@ export function SubscribeStrip({ source = "unknown" }: Props) {
   }
 
   return (
-    <section className="rounded-2xl bg-[#F2F8EE] border border-[#D4E8CC] p-6 space-y-4">
+    <section className="rounded-[1.75rem] border border-[#D4E8CC] bg-[#F2F8EE] p-6 space-y-4">
       <div className="space-y-1">
-        <p
-          className="text-lg font-bold text-[#1A1A1A]"
-          style={{ fontFamily: "var(--font-barlow), system-ui, sans-serif" }}
-        >
+        <p className="font-serif text-lg font-bold text-[#1A1A1A]">
           Know before you go
         </p>
         <p className="text-sm text-[#4A4A4A] leading-relaxed">
@@ -42,19 +39,19 @@ export function SubscribeStrip({ source = "unknown" }: Props) {
           → You&apos;re in. First update coming soon.
         </p>
       ) : (
-        <form onSubmit={handleSubmit} className="flex gap-2 flex-col sm:flex-row">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2 sm:flex-row">
           <input
             type="email"
             required
             placeholder="your@email.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="flex-1 rounded-xl border border-[#C8DEC0] bg-white px-4 py-2.5 text-sm text-[#2A2A2A] placeholder:text-[#9BA696] focus:outline-none focus:ring-2 focus:ring-[#3A8C2F]/30"
+            className="min-w-0 flex-1 rounded-xl border border-[#C8DEC0] bg-white px-4 py-2.5 text-sm text-[#2A2A2A] placeholder:text-[#9BA696] focus:outline-none focus:ring-2 focus:ring-[#3A8C2F]/30"
           />
           <button
             type="submit"
             disabled={status === "loading"}
-            className="rounded-xl bg-[#2D6E24] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#1F5018] disabled:opacity-60 shrink-0"
+            className="w-full shrink-0 rounded-xl bg-[#2D6E24] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#1F5018] disabled:opacity-60 sm:w-auto"
           >
             {status === "loading" ? "..." : "Notify me →"}
           </button>

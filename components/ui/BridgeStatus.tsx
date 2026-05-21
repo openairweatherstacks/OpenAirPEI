@@ -19,7 +19,7 @@ export function BridgeStatus({
   return (
     <div className={cn("rounded-[1.75rem] border p-4", STATUS_CLASSES[status])}>
       <div className="mb-3 flex items-center gap-2">
-        <div className="rounded-2xl bg-white/80 p-2">
+        <div className="rounded-xl bg-white/80 p-2">
           {status === "Open" ? <Waypoints className="h-4 w-4" /> : <TriangleAlert className="h-4 w-4" />}
         </div>
         <p className="text-xs font-semibold uppercase tracking-[0.18em]">Confederation Bridge</p>

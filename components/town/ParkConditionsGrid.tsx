@@ -43,12 +43,12 @@ export function ParkConditionsGrid({
         return (
           <div
             key={park.id}
-            className="rounded-2xl bg-white border border-[#E8EDE4] p-5 space-y-3 flex flex-col"
+            className="flex flex-col gap-3 rounded-[1.75rem] border border-[#E8EDE4] bg-white p-5"
           >
             <div className="flex items-start justify-between gap-3">
               <h3
                 className="text-base font-bold text-[#1A1A1A] leading-tight"
-                style={{ fontFamily: "var(--font-barlow), system-ui, sans-serif" }}
+                style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
               >
                 {park.name}
               </h3>
@@ -56,7 +56,7 @@ export function ParkConditionsGrid({
                 <span className={`${pill.dot} h-1.5 w-1.5 rounded-full`} aria-hidden />
                 <span
                   className="text-xs font-bold tracking-wide"
-                  style={{ fontFamily: "var(--font-barlow), system-ui, sans-serif" }}
+                  style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
                 >
                   {pill.label}
                 </span>

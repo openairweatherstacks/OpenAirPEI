@@ -86,7 +86,7 @@ export default async function WidgetPage({
           target="_blank"
           rel="noopener"
           className="block w-full max-w-[600px] rounded-2xl bg-white border border-[#E8EDE4] shadow-sm hover:shadow-md transition-shadow overflow-hidden"
-          style={{ fontFamily: "var(--font-roboto), system-ui, sans-serif" }}
+          style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
         >
           <Banner data={data} />
           {size === "compact" ? (
@@ -119,7 +119,7 @@ function Banner({ data }: { data: LocationConditions }) {
         />
         <div
           className="text-[10px] sm:text-[11px] uppercase tracking-wider text-[#6B7366] truncate"
-          style={{ fontFamily: "var(--font-barlow), system-ui, sans-serif" }}
+          style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
         >
           {location.name}, PEI
         </div>
@@ -135,7 +135,7 @@ function Banner({ data }: { data: LocationConditions }) {
             <span className={`${pill.dot} h-2 w-2 rounded-full`} aria-hidden />
             <span
               className="text-xs sm:text-sm font-bold tracking-wide"
-              style={{ fontFamily: "var(--font-barlow), system-ui, sans-serif" }}
+              style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
             >
               {conditions.score}
             </span>
@@ -144,7 +144,7 @@ function Banner({ data }: { data: LocationConditions }) {
         <div className="text-right flex-shrink-0">
           <div
             className="text-3xl sm:text-4xl font-bold leading-none tracking-tight text-[#1A1A1A]"
-            style={{ fontFamily: "var(--font-barlow), system-ui, sans-serif" }}
+            style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
           >
             {Math.round(weather.temperature)}°
           </div>
@@ -196,7 +196,7 @@ function StandardBody({ data }: { data: LocationConditions }) {
     <div className="px-4 sm:px-5 py-3 sm:py-4 space-y-3">
       <p
         className="text-base leading-snug text-[#1A1A1A]"
-        style={{ fontFamily: "var(--font-barlow), system-ui, sans-serif", fontWeight: 600 }}
+        style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", fontWeight: 600 }}
       >
         {conditions.headline}
       </p>
@@ -242,7 +242,7 @@ function HeroBody({ data }: { data: LocationConditions }) {
     <div className="px-4 sm:px-6 py-4 sm:py-5 space-y-4">
       <p
         className="text-lg sm:text-xl leading-snug text-[#1A1A1A]"
-        style={{ fontFamily: "var(--font-barlow), system-ui, sans-serif", fontWeight: 700 }}
+        style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", fontWeight: 700 }}
       >
         {conditions.headline}
       </p>
@@ -306,7 +306,7 @@ function HeroBody({ data }: { data: LocationConditions }) {
           </div>
           <p
             className="text-[13px] text-[#2A2A2A] leading-relaxed italic"
-            style={{ fontFamily: "var(--font-barlow), system-ui, sans-serif", fontWeight: 400 }}
+            style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", fontWeight: 400 }}
           >
             {conditions.insightOfTheDay}
           </p>

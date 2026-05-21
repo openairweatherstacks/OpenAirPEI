@@ -88,7 +88,7 @@ export function ConditionCards({
   const pressure = describePressure(weather);
 
   return (
-    <section className="grid gap-5 lg:grid-cols-4">
+    <section className="grid auto-rows-fr gap-5 sm:grid-cols-2 lg:grid-cols-4">
       <MetricCard
         icon={Wind}
         title="Charlottetown wind"

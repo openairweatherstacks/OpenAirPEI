@@ -50,7 +50,7 @@ body {
 }
 
 .leaflet-container {
-  font-family: var(--font-roboto), system-ui, sans-serif;
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
 }
 
 .leaflet-control-attribution {
@@ -85,7 +85,7 @@ body {
 }
 
 .section-title {
-  @apply font-serif font-semibold leading-tight text-text-primary;
+  @apply font-serif font-normal leading-tight text-text-primary;
   overflow-wrap: break-word;
   word-break: break-word;
   hyphens: auto;

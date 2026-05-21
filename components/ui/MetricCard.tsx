@@ -20,7 +20,7 @@ export function MetricCard({
   className,
 }: MetricCardProps) {
   return (
-    <div className={cn("surface-card-soft p-5", className)}>
+    <div className={cn("surface-card-soft flex h-full flex-col p-5", className)}>
       {(Icon || title) && (
         <div className="mb-4 flex items-center gap-3">
           {Icon && (
@@ -34,7 +34,7 @@ export function MetricCard({
         </div>
       )}
       <p className="font-serif text-[1.12rem] leading-7 text-text-primary break-words">{insight}</p>
-      <p className="mt-3 text-xs font-semibold uppercase tracking-[0.18em] text-text-muted">
+      <p className="mt-auto pt-3 text-xs font-semibold uppercase tracking-[0.18em] text-text-muted">
         {rawLabel}
       </p>
     </div>

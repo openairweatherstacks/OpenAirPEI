@@ -12,20 +12,17 @@ export function FiveDayStrip({ verdicts }: { verdicts: DailyVerdict[] }) {
   if (verdicts.length === 0) return null;
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+    <div className="grid auto-rows-fr grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
       {verdicts.map((day, index) => {
         const pill = SCORE_PILL[day.score];
         const isToday = index === 0;
         return (
           <div
             key={day.date}
-            className="rounded-2xl bg-white border border-[#E8EDE4] p-4 space-y-2"
+            className="flex flex-col rounded-[1.75rem] border border-[#E8EDE4] bg-white p-4"
           >
             <div className="flex items-center justify-between">
-              <span
-                className="text-[11px] uppercase tracking-widest text-[#6B7366] font-semibold"
-                style={{ fontFamily: "var(--font-barlow), system-ui, sans-serif" }}
-              >
+              <span className="text-[11px] font-semibold uppercase tracking-widest text-[#6B7366]">
                 {isToday ? "Today" : day.weekday}
               </span>
               <span className="text-[10px] text-[#9BA696]">
@@ -33,19 +30,14 @@ export function FiveDayStrip({ verdicts }: { verdicts: DailyVerdict[] }) {
               </span>
             </div>
 
-            <div className={`${pill.bg} ${pill.text} inline-flex items-center gap-1.5 rounded-full px-2.5 py-1`}>
+            <div className={`mt-2 ${pill.bg} ${pill.text} inline-flex items-center gap-1.5 self-start rounded-full px-2.5 py-1`}>
               <span className={`${pill.dot} h-1.5 w-1.5 rounded-full`} aria-hidden />
-              <span
-                className="text-xs font-bold tracking-wide"
-                style={{ fontFamily: "var(--font-barlow), system-ui, sans-serif" }}
-              >
-                {day.score}
-              </span>
+              <span className="text-xs font-bold tracking-wide">{day.score}</span>
             </div>
 
-            <p className="text-[12px] text-[#2A2A2A] leading-snug">{day.summary}</p>
+            <p className="mt-2 flex-1 text-[12px] leading-snug text-[#2A2A2A]">{day.summary}</p>
 
-            <div className="flex items-center justify-between text-[10px] text-[#9BA696] pt-1 border-t border-[#F2F4EF]">
+            <div className="mt-3 flex items-center justify-between border-t border-[#F2F4EF] pt-2 text-[10px] text-[#9BA696]">
               <span>Wind {day.maxWindSpeed} km/h</span>
               <span>{day.precipProbability}% rain</span>
             </div>

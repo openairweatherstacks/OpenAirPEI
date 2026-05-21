@@ -79,7 +79,7 @@ export default async function EmbedPage({
         </p>
         <h1
           className="text-3xl md:text-4xl font-bold text-[#1A1A1A] leading-tight"
-          style={{ fontFamily: "var(--font-barlow), system-ui, sans-serif" }}
+          style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
         >
           Live {location.name} weather, <span className="text-[#2D6E24]">on your site</span>
         </h1>
@@ -108,7 +108,7 @@ export default async function EmbedPage({
                 </p>
                 <h2
                   className="text-xl sm:text-2xl font-bold text-[#1A1A1A]"
-                  style={{ fontFamily: "var(--font-barlow), system-ui, sans-serif" }}
+                  style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
                 >
                   {size.label}
                 </h2>
@@ -142,7 +142,7 @@ export default async function EmbedPage({
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <h2
             className="text-xl font-bold text-[#1A1A1A]"
-            style={{ fontFamily: "var(--font-barlow), system-ui, sans-serif" }}
+            style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
           >
             Just want a text link?
           </h2>
@@ -156,7 +156,7 @@ export default async function EmbedPage({
       <section className="rounded-2xl bg-[#F2F8EE] border border-[#E8F5E4] p-6 space-y-3">
         <h2
           className="text-lg font-bold text-[#2D6E24]"
-          style={{ fontFamily: "var(--font-barlow), system-ui, sans-serif" }}
+          style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
         >
           Why embed this?
         </h2>

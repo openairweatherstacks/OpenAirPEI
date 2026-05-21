@@ -61,7 +61,7 @@ export function NearbyTownLinks({ items }: { items: LocationConditions[] }) {
             <div className="p-4 space-y-2 flex-1 flex flex-col">
               <h3
                 className="text-base font-bold text-[#1A1A1A] leading-tight"
-                style={{ fontFamily: "var(--font-barlow), system-ui, sans-serif" }}
+                style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
               >
                 {item.location.name}
               </h3>

@@ -107,31 +107,25 @@ export function TownIntelGrid({
   });
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+    <div className="grid auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2">
       {cards.map(({ spot, content, Icon }) => (
         <div
           key={spot.key}
-          className="rounded-2xl bg-white border border-[#E8EDE4] p-5 space-y-2"
+          className="flex flex-col rounded-[1.75rem] border border-[#E8EDE4] bg-white p-5"
         >
-          <div className="flex items-center gap-2 text-[#2D6E24]">
+          <div className="mb-2 flex items-center gap-2 text-[#2D6E24]">
             <Icon size={16} />
-            <span
-              className="text-[11px] uppercase tracking-widest text-[#6B7366] font-semibold"
-              style={{ fontFamily: "var(--font-barlow), system-ui, sans-serif" }}
-            >
+            <span className="text-[11px] font-semibold uppercase tracking-widest text-[#6B7366]">
               {spot.label}
             </span>
           </div>
-          <p
-            className="text-base text-[#1A1A1A] leading-snug"
-            style={{ fontFamily: "var(--font-barlow), system-ui, sans-serif", fontWeight: 600 }}
-          >
+          <p className="font-serif text-base leading-snug text-[#1A1A1A]">
             {content.insight}
           </p>
-          <p className="text-[11px] uppercase tracking-wide text-[#9BA696] font-medium">
+          <p className="mt-2 text-[11px] font-medium uppercase tracking-wide text-[#9BA696]">
             {content.raw}
           </p>
-          <p className="text-[11px] text-[#6B7366] leading-relaxed pt-1 border-t border-[#F2F4EF]">
+          <p className="mt-auto border-t border-[#F2F4EF] pt-3 text-[11px] leading-relaxed text-[#6B7366]">
             {spot.note}
           </p>
         </div>

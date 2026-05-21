@@ -42,8 +42,8 @@ const config: Config = {
         danger: "#C0392B",
       },
       fontFamily: {
-        serif: ["var(--font-barlow)", "Impact", "sans-serif"],
-        sans: ["var(--font-roboto)", "system-ui", "sans-serif"],
+        serif: ["var(--font-dm-serif)", "Georgia", "serif"],
+        sans: ["var(--font-dm-sans)", "system-ui", "sans-serif"],
       },
       boxShadow: {
         glow: "0 24px 60px rgba(58, 140, 47, 0.12)",

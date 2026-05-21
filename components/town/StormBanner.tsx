@@ -26,7 +26,7 @@ export function StormBanner({ alerts }: { alerts: AlertItem[] }) {
               </span>
               <h3
                 className="text-base sm:text-lg font-bold text-[#1A1A1A]"
-                style={{ fontFamily: "var(--font-barlow), system-ui, sans-serif" }}
+                style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
               >
                 {alert.title}
               </h3>

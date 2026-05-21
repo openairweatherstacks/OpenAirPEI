@@ -100,7 +100,7 @@ export default async function HomePage() {
 
       {/* ── FLOATING STAT CARDS ──────────────────────────────────── */}
       <div className="relative z-10 mx-auto -mt-14 max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-3 sm:grid-cols-3">
+        <div className="grid auto-rows-fr gap-3 sm:grid-cols-3">
           <div className="rounded-[1.5rem] bg-forest-deep p-4 text-white shadow-glow backdrop-blur">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/90">Best now</p>
             <p className="mt-1.5 font-serif text-xl">{bestNow[0]?.location.name ?? "Scanning"}</p>
@@ -146,7 +146,7 @@ export default async function HomePage() {
 
             {/* ── CITY CONDITIONS STRIP ── */}
             {(charlottetown || summerside) && (
-              <div className="mt-4 grid grid-cols-2 gap-3">
+              <div className="mt-4 grid auto-rows-fr grid-cols-2 gap-3">
                 {[charlottetown, summerside].filter(Boolean).map((entry) => entry && (
                   <div key={entry.location.id} className="rounded-[1.5rem] border border-border bg-white/90 p-4">
                     <p className="text-xs font-semibold uppercase tracking-[0.22em] text-text-muted">
@@ -192,7 +192,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="grid gap-5 lg:grid-cols-3">
+        <section className="grid auto-rows-fr gap-5 lg:grid-cols-3">
           <MetricCard
             icon={Bike}
             title="Activity match"
@@ -258,7 +258,7 @@ export default async function HomePage() {
           <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">Every other option leaves you guessing</h2>
           <p className="section-copy mt-3">Other tools show you numbers. OpenAir tells you what to do.</p>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
                 name: "Weather Network / Dark Sky",
@@ -289,8 +289,8 @@ export default async function HomePage() {
                 key={name}
                 className={
                   isUs
-                    ? "rounded-[1.75rem] bg-forest-deep p-5 text-white shadow-glow"
-                    : "rounded-[1.75rem] border border-border bg-bg p-5"
+                    ? "flex h-full flex-col rounded-[1.75rem] bg-forest-deep p-5 text-white shadow-glow"
+                    : "flex h-full flex-col rounded-[1.75rem] border border-border bg-bg p-5"
                 }
               >
                 <p className={`mb-4 text-xs font-semibold uppercase tracking-[0.22em] ${isUs ? "text-white/90" : "text-text-muted"}`}>

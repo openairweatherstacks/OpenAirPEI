@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Barlow_Condensed, Roboto } from "next/font/google";
+import { DM_Serif_Display, DM_Sans } from "next/font/google";
 import Script from "next/script";
 import { type ReactNode } from "react";
 import "leaflet/dist/leaflet.css";
@@ -14,16 +14,16 @@ import { InstallPrompt } from "@/components/layout/InstallPrompt";
 
 import "./globals.css";
 
-const roboto = Roboto({
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-roboto",
-  weight: ["300", "400", "500", "700"],
+  variable: "--font-dm-sans",
+  weight: ["300", "400", "500", "600", "700"],
 });
 
-const barlowCondensed = Barlow_Condensed({
+const dmSerifDisplay = DM_Serif_Display({
   subsets: ["latin"],
-  variable: "--font-barlow",
-  weight: ["400", "600", "700", "800"],
+  variable: "--font-dm-serif",
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -144,7 +144,7 @@ export default function RootLayout({
           })(window,document,'script','dataLayer','GTM-P6VC9SNZ');
         `}</Script>
       </head>
-      <body className={`${roboto.variable} ${barlowCondensed.variable} font-sans antialiased`}>
+      <body className={`${dmSans.variable} ${dmSerifDisplay.variable} font-sans antialiased`}>
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-P6VC9SNZ"

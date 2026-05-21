@@ -163,7 +163,7 @@ export default async function LocationPage({
               </p>
               <h1
                 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight drop-shadow-md"
-                style={{ fontFamily: "var(--font-barlow), system-ui, sans-serif" }}
+                style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
               >
                 {entry.location.name}, <span className="text-[#7DC832]">right now</span>
               </h1>

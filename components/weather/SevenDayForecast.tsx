@@ -71,7 +71,7 @@ export function SevenDayForecast({
         </p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-7">
+      <div className="grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
         {forecast.map((day, index) => {
           const Icon = getForecastIcon(day.conditionCode);
 
@@ -79,7 +79,7 @@ export function SevenDayForecast({
             <article
               key={day.date}
               className={cn(
-                "rounded-[1.75rem] border border-white/70 bg-white/90 p-4 shadow-sm backdrop-blur",
+                "flex flex-col rounded-[1.75rem] border border-white/70 bg-white/90 p-4 shadow-sm backdrop-blur",
                 index === 0 ? "ring-1 ring-forest/15" : "",
               )}
             >
@@ -95,7 +95,7 @@ export function SevenDayForecast({
                 </div>
               </div>
 
-              <p className="mt-4 font-serif text-lg leading-6 text-text-primary">
+              <p className="mt-4 flex-1 font-serif text-lg leading-6 text-text-primary">
                 {day.conditionText}
               </p>
 
