@@ -177,7 +177,7 @@ export default async function HomePage() {
             )}
           </div>
 
-          <div className="space-y-5">
+          <div className="flex flex-col gap-5">
             <MeteorologistInsight text={bestNow[0]?.conditions.insightOfTheDay ?? "Island insight is loading."} />
             {bridge && bridgeStatus ? (
               <BridgeStatus status={bridgeStatus} windSpeed={bridge.weather.windSpeed} />
@@ -188,6 +188,7 @@ export default async function HomePage() {
               insight={bestWindowInsight}
               rawLabel={`Top window · ${bestNow.map((entry) => entry.location.name).join(" · ")}`}
               accentClassName="text-sun-text"
+              className="flex-1"
             />
           </div>
         </section>

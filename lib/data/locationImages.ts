@@ -10,6 +10,7 @@ export const LOCATION_IMAGES: Record<string, string> = {
   "north-cape": "/get-images/northcape.jpg",
   "basin-head": "/get-images/singing sands.webp",
   "stanhope-campground": "/get-images/stanhope.jpg",
+  "pondside-park": "/pondside.jpeg",
   summerside: "/get-images/summerside.webp",
   "victoria-park": "/get-images/victoria-park.jpg",
 };
