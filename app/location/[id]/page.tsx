@@ -151,6 +151,7 @@ export default async function LocationPage({
             alt={hero.alt}
             fill
             priority
+            quality={90}
             sizes="100vw"
             className="object-cover"
           />
