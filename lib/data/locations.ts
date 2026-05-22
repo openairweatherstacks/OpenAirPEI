@@ -71,6 +71,7 @@ export const TIDE_STATION_BY_LOCATION: Record<string, keyof typeof PEI_TIDE_STAT
   "pondside-park": "charlottetown",
   "belvedere-golf": "charlottetown",
   "fox-meadow-golf": "charlottetown",
+  "kinlock-beach": "georgetown",
   "confederation-bridge": "portBorden",
   "confederation-trail": "summerside",
   summerside: "summerside",
@@ -622,6 +623,46 @@ export const PEI_LOCATIONS: Location[] = [
     },
   },
   {
+    id: "kinlock-beach",
+    name: "Kinlock Beach",
+    nameFr: "Plage Kinlock",
+    tagline: "A peaceful red-sand beach on the Northumberland Strait — warm water, low crowds, and stunning sunsets over Hillsborough Bay.",
+    lat: 46.1425,
+    lng: -62.9556,
+    type: "beach",
+    nearestStation: PEI_STATIONS.charlottetown,
+    activities: ["swimming", "walking", "photography"],
+    icon: "🏖️",
+    amenities: {
+      parking: "free",
+      parkingNote: "Free roadside parking near the beach access — arrive early on summer weekends",
+      petFriendly: true,
+      petNote: "Dogs welcome on leash along the shoreline",
+      wheelchairAccessible: false,
+      wheelchairNote: "Sandy path from the road — not suitable for wheelchairs or strollers",
+      washrooms: false,
+      washroomNote: "No on-site washrooms — nearest facilities in nearby communities",
+    },
+    faqs: [
+      {
+        q: "How is Kinlock Beach different from Cavendish or Brackley?",
+        a: "Kinlock faces south onto the Northumberland Strait rather than the Gulf of St. Lawrence, which means calmer water, fewer waves, and some of the warmest swimming temperatures on the island. It's a local favourite precisely because it doesn't appear on tourist maps — expect far fewer people than the national park beaches.",
+      },
+      {
+        q: "Is the water warm enough to swim?",
+        a: "Kinlock Beach consistently records some of the warmest ocean temperatures in PEI. The Northumberland Strait is shallow and sheltered, which lets it heat up faster than the north shore. Water typically reaches 20–23°C in July and August — warmer than Cavendish on most days. Check the water temperature card on this page for today's reading.",
+      },
+      {
+        q: "When is the best time to visit?",
+        a: "Late afternoon and evening are magical here — the beach faces west and southwest, so you get full sunset light directly over the water. For swimming, mid-afternoon when the sand has had all day to warm up is ideal. Weekday mornings in July and August are the quietest times if you want the beach mostly to yourself.",
+      },
+      {
+        q: "Is there anything nearby?",
+        a: "Kinlock is a short drive from the small communities of Murray River and Murray Harbour, which have local shops and restaurants. The Murray River area is also known for seal-watching boat tours — a great pairing for a full day trip to the eastern Northumberland shore.",
+      },
+    ],
+  },
+  {
     id: "charlottetown-airport",
     name: "Charlottetown Airport",
     nameFr: "Aéroport de Charlottetown",
@@ -672,6 +713,7 @@ export const BEACH_BUOYS: Record<string, string> = {
   stratford: "C44137",
   cornwall: "C44137",
   "tea-hill": "C44137",
+  "kinlock-beach": "C44137",
 };
 
 export const CACHE_DURATIONS = {
