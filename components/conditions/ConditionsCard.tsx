@@ -29,6 +29,8 @@ const LOCATION_IMAGES: Record<string, string> = {
   cornwall: "/cornwall-hero.png",
   "tea-hill": "/tea-hill-hero.jpg",
   "brackley-beach": "/brackley.webp",
+  "pondside-park": "/pondside.jpeg",
+  "kinlock-beach": "/kinlock-beach.jpeg",
   "fox-meadow-golf": "/get-images/fooxmeadow.jpg",
   "belvedere-golf": "/get-images/Belvedere.webp",
 };
