@@ -52,6 +52,7 @@ const LOCATION_HERO_IMAGES: Record<string, { src: string; alt: string }> = {
   "pondside-park": { src: "/pondside.jpeg", alt: "Pondside Park natural trail along the stream, Stratford PEI" },
   "tea-hill": { src: "/tea-hill-hero.jpg", alt: "Tea Hill Provincial Park beach and Hillsborough Bay, Stratford PEI" },
   "kinlock-beach": { src: "/kinlock-beach.jpeg", alt: "Kinlock Beach red sand shoreline on the Northumberland Strait, PEI" },
+  "fullertons-creek": { src: "/fullerton.jpg", alt: "Fullerton's Creek Conservation Park forested trail, Stratford PEI" },
 };
 
 const SCORE_PILL: Record<string, { bg: string; text: string; dot: string }> = {
