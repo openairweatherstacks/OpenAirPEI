@@ -116,7 +116,7 @@ export default function PressReleasePage() {
         {/* Blockquote */}
         <blockquote className="border-l-2 border-[#E8EDE4] pl-7 my-8">
           <p className="font-serif text-xl sm:text-2xl text-text-primary italic leading-relaxed mb-3">
-            "Coming from the Bahamas, I understood immediately what it means to live your life around the water and the weather. PEI has that same relationship with the outdoors — it's just that the conditions change a lot faster here. I wanted to build something that made it easier for anyone on the Island, whether they've been here their whole life or just arrived, to step outside with confidence."
+            &ldquo;Coming from the Bahamas, I understood immediately what it means to live your life around the water and the weather. PEI has that same relationship with the outdoors &mdash; it&apos;s just that the conditions change a lot faster here. I wanted to build something that made it easier for anyone on the Island, whether they&apos;ve been here their whole life or just arrived, to step outside with confidence.&rdquo;
           </p>
           <cite className="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted not-italic">
             — Jared Whyms, Founder, OpenAir Atlantic
