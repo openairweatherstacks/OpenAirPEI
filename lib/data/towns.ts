@@ -710,6 +710,94 @@ export const TOWN_PROFILES: Record<string, TownProfile> = {
     ],
     nearbyLocationIds: ["confederation-trail", "summerside", "cavendish", "confederation-bridge"],
   },
+  "st-stephen": {
+    slug: "st-stephen",
+    locationId: "st-stephen-nb",
+    displayName: "St. Stephen",
+    lede:
+      "Live weather conditions, parks, and outdoor verdicts for St. Stephen, New Brunswick — the chocolate capital of Canada on the St. Croix River.",
+    officialSiteUrl: "https://town.ststephen.nb.ca",
+    parksAndTrailsUrl: "https://town.ststephen.nb.ca/recreation",
+    heroImagePath: "/ststephen.jpg",
+    heroImageAlt: "St. Stephen, New Brunswick waterfront along the St. Croix River",
+    intelSpots: [
+      {
+        key: "st-croix-wind",
+        label: "St. Croix River wind",
+        kind: "wind-commute",
+        sourceLocationId: "st-stephen-nb",
+        note: "Live wind from the St. Stephen observation station — key for the exposed river corridor and the international bridge crossing.",
+      },
+      {
+        key: "st-croix-trail",
+        label: "St. Croix Waterfront Trail",
+        kind: "trail-status",
+        note: "Walking verdict for the riverfront trail, scored against current St. Stephen conditions.",
+      },
+      {
+        key: "next-tide",
+        label: "Next St. Croix River tide",
+        kind: "tide",
+        note: "The St. Croix River is tidal — tide times from the nearest DFO gauge affect riverfront access and trail conditions.",
+      },
+    ],
+    beaches: [],
+    parks: [
+      {
+        id: "milltown-boardwalk",
+        name: "Milltown Boardwalk & Waterfront Trail",
+        address: "Milltown Boulevard, St. Stephen, NB",
+        highlights: "A scenic riverfront boardwalk along the St. Croix River — the town's flagship walking route with views across to Calais, Maine.",
+        trailKm: 2,
+      },
+      {
+        id: "ganong-nature-park",
+        name: "Ganong Nature Park",
+        address: "Ganong Drive, St. Stephen, NB",
+        highlights: "Named after the famous local chocolate family — forested walking trails and natural areas on the edge of town.",
+        trailKm: 3,
+      },
+      {
+        id: "st-stephen-memorial-garden",
+        name: "Memorial Garden",
+        address: "King Street, St. Stephen, NB",
+        highlights: "Downtown park with gardens, benches, and war memorial — a quiet stop in the heart of the town centre.",
+      },
+      {
+        id: "chocolate-museum-grounds",
+        name: "Ganong Chocolatier Museum Grounds",
+        address: "73 Milltown Boulevard, St. Stephen, NB",
+        highlights: "The historic chocolate factory grounds — a cultural landmark and the centrepiece of the annual Chocolate Festival.",
+      },
+    ],
+    faqs: [
+      {
+        q: "What's the weather like in St. Stephen, NB right now?",
+        a: "St. Stephen sits in the St. Croix River valley on the New Brunswick–Maine border. The river valley can trap fog overnight and funnel wind along the corridor. The OpenAir verdict at the top of this page pulls live data from the St. Stephen observation station and translates it into a plain-English outdoor call.",
+      },
+      {
+        q: "What outdoor activities are available in St. Stephen?",
+        a: "The Milltown Boardwalk along the St. Croix River is the town's flagship walk — flat, paved, and scenic with views across to Calais, Maine. Ganong Nature Park has 3 km of forested trails. The Chocolate Trail connects cultural stops through the downtown. Live conditions for walking are scored on this page.",
+      },
+      {
+        q: "When is the St. Stephen Chocolate Festival?",
+        a: "The Chocolate Festival runs annually in August and celebrates St. Stephen's Ganong Bros. chocolate-making heritage — one of the oldest candy companies in Canada. The festival draws visitors from both sides of the border. Weather for the festival window appears at the top of this page.",
+      },
+      {
+        q: "How does weather in St. Stephen compare to Fredericton or Saint John?",
+        a: "St. Stephen is on the southwest coast of NB, which gives it milder winters than Fredericton (inland) but more fog than Saint John (open Bay of Fundy). The St. Croix valley traps cold air overnight in spring and fall, making morning temperatures feel sharper than the afternoon. Live readings on this page reflect those local patterns.",
+      },
+      {
+        q: "Is the international bridge to Calais, Maine open today?",
+        a: "The St. Stephen–Calais international bridge is operated by the Canada Border Services Agency and US Customs and Border Protection. OpenAir doesn't carry border wait times, but live wind conditions on this page are relevant if you're crossing on foot or by bike — the bridge deck is exposed to river crosswinds.",
+      },
+      {
+        q: "What is there to do near St. Stephen, NB?",
+        a: "St. Andrews by-the-Sea is a 45-minute drive south — a historic resort town on Passamaquoddy Bay with whale-watching tours, the Fairmont Algonquin, and a beautiful shoreline. St. George and the Fundy Isles ferry terminal at Black's Harbour are also within an hour. Live conditions for St. Stephen appear on this page; neighbouring destinations are worth checking before you go.",
+      },
+    ],
+    nearbyLocationIds: ["confederation-bridge", "summerside", "charlottetown"],
+  },
 };
 
 export function getTownProfile(slug: string): TownProfile | null {
