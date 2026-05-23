@@ -663,6 +663,50 @@ export const PEI_LOCATIONS: Location[] = [
     ],
   },
   {
+    id: "fullertons-creek",
+    name: "Fullerton's Creek Conservation Park",
+    nameFr: "Parc de conservation du ruisseau Fullerton",
+    tagline: "Stratford's 140-acre wilderness park — 4 km of forested trails through Fullerton's Creek valley, one of the largest natural areas in the Charlottetown region.",
+    lat: 46.2050,
+    lng: -63.0700,
+    type: "park",
+    nearestStation: PEI_STATIONS.charlottetown,
+    activities: ["hiking", "walking", "birdwatching"],
+    icon: "🌲",
+    amenities: {
+      parking: "free",
+      parkingNote: "Free parking at the Fullerton's Creek trailhead off Bunbury Road, Stratford",
+      petFriendly: true,
+      petNote: "Dogs welcome on leash throughout the park trails",
+      wheelchairAccessible: false,
+      wheelchairNote: "Natural forested trail surface — not suitable for wheelchairs or strollers",
+      washrooms: false,
+      washroomNote: "No on-site washrooms — nearest facilities at Robert Cotton Park or Tea Hill Provincial Park",
+    },
+    faqs: [
+      {
+        q: "What is Fullerton's Creek Conservation Park?",
+        a: "Fullerton's Creek is Stratford's largest green space — a 140-acre conservation park with 4 km of forested walking trails through the Fullerton's Creek valley. It's one of the most intact natural areas in the greater Charlottetown region, managed by the Town of Stratford for passive recreation and wildlife habitat.",
+      },
+      {
+        q: "How long are the trails and are they difficult?",
+        a: "The trail network runs about 4 km through mixed forest and creek-side terrain. The paths are natural surface — packed earth and roots — and best suited to hikers comfortable on uneven ground. The terrain is gentle overall with no major elevation changes, making it accessible for most fitness levels on dry days.",
+      },
+      {
+        q: "What wildlife can I see at Fullerton's Creek?",
+        a: "The park is excellent for birdwatching — the creek corridor and mixed forest attract warblers, thrushes, woodpeckers, and shorebirds during migration. White-tailed deer are common in the early morning and evening. The creek itself supports small fish and is a good spot for listening to frogs in spring.",
+      },
+      {
+        q: "When are the best conditions for hiking here?",
+        a: "Spring and fall are exceptional — May brings wildflowers and migrating warblers, while September and October turn the creek valley gold. Summer mornings after overnight rain refresh the forest and reduce insects. The OpenAir verdict at the top of this page tells you whether conditions are good for a hike right now.",
+      },
+      {
+        q: "How far is Fullerton's Creek from Charlottetown?",
+        a: "About 10 minutes — cross the Hillsborough Bridge into Stratford and follow Bunbury Road south. Free parking at the trailhead. Combine with a visit to Pondside Park or Tea Hill Provincial Park for a full day of Stratford outdoors.",
+      },
+    ],
+  },
+  {
     id: "charlottetown-airport",
     name: "Charlottetown Airport",
     nameFr: "Aéroport de Charlottetown",

@@ -226,6 +226,7 @@ function ExploreCard({ entry }: { entry: LocationConditions }) {
     stratford: "/stratford-hero.png",
     cornwall: "/cornwall-hero.png",
     "pondside-park": "/pondside.jpeg",
+    "fullertons-creek": "/fullerton.jpg",
     "tea-hill": "/tea-hill-hero.jpg",
     "brackley-beach": "/brackley.webp",
     "fox-meadow-golf": "/get-images/fooxmeadow.jpg",

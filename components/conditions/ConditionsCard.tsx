@@ -33,6 +33,7 @@ const LOCATION_IMAGES: Record<string, string> = {
   "kinlock-beach": "/kinlock-beach.jpeg",
   "fox-meadow-golf": "/get-images/fooxmeadow.jpg",
   "belvedere-golf": "/get-images/Belvedere.webp",
+  "fullertons-creek": "/fullerton.jpg",
 };
 
 export function ConditionsCard({
