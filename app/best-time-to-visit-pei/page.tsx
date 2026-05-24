@@ -112,7 +112,7 @@ const SEASONS = [
     months: "May & June",
     score: "Growing season",
     scoreColor: "bg-sun text-[#2a2a2a]",
-    image: "/get-images/victoria-park.jpg",
+    image: "/victoriapark.jpeg",
     imageAlt: "Victoria Park Charlottetown in spring bloom",
     summary:
       "PEI springs are cool, green, and unhurried. May averages 15°C with wildflowers blooming across the island. June warms quickly — by mid-month you're hitting 20°C regularly, the tourist season begins, and everything opens up. The island feels fresh and uncrowded in a way summer never does.",

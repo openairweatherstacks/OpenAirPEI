@@ -207,7 +207,7 @@ export const ALL_HIKING_TRAILS: HikingTrail[] = [
     hazards: ["wet-marshy"],
     amenities: ["parking", "washroom", "picnic-area", "bench-seating"],
     parking: { nearby: 60, accessible: true },
-    image: "/get-images/victoria-park.jpg",
+    image: "/victoriapark.jpeg",
     highlights: [
       "Historic hardwood forest",
       "Beaver pond",

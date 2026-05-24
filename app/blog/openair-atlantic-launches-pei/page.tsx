@@ -123,6 +123,23 @@ export default function PressReleasePage() {
           </cite>
         </blockquote>
 
+        {/* Founder photo */}
+        <figure className="not-prose my-8">
+          <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden">
+            <Image
+              src="/jaredfounder2.png"
+              alt="Jared Whyms, Founder of OpenAir Atlantic"
+              fill
+              quality={90}
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 768px"
+            />
+          </div>
+          <figcaption className="mt-3 text-center text-xs text-text-muted font-medium tracking-wide">
+            Jared Whyms, Founder
+          </figcaption>
+        </figure>
+
         <p>
           Prince Edward Island draws roughly 1.5 million visitors each year, many of them drawn specifically to its beaches, coastline, and rural landscape. OpenAir Atlantic is designed to serve that audience alongside year-round residents — providing the same live, reliable conditions information whether someone is planning their first visit to a red-sand beach or deciding whether to take their regular morning walk.
         </p>

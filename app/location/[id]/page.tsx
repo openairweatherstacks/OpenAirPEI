@@ -22,6 +22,8 @@ import { WaterfrontRiskCard } from "@/components/ui/WaterfrontRiskCard";
 import { getAllLocationMapStubs, getLocationConditions } from "@/lib/environment";
 import { PEI_LOCATIONS } from "@/lib/data/locations";
 import { waterTempLabel } from "@/lib/water";
+import { getSunWindow } from "@/lib/sun";
+import { SunWindowCard } from "@/components/town/SunWindowCard";
 import { ReviewForm } from "@/components/reviews/ReviewForm";
 import { ReviewList } from "@/components/reviews/ReviewList";
 import HistoryContext from "@/components/weather/HistoryContext";
@@ -38,7 +40,7 @@ const LOCATION_HERO_IMAGES: Record<string, { src: string; alt: string }> = {
   greenwich: { src: "/get-images/dunes.jpg", alt: "Greenwich Dunes boardwalk through coastal dunes" },
   "confederation-trail": { src: "/get-images/confederation-trail.jpg", alt: "Confederation Trail flat path through PEI countryside" },
   "confederation-bridge": { src: "/get-images/confederationbridege.jpg", alt: "Confederation Bridge spanning the Northumberland Strait" },
-  "victoria-park": { src: "/get-images/victoria-park.jpg", alt: "Victoria Park trees and waterfront, Charlottetown" },
+  "victoria-park": { src: "/victoriapark.jpeg", alt: "Victoria Park trees and waterfront, Charlottetown" },
   "basin-head": { src: "/basinhead-hero.png", alt: "Basin Head singing sands beach, PEI" },
   "north-cape": { src: "/get-images/northcape.jpg", alt: "North Cape lighthouse and wind turbines, PEI" },
   "brackley-beach": { src: "/brackley.webp", alt: "Brackley Beach dunes and shoreline, PEI" },
@@ -123,6 +125,7 @@ export default async function LocationPage({
   if (!entry) notFound();
 
   const allLocations = await getAllLocationMapStubs();
+  const sunWindow = getSunWindow(entry.location.lat, entry.location.lng);
 
   const hero = LOCATION_HERO_IMAGES[id];
   const heroPill = SCORE_PILL[entry.conditions.score];
@@ -289,6 +292,8 @@ export default async function LocationPage({
           accentClassName="text-forest"
         />
       </section>
+
+      <SunWindowCard sunWindow={sunWindow} />
 
       <section className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="space-y-5">

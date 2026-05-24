@@ -798,6 +798,128 @@ export const TOWN_PROFILES: Record<string, TownProfile> = {
     ],
     nearbyLocationIds: ["confederation-bridge", "summerside", "charlottetown"],
   },
+
+  charlottetown: {
+    slug: "charlottetown",
+    locationId: "charlottetown",
+    displayName: "Charlottetown",
+    lede:
+      "Live weather, tides, and outdoor conditions for Charlottetown, PEI — the birthplace of Canada, on the shores of the Hillsborough River.",
+    officialSiteUrl: "https://www.charlottetown.ca",
+    parksAndTrailsUrl: "https://www.charlottetown.ca/en/community-services/parks-and-recreation.aspx",
+    heroImagePath: "/charlottetown-waterfront-hero.jpg",
+    heroImageAlt: "Charlottetown waterfront with the historic harbour and downtown skyline",
+    intelSpots: [
+      {
+        key: "hillsborough-wind",
+        label: "Harbour wind speed",
+        kind: "wind-commute",
+        sourceLocationId: "charlottetown",
+        note: "Wind reading from the Charlottetown Environment Canada station — the closest active station to the harbour and downtown corridor.",
+      },
+      {
+        key: "northumberland-water",
+        label: "Northumberland Strait water temperature",
+        kind: "water-temp",
+        buoyId: "C44137",
+        note: "Live read from the DFO buoy in the Northumberland Strait — the body of water that feeds the harbour and beaches near Charlottetown.",
+      },
+      {
+        key: "victoria-park-trail",
+        label: "Victoria Park trail",
+        kind: "trail-status",
+        note: "Walking verdict for the paved Victoria Park loop and waterfront trail, scored against current Charlottetown conditions.",
+      },
+      {
+        key: "charlottetown-tides",
+        label: "Charlottetown harbour tides",
+        kind: "tide",
+        note: "Live tides from the DFO Charlottetown tide gauge — useful for paddlers, sailors, and anyone accessing the harbour beach.",
+      },
+    ],
+    beaches: [
+      {
+        id: "victoria-park-beach",
+        name: "Victoria Park Beach",
+        address: "Victoria Park, Charlottetown, PE",
+        lat: 46.2310,
+        lng: -63.1200,
+        description:
+          "A sheltered beach at the tip of Victoria Park, popular with families and kayakers. Calm water, stunning sunset views over the Hillsborough River.",
+        amenities: ["Washrooms", "Picnic tables", "Playground nearby", "Free parking"],
+      },
+      {
+        id: "brackley-beach",
+        name: "Brackley Beach (20 min north)",
+        address: "Brackley Beach, PE C1E 1Z3",
+        lat: 46.4101,
+        lng: -63.1928,
+        description:
+          "The closest national park beach to Charlottetown — wide red-sand strand, warm Gulf water, and the dunes trail system. A 20-minute drive north on Route 15.",
+        amenities: ["Parks Canada entry required", "Washrooms", "Lifeguards (seasonal)", "Snack bar"],
+      },
+    ],
+    parks: [
+      {
+        id: "victoria-park",
+        name: "Victoria Park",
+        address: "Victoria Park Dr, Charlottetown, PE",
+        highlights:
+          "The city's centrepiece green space — 40 acres of forested trails, a paved waterfront loop, tennis courts, lawn bowling, and views of the harbour. Dog-friendly. Free parking.",
+        acres: 40,
+        trailKm: 3.2,
+      },
+      {
+        id: "confederation-landing",
+        name: "Confederation Landing Park",
+        address: "Water St, Charlottetown, PE",
+        highlights:
+          "The heart of the Charlottetown waterfront — a grassy park fronting the harbour with a boardwalk, public art, events in summer, and direct access to the water.",
+        acres: 5,
+        trailKm: 1.0,
+      },
+      {
+        id: "brighton-park",
+        name: "Brighton Park",
+        address: "Brighton Rd, Charlottetown, PE",
+        highlights:
+          "A quiet neighbourhood park with walking paths, a community garden, and mature trees. Good option for a shaded midday walk away from the tourist waterfront.",
+        acres: 8,
+        trailKm: 1.5,
+      },
+    ],
+    faqs: [
+      {
+        q: "What is the weather like in Charlottetown today?",
+        a: "Live conditions at the top of this page pull directly from Environment Canada's Charlottetown weather station — updated every 10 minutes. You'll see current temperature, wind, UV index, and an AI-generated summary of what the conditions mean for being outside today.",
+      },
+      {
+        q: "Is it a good day to walk the Charlottetown waterfront?",
+        a: "The conditions score at the top of this page gives a live verdict for the waterfront. The paved Victoria Park loop and the Confederation Landing boardwalk are sheltered from northwest winds, making them walkable even on breezy days. Check the wind direction — southwesterly winds off the harbour are the ones that feel strongest on the exposed boardwalk.",
+      },
+      {
+        q: "What beach is closest to Charlottetown?",
+        a: "Victoria Park Beach is right in the city — calm, sheltered, and family-friendly. For ocean swimming with red sand and waves, Brackley Beach (20 min north on Route 15) is the closest PEIPNP beach. Cavendish is about 45 minutes west and the most popular.",
+      },
+      {
+        q: "When is high tide in Charlottetown?",
+        a: "Charlottetown sees two tides per day, roughly 12 hours apart. The tidal range is moderate — about 1.0–1.6 m. The tides section on this page shows today's high and low tide times from the DFO Charlottetown gauge.",
+      },
+      {
+        q: "What is the air quality like in Charlottetown?",
+        a: "Charlottetown generally has excellent air quality — AQHI readings of 1–3 are the norm. Air quality can briefly worsen during smoke events from western wildfires (typically July–August) or during temperature inversions in spring. The live AQHI reading on this page is from the ECCC Charlottetown monitoring station.",
+      },
+      {
+        q: "Is Confederation Bridge visible from Charlottetown?",
+        a: "No — the bridge is about 60 km west at Borden-Carleton. You can see it from the Trans-Canada Highway approaching Borden. For bridge wind status and driving conditions, check the Confederation Bridge page on this app.",
+      },
+      {
+        q: "What is there to do in Charlottetown on a rainy day?",
+        a: "Province House (the birthplace of Confederation), the Confederation Centre of the Arts, Founders' Hall, and Victoria Row's restaurants and galleries are all covered options. The Charlottetown Farmer's Market is indoors every Saturday year-round.",
+      },
+    ],
+    nearbyLocationIds: ["victoria-park", "stratford", "cornwall", "confederation-bridge"],
+  },
 };
 
 export function getTownProfile(slug: string): TownProfile | null {

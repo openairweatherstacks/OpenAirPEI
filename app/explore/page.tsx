@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { ScoreBadge } from "@/components/conditions/ScoreBadge";
+import { ExploreSearch } from "@/components/ui/ExploreSearch";
 import { getAllLocationConditions } from "@/lib/environment";
 import type { LocationConditions, LocationType } from "@/lib/types";
 
@@ -136,6 +137,11 @@ export default async function ExplorePage() {
         </section>
       </div>
 
+      {/* ── SEARCH ───────────────────────────────────────────────── */}
+      <div className="page-shell py-6">
+        <ExploreSearch locations={allLocations} />
+      </div>
+
       {/* ── CATEGORY CARDS ───────────────────────────────────────── */}
       <div className="page-shell py-6">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -210,14 +216,15 @@ export default async function ExplorePage() {
   );
 }
 
-const TOWN_PAGE_IDS = new Set(["cornwall", "stratford", "summerside"]);
+const TOWN_PAGE_IDS = new Set(["cornwall", "stratford"]);
+const CITY_PAGE_IDS = new Set(["charlottetown", "summerside"]);
 
 function ExploreCard({ entry }: { entry: LocationConditions }) {
   const LOCATION_IMAGES: Record<string, string> = {
     cavendish: "/get-images/cavendish.jpg",
-    charlottetown: "/get-images/charlottetown-waterfront.jpg",
+    charlottetown: "/charlottetown-waterfront-hero.jpg",
     "confederation-trail": "/get-images/confederation-trail.jpg",
-    "victoria-park": "/get-images/victoria-park.jpg",
+    "victoria-park": "/victoriapark.jpeg",
     greenwich: "/get-images/dunes.jpg",
     "confederation-bridge": "/get-images/confederationbridege.jpg",
     "north-cape": "/get-images/northcape.jpg",
@@ -236,9 +243,11 @@ function ExploreCard({ entry }: { entry: LocationConditions }) {
   };
 
   const image = LOCATION_IMAGES[entry.location.id];
-  const href = TOWN_PAGE_IDS.has(entry.location.id)
-    ? `/town/${entry.location.id}`
-    : `/location/${entry.location.id}`;
+  const href = CITY_PAGE_IDS.has(entry.location.id)
+    ? `/city/${entry.location.id}`
+    : TOWN_PAGE_IDS.has(entry.location.id)
+      ? `/town/${entry.location.id}`
+      : `/location/${entry.location.id}`;
 
   return (
     <Link
