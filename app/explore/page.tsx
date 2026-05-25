@@ -224,7 +224,7 @@ function ExploreCard({ entry }: { entry: LocationConditions }) {
     cavendish: "/get-images/cavendish.jpg",
     charlottetown: "/charlottetown-waterfront-hero.jpg",
     "confederation-trail": "/get-images/confederation-trail.jpg",
-    "victoria-park": "/victoriapark.jpeg",
+    "victoria-park": "/victoria.png",
     greenwich: "/get-images/dunes.jpg",
     "confederation-bridge": "/get-images/confederationbridege.jpg",
     "north-cape": "/get-images/northcape.jpg",

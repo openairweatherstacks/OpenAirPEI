@@ -127,7 +127,7 @@ export default function PressReleasePage() {
         <figure className="not-prose my-8">
           <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden">
             <Image
-              src="/jaredfounder2.png"
+              src="/fullertonpark.png"
               alt="Jared Whyms, Founder of OpenAir Atlantic"
               fill
               quality={90}

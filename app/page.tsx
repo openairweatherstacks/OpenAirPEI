@@ -14,6 +14,7 @@ import ThisDayWidget from "@/components/weather/ThisDayWidget";
 import { DynamicFAQSection } from "@/components/faq/DynamicFAQSection";
 import { SubscribeStrip } from "@/components/ui/SubscribeStrip";
 import { CitiesAndTownsSection } from "@/components/ui/CitiesAndTownsSection";
+import { HomeSearch } from "@/components/ui/HomeSearch";
 
 export const revalidate = 600;
 
@@ -80,7 +81,10 @@ export default async function HomePage() {
             <p className="mt-4 max-w-xl text-sm leading-7 text-white/80 sm:text-base">
               Smart weather for Prince Edward Island — live conditions, radar, and air quality for every key spot on the island.
             </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="mt-6">
+              <HomeSearch />
+            </div>
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Link
                 href="/explore"
                 className="flex min-h-12 items-center justify-center gap-2 rounded-full bg-sun px-7 py-3 text-sm font-semibold text-[#2a2a2a] shadow-sun transition hover:bg-sun-deep sm:w-auto"

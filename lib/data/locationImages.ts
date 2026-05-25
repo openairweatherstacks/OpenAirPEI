@@ -12,7 +12,7 @@ export const LOCATION_IMAGES: Record<string, string> = {
   "stanhope-campground": "/get-images/stanhope.jpg",
   "pondside-park": "/pondside.jpeg",
   summerside: "/get-images/summerside.webp",
-  "victoria-park": "/victoriapark.jpeg",
+  "victoria-park": "/victoria.png",
 };
 
 export function getLocationImage(locationId: string): string | null {

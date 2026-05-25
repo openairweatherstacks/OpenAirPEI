@@ -40,7 +40,7 @@ const LOCATION_HERO_IMAGES: Record<string, { src: string; alt: string }> = {
   greenwich: { src: "/get-images/dunes.jpg", alt: "Greenwich Dunes boardwalk through coastal dunes" },
   "confederation-trail": { src: "/get-images/confederation-trail.jpg", alt: "Confederation Trail flat path through PEI countryside" },
   "confederation-bridge": { src: "/get-images/confederationbridege.jpg", alt: "Confederation Bridge spanning the Northumberland Strait" },
-  "victoria-park": { src: "/victoriapark.jpeg", alt: "Victoria Park trees and waterfront, Charlottetown" },
+  "victoria-park": { src: "/victoria.png", alt: "Victoria Park trees and waterfront, Charlottetown" },
   "basin-head": { src: "/basinhead-hero.png", alt: "Basin Head singing sands beach, PEI" },
   "north-cape": { src: "/get-images/northcape.jpg", alt: "North Cape lighthouse and wind turbines, PEI" },
   "brackley-beach": { src: "/brackley.webp", alt: "Brackley Beach dunes and shoreline, PEI" },
