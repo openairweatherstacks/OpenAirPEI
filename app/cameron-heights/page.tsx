@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { AlertTriangle, ArrowDown, ArrowUp, CloudRain, Gauge, Lightbulb, Moon, Radio, Sunrise, SunMedium, Wind, Zap } from "lucide-react";
 import Image from "next/image";
