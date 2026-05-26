@@ -54,11 +54,6 @@ function resolveLocationLink(locationId: string, siteUrl: string, size: WidgetSi
   return `${siteUrl}${path}?utm_source=widget&utm_medium=embed&utm_campaign=${locationId}&utm_content=${size}`;
 }
 
-export async function generateStaticParams() {
-  const peiParams = PEI_LOCATIONS.map((location) => ({ town: location.id }));
-  const standaloneParams = Object.keys(STANDALONE_PAGES).map((id) => ({ town: id }));
-  return [...peiParams, ...standaloneParams];
-}
 
 export async function generateMetadata({
   params,

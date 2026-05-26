@@ -43,9 +43,6 @@ const SCORE_PILL: Record<ConditionsScore, { bg: string; text: string; dot: strin
   "Stay Inside": { bg: "bg-[#FCE9E6]", text: "text-[#9C2D22]", dot: "bg-[#C0392B]" },
 };
 
-export async function generateStaticParams() {
-  return Object.keys(TOWN_PROFILES).map((slug) => ({ slug }));
-}
 
 export async function generateMetadata({
   params,

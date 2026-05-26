@@ -65,9 +65,6 @@ const SCORE_PILL: Record<string, { bg: string; text: string; dot: string }> = {
   "Stay Inside": { bg: "bg-[#FCE9E6]", text: "text-[#9C2D22]", dot: "bg-[#C0392B]" },
 };
 
-export async function generateStaticParams() {
-  return PEI_LOCATIONS.map((location) => ({ id: location.id }));
-}
 
 export async function generateMetadata({
   params,

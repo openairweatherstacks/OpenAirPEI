@@ -12,9 +12,6 @@ import { TrailReviews } from "@/components/routes/TrailReviews";
 
 export const revalidate = 600;
 
-export async function generateStaticParams() {
-  return ALL_HIKING_TRAILS.map((trail) => ({ id: trail.id }));
-}
 
 export async function generateMetadata({
   params,
