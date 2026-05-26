@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { ChevronDown, ShieldAlert, Truck } from "lucide-react";
 import { notFound } from "next/navigation";

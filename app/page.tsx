@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Bike, CloudSun, ShieldCheck, Wind } from "lucide-react";
