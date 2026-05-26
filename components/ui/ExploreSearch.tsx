@@ -26,14 +26,14 @@ const CITY_PAGE_IDS = new Set(["charlottetown", "summerside"]);
 
 const LOCATION_IMAGES: Record<string, string> = {
   cavendish: "/get-images/cavendish.jpg",
-  charlottetown: "/charlottetown-waterfront-hero.jpg",
+  charlottetown: "/charlottetown.jpg",
   "confederation-trail": "/get-images/confederation-trail.jpg",
   "victoria-park": "/victoria.png",
   greenwich: "/get-images/dunes.jpg",
   "confederation-bridge": "/get-images/confederationbridege.jpg",
   "north-cape": "/get-images/northcape.jpg",
   "basin-head": "/basinhead-hero.png",
-  summerside: "/summerside-hero.webp",
+  summerside: "/sumersidehero.jpg",
   stratford: "/stratford-hero.png",
   cornwall: "/cornwall-hero.png",
   "pondside-park": "/pondside.jpeg",

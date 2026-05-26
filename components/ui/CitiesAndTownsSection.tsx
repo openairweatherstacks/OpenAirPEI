@@ -50,7 +50,7 @@ const FEATURED_TOWNS: TownCard[] = [
   {
     slug: "summerside",
     name: "Summerside",
-    heroImage: "/summerside-hero.webp",
+    heroImage: "/sumersidehero.jpg",
     heroAlt: "Summerside waterfront along Bedeque Bay",
     lede: "The Island's second city on Bedeque Bay. Live conditions for Rotary Friendship Park, Linkletter Beach, and the Confederation Trail.",
   },

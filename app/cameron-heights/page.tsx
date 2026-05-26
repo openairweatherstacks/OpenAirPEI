@@ -14,6 +14,7 @@ import { SocialShareStrip } from "@/components/ui/SocialShareStrip";
 import { UVTimer } from "@/components/ui/UVTimer";
 import { LiveAutoRefresh } from "@/components/weather/LiveAutoRefresh";
 import { SevenDayForecast } from "@/components/weather/SevenDayForecast";
+import { StationHistoryChart } from "@/components/weather/StationHistoryChart";
 import { WastePickupCard } from "@/components/community/WastePickupCard";
 import { PowerOutageCard } from "@/components/community/PowerOutageCard";
 import { getCameronHeightsDashboardData } from "@/lib/cameron-heights";
@@ -424,6 +425,8 @@ export default async function CameronHeightsPage() {
         </section>
 
         <SevenDayForecast forecast={dashboard.sevenDayForecast} />
+
+        <StationHistoryChart />
 
         <section className="space-y-3">
           <div className="flex flex-wrap items-end justify-between gap-3">

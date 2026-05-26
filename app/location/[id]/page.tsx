@@ -36,7 +36,7 @@ export const revalidate = 600;
 
 const LOCATION_HERO_IMAGES: Record<string, { src: string; alt: string }> = {
   cavendish: { src: "/get-images/cavendish.jpg", alt: "Cavendish Beach red sand and blue water, PEI" },
-  charlottetown: { src: "/get-images/charlottetown-waterfront.jpg", alt: "Charlottetown waterfront at golden hour" },
+  charlottetown: { src: "/charlottetown.jpg", alt: "Charlottetown city, PEI" },
   greenwich: { src: "/get-images/dunes.jpg", alt: "Greenwich Dunes boardwalk through coastal dunes" },
   "confederation-trail": { src: "/get-images/confederation-trail.jpg", alt: "Confederation Trail flat path through PEI countryside" },
   "confederation-bridge": { src: "/get-images/confederationbridege.jpg", alt: "Confederation Bridge spanning the Northumberland Strait" },
@@ -48,7 +48,7 @@ const LOCATION_HERO_IMAGES: Record<string, { src: string; alt: string }> = {
   "belvedere-golf": { src: "/get-images/Belvedere.webp", alt: "Belvedere Golf Club course, Charlottetown PEI" },
   "cavendish-campground": { src: "/get-images/cavendishcamp.jpg", alt: "Cavendish Campground among the trees, PEI" },
   "stanhope-campground": { src: "/get-images/stanhope.jpg", alt: "Stanhope Campground near the beach, PEI" },
-  summerside: { src: "/get-images/summerside.webp", alt: "Summerside waterfront along Bedeque Bay" },
+  summerside: { src: "/sumersidehero.jpg", alt: "Summerside waterfront along Bedeque Bay" },
   stratford: { src: "/stratford-hero.png", alt: "Town of Stratford welcome sign at golden hour" },
   cornwall: { src: "/cornwall-hero.png", alt: "Cornwall PEI boardwalk along the West River" },
   "pondside-park": { src: "/pondside.jpeg", alt: "Pondside Park natural trail along the stream, Stratford PEI" },

@@ -15,7 +15,7 @@ const TOWN_PAGE_IDS = new Set(["cornwall", "stratford", "summerside"]);
 
 const LOCATION_IMAGES: Record<string, string> = {
   cavendish: "/get-images/cavendish.jpg",
-  charlottetown: "/get-images/charlottetown-waterfront.jpg",
+  charlottetown: "/charlottetown.jpg",
   "confederation-trail": "/get-images/confederation-trail.jpg",
   greenwich: "/get-images/dunes.jpg",
   "confederation-bridge": "/get-images/confederationbridege.jpg",
@@ -24,7 +24,7 @@ const LOCATION_IMAGES: Record<string, string> = {
   "victoria-park": "/victoria.png",
   "cavendish-campground": "/get-images/cavendishcamp.jpg",
   "stanhope-campground": "/get-images/stanhope.jpg",
-  summerside: "/get-images/summerside.webp",
+  summerside: "/sumersidehero.jpg",
   stratford: "/stratford-hero.png",
   cornwall: "/cornwall-hero.png",
   "tea-hill": "/tea-hill-hero.jpg",

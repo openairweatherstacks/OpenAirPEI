@@ -1,7 +1,7 @@
 export const LOCATION_IMAGES: Record<string, string> = {
   cavendish: "/get-images/cavendish.jpg",
   "cavendish-campground": "/get-images/cavendishcamp.jpg",
-  charlottetown: "/get-images/charlottetown-waterfront.jpg",
+  charlottetown: "/charlottetown.jpg",
   "confederation-trail": "/get-images/confederation-trail.jpg",
   "confederation-bridge": "/get-images/confederationbridege.jpg",
   greenwich: "/get-images/dunes.jpg",
@@ -11,7 +11,7 @@ export const LOCATION_IMAGES: Record<string, string> = {
   "basin-head": "/get-images/singing sands.webp",
   "stanhope-campground": "/get-images/stanhope.jpg",
   "pondside-park": "/pondside.jpeg",
-  summerside: "/get-images/summerside.webp",
+  summerside: "/sumersidehero.jpg",
   "victoria-park": "/victoria.png",
 };
 

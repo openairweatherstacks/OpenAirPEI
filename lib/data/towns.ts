@@ -357,7 +357,7 @@ export const TOWN_PROFILES: Record<string, TownProfile> = {
       "Live conditions, tides, and outdoor verdicts for Summerside, PEI — the Island's second city on Bedeque Bay.",
     officialSiteUrl: "https://www.summerside.ca",
     parksAndTrailsUrl: "https://www.summerside.ca/residents/recreation-and-parks",
-    heroImagePath: "/summerside-hero.webp",
+    heroImagePath: "/sumersidehero.jpg",
     heroImageAlt: "Summerside Waterfront boardwalk along Bedeque Bay at sunset",
     intelSpots: [
       {
@@ -807,8 +807,8 @@ export const TOWN_PROFILES: Record<string, TownProfile> = {
       "Live weather, tides, and outdoor conditions for Charlottetown, PEI — the birthplace of Canada, on the shores of the Hillsborough River.",
     officialSiteUrl: "https://www.charlottetown.ca",
     parksAndTrailsUrl: "https://www.charlottetown.ca/en/community-services/parks-and-recreation.aspx",
-    heroImagePath: "/charlottetown-waterfront-hero.jpg",
-    heroImageAlt: "Charlottetown waterfront with the historic harbour and downtown skyline",
+    heroImagePath: "/charlottetown.jpg",
+    heroImageAlt: "Charlottetown, PEI",
     intelSpots: [
       {
         key: "hillsborough-wind",

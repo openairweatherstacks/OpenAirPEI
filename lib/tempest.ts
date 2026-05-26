@@ -89,6 +89,34 @@ export interface TempestObservation {
   timestampIso: string;
 }
 
+export interface TempestDailySnapshot {
+  date: string; // YYYY-MM-DD in station local time
+  tempHigh: number;
+  tempLow: number;
+  tempAvg: number;
+  precipTotal: number;
+  windAvg: number;
+  windGustMax: number;
+  uvIndexMax: number;
+}
+
+// Raw field indices in the Tempest device observations array response
+const OBS_FIELDS = {
+  timestamp: 0,
+  windLull: 1,
+  windAvg: 2,
+  windGust: 3,
+  windDirection: 4,
+  pressure: 6,
+  airTemp: 7,
+  humidity: 8,
+  illuminance: 9,
+  uv: 10,
+  solarRadiation: 11,
+  precipAccum: 12,
+  precipType: 13,
+} as const;
+
 function getTempestApiToken() {
   return process.env.TEMPEST_API_TOKEN?.trim() ?? "";
 }
@@ -143,6 +171,75 @@ export const getTempestStation = cache(async (): Promise<TempestStation | null> 
     deviceId: outdoorDevice?.device_id ?? null,
   };
 });
+
+interface TempestDeviceObsResponse {
+  obs?: number[][];
+  timezone?: string;
+}
+
+export async function getTempestStationHistory(days = 90): Promise<TempestDailySnapshot[]> {
+  const station = await getTempestStation();
+  if (!station?.deviceId) return [];
+
+  const now = Math.floor(Date.now() / 1000);
+  const start = now - days * 24 * 60 * 60;
+
+  const token = getTempestApiToken();
+  if (!token) return [];
+
+  try {
+    const url = `${TEMPEST_API_BASE}/observations/device/${station.deviceId}?time_start=${start}&time_end=${now}&token=${encodeURIComponent(token)}`;
+    const res = await fetch(url, { next: { revalidate: CACHE_DURATIONS.tempest * 15 } });
+    if (!res.ok) return [];
+
+    const data = (await res.json()) as TempestDeviceObsResponse;
+    const obs = data.obs ?? [];
+    const tz = data.timezone ?? "America/Halifax";
+
+    // Group observations by local date
+    const byDate = new Map<string, { temps: number[]; precip: number[]; windAvgs: number[]; windGusts: number[]; uvs: number[] }>();
+
+    for (const row of obs) {
+      const ts = row[OBS_FIELDS.timestamp];
+      if (!ts) continue;
+      const date = new Date(ts * 1000).toLocaleDateString("sv-SE", { timeZone: tz }); // YYYY-MM-DD
+
+      if (!byDate.has(date)) byDate.set(date, { temps: [], precip: [], windAvgs: [], windGusts: [], uvs: [] });
+      const bucket = byDate.get(date)!;
+
+      const temp = row[OBS_FIELDS.airTemp];
+      const precip = row[OBS_FIELDS.precipAccum];
+      const windAvg = row[OBS_FIELDS.windAvg];
+      const windGust = row[OBS_FIELDS.windGust];
+      const uv = row[OBS_FIELDS.uv];
+
+      if (typeof temp === "number" && isFinite(temp)) bucket.temps.push(temp);
+      if (typeof precip === "number" && isFinite(precip)) bucket.precip.push(precip);
+      if (typeof windAvg === "number" && isFinite(windAvg)) bucket.windAvgs.push(windAvg * 3.6);
+      if (typeof windGust === "number" && isFinite(windGust)) bucket.windGusts.push(windGust * 3.6);
+      if (typeof uv === "number" && isFinite(uv)) bucket.uvs.push(uv);
+    }
+
+    const snapshots: TempestDailySnapshot[] = [];
+    for (const [date, b] of Array.from(byDate.entries()).sort(([a], [c]) => a.localeCompare(c))) {
+      if (!b.temps.length) continue;
+      snapshots.push({
+        date,
+        tempHigh: Math.round(Math.max(...b.temps) * 10) / 10,
+        tempLow: Math.round(Math.min(...b.temps) * 10) / 10,
+        tempAvg: Math.round((b.temps.reduce((s, v) => s + v, 0) / b.temps.length) * 10) / 10,
+        precipTotal: Math.round(b.precip.reduce((s, v) => s + v, 0) * 10) / 10,
+        windAvg: Math.round((b.windAvgs.length ? b.windAvgs.reduce((s, v) => s + v, 0) / b.windAvgs.length : 0) * 10) / 10,
+        windGustMax: Math.round((b.windGusts.length ? Math.max(...b.windGusts) : 0) * 10) / 10,
+        uvIndexMax: Math.round((b.uvs.length ? Math.max(...b.uvs) : 0) * 10) / 10,
+      });
+    }
+
+    return snapshots;
+  } catch {
+    return [];
+  }
+}
 
 export async function getTempestLatestObservation(): Promise<TempestObservation | null> {
   const station = await getTempestStation();
