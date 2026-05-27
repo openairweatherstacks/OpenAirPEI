@@ -69,7 +69,7 @@ const CATEGORIES: Category[] = [
     label: "Cities & Towns",
     description: "Live conditions for Charlottetown, Summerside, Stratford, Cornwall, and more.",
     types: ["city", "community"],
-    image: "/charlottetown.jpg",
+    image: "/charlotttetowncity.jpeg",
     accent: "from-charcoal/80 to-charcoal/40",
     textAccent: "text-white/90",
   },
@@ -223,7 +223,7 @@ const CITY_PAGE_IDS = new Set(["charlottetown", "summerside"]);
 function ExploreCard({ entry }: { entry: LocationConditions }) {
   const LOCATION_IMAGES: Record<string, string> = {
     cavendish: "/get-images/cavendish.jpg",
-    charlottetown: "/charlottetown.jpg",
+    charlottetown: "/charlotttetowncity.jpeg",
     "confederation-trail": "/get-images/confederation-trail.jpg",
     "victoria-park": "/victoria.png",
     greenwich: "/get-images/dunes.jpg",

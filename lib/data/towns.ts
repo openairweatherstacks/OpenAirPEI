@@ -807,7 +807,7 @@ export const TOWN_PROFILES: Record<string, TownProfile> = {
       "Live weather, tides, and outdoor conditions for Charlottetown, PEI — the birthplace of Canada, on the shores of the Hillsborough River.",
     officialSiteUrl: "https://www.charlottetown.ca",
     parksAndTrailsUrl: "https://www.charlottetown.ca/en/community-services/parks-and-recreation.aspx",
-    heroImagePath: "/charlottetown.jpg",
+    heroImagePath: "/charlotttetowncity.jpeg",
     heroImageAlt: "Charlottetown, PEI",
     intelSpots: [
       {

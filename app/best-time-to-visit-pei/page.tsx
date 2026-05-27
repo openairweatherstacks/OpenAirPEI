@@ -135,8 +135,8 @@ const SEASONS = [
     months: "December to March",
     score: "For the committed",
     scoreColor: "bg-blue-200 text-blue-900",
-    image: "/charlottetown.jpg",
-    imageAlt: "Charlottetown city in winter",
+    image: "/charlotttetowncity.jpeg",
+    imageAlt: "City of Charlottetown in winter",
     summary:
       "PEI winter is real winter — average highs below zero from December through February, regular snowfall, and the Northumberland Strait freezing along the shores. It's not a tourist destination in the conventional sense. But Charlottetown is a genuine small city with good restaurants, the Confederation Centre of the Arts, and an unhurried pace that regulars love.",
     pros: [

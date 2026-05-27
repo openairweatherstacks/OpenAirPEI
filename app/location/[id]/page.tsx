@@ -37,7 +37,7 @@ export const revalidate = 600;
 
 const LOCATION_HERO_IMAGES: Record<string, { src: string; alt: string }> = {
   cavendish: { src: "/get-images/cavendish.jpg", alt: "Cavendish Beach red sand and blue water, PEI" },
-  charlottetown: { src: "/charlottetown.jpg", alt: "Charlottetown city, PEI" },
+  charlottetown: { src: "/charlotttetowncity.jpeg", alt: "City of Charlottetown, PEI" },
   greenwich: { src: "/get-images/dunes.jpg", alt: "Greenwich Dunes boardwalk through coastal dunes" },
   "confederation-trail": { src: "/get-images/confederation-trail.jpg", alt: "Confederation Trail flat path through PEI countryside" },
   "confederation-bridge": { src: "/get-images/confederationbridege.jpg", alt: "Confederation Bridge spanning the Northumberland Strait" },

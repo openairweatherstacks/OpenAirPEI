@@ -26,7 +26,7 @@ const CITY_PAGE_IDS = new Set(["charlottetown", "summerside"]);
 
 const LOCATION_IMAGES: Record<string, string> = {
   cavendish: "/get-images/cavendish.jpg",
-  charlottetown: "/charlottetown.jpg",
+  charlottetown: "/charlotttetowncity.jpeg",
   "confederation-trail": "/get-images/confederation-trail.jpg",
   "victoria-park": "/victoria.png",
   greenwich: "/get-images/dunes.jpg",
