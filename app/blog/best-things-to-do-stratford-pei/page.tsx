@@ -4,27 +4,27 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Best Things to Do in Stratford, PEI — Outdoor Guide 2026",
+  title: "Stratford, PEI — Live Outdoor Conditions, Trails & Parks | OpenAir Atlantic",
   description:
-    "Stratford, PEI sits just minutes from Charlottetown across the Hillsborough River. Discover the best parks, trails, beaches, and outdoor activities — with real-time conditions to plan your visit.",
+    "OpenAir Atlantic tracks real-time weather, UV, air quality, and trail conditions for Stratford, PEI. Know before you go — free, no account required.",
   alternates: {
     canonical: "https://openairatlantic.com/blog/best-things-to-do-stratford-pei",
   },
   keywords: [
-    "things to do in Stratford PEI",
-    "Stratford Prince Edward Island",
-    "Stratford PEI outdoor activities",
-    "Stratford PEI parks and trails",
-    "Stratford PEI weather",
-    "what to do Stratford PEI",
-    "Stratford PEI beach",
-    "Hillsborough River Stratford",
-    "Stratford PEI guide",
+    "Stratford PEI outdoor conditions",
+    "Stratford PEI weather real-time",
+    "Kinlock Beach conditions",
+    "Stratford PEI trails",
+    "Pondside Park Stratford",
+    "OpenAir Atlantic Stratford",
+    "Stratford PEI UV index",
+    "Stratford PEI air quality",
+    "things to do Stratford PEI",
   ],
   openGraph: {
-    title: "Best Things to Do in Stratford, PEI — Outdoor Guide 2026",
+    title: "Stratford, PEI — Live Outdoor Conditions | OpenAir Atlantic",
     description:
-      "Stratford sits just across the Hillsborough River from Charlottetown. Here's everything worth doing outdoors — parks, trails, beaches, and when to go.",
+      "Real-time weather, UV, air quality, and trail conditions for Stratford, PEI. OpenAir Atlantic tells you exactly when to go and how long you have.",
     url: "https://openairatlantic.com/blog/best-things-to-do-stratford-pei",
     type: "article",
     publishedTime: "2026-05-27",
@@ -34,15 +34,15 @@ export const metadata: Metadata = {
         url: "/stratford-hero.png",
         width: 1200,
         height: 630,
-        alt: "Stratford, PEI — a view across the Hillsborough River",
+        alt: "Stratford, PEI — Pondside Park and the Hillsborough River waterfront",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Best Things to Do in Stratford, PEI",
+    title: "Stratford, PEI — Live Outdoor Conditions | OpenAir Atlantic",
     description:
-      "Parks, trails, beaches, and outdoor activities in Stratford — with live weather conditions from OpenAir Atlantic.",
+      "Know before you go. OpenAir Atlantic tracks real-time conditions for Stratford parks, trails, and beaches — free, updated every 10 minutes.",
     images: ["/stratford-hero.png"],
   },
 };
@@ -50,9 +50,9 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Article",
-  headline: "Best Things to Do in Stratford, PEI — Outdoor Guide 2026",
+  headline: "Stratford, PEI — Live Outdoor Conditions, Trails & Parks | OpenAir Atlantic",
   description:
-    "Stratford, PEI sits just minutes from Charlottetown across the Hillsborough River. Discover the best parks, trails, beaches, and outdoor activities.",
+    "OpenAir Atlantic tracks real-time weather, UV, air quality, and trail conditions for Stratford, PEI. Know before you go — free, no account required.",
   image: "https://openairatlantic.com/stratford-hero.png",
   datePublished: "2026-05-27",
   dateModified: "2026-05-27",
@@ -71,8 +71,7 @@ const jsonLd = {
   },
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id":
-      "https://openairatlantic.com/blog/best-things-to-do-stratford-pei",
+    "@id": "https://openairatlantic.com/blog/best-things-to-do-stratford-pei",
   },
 };
 
@@ -96,22 +95,21 @@ export default function StratfordGuidePage() {
 
         {/* Category tag */}
         <div className="mb-6">
-          <span className="inline-block rounded-full bg-sun-light px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-sun-deep border border-sun/20">
-            Destination Guide
+          <span className="inline-block rounded-full bg-forest-light px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-forest-deep border border-forest/20">
+            Tool Guide
           </span>
         </div>
 
         {/* Title */}
         <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-text-primary leading-tight mb-5">
-          Best Things to Do in Stratford, PEI — The Complete Outdoor Guide
+          Stratford, PEI — What OpenAir Atlantic Tracks Here and Why It Matters
         </h1>
 
         {/* Deck */}
         <p className="font-serif text-xl sm:text-2xl text-text-secondary leading-relaxed italic mb-8 pb-8 border-b border-[#E8EDE4]">
-          Stratford sits just across the Hillsborough River from
-          Charlottetown — close enough to feel connected, quiet enough to
-          feel like its own place. Here is everything worth doing outdoors,
-          and exactly when to do it.
+          Stratford has parks, beaches, and trails that most visitors never find.
+          OpenAir Atlantic monitors real-time conditions for every one of them —
+          so you know exactly when to go, what to bring, and how long you have.
         </p>
 
         {/* Author + date */}
@@ -140,19 +138,13 @@ export default function StratfordGuidePage() {
         <div className="relative w-full aspect-[16/9] rounded-[1.75rem] overflow-hidden mb-10">
           <Image
             src="/stratford-hero.png"
-            alt="Stratford, PEI — view across the Hillsborough River toward the waterfront"
+            alt="Stratford, PEI — Pondside Park waterfront on a clear summer morning"
             fill
             quality={90}
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 768px"
             priority
           />
-          <div className="absolute bottom-4 left-5 right-5">
-            <p className="text-xs text-white/70 font-medium">
-              Stratford, PEI — a quiet community with direct water access and a
-              growing trail network
-            </p>
-          </div>
         </div>
 
         {/* Body */}
@@ -163,30 +155,105 @@ export default function StratfordGuidePage() {
             <span className="font-serif text-5xl font-normal leading-none float-left mr-2 mt-1 text-text-primary">
               S
             </span>
-            tratford does not get the same press as Cavendish or the Charlottetown waterfront. It is
-            a working community — around 10,000 people, a grocery store, a rec centre, and a
-            shoreline most visitors never see. That is exactly why it is worth knowing. The
-            Hillsborough River wraps along its western edge, the Trans Canada Trail passes
-            through, and on a clear summer morning it is one of the most pleasant places on
-            Prince Edward Island to be outside.
+            tratford sits directly across the Hillsborough River from Charlottetown —
+            10 minutes by car, a short ferry ride in summer. It has a real trail network,
+            a quiet red-sand beach, waterfront parks, and a growing outdoor community.
+            Most visitors to PEI never cross the bridge. That means less crowd pressure
+            on everything Stratford has — and the same weather data powering OpenAir
+            Atlantic applies here just as much as it does in Cavendish or downtown
+            Charlottetown.
           </p>
 
           <p>
-            This guide covers everything worth doing outdoors in Stratford — from its trail
-            network to its water access to the best times of day to visit each spot. All
-            conditions referenced here are available live on{" "}
+            This page explains what OpenAir Atlantic monitors for Stratford, what each
+            data point means in practice, and which specific spots in the community each
+            reading applies to. If you are planning a visit — or you live here and want
+            to get more out of your outdoor time —{" "}
             <Link
               href="/"
               className="text-forest font-semibold underline underline-offset-2 hover:text-forest-deep transition"
             >
-              OpenAir Atlantic
+              the live dashboard is free and updated every 10 minutes
             </Link>
-            , updated every 10 minutes from Environment Canada data.
+            .
           </p>
 
-          {/* Section 1 */}
+          {/* What OAA tracks */}
           <h2 className="font-serif text-2xl sm:text-3xl text-text-primary pt-4">
-            Kinlock Beach — Stratford&apos;s Quiet Shoreline
+            What OpenAir Atlantic Monitors for Stratford
+          </h2>
+
+          <p>
+            OpenAir Atlantic pulls real-time data from Environment Canada weather
+            stations and the Air Quality Health Index network. For Stratford, the
+            nearest station is the Charlottetown airport — close enough that temperature,
+            wind, and humidity readings are accurate to within a few minutes of current
+            conditions. The tool displays six data points that directly affect outdoor
+            decisions in this community:
+          </p>
+
+          {/* Data point cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 not-prose">
+            {[
+              {
+                label: "Temperature & Feels Like",
+                value: "Updated every 10 min",
+                detail:
+                  "The felt temperature accounts for wind and humidity — more useful than the air temperature alone for deciding whether to bring a layer on the trail.",
+              },
+              {
+                label: "UV Index",
+                value: "Burn time calculated",
+                detail:
+                  "PEI UV regularly hits 7–9 in July. OpenAir calculates how long fair skin can be in direct sun before burning — shown per UV reading, not as a generic warning.",
+              },
+              {
+                label: "Air Quality (AQHI)",
+                value: "Health-based scale 1–10",
+                detail:
+                  "Stratford sits in a river valley. On hot, still days air quality can stratify. The AQHI reading tells you directly whether conditions are safe for children, seniors, and people with asthma.",
+              },
+              {
+                label: "Wind Speed & Direction",
+                value: "Live from EC stations",
+                detail:
+                  "Wind matters at Kinlock Beach, on the Hillsborough Bridge crossing, and on the exposed trail sections. Direction matters as much as speed — a southwest wind hits different spots than a northwest.",
+              },
+              {
+                label: "Precipitation Timing",
+                value: "3-hour window forecast",
+                detail:
+                  "Not just probability — the tool estimates when rain actually arrives. That difference between \"40% chance of rain\" and \"rain arrives at 2:30pm\" is the difference between a wasted trip and a good one.",
+              },
+              {
+                label: "Visibility",
+                value: "In kilometres",
+                detail:
+                  "Visibility above 12km means the cross-river view of Charlottetown from Stratford is at its best. Below 5km, fog has moved in from the Gulf — useful to know before a photography session.",
+              },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="rounded-2xl border border-[#E8EDE4] bg-white p-5 space-y-2"
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <p className="font-semibold text-text-primary text-sm leading-snug">
+                    {item.label}
+                  </p>
+                  <span className="shrink-0 text-[10px] font-bold uppercase tracking-[0.15em] text-forest bg-forest-light px-2 py-0.5 rounded-full">
+                    {item.value}
+                  </span>
+                </div>
+                <p className="text-sm text-text-secondary leading-relaxed">
+                  {item.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Kinlock */}
+          <h2 className="font-serif text-2xl sm:text-3xl text-text-primary pt-4">
+            Kinlock Beach — How to Use the Tool Here
           </h2>
 
           <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden my-6">
@@ -201,87 +268,56 @@ export default function StratfordGuidePage() {
           </div>
 
           <p>
-            Kinlock Beach is the kind of place locals keep to themselves. A small red-sand
-            beach tucked into the Stratford shoreline, it faces the river rather than the
-            open Gulf — which means calmer water, warmer surface temperatures in July and
-            August, and almost no wave action. It is excellent for children, for paddlers,
-            and for anyone who finds the north shore beaches too exposed.
+            Kinlock Beach is a sheltered red-sand shoreline on the Stratford side of the
+            Hillsborough River. Because it faces the river rather than the open Gulf, it
+            reads differently from Cavendish or Basin Head — calmer water, warmer surface
+            temperature in summer, and almost no wave action. It is excellent for children
+            and paddlers.
           </p>
 
           <p>
-            The best window for Kinlock Beach is mid-morning to early afternoon on a
-            southwest wind day — the river stays glassy and the sun reaches the beach fully
-            by 9am. Check the AQHI before you go: on still summer days the valley can hold
-            heat. Anything under 4 on the Air Quality Health Index is comfortable for
-            everyone, including young children and people with respiratory conditions.
+            The specific readings that matter most at Kinlock:
           </p>
 
-          {/* Tip block */}
-          <div className="rounded-2xl border border-[#E8EDE4] border-l-4 border-l-sun bg-sun-light p-6 not-prose">
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-sun-deep mb-3">
-              Local Timing Tip
-            </p>
-            <p className="text-sm text-text-secondary leading-relaxed">
-              Kinlock Beach faces west. For the softest light and warmest sand, arrive by
-              10am. After 3pm the shoreline catches the afternoon heat — ideal for a late
-              swim, less ideal if UV is above 6. Check the UV timer on OpenAir Atlantic
-              before heading out.
-            </p>
+          <div className="rounded-2xl border border-[#E8EDE4] border-l-4 border-l-forest bg-forest-light p-6 not-prose space-y-3">
+            {[
+              {
+                reading: "Temperature above 20°C",
+                means: "Comfortable swimming. River surface typically 2–3°C above air in peak summer.",
+              },
+              {
+                reading: "Wind under 15km/h from the SW",
+                means: "Glassy river surface. Ideal for paddleboarding and kayaking.",
+              },
+              {
+                reading: "AQHI under 4",
+                means: "Safe for all ages, including children and people with asthma.",
+              },
+              {
+                reading: "UV above 6",
+                means: "Bring SPF. Check the burn-time calculator — fair skin burns in under 20 min at UV 7.",
+              },
+              {
+                reading: "Precipitation arriving in under 2 hours",
+                means: "Worth checking before the drive. OpenAir shows the exact arrival window.",
+              },
+            ].map((item) => (
+              <div key={item.reading} className="flex items-start gap-3 text-sm">
+                <span className="font-bold text-forest shrink-0 w-52">{item.reading}</span>
+                <span className="text-text-secondary leading-relaxed">{item.means}</span>
+              </div>
+            ))}
           </div>
 
-          {/* Section 2 */}
+          {/* Trails */}
           <h2 className="font-serif text-2xl sm:text-3xl text-text-primary pt-4">
-            The Stratford Trail Network — Walking and Cycling
+            The Trail Network — Cycling and Walking Conditions
           </h2>
 
           <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden my-6">
             <Image
               src="/charlottetown-waterfront-hero.jpg"
-              alt="Charlottetown waterfront and Hillsborough River viewed from the Stratford side"
-              fill
-              quality={90}
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 768px"
-            />
-            <figcaption className="sr-only">
-              The Hillsborough River connects Stratford to the Charlottetown waterfront —
-              a view locals get every day
-            </figcaption>
-          </div>
-
-          <p>
-            Stratford has invested significantly in its trail system over the past decade.
-            The main corridor runs roughly parallel to the Trans Canada Highway, connecting
-            several residential areas to the waterfront and linking into the broader
-            Trans-Canada Trail network that crosses PEI. The surface is paved multi-use
-            trail — appropriate for road bikes, hybrid bikes, strollers, and inline skates.
-          </p>
-
-          <p>
-            The best cycling conditions on this trail are northwest winds under 20km/h,
-            temperature between 12°C and 24°C, and low precipitation probability. Those
-            days happen reliably from mid-June through September. The trail is fully exposed
-            in several sections — on a high-UV day, bring sunscreen and a hat. The
-            trail runs roughly east-west, so morning cyclists head into the sun and evening
-            cyclists have it behind them.
-          </p>
-
-          <p>
-            If you are walking rather than cycling, the Kinlock area has a quieter spur
-            that loops through a wooded buffer and back to the river. It takes about 25
-            minutes at a comfortable pace and has significant tree cover — useful on hot
-            summer afternoons when the main trail is fully exposed.
-          </p>
-
-          {/* Section 3 */}
-          <h2 className="font-serif text-2xl sm:text-3xl text-text-primary pt-4">
-            The View Across the River — Why Stratford Has the Best Angle on Charlottetown
-          </h2>
-
-          <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden my-6">
-            <Image
-              src="/charlottetown.jpg"
-              alt="Charlottetown skyline and waterfront as seen from across the Hillsborough River"
+              alt="Stratford trail network and Hillsborough River waterfront on a clear PEI morning"
               fill
               quality={90}
               className="object-cover"
@@ -290,213 +326,204 @@ export default function StratfordGuidePage() {
           </div>
 
           <p>
-            One thing visitors to Stratford consistently notice is the view looking back
-            across the Hillsborough River. The Charlottetown waterfront — Province House,
-            the Peake&apos;s Wharf district, the steeples of St. Dunstan&apos;s — reads as a
-            compact skyline from the Stratford shore in a way that is impossible to see
-            from within the city itself.
+            Stratford has invested in a paved multi-use trail corridor that runs
+            roughly parallel to the Trans Canada Highway, connecting residential areas
+            to the waterfront and linking into the broader Trans-Canada Trail network.
+            Road bikes, hybrids, strollers, and inline skates all use it.
           </p>
 
           <p>
-            This is a particularly good photography spot in the hour before sunset on a
-            clear westerly day. The light hits the waterfront directly. The river surface
-            picks up the colour. On high-pressure days with visibility above 15km — which
-            is common in July and August — you can see individual buildings clearly across
-            the water. Check the visibility reading on OpenAir Atlantic before heading out:
-            anything above 12km gives you clean lines.
+            The trail is exposed in several sections — meaning wind, UV, and rain all
+            hit harder here than in a wooded park. OpenAir Atlantic makes this visible:
           </p>
 
-          <blockquote className="border-l-2 border-[#E8EDE4] pl-7 my-8">
-            <p className="font-serif text-xl sm:text-2xl text-text-primary italic leading-relaxed mb-3">
-              &ldquo;Most people photograph Charlottetown from inside Charlottetown. The
-              best shot of the city is from Stratford, looking west, at 7pm on a clear
-              July evening.&rdquo;
-            </p>
-            <cite className="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted not-italic">
-              — Jared Whyms, OpenAir Atlantic
-            </cite>
-          </blockquote>
-
-          {/* Section 4 */}
-          <h2 className="font-serif text-2xl sm:text-3xl text-text-primary pt-4">
-            Pondside Park and the Stratford Waterfront
-          </h2>
-
-          <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden my-6">
-            <Image
-              src="/pondside.jpeg"
-              alt="Pondside Park, Stratford PEI — waterfront greenspace along the Hillsborough River"
-              fill
-              quality={90}
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 768px"
-            />
-          </div>
-
-          <p>
-            Pondside Park sits at the edge of Stratford&apos;s central waterfront area —
-            a flat, accessible greenspace with water views, picnic areas, and enough open
-            ground for casual sports, kite flying, or an afternoon with young children.
-            It connects to the broader trail network and is one of the easiest entry
-            points for visitors arriving by car.
-          </p>
-
-          <p>
-            In summer, the park fills up on weekday mornings with strollers and dog
-            walkers. By 10am on a warm day, it is at its most active. The east-facing
-            orientation means the morning light is excellent and the afternoon can get
-            hot. Bring shade if you plan to stay past noon in July and August — the UV
-            index regularly reaches 7 or 8 on clear PEI summer days, which means
-            fair-skinned adults can start burning in under 20 minutes.
-          </p>
-
-          {/* Activity table */}
           <div className="rounded-2xl border border-[#E8EDE4] bg-white p-6 not-prose">
             <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-muted mb-4">
-              Stratford Outdoor Activity Conditions at a Glance
+              Trail Conditions at a Glance
             </p>
             <div className="space-y-3">
               {[
                 {
-                  activity: "Trail walking / cycling",
-                  ideal: "10–22°C · Wind under 25km/h · No rain",
-                  avoid: "Sustained winds above 35km/h, rain",
+                  condition: "Ideal cycling day",
+                  detail: "10–22°C · Wind under 20km/h · No precipitation · UV under 7",
+                  status: "good",
                 },
                 {
-                  activity: "Kinlock Beach swimming",
-                  ideal: "Air above 20°C · AQHI under 4 · Calm river",
-                  avoid: "Easterly winds above 20km/h, thunderstorm risk",
+                  condition: "Bring a layer",
+                  detail: "Under 12°C or wind above 25km/h from the northwest",
+                  status: "fair",
                 },
                 {
-                  activity: "Waterfront photography",
-                  ideal: "Visibility above 12km · Sunset window · Clear sky",
-                  avoid: "Fog, overcast, rain",
+                  condition: "Skip the exposed sections",
+                  detail: "Wind above 35km/h sustained — the trail has no shelter",
+                  status: "avoid",
                 },
                 {
-                  activity: "Pondside Park picnic",
-                  ideal: "Morning, UV under 6 · Light wind",
-                  avoid: "UV above 8 without shade, humidity above 80%",
+                  condition: "Sunscreen required",
+                  detail: "UV above 6 on the open trail — reapply every 90 minutes",
+                  status: "fair",
                 },
                 {
-                  activity: "Kayaking / paddleboarding",
-                  ideal: "Wind under 15km/h · Calm river · Morning",
-                  avoid: "Afternoon southwest winds, thunderstorm risk",
+                  condition: "Best walking window",
+                  detail: "Morning before 10am on hot days — shade only on the Kinlock spur",
+                  status: "good",
                 },
               ].map((row) => (
                 <div
-                  key={row.activity}
+                  key={row.condition}
                   className="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4 text-sm border-b border-[#E8EDE4] pb-3 last:border-0 last:pb-0"
                 >
-                  <span className="font-semibold text-text-primary w-full sm:w-44 shrink-0">
-                    {row.activity}
+                  <span
+                    className={`font-semibold shrink-0 w-full sm:w-48 ${
+                      row.status === "good"
+                        ? "text-forest"
+                        : row.status === "avoid"
+                        ? "text-danger"
+                        : "text-sun-deep"
+                    }`}
+                  >
+                    {row.condition}
                   </span>
-                  <div className="flex flex-col gap-0.5">
-                    <span className="text-forest text-xs">
-                      ✓ {row.ideal}
-                    </span>
-                    <span className="text-danger text-xs">
-                      ✗ {row.avoid}
-                    </span>
-                  </div>
+                  <span className="text-text-secondary">{row.detail}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Section 5 */}
+          {/* Pondside */}
           <h2 className="font-serif text-2xl sm:text-3xl text-text-primary pt-4">
-            Getting to Stratford From Charlottetown
+            Pondside Park — The Waterfront Greenspace
           </h2>
 
           <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden my-6">
             <Image
-              src="/charlottetown-waterfront-hero.jpg"
-              alt="The Charlottetown waterfront — 10 minutes from Stratford by car or ferry"
+              src="/pondside.jpeg"
+              alt="Pondside Park, Stratford PEI — flat waterfront greenspace with picnic areas"
               fill
               quality={90}
-              className="object-cover object-bottom"
+              className="object-cover"
               sizes="(max-width: 768px) 100vw, 768px"
             />
           </div>
 
           <p>
-            Stratford is a 10-minute drive from downtown Charlottetown via the Hillsborough
-            Bridge. By bicycle, the route across the bridge is accessible — though the
-            bridge deck has no dedicated cycling lane, so on windy days (above 30km/h
-            sustained) the crossing is uncomfortable and on days above 50km/h it is
-            genuinely unsafe for cyclists. Check the wind reading before you ride.
+            Pondside Park is Stratford&apos;s main waterfront greenspace — flat, accessible,
+            open ground with water views and picnic areas. It connects directly to the
+            trail network and is the easiest entry point for visitors arriving by car.
+            On a good morning in July it is exactly what you want: river light, open sky,
+            room to move.
           </p>
 
           <p>
-            There is a seasonal passenger ferry service that runs across the harbour
-            between Charlottetown and the Victoria Row area — this is the most scenic
-            way to approach from the city and eliminates the bridge crossing entirely.
-            Check the schedule locally; the service typically operates late June through
-            early September.
+            The park is almost entirely open and east-facing — morning sun hits it fully,
+            and by midday in summer the UV exposure is significant. The AQHI and UV
+            readings on OpenAir Atlantic are the two most relevant data points here.
+            Anything above UV 7 with children under 10 means shade is not optional.
+            On AQHI days above 6, this is not a comfortable spot for people with
+            respiratory conditions — the open river channel concentrates any pollution
+            that has built up in the valley.
           </p>
 
-          <p>
-            Parking in Stratford is generally uncomplicated — most trailheads and park
-            areas have free off-street parking, and the community is laid out for cars.
-            If you are arriving by bicycle from Charlottetown and the wind is against you,
-            plan your return trip before you head out.
-          </p>
+          <div className="rounded-2xl border border-[#E8EDE4] border-l-4 border-l-sun bg-sun-light p-6 not-prose">
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-sun-deep mb-3">
+              Why This Matters for Families
+            </p>
+            <p className="text-sm text-text-secondary leading-relaxed">
+              OpenAir Atlantic was built specifically to answer questions like &ldquo;is it safe
+              to bring my kids to the park right now?&rdquo; The AQHI reading is translated into
+              plain English — not a number on a scale, but a direct statement about who
+              it is and is not safe for. Check it before the drive, not after you arrive.
+            </p>
+          </div>
 
-          {/* Section 6 */}
+          {/* Why the tool */}
           <h2 className="font-serif text-2xl sm:text-3xl text-text-primary pt-4">
-            When Is the Best Time to Visit Stratford, PEI?
+            Why OpenAir Atlantic Exists — and Why Stratford Specifically Benefits
           </h2>
 
           <p>
-            The honest answer: June through September is the reliable outdoor window. July
-            is peak — warmest water, most daylight, highest probability of the 25°C
-            blue-sky days that make PEI feel like a different island than it does in
-            November. But July is also peak UV and peak visitor traffic across the whole
-            province.
+            Most weather apps give you a number. They do not tell you what it means for
+            the specific thing you are trying to do — swim at Kinlock, cycle the trail,
+            sit in Pondside Park with a toddler, or photograph the Charlottetown skyline
+            from the Stratford shore at golden hour.
           </p>
 
           <p>
-            August is the local favourite. The crowds thin after the first week, the water
-            temperature in the river and near-shore areas is at its annual peak (often
-            22–24°C surface temperature), and the evenings are long enough to be outside
-            comfortably until nearly 9pm. The goldenrod along the trail edges starts to
-            show in late August — a distinctly PEI August smell that long-time residents
-            associate with the end of summer.
+            OpenAir Atlantic was built to close that gap. It takes the same Environment
+            Canada data every other weather app uses — and interprets it. The UV index
+            becomes a burn timer. The AQHI becomes a sentence about who should stay
+            inside. The precipitation probability becomes an exact arrival time. Wind speed
+            becomes a verdict on whether the bridge crossing is safe for cyclists.
           </p>
 
           <p>
-            September is underrated. The UV drops, the wind shifts northwest, and the light
-            turns the particular gold-and-amber that PEI photographers wait for all year.
-            The trails are quiet. The beaches are empty. Water temperature holds above 18°C
-            for most of September. If you have flexibility in your visit, the second week
-            of September is often the single best outdoor week of the year on the Island.
+            Stratford benefits from this specifically because its outdoor spots are diverse
+            enough that one reading does not apply everywhere. The wind that makes Kinlock
+            Beach choppy does not affect the wooded Kinlock trail spur at all. The UV that
+            makes Pondside Park uncomfortable at noon is irrelevant if you are walking
+            under the tree canopy. The tool surfaces that distinction — so you can choose
+            the right spot for the actual conditions, not just check if it is sunny.
           </p>
 
-          {/* Season guide */}
+          <blockquote className="border-l-2 border-[#E8EDE4] pl-7 my-8">
+            <p className="font-serif text-xl sm:text-2xl text-text-primary italic leading-relaxed mb-3">
+              &ldquo;We built OpenAir Atlantic so that checking conditions before going outside
+              takes 10 seconds and gives you a decision — not a forecast to interpret
+              yourself.&rdquo;
+            </p>
+            <cite className="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted not-italic">
+              — Jared Whyms, Founder, OpenAir Atlantic
+            </cite>
+          </blockquote>
+
+          {/* When to visit */}
+          <h2 className="font-serif text-2xl sm:text-3xl text-text-primary pt-4">
+            Best Time to Visit — and How OpenAir Makes the Call Easy
+          </h2>
+
+          <p>
+            June through September is the reliable outdoor window for Stratford. July is
+            peak — warmest temperatures, best swimming, most daylight. August is the local
+            favourite: crowds thin mid-month, river water peaks at 22–24°C, and the
+            evenings are long. September is underrated — UV drops, wind shifts northwest,
+            and the light turns the particular gold-and-amber that PEI photographers wait
+            for all year.
+          </p>
+
+          <p>
+            But the season is only part of the picture. A good July week can have three
+            bad outdoor days in it. A grey September can have four perfect ones. The
+            reason to use OpenAir Atlantic is precisely this: instead of planning around
+            the calendar, you plan around the actual conditions on the actual day. The
+            tool gives you a score — Excellent, Good, Fair, or Stay Inside — for every
+            location, every 10 minutes. You look at it the night before, the morning of,
+            and again an hour before you leave. That is the whole workflow.
+          </p>
+
           <div className="rounded-2xl border border-[#E8EDE4] bg-forest-light p-6 not-prose space-y-4">
             <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-forest-deep">
-              Stratford Season by Season
+              Stratford Conditions by Season
             </p>
             {[
               {
                 season: "June",
                 summary:
-                  "Trails open, weather still variable. Great for cycling. Water cold (12–16°C). UV rising.",
+                  "Trails open, weather variable. Great cycling. Water still cold (12–16°C). UV rising.",
               },
               {
                 season: "July",
                 summary:
-                  "Peak conditions. Warmest temperatures, best UV risk. Water 18–22°C. Book early.",
+                  "Peak conditions. Best UV risk — check the burn timer daily. Water 18–22°C.",
               },
               {
                 season: "August",
                 summary:
-                  "Local favourite. Crowds drop mid-month. Water peaks 22–24°C. Golden evenings.",
+                  "Best overall month. Crowds drop mid-August. Water peaks 22–24°C. Long evenings.",
               },
               {
                 season: "September",
                 summary:
-                  "Best light of the year. Quiet trails and empty beaches. Water holds above 18°C.",
+                  "Best light of the year. Quiet trails. Water holds above 18°C. AQHI consistently low.",
               },
               {
                 season: "October",
@@ -519,18 +546,18 @@ export default function StratfordGuidePage() {
           </div>
 
           {/* CTA */}
-          <div className="rounded-2xl border border-[#E8EDE4] bg-white p-6 not-prose space-y-3 mt-8">
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-muted">
-              Check conditions before you go
+          <div className="rounded-2xl border border-forest/20 bg-forest-light p-7 not-prose space-y-4 mt-8">
+            <p className="font-serif text-xl text-text-primary leading-snug">
+              Check live conditions for Stratford right now — free, no account required.
             </p>
             <p className="text-sm text-text-secondary leading-relaxed">
-              OpenAir Atlantic shows live weather, UV index, air quality, and trail
-              conditions for Charlottetown and Stratford — updated every 10 minutes from
-              Environment Canada data. Free, no account required.
+              OpenAir Atlantic shows real-time temperature, UV, air quality, wind, and
+              precipitation timing for Stratford and surrounding areas. Updated every
+              10 minutes from Environment Canada data. Built for Atlantic Canadians.
             </p>
             <Link
               href="/"
-              className="inline-flex items-center gap-2 rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-white hover:bg-forest-deep transition"
+              className="inline-flex items-center gap-2 rounded-full bg-forest px-6 py-3 text-sm font-semibold text-white hover:bg-forest-deep transition"
             >
               See live conditions →
             </Link>
@@ -546,8 +573,8 @@ export default function StratfordGuidePage() {
             <p className="text-sm text-text-secondary leading-relaxed">
               OpenAir Atlantic is a free public-good web service providing real-time outdoor
               conditions for communities across Atlantic Canada. Data is sourced from
-              Environment Canada, Fisheries and Oceans Canada, and Open-Meteo. The service
-              carries no advertising and collects no personal user data.{" "}
+              Environment Canada, Fisheries and Oceans Canada, and Open-Meteo. No
+              advertising. No personal data collected.{" "}
               <Link
                 href="/"
                 className="text-forest underline underline-offset-2 hover:text-forest-deep transition"
