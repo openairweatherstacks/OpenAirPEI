@@ -292,7 +292,7 @@ export default function StratfordGuidePage() {
           <p>
             One thing visitors to Stratford consistently notice is the view looking back
             across the Hillsborough River. The Charlottetown waterfront — Province House,
-            the Peake's Wharf district, the steeples of St. Dunstan's — reads as a
+            the Peake&apos;s Wharf district, the steeples of St. Dunstan&apos;s — reads as a
             compact skyline from the Stratford shore in a way that is impossible to see
             from within the city itself.
           </p>
@@ -334,7 +334,7 @@ export default function StratfordGuidePage() {
           </div>
 
           <p>
-            Pondside Park sits at the edge of Stratford's central waterfront area —
+            Pondside Park sits at the edge of Stratford&apos;s central waterfront area —
             a flat, accessible greenspace with water views, picnic areas, and enough open
             ground for casual sports, kite flying, or an afternoon with young children.
             It connects to the broader trail network and is one of the easiest entry
