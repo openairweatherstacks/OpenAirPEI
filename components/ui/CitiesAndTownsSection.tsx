@@ -17,11 +17,12 @@ interface TownListItem {
   name: string;
   slug: string;
   live: boolean;
+  cityRoute?: boolean;
 }
 
 const ALL_TOWNS: TownListItem[] = [
   { name: "Alberton", slug: "alberton", live: false },
-  { name: "Charlottetown", slug: "charlottetown", live: false },
+  { name: "Charlottetown", slug: "charlottetown", live: true, cityRoute: true },
   { name: "Cornwall", slug: "cornwall", live: true },
   { name: "Kensington", slug: "kensington", live: false },
   { name: "Montague", slug: "montague", live: false },
@@ -77,7 +78,7 @@ export function CitiesAndTownsSection() {
             className="flex items-center gap-2 rounded-full border border-border bg-white px-4 py-2 text-sm font-medium text-text-primary shadow-sm transition hover:bg-bg"
           >
             <MapPin className="h-3.5 w-3.5 text-forest" />
-            All towns
+            All cities &amp; towns
             <ChevronDown
               className={`h-3.5 w-3.5 text-text-muted transition-transform ${dropdownOpen ? "rotate-180" : ""}`}
             />
@@ -96,7 +97,7 @@ export function CitiesAndTownsSection() {
                     town.live ? (
                       <Link
                         key={town.slug}
-                        href={`/town/${town.slug}`}
+                        href={town.cityRoute ? `/city/${town.slug}` : `/town/${town.slug}`}
                         onClick={() => setDropdownOpen(false)}
                         className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm text-text-primary transition hover:bg-forest-light"
                       >
