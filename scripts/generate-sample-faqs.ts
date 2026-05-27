@@ -23,7 +23,7 @@ interface SampleConditions {
 
 const sampleLocations: SampleConditions[] = [
   {
-    location: 'Charlottetown Waterfront',
+    location: 'City of Charlottetown',
     temperature: 18,
     feelsLike: 16,
     windSpeed: 28,

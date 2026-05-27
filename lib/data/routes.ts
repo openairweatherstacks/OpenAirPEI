@@ -161,7 +161,7 @@ export const CONFEDERATION_BRANCH_TRAILS: BikeRoute[] = [
       km: 0,
     },
     endPoint: {
-      name: "Charlottetown Waterfront",
+      name: "City of Charlottetown",
       lat: 46.2382,
       lng: -63.1311,
       km: 8,

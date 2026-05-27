@@ -17,6 +17,18 @@ export const metadata: Metadata = {
 
 const POSTS = [
   {
+    slug: "best-things-to-do-stratford-pei",
+    title: "Best Things to Do in Stratford, PEI — The Complete Outdoor Guide",
+    deck: "Stratford sits just across the Hillsborough River from Charlottetown — close enough to feel connected, quiet enough to feel like its own place. Parks, trails, beaches, and the best times to visit each one.",
+    date: "May 27, 2026",
+    dateIso: "2026-05-27",
+    category: "Destination Guide",
+    author: "Jared Whyms",
+    authorImage: "/jaredwhyms.jpg",
+    image: "/stratford-hero.png",
+    imageAlt: "Stratford, PEI — view across the Hillsborough River",
+  },
+  {
     slug: "openair-atlantic-launches-pei",
     title: "OpenAir Atlantic Launches Free Outdoor Conditions Tool for Prince Edward Island",
     deck: "A new free web tool built by a Bahamian-born Islander gives PEI residents and visitors real-time weather, beach conditions, tide times, and trail reports — all in one place, at no cost.",
@@ -67,7 +79,13 @@ export default function BlogPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
               <div className="absolute bottom-4 left-5">
-                <span className="inline-block rounded-full bg-forest-deep px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white">
+                <span
+                  className={`inline-block rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white ${
+                    post.category === "Destination Guide"
+                      ? "bg-sun-deep"
+                      : "bg-forest-deep"
+                  }`}
+                >
                   {post.category}
                 </span>
               </div>

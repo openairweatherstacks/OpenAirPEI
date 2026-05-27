@@ -104,8 +104,8 @@ export const PEI_LOCATIONS: Location[] = [
   },
   {
     id: "charlottetown",
-    name: "Charlottetown Waterfront",
-    nameFr: "Front de mer de Charlottetown",
+    name: "City of Charlottetown",
+    nameFr: "Ville de Charlottetown",
     tagline: "The birthplace of Canada — a lively harbour waterfront with restaurants, galleries, and ocean views.",
     lat: 46.2382,
     lng: -63.1311,
