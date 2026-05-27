@@ -1,7 +1,7 @@
 export const LOCATION_IMAGES: Record<string, string> = {
   cavendish: "/get-images/cavendish.jpg",
   "cavendish-campground": "/get-images/cavendishcamp.jpg",
-  charlottetown: "/charlottetown.jpg",
+  charlottetown: "/charlotttetowncity.jpeg",
   "confederation-trail": "/get-images/confederation-trail.jpg",
   "confederation-bridge": "/get-images/confederationbridege.jpg",
   greenwich: "/get-images/dunes.jpg",
