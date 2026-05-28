@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 const POSTS = [
   {
     slug: "best-things-to-do-stratford-pei",
-    title: "Best Things to Do in Stratford, PEI — The Complete Outdoor Guide",
+    title: "Stratford, PEI — Live Weather, Beach & Trail Conditions Explained",
     deck: "Stratford sits just across the Hillsborough River from Charlottetown — close enough to feel connected, quiet enough to feel like its own place. Parks, trails, beaches, and the best times to visit each one.",
     date: "May 27, 2026",
     dateIso: "2026-05-27",
@@ -52,7 +52,7 @@ export default function BlogPage() {
           OpenAir Atlantic
         </p>
         <h1 className="font-serif text-4xl sm:text-5xl text-text-primary leading-tight">
-          Blog
+          Stories & Guides
         </h1>
         <p className="text-text-secondary leading-relaxed max-w-xl">
           Stories, updates, and insights from the team building OpenAir Atlantic.

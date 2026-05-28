@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Stratford, PEI — Live Outdoor Conditions, Trails & Parks | OpenAir Atlantic",
+  title: "Stratford, PEI — Live Weather, Trails & Beach Conditions | OpenAir Atlantic",
   description:
     "OpenAir Atlantic tracks real-time weather, UV, air quality, and trail conditions for Stratford, PEI. Know before you go — free, no account required.",
   alternates: {
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     "things to do Stratford PEI",
   ],
   openGraph: {
-    title: "Stratford, PEI — Live Outdoor Conditions | OpenAir Atlantic",
+    title: "Stratford, PEI — Live Weather, Trails & Beach Conditions | OpenAir Atlantic",
     description:
       "Real-time weather, UV, air quality, and trail conditions for Stratford, PEI. OpenAir Atlantic tells you exactly when to go and how long you have.",
     url: "https://openairatlantic.com/blog/best-things-to-do-stratford-pei",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Stratford, PEI — Live Outdoor Conditions | OpenAir Atlantic",
+    title: "Stratford, PEI — Live Weather, Trails & Beach Conditions | OpenAir Atlantic",
     description:
       "Know before you go. OpenAir Atlantic tracks real-time conditions for Stratford parks, trails, and beaches — free, updated every 10 minutes.",
     images: ["/stratford-hero.png"],
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Article",
-  headline: "Stratford, PEI — Live Outdoor Conditions, Trails & Parks | OpenAir Atlantic",
+  headline: "Stratford, PEI — Live Weather, Trails & Beach Conditions | OpenAir Atlantic",
   description:
     "OpenAir Atlantic tracks real-time weather, UV, air quality, and trail conditions for Stratford, PEI. Know before you go — free, no account required.",
   image: "https://openairatlantic.com/stratford-hero.png",
@@ -102,7 +102,7 @@ export default function StratfordGuidePage() {
 
         {/* Title */}
         <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-text-primary leading-tight mb-5">
-          Stratford, PEI — What OpenAir Atlantic Tracks Here and Why It Matters
+          Stratford, PEI — Live Weather, Beach & Trail Conditions Explained
         </h1>
 
         {/* Deck */}
