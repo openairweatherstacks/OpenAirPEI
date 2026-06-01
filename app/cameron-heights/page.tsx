@@ -510,35 +510,31 @@ export default async function CameronHeightsPage() {
           );
         })()}
 
-        <section className="grid gap-5 lg:grid-cols-2">
-          <div className="space-y-5">
-            <div className="panel p-5">
-              <p className="eyebrow mb-3">Air quality</p>
-              <AirQualityBar value={entry.weather.aqhi} />
-              <p className="mt-4 text-sm leading-6 text-text-secondary">
-                {entry.conditions.airQualityStatement}
-              </p>
-            </div>
-            <UVTimer uvIndex={entry.weather.uvIndex} />
-          </div>
+        <div className="panel p-5">
+          <p className="eyebrow mb-3">Air quality</p>
+          <AirQualityBar value={entry.weather.aqhi} />
+          <p className="mt-4 text-sm leading-6 text-text-secondary">
+            {entry.conditions.airQualityStatement}
+          </p>
+        </div>
 
-          <div className="space-y-5">
-            <div className="panel p-5">
-              <p className="eyebrow mb-3">Resident activity matcher</p>
-              <ActivityGrid activities={entry.conditions.activities} />
-            </div>
-            <MetricCard
-              icon={SunMedium}
-              title="Solar read"
-              insight={
-                dashboard.solarRadiation !== null
-                  ? `Solar radiation is sitting around ${dashboard.solarRadiation} W/m², which helps explain how quickly patios, pavement, and sheltered corners warm up.`
-                  : "Solar radiation is not available from the station right now."
-              }
-              rawLabel={`UV ${entry.weather.uvIndex} · feels like ${entry.weather.feelsLike}°C`}
-            />
-          </div>
-        </section>
+        <UVTimer uvIndex={entry.weather.uvIndex} />
+
+        <div className="panel p-5">
+          <p className="eyebrow mb-3">Resident activity matcher</p>
+          <ActivityGrid activities={entry.conditions.activities} />
+        </div>
+
+        <MetricCard
+          icon={SunMedium}
+          title="Solar read"
+          insight={
+            dashboard.solarRadiation !== null
+              ? `Solar radiation is sitting around ${dashboard.solarRadiation} W/m², which helps explain how quickly patios, pavement, and sheltered corners warm up.`
+              : "Solar radiation is not available from the station right now."
+          }
+          rawLabel={`UV ${entry.weather.uvIndex} · feels like ${entry.weather.feelsLike}°C`}
+        />
 
         <section className="panel p-5 sm:p-6">
           <p className="eyebrow mb-3">Why this board feels different</p>
