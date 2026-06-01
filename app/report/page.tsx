@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Camera, Flag, MapPinned, MessageSquareMore } from "lucide-react";
+import { Camera, Flag, MapPinned } from "lucide-react";
+import { ReportForm } from "@/components/report/ReportForm";
 
 export const metadata: Metadata = {
   title: "Report Conditions",
@@ -20,74 +21,39 @@ export default function ReportPage() {
         <p className="eyebrow mb-3">Community reports</p>
         <h1 className="section-title text-2xl sm:text-3xl">Help OpenAir see what the sensors miss</h1>
         <p className="section-copy mt-4">
-          Beta reporting is designed to capture surf conditions, local fog, trail washouts, and beach
-          crowding without turning the app into a social feed.
+          Sensors track numbers. You track reality. Report what you are seeing — trail conditions,
+          beach crowding, fog, surf — and help everyone plan better.
         </p>
       </section>
 
-      <section className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
-        <div className="panel p-5">
-          <p className="eyebrow mb-3">Coming in phase 2</p>
-          <div className="space-y-4 text-sm leading-6 text-text-secondary">
-            <div className="flex items-start gap-3">
-              <div className="rounded-2xl bg-forest-light p-2 text-forest">
-                <MapPinned className="h-4 w-4" />
+      <section className="grid gap-5 lg:grid-cols-[1fr_1.6fr]">
+        <div className="space-y-5">
+          <div className="panel p-5 space-y-4">
+            <p className="eyebrow">How it works</p>
+            <div className="space-y-4 text-sm leading-6 text-text-secondary">
+              <div className="flex items-start gap-3">
+                <div className="rounded-2xl bg-forest-light p-2 text-forest shrink-0">
+                  <MapPinned className="h-4 w-4" />
+                </div>
+                Pick your location, rate the conditions 1–5, and describe what you see in a sentence or two.
               </div>
-              Geotagged reports for beach wind, trail mud, surf, and visibility.
-            </div>
-            <div className="flex items-start gap-3">
-              <div className="rounded-2xl bg-sun-light p-2 text-sun-deep">
-                <Camera className="h-4 w-4" />
+              <div className="flex items-start gap-3">
+                <div className="rounded-2xl bg-sun-light p-2 text-sun-deep shrink-0">
+                  <Camera className="h-4 w-4" />
+                </div>
+                Attach a photo if you have one — it helps the community verify conditions fast.
               </div>
-              Photo-backed reports to help locals verify edge cases fast.
-            </div>
-            <div className="flex items-start gap-3">
-              <div className="rounded-2xl bg-forest-light p-2 text-forest">
-                <Flag className="h-4 w-4" />
+              <div className="flex items-start gap-3">
+                <div className="rounded-2xl bg-forest-light p-2 text-forest shrink-0">
+                  <Flag className="h-4 w-4" />
+                </div>
+                Reports are reviewed before they go live — no noise, just useful ground truth.
               </div>
-              Moderate-first workflow so reports stay useful instead of noisy.
             </div>
           </div>
         </div>
 
-        <div className="panel p-5">
-          <div className="mb-5 flex items-center gap-3">
-            <div className="rounded-3xl bg-bg p-3 text-text-primary">
-              <MessageSquareMore className="h-5 w-5" />
-            </div>
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-text-muted">
-                Submission preview
-              </p>
-              <p className="font-serif text-2xl text-text-primary">Reporter flow</p>
-            </div>
-          </div>
-
-          <form className="grid gap-4">
-            <input
-              className="min-h-11 rounded-2xl border border-border bg-white px-4 text-sm outline-none ring-0 transition focus:border-forest"
-              placeholder="Location"
-              disabled
-            />
-            <input
-              className="min-h-11 rounded-2xl border border-border bg-white px-4 text-sm outline-none ring-0 transition focus:border-forest"
-              placeholder="What changed?"
-              disabled
-            />
-            <textarea
-              className="min-h-32 rounded-2xl border border-border bg-white px-4 py-3 text-sm outline-none ring-0 transition focus:border-forest"
-              placeholder="Quick local note"
-              disabled
-            />
-            <button
-              type="button"
-              disabled
-              className="inline-flex min-h-11 items-center justify-center rounded-full bg-forest-deep px-5 py-3 text-sm font-semibold text-white opacity-70"
-            >
-              Beta form coming soon
-            </button>
-          </form>
-        </div>
+        <ReportForm />
       </section>
     </div>
   );
