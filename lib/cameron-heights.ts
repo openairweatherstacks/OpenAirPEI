@@ -5,6 +5,7 @@ import { PEI_AQHI, PEI_STATIONS } from "@/lib/data/locations";
 import { fetchOpenMeteoDailyForecast, fetchOpenMeteoForecast, type DailyForecastSnapshot } from "@/lib/weather";
 import { getActiveEnvironmentCanadaAlerts, getEnvironmentCanadaAlertsForLocation } from "@/lib/safety";
 import { getTempestLatestObservation, getTempestStation } from "@/lib/tempest";
+import { getSunWindow, type SunWindow } from "@/lib/sun";
 import type { Location, LocationConditions, WeatherSnapshot } from "@/lib/types";
 
 export interface AirportComparison {
@@ -31,6 +32,7 @@ export interface CameronHeightsDashboardData {
   lightningLastHour: number;
   lightningLast3Hours: number;
   airportComparison: AirportComparison | null;
+  sunWindow: SunWindow;
 }
 
 function degreesToCardinal(deg: number): string {
@@ -154,6 +156,7 @@ export const getCameronHeightsDashboardData = cache(
       lightningNow: observation.lightningStrikeCount,
       lightningLastHour: observation.lightningStrikeCountLastHour,
       lightningLast3Hours: observation.lightningStrikeCountLast3Hours,
+      sunWindow: getSunWindow(station.latitude, station.longitude),
     };
   },
 );

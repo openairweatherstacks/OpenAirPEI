@@ -1,6 +1,6 @@
 export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
-import { AlertTriangle, ArrowDown, ArrowUp, CloudRain, Gauge, Lightbulb, Moon, Radio, Sunrise, SunMedium, Wind, Zap } from "lucide-react";
+import { AlertTriangle, ArrowDown, ArrowUp, CloudRain, Gauge, Lightbulb, Moon, Radio, Sunrise, SunMedium, Wind, Zap, Sun } from "lucide-react";
 import Image from "next/image";
 
 import { MeteorologistInsight } from "@/components/ai/MeteorologistInsight";
@@ -239,7 +239,7 @@ export default async function CameronHeightsPage() {
             </div>
           </div>
 
-          <div className="rounded-[1.75rem] border border-white/70 bg-white/92 px-5 py-4 shadow-[0_24px_80px_rgba(42,42,42,0.08)] backdrop-blur lg:min-w-[300px]">
+          <div className="rounded-[1.75rem] border border-white/70 bg-white/92 px-5 py-5 shadow-[0_24px_80px_rgba(42,42,42,0.08)] backdrop-blur lg:min-w-[300px]">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-text-muted">
               Live source
             </p>
@@ -251,6 +251,21 @@ export default async function CameronHeightsPage() {
               Updated {formatObservationTime(entry.weather.observationTime)} · refreshes every 60
               seconds
             </p>
+            <div className="mt-4 flex items-center gap-3">
+              <div className="relative h-12 w-12 shrink-0">
+                <Image
+                  src="/WeatherFlow_Tempest_Outdoor_Sun.webp"
+                  alt="WeatherFlow Tempest weather station"
+                  fill
+                  className="object-contain"
+                  sizes="48px"
+                />
+              </div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-text-muted">Powered by</p>
+                <p className="text-sm font-semibold text-text-primary leading-tight">Tempest Advanced<br />Weather Station</p>
+              </div>
+            </div>
           </div>
         </section>
       </div>
@@ -448,7 +463,56 @@ export default async function CameronHeightsPage() {
           />
         </section>
 
-        <section className="grid gap-5 lg:grid-cols-[0.95fr_1.05fr]">
+        {/* Daylight meter */}
+        {(() => {
+          const { sunrise, sunset, daylightMinutes } = dashboard.sunWindow;
+          const now = new Date();
+          const totalMs = sunset.getTime() - sunrise.getTime();
+          const elapsedMs = Math.max(0, Math.min(now.getTime() - sunrise.getTime(), totalMs));
+          const pct = Math.round((elapsedMs / totalMs) * 100);
+          const hoursLeft = Math.max(0, Math.round((sunset.getTime() - now.getTime()) / 60000));
+          const hoursLeftH = Math.floor(hoursLeft / 60);
+          const hoursLeftM = hoursLeft % 60;
+          const daylightH = Math.floor(daylightMinutes / 60);
+          const daylightM = daylightMinutes % 60;
+          const fmtTime = (d: Date) =>
+            d.toLocaleTimeString("en-CA", { timeZone: "America/Halifax", hour: "numeric", minute: "2-digit", hour12: true });
+          const isDaytime = now >= sunrise && now <= sunset;
+          const statement = !isDaytime
+            ? "Sun has set for the day."
+            : hoursLeft < 60
+            ? `${hoursLeftM} minutes of daylight left today.`
+            : `${hoursLeftH}h ${hoursLeftM}m of daylight remaining today.`;
+
+          return (
+            <section className="rounded-[1.75rem] border border-border bg-white p-6 shadow-sm">
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2">
+                  <Sun className="h-4 w-4 text-sun" />
+                  <p className="eyebrow">Daylight today</p>
+                </div>
+                <span className="text-xs font-semibold text-text-muted">{daylightH}h {daylightM}m total</span>
+              </div>
+              <p className="font-serif text-xl text-text-primary mb-4 leading-snug">
+                A long stretch of daylight to work with today.
+              </p>
+              {/* Progress bar */}
+              <div className="relative h-3 w-full rounded-full bg-sun-light overflow-hidden mb-3">
+                <div
+                  className="h-full rounded-full bg-gradient-to-r from-sun to-sun-deep transition-all"
+                  style={{ width: `${isDaytime ? pct : 100}%` }}
+                />
+              </div>
+              <div className="flex items-center justify-between text-xs text-text-muted">
+                <span>Sunrise {fmtTime(sunrise)}</span>
+                <span className="font-semibold text-sun-deep">{statement}</span>
+                <span>Sunset {fmtTime(sunset)}</span>
+              </div>
+            </section>
+          );
+        })()}
+
+        <section className="grid gap-5 lg:grid-cols-2">
           <div className="space-y-5">
             <div className="panel p-5">
               <p className="eyebrow mb-3">Air quality</p>
