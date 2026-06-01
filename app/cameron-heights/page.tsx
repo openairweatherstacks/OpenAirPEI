@@ -251,17 +251,17 @@ export default async function CameronHeightsPage() {
               Updated {formatObservationTime(entry.weather.observationTime)} · refreshes every 60
               seconds
             </p>
-            <div className="mt-4 flex items-center gap-3 border-t border-border pt-4">
-              <Image
-                src="/WeatherFlow_Tempest_Outdoor_Sun.webp"
-                alt="WeatherFlow Tempest weather station"
-                width={52}
-                height={52}
-                className="shrink-0 object-contain"
-              />
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-text-muted">Powered by</p>
-                <p className="text-sm font-semibold text-text-primary leading-tight">Tempest Advanced<br />Weather Station</p>
+            <div className="mt-4 border-t border-border pt-4">
+              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-text-muted mb-3">Powered by</p>
+              <div className="flex items-center gap-4">
+                <Image
+                  src="/WeatherFlow_Tempest_Outdoor_Sun.webp"
+                  alt="WeatherFlow Tempest weather station"
+                  width={120}
+                  height={120}
+                  className="shrink-0 object-contain"
+                />
+                <p className="font-semibold text-text-primary leading-snug">Tempest Advanced<br />Weather Station</p>
               </div>
             </div>
           </div>
