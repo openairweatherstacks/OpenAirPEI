@@ -17,8 +17,9 @@ export function UVTimer({ uvIndex }: { uvIndex: number }) {
         Burn window: about {burnMinutes} min
       </p>
       <p className="mt-3 max-w-2xl text-sm leading-7 text-text-secondary">
-        UV {uvIndex} is high enough that sunscreen and shade timing matter, even when the air still
-        feels cool.
+        This is how long fair skin can be in direct sun at UV {uvIndex} before it starts to burn —
+        calculated using the standard Health Canada formula (150 ÷ UV index). Apply SPF 30+ before
+        heading out and reapply every 90 minutes if you stay longer.
       </p>
     </div>
   );
