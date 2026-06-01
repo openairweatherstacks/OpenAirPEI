@@ -251,16 +251,14 @@ export default async function CameronHeightsPage() {
               Updated {formatObservationTime(entry.weather.observationTime)} · refreshes every 60
               seconds
             </p>
-            <div className="mt-4 flex items-center gap-3">
-              <div className="relative h-12 w-12 shrink-0">
-                <Image
-                  src="/WeatherFlow_Tempest_Outdoor_Sun.webp"
-                  alt="WeatherFlow Tempest weather station"
-                  fill
-                  className="object-contain"
-                  sizes="48px"
-                />
-              </div>
+            <div className="mt-4 flex items-center gap-3 border-t border-border pt-4">
+              <Image
+                src="/WeatherFlow_Tempest_Outdoor_Sun.webp"
+                alt="WeatherFlow Tempest weather station"
+                width={52}
+                height={52}
+                className="shrink-0 object-contain"
+              />
               <div>
                 <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-text-muted">Powered by</p>
                 <p className="text-sm font-semibold text-text-primary leading-tight">Tempest Advanced<br />Weather Station</p>
@@ -522,6 +520,13 @@ export default async function CameronHeightsPage() {
               </p>
             </div>
             <UVTimer uvIndex={entry.weather.uvIndex} />
+          </div>
+
+          <div className="space-y-5">
+            <div className="panel p-5">
+              <p className="eyebrow mb-3">Resident activity matcher</p>
+              <ActivityGrid activities={entry.conditions.activities} />
+            </div>
             <MetricCard
               icon={SunMedium}
               title="Solar read"
@@ -532,13 +537,6 @@ export default async function CameronHeightsPage() {
               }
               rawLabel={`UV ${entry.weather.uvIndex} · feels like ${entry.weather.feelsLike}°C`}
             />
-          </div>
-
-          <div className="space-y-5">
-            <div className="panel p-5">
-              <p className="eyebrow mb-3">Resident activity matcher</p>
-              <ActivityGrid activities={entry.conditions.activities} />
-            </div>
           </div>
         </section>
 
