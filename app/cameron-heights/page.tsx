@@ -239,29 +239,33 @@ export default async function CameronHeightsPage() {
             </div>
           </div>
 
-          <div className="rounded-[1.75rem] border border-white/70 bg-white/92 px-5 py-5 shadow-[0_24px_80px_rgba(42,42,42,0.08)] backdrop-blur lg:min-w-[300px]">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-text-muted">
-              Live source
-            </p>
-            <p className="mt-2 font-serif text-2xl text-text-primary">
-              {dashboard.stationPublicName}
-            </p>
-            <p className="mt-1 text-sm text-text-secondary">{dashboard.stationName}</p>
-            <p className="mt-3 text-xs leading-5 text-text-muted">
-              Updated {formatObservationTime(entry.weather.observationTime)} · refreshes every 60
-              seconds
-            </p>
-            <div className="mt-4 border-t border-border pt-4">
-              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-text-muted mb-3">Powered by</p>
-              <div className="flex items-center gap-4">
-                <Image
-                  src="/WeatherFlow_Tempest_Outdoor_Sun.webp"
-                  alt="WeatherFlow Tempest weather station"
-                  width={120}
-                  height={120}
-                  className="shrink-0 object-contain"
-                />
-                <p className="font-semibold text-text-primary leading-snug">Tempest Advanced<br />Weather Station</p>
+          <div className="overflow-hidden rounded-[1.75rem] border border-white/70 bg-white/92 shadow-[0_24px_80px_rgba(42,42,42,0.08)] backdrop-blur lg:min-w-[300px]">
+            <div className="px-5 py-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-text-muted">
+                Live source
+              </p>
+              <p className="mt-2 font-serif text-2xl text-text-primary">
+                {dashboard.stationPublicName}
+              </p>
+              <p className="mt-1 text-sm text-text-secondary">{dashboard.stationName}</p>
+              <p className="mt-3 text-xs leading-5 text-text-muted">
+                Updated {formatObservationTime(entry.weather.observationTime)} · refreshes every 60
+                seconds
+              </p>
+            </div>
+            {/* Tempest image — full width */}
+            <div className="relative w-full aspect-[4/3] bg-[#f0f4ee]">
+              <Image
+                src="/WeatherFlow_Tempest_Outdoor_Sun.webp"
+                alt="WeatherFlow Tempest weather station installed outdoors"
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              <div className="absolute bottom-4 left-5">
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/80">Powered by</p>
+                <p className="font-semibold text-white text-base leading-snug">Tempest Advanced Weather Station</p>
               </div>
             </div>
           </div>
